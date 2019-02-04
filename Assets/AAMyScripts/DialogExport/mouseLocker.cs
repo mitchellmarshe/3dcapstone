@@ -5,7 +5,7 @@ using UnityEngine;
 public class mouseLocker : MonoBehaviour
 {
     public UnityStandardAssets.Characters.FirstPerson.playerScriptSP controller;
-
+    private bool locked = true;
     // Use this for initialization
     void Start()
     {
@@ -20,6 +20,7 @@ public class mouseLocker : MonoBehaviour
     //Makes cursor invisible
     public void lockMouse()
     {
+        locked = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         controller.enabled = true;
@@ -30,8 +31,20 @@ public class mouseLocker : MonoBehaviour
     
     public void unlockMouse()
     {
+        locked = false;
         controller.enabled = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+
+    public void oppositeMouse()
+    {
+        if (locked)
+        {
+            unlockMouse();
+        } else
+        {
+            lockMouse();
+        }
     }
 }

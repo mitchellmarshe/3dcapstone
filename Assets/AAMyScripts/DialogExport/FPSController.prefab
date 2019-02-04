@@ -298,7 +298,6 @@ GameObject:
   - component: {fileID: 81544978065015466}
   - component: {fileID: 124063775510647644}
   - component: {fileID: 45001463434348352}
-  - component: {fileID: 656125462}
   m_Layer: 0
   m_Name: FirstPersonCharacter
   m_TagString: MainCamera
@@ -388,23 +387,6 @@ Skybox:
   m_GameObject: {fileID: 1328583964462494}
   m_Enabled: 1
   m_CustomSkybox: {fileID: 0}
---- !u!114 &656125462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1328583964462494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c95cc35cae013f43acb61f004a7032e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameCam: {fileID: 20390761651372988}
-  rayDist: 0
-  pickUpUI: {fileID: 1321722942018297}
-  inventoryCanvas: {fileID: 0}
-  invSize: 4
 --- !u!1001 &1519662191
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -509,12 +491,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6f4e5673eb2699409cf22c3cea6bdfd, type: 3}
---- !u!1 &1321722942018297 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1321723587159702, guid: f6f4e5673eb2699409cf22c3cea6bdfd,
-    type: 3}
-  m_PrefabInstance: {fileID: 1519662191}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &224759117403728563 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224759115953807068, guid: f6f4e5673eb2699409cf22c3cea6bdfd,

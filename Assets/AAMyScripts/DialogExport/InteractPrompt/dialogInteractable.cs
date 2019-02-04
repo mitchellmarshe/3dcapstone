@@ -34,6 +34,12 @@ public class dialogInteractable : MonoBehaviour {
         lastCanvas = other;
     }
 
+    public void setInZone(bool boolean)
+    {
+        interactUI.SetActive(boolean);
+        inZone = boolean;
+    }
+
 	void Update(){
 		if (inZone) {
 			if (Input.GetKey ("e")) {
