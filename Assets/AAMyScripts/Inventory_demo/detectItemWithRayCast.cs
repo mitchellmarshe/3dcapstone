@@ -56,10 +56,16 @@ public class detectItemWithRayCast : MonoBehaviour
 
     public int getFood()
     {
-        if (SpectralPoints > 0)
+        if (SpectralPoints < 0)
         {
-            print("Hi!");
+            SpectralPoints = 0;
         }
+
+        if (SpectralPoints > 5)
+        {
+            SpectralPoints = 5;
+        }
+
         return SpectralPoints;
     }
 
@@ -123,13 +129,17 @@ public class detectItemWithRayCast : MonoBehaviour
             {
                 dialogHandler = other.GetComponent<dialogInteractable>();
                 dialogHandler.setInZone(true);
-            } else if (other.tag == "SpectralPoint")
+                SpectralPoints -= 1;
+            } else if (other.tag == "SpectralPoint" || other.tag == "Vending")
             {
                 pickUpUI.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     SpectralPoints += 1;
-                    other.SetActive(false);
+                    if (other.tag == "SpectralPoint")
+                    {
+                        other.SetActive(false);
+                    }
                     pickUpUI.SetActive(false);
                     //foodSlider.value = SpectralPoints / maxSpectralPoints;
                 }
