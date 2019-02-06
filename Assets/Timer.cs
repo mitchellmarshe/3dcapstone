@@ -11,10 +11,13 @@ public class Timer : MonoBehaviour
     public AudioSource source;
     public float volume;
 
+    private int rings;
+
     // Start is called before the first frame update
     void Start()
     {
         timeText.text = "00:00";
+        rings = 0;
     }
 
     // Update is called once per frame
@@ -34,19 +37,22 @@ public class Timer : MonoBehaviour
         string timeFormat = string.Format("{0:00}:{1:00}", minutes, seconds);
         timeText.text = timeFormat;
 
-        if (minutes < 10)
+        if (minutes < 10 && rings == 0)
         {
             source.PlayOneShot(bellSound, volume);
+            rings++;
         }
 
-        if (minutes < 5)
+        if (minutes < 5 && rings == 1)
         {
             source.PlayOneShot(bellSound, volume);
+            rings++;
         }
 
-        if (minutes <= 0 && seconds <= 0)
+        if (minutes <= 0 && seconds <= 0 && rings == 2)
         {
             source.PlayOneShot(bellSound, volume);
+            rings++;
             // Trigger Ending!
         }
     }
