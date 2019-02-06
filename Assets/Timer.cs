@@ -10,6 +10,8 @@ public class Timer : MonoBehaviour
     public AudioClip bellSound;
     public AudioSource source;
     public float volume;
+    public GameObject ending;
+    public GameObject cremated;
 
     private int rings;
 
@@ -53,7 +55,8 @@ public class Timer : MonoBehaviour
         {
             source.PlayOneShot(bellSound, volume);
             rings++;
-            // Trigger Ending!
+            ending.SetActive(true);
+            cremated.SetActive(true);
         }
     }
 }
