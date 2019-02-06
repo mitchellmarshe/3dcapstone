@@ -34,6 +34,11 @@ public class dialogInteractable : MonoBehaviour {
         lastCanvas = other;
     }
 
+    public void setCheckPoint(GameObject checkPointCanvas)
+    {
+        Activated = checkPointCanvas;
+    }
+
     public void setInZone(bool boolean)
     {
         interactUI.SetActive(boolean);

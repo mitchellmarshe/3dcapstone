@@ -20,6 +20,7 @@ public class detectItemWithRayCast : MonoBehaviour
     private int currentSize;
     public GameObject Journal;
 
+
     // Spectral Food
     public int SpectralPoints;
 
@@ -43,6 +44,23 @@ public class detectItemWithRayCast : MonoBehaviour
             inventoryCanvas.SetActive(!inventoryCanvas.activeSelf);
             
         }
+    }
+
+    public string[] getItemNames()
+    {
+        string[] names = new string[inventoryList.Length];
+
+        for(int i = 0; i < inventoryList.Length; i++)
+        {
+            string tmp = "";
+            if(inventoryList[i] != null)
+            {
+                tmp = inventoryList[i].name;
+            }
+            names[i] = tmp;
+        }
+
+        return names;
     }
 
     public void readItem(int num)
@@ -69,6 +87,11 @@ public class detectItemWithRayCast : MonoBehaviour
         return SpectralPoints;
     }
 
+    public void setFood(int newFood)
+    {
+        SpectralPoints = newFood;
+    }
+
     void itemRayCheck()
     {
         pickUpUI.SetActive(false);
@@ -91,6 +114,13 @@ public class detectItemWithRayCast : MonoBehaviour
                     if (currentSize < invSize) // then there is room in the inventory for a new item
                     {
                         inventoryList[currentSize] = other;
+                        if(other.name == "missingletter_clue")
+                        {
+
+                        } else if(other.name == "PictureFrame_clue")
+                        {
+
+                        }
                         currentSize += 1;
                         pickUpUI.SetActive(false);
                         other.SetActive(false);
@@ -129,7 +159,6 @@ public class detectItemWithRayCast : MonoBehaviour
             {
                 dialogHandler = other.GetComponent<dialogInteractable>();
                 dialogHandler.setInZone(true);
-                SpectralPoints -= 1;
             } else if (other.tag == "SpectralPoint" || other.tag == "Vending")
             {
                 pickUpUI.SetActive(true);

@@ -66,6 +66,7 @@
     <Compile Include="Assets\AAMyScripts\DialogExport\InteractPrompt\scriptInteractable.cs" />
     <Compile Include="Assets\AAMyScripts\DialogExport\mouseLocker.cs" />
     <Compile Include="Assets\AAMyScripts\DialogExport\playerScriptSP.cs" />
+    <Compile Include="Assets\AAMyScripts\DialogExport\responseConditionals.cs" />
     <Compile Include="Assets\AAMyScripts\Inventory_demo\addToInventory.cs" />
     <Compile Include="Assets\AAMyScripts\Inventory_demo\detectItemWithRayCast.cs" />
     <Compile Include="Assets\AAMyScripts\Inventory_demo\dragHandler.cs" />
