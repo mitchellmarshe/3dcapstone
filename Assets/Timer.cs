@@ -7,6 +7,9 @@ public class Timer : MonoBehaviour
 {
     public Text timeText;
     public float maxTime; // seconds.
+    public AudioClip bellSound;
+    public AudioSource source;
+    public float volume;
 
     // Start is called before the first frame update
     void Start()
@@ -31,8 +34,19 @@ public class Timer : MonoBehaviour
         string timeFormat = string.Format("{0:00}:{1:00}", minutes, seconds);
         timeText.text = timeFormat;
 
+        if (minutes < 10)
+        {
+            source.PlayOneShot(bellSound, volume);
+        }
+
+        if (minutes < 5)
+        {
+            source.PlayOneShot(bellSound, volume);
+        }
+
         if (minutes <= 0 && seconds <= 0)
         {
+            source.PlayOneShot(bellSound, volume);
             // Trigger Ending!
         }
     }
