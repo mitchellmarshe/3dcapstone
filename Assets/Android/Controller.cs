@@ -10,14 +10,26 @@ public class Controller : MonoBehaviour
     public Text dialogue;
     public Vector2 position;
 
+    public Vector2 startPosition;
+    public Vector2 deltaPosition;
+    public Vector2 endPosition;
+
+    public GameObject camera;
+
     private Global global; // Global variables.
+
+    private float x;
+    private float z;
+    private bool moved;
 
     // Start is called before the first frame update
     void Start()
     {
         global = GameObject.Find("Global").GetComponent<Global>(); // Shared pointer.
-
+        camera = GameObject.Find("Camera");
         position = new Vector2(0.0f, 0.0f);
+
+        moved = false;
     }
 
     // Update is called once per frame
@@ -32,14 +44,104 @@ public class Controller : MonoBehaviour
             Decision3(false);
             Decision4(false);
         }
-        /*
+        
+        // TESTING touches.
         if (Input.touchCount > 0)
         {
-            Touch touch = Input.GetTouch(0);
-            position = touch.position;
-        }*/
+            Touch touch = Input.touches[0];
+
+            if (touch.phase == TouchPhase.Began)
+            {
+                startPosition = touch.position;
+            }
+
+            if (touch.phase == TouchPhase.Moved)
+            {
+                deltaPosition = touch.deltaPosition;
+                //float x;
+                if (deltaPosition.x < 0)
+                {
+                    x = -1.0f;
+                }
+                else if (deltaPosition.x == 0)
+                {
+                    x = 0.0f;
+                }
+                else
+                {
+                    x = 1.0f;
+                }
+
+                //float z;
+                if (deltaPosition.y < 0)
+                {
+                    z = -1.0f;
+                }
+                else if (deltaPosition.y == 0)
+                {
+                    z = 0.0f;
+                }
+                else
+                {
+                    z = 1.0f;
+                }
+
+                camera.transform.position += new Vector3(x, 0.0f, z);
+            }
+
+            if (touch.phase == TouchPhase.Stationary)
+            {
+                camera.transform.position += new Vector3(x, 0.0f, z);
+            }
+
+            if (touch.phase == TouchPhase.Ended)
+            {
+                endPosition = touch.position;
+            }
+
+            if (touch.phase == TouchPhase.Canceled)
+            {
+
+            }
+            //position = touch.position;
+        }
         //dialogue.text = "Position: (" + position.x + ", " + position.y + ")";
         //dialogue.text = "" + global.haunted;
+
+        dialogue.text = 
+            "S(" + startPosition.x + ", " + startPosition.y + 
+            ") D(" + deltaPosition.x + ", " + deltaPosition.y + 
+            ") E(" + endPosition.x + ", " + endPosition.y + ")";
+        /*
+        float x;
+        if (deltaPosition.x < 0)
+        {
+            x = -1.0f;
+        }
+        else if (deltaPosition.x == 0)
+        {
+            x = 0.0f;
+        }
+        else
+        {
+            x = 1.0f;
+        }
+
+        float z;
+        if (deltaPosition.y < 0)
+        {
+            z = -1.0f;
+        }
+        else if (deltaPosition.y == 0)
+        {
+            z = 0.0f;
+        }
+        else
+        {
+            z = 1.0f;
+        }
+
+        camera.transform.position += new Vector3(x, 0.0f, z);*/
     }
 
     // Note: with a tag, enable this function and set up dialogue accordingly.

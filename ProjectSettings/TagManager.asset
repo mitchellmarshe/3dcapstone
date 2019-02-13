@@ -8,6 +8,8 @@ TagManager:
   - NPC
   - SpectralPoint
   - Vending
+  - moveArea
+  - lookArea
   layers:
   - Default
   - TransparentFX

@@ -352,6 +352,10 @@
     <Compile Include="Assets\AAMyScripts\Inventory_demo\detectItemWithRayCast.cs" />
     <Compile Include="Assets\AAMyScripts\Inventory_demo\dragHandler.cs" />
     <Compile Include="Assets\AAMyScripts\Inventory_demo\inventorySlot.cs" />
+    <Compile Include="Assets\Android\Controller.cs" />
+    <Compile Include="Assets\Android\Dialogue.cs" />
+    <Compile Include="Assets\Android\Global.cs" />
+    <Compile Include="Assets\Android\joystickTest.cs" />
     <Compile Include="Assets\Food.cs" />
     <Compile Include="Assets\haunt.cs" />
     <Compile Include="Assets\ProCore\ProBuilder\API Examples\Icosphere FFT\Scripts\CameraControls.cs" />
