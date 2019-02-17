@@ -232,8 +232,14 @@ public class Controller : MonoBehaviour
 
     private void Look()
     {
-        cameraRotation.y += Input.GetAxis("Mouse X");
-        cameraRotation.x += Input.GetAxis("Mouse Y") * -1.0f;
+        if (global.platform == false) {
+            cameraRotation.y += Input.GetAxis("Mouse X");
+            cameraRotation.x += Input.GetAxis("Mouse Y") * -1.0f;
+        } else
+        {
+            cameraRotation.y += deltaPosition.x < 0.0f ? -1.0f : 1.0f;
+            cameraRotation.x += deltaPosition.y < 0.0f ? 1.0f : -1.0f;
+        }
         camera.transform.eulerAngles = cameraRotation;
     }
 
@@ -251,12 +257,18 @@ public class Controller : MonoBehaviour
             if (touch.phase == TouchPhase.Moved)
             {
                 deltaPosition = touch.deltaPosition;
-                Move();
+                if (RectTransformUtility.RectangleContainsScreenPoint(mobileLookJoystick.GetComponent<RectTransform>(), touch.position)) {
+                    Look();
+                }
+                debugger.text = "" + deltaPosition;
             }
 
             if (touch.phase == TouchPhase.Stationary)
             {
-                
+                if (RectTransformUtility.RectangleContainsScreenPoint(mobileLookJoystick.GetComponent<RectTransform>(), touch.position))
+                {
+                    Look();
+                }
             }
 
             if (touch.phase == TouchPhase.Ended)

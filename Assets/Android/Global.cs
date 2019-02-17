@@ -23,7 +23,7 @@ public class Global : MonoBehaviour
         decided = false;
         action = Action.None;
 
-        platform = false;
+        //platform = false;
     }
 
     // Update is called once per frame.
