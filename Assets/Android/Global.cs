@@ -7,18 +7,26 @@ using UnityEngine;
 public class Global : MonoBehaviour
 {
     public bool haunted;
-    public bool decided;
-    public int choice;
 
-    // Start is called before the first frame update
+    public bool decided;
+    public enum Action {None, One, Two, Three, Four};
+    public Action action;
+
+    // Defaults to PC controls.
+    public bool platform;
+
+    // Start is called before the first frame update.
     void Start()
     {
         haunted = false;
+
         decided = false;
-        choice = 0;
+        action = Action.None;
+
+        platform = false;
     }
 
-    // Update is called once per frame
+    // Update is called once per frame.
     void Update()
     {
         

@@ -39,28 +39,29 @@ public class Dialogue : MonoBehaviour
 
         if (global.decided)
         {
-            if (global.choice == 1)
+            if (global.action == Global.Action.One)
             {
                 Dialogue1Demo();
             }
 
-            if (global.choice == 2)
+            if (global.action == Global.Action.Two)
             {
                 Dialogue2Demo();
             }
 
-            if (global.choice == 3)
+            if (global.action == Global.Action.Three)
             {
                 Dialogue3Demo();
             }
 
-            if (global.choice == 4)
+            if (global.action == Global.Action.Four)
             {
                 Dialogue4Demo();
             }
 
+            // Reference Controller.
             global.decided = false;
-            global.choice = 0;
+            global.action = Global.Action.None;
         }
     }
 
