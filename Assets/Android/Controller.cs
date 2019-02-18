@@ -16,6 +16,7 @@ public class Controller : MonoBehaviour
     private GameObject player;
     private GameObject camera;
     private Vector3 cameraRotation;
+    private Camera cameraComponent;
 
     // Actions
     private GameObject pcActions;
@@ -45,6 +46,11 @@ public class Controller : MonoBehaviour
     private Vector2 deltaPosition;
     private Vector2 endPosition;
 
+    // Decals
+    private GameObject decalBank;
+    private GameObject placeableDecal;
+    private placeDecal placeDecalScript;
+
 
 
     // Start is called before the first frame update
@@ -54,8 +60,11 @@ public class Controller : MonoBehaviour
 
         player = GameObject.Find("Player");
         camera = GameObject.Find("Camera");
+        cameraComponent = camera.GetComponent<Camera>();
 
         Platform();
+        placeDecalScript = placeableDecal.GetComponent<placeDecal>();
+        //lockMouse();
 
         cameraRotation = new Vector3(0.0f, 0.0f, 0.0f);
 
@@ -138,6 +147,61 @@ public class Controller : MonoBehaviour
         }
     }
 
+    public void showDecalMenu()
+    {
+        decalBank.SetActive(!decalBank.activeInHierarchy);
+    }
+
+    public void placeSelectedDecal(Sprite selectedSprite)
+    {
+        showDecalMenu(); // this will close the decal menu because someone just selected a decal
+        placeableDecal.SetActive(true);
+        placeDecalScript.findSpot(selectedSprite, camera);
+    }
+
+    public void lockMouse()
+    {
+        global.mouseLocked = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        //controller.enabled = true; Insert component controlling movement here if you want to freeze player while they pick an option
+
+
+    }
+
+
+    public void unlockMouse()
+    {
+        global.mouseLocked = false;
+        //controller.enabled = false; Insert component controlling movement here if you want to freeze player while they pick an option
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void oppositeMouse()
+    {
+        if (global.mouseLocked)
+        {
+            unlockMouse();
+        }
+        else
+        {
+            lockMouse();
+        }
+    }
+
+    private void rayCheck()
+    {
+        Vector3 rayOrigin = cameraComponent.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
+        RaycastHit rayHit;
+        if (Physics.Raycast(rayOrigin, cameraComponent.transform.forward, out rayHit, 3)) // 3 is the length of the ray drawn
+        {
+            GameObject other = rayHit.collider.gameObject;
+            // do stuff like check other for tags or w/e you like
+        }
+        //Debug.DrawRay(rayOrigin, gameCam.transform.forward * 3, Color.green); // this will draw a green line in editor for debugging
+    }
+
     private void Platform()
     {
         // PC.
@@ -172,6 +236,12 @@ public class Controller : MonoBehaviour
 
             mobileLookJoystick = GameObject.Find("Mobile Look Joystick") as GameObject;
             mobileLookJoystick.SetActive(false);
+
+            decalBank = GameObject.Find("Decal Bank") as GameObject;
+            decalBank.SetActive(false);
+
+            placeableDecal = GameObject.Find("tmp_decal") as GameObject;
+            placeableDecal.SetActive(false);
         }
         else // Mobile.
         {
@@ -204,6 +274,12 @@ public class Controller : MonoBehaviour
 
             mobileLookJoystick = GameObject.Find("Mobile Look Joystick") as GameObject;
             mobileLookJoystick.SetActive(true);
+
+            decalBank = GameObject.Find("Decal Bank") as GameObject;
+            decalBank.SetActive(false);
+
+            placeableDecal = GameObject.Find("tmp_decal") as GameObject;
+            placeableDecal.SetActive(false);
         }
     }
 
@@ -227,6 +303,12 @@ public class Controller : MonoBehaviour
         if (Input.GetKey(KeyCode.D) || deltaPosition.x > 0)
         {
             player.transform.position += new Vector3(camera.transform.right.x, 0.0f, camera.transform.right.z);
+        }
+
+        if (Input.GetKey(KeyCode.O))
+        {
+            placeDecalScript.placeAtSpot();
+            //placeableDecal.SetActive(false);
         }
     }
 
@@ -282,4 +364,6 @@ public class Controller : MonoBehaviour
             }
         }
     }
+
+
 }

@@ -7,7 +7,8 @@ using UnityEngine;
 public class Global : MonoBehaviour
 {
     public bool haunted;
-
+    public bool mouseLocked;
+    public bool placingDecal;
     public bool decided;
     public enum Action {None, One, Two, Three, Four};
     public Action action;
@@ -19,7 +20,8 @@ public class Global : MonoBehaviour
     void Start()
     {
         haunted = false;
-
+        mouseLocked = true;
+        placingDecal = false;
         decided = false;
         action = Action.None;
 
