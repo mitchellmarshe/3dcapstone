@@ -305,9 +305,15 @@ public class Controller : MonoBehaviour
             player.transform.position += new Vector3(camera.transform.right.x, 0.0f, camera.transform.right.z);
         }
 
-        if (Input.GetKey(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             placeDecalScript.placeAtSpot();
+            //placeableDecal.SetActive(false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            showDecalMenu();
             //placeableDecal.SetActive(false);
         }
     }
