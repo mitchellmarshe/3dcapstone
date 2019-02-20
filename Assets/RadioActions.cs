@@ -6,15 +6,20 @@ public class RadioActions : ItemActionInterface
 {
     public string[] myActionNames;
     private AudioSource radioSound;
+    private AudioClip jazz;
+    private AudioClip jazzDistorted;
 
     private void Start()
     {
-        myActionNames = new string[] { "Turn On", "Turn Off", "Distort", "Reset" };
+        myActionNames = new string[] { "Turn On", "Turn Off", "...", "Distort" };
         radioSound = gameObject.GetComponent<AudioSource>();
-    }
+        jazz = Resources.Load<AudioClip>("sounds/JazzSong_1");
+        jazzDistorted = Resources.Load<AudioClip>("sounds/JazzSongDistorted_3");
+}
 
     public override void  callAction1()
     {
+        radioSound.clip = jazz;
         radioSound.Play();
     }
 
@@ -25,12 +30,13 @@ public class RadioActions : ItemActionInterface
 
     public override void callAction3()
     {
-        radioSound.pitch = radioSound.pitch - (float) 0.6;
+        
     }
 
     public override void callAction4()
     {
-        radioSound.pitch = 1;
+        radioSound.clip = jazzDistorted;
+        radioSound.Play();
     }
 
     public override string[] getActionNames()
