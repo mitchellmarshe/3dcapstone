@@ -13,10 +13,15 @@ public class Controller : MonoBehaviour
     public Global global;
 
     // Player
+    public float speed;
+
     private GameObject player;
     private GameObject camera;
     private Vector3 cameraRotation;
     private Camera cameraComponent;
+    private CharacterController characterController;
+    private CollisionFlags collisionFlags;
+    private Vector2 moveDirection;
 
     // Actions
     private DynamicButtonUpdater dynamicButtonUpdaterScript;
@@ -58,10 +63,8 @@ public class Controller : MonoBehaviour
     public placeDecal placeDecalScript;
     private DecalActions myDecalActions;
 
-
-
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         
         global = GameObject.Find("Global").GetComponent<Global>(); // Shared pointer.
@@ -69,6 +72,7 @@ public class Controller : MonoBehaviour
         player = GameObject.Find("Player");
         camera = GameObject.Find("Camera");
         cameraComponent = camera.GetComponent<Camera>();
+        characterController = player.GetComponent<CharacterController>();
         dynamicButtonUpdaterScript = gameObject.GetComponent<DynamicButtonUpdater>();
         myDecalActions = gameObject.GetComponent<DecalActions>();
         Platform();
@@ -84,7 +88,7 @@ public class Controller : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (global.platform == true) {
             Touch();
@@ -107,6 +111,36 @@ public class Controller : MonoBehaviour
         Action2(false);
         Action3(false);
         Action4(false);
+    }
+
+    private void FixedUpdate()
+    {
+        // Get direction along the camera's orientation.
+        Vector3 position = camera.transform.forward * moveDirection.y + camera.transform.right * moveDirection.x;
+
+        // Get a normal for the surface that is being touched to move along it.
+        RaycastHit hitInfo;
+        Physics.SphereCast(player.transform.position, characterController.radius, Vector3.down, out hitInfo,
+                           characterController.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
+        position = Vector3.ProjectOnPlane(position, hitInfo.normal).normalized;
+
+        collisionFlags = characterController.Move(position * speed * Time.fixedDeltaTime);
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Rigidbody body = hit.collider.attachedRigidbody;
+        //dont move the rigidbody if the character is on top of it
+        if (collisionFlags == CollisionFlags.Below)
+        {
+            return;
+        }
+
+        if (body == null || body.isKinematic)
+        {
+            return;
+        }
+        body.AddForceAtPosition(characterController.velocity * 0.1f, hit.point, ForceMode.Impulse);
     }
 
     // Note: with a tag, enable this function and set up dialogue accordingly.
@@ -354,24 +388,26 @@ public class Controller : MonoBehaviour
 
     private void Move()
     {
+        moveDirection = new Vector2(0.0f, 0.0f);
+
         if (Input.GetKey(KeyCode.W) || deltaPosition.y > 0)
         {
-            player.transform.position += new Vector3(camera.transform.forward.x, 0.0f, camera.transform.forward.z);
+            moveDirection.y = 1.0f;
         }
 
         if (Input.GetKey(KeyCode.A) || deltaPosition.x < 0)
         {
-            player.transform.position -= new Vector3(camera.transform.right.x, 0.0f, camera.transform.right.z);
+            moveDirection.x = -1.0f;
         }
 
         if (Input.GetKey(KeyCode.S) || deltaPosition.y < 0)
         {
-            player.transform.position -= new Vector3(camera.transform.forward.x, 0.0f, camera.transform.forward.z);
+            moveDirection.y = -1.0f;
         }
 
         if (Input.GetKey(KeyCode.D) || deltaPosition.x > 0)
         {
-            player.transform.position += new Vector3(camera.transform.right.x, 0.0f, camera.transform.right.z);
+            moveDirection.x = 1.0f;
         }
     }
 
@@ -427,6 +463,4 @@ public class Controller : MonoBehaviour
             }
         }
     }
-
-
 }
