@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RadioActions : ItemActionInterface
 {
-    public string[] myActionNames = new string[4];
+    public string[] myActionNames;
     private AudioSource radioSound;
 
     private void Start()

@@ -71,7 +71,7 @@ public class DynamicButtonUpdater : MonoBehaviour
         action4Text.text = names[3];
         global.selectedItem = item;
         Image tmpImage = item.GetComponentInChildren<Image>();
-        if (tmpImage.sprite == null)
+        if (tmpImage == null || tmpImage.sprite == null)
         {
             Debug.Log(selectorText.text + " has no associated icon Image");
         }

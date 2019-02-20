@@ -10,7 +10,7 @@ public class Controller : MonoBehaviour
     public Text debugger;
 
     // Global variables
-    private Global global;
+    public Global global;
 
     // Player
     private GameObject player;
@@ -55,22 +55,25 @@ public class Controller : MonoBehaviour
     // Decals
     private GameObject decalBank;
     private GameObject placeableDecal;
-    private placeDecal placeDecalScript;
+    public placeDecal placeDecalScript;
+    private DecalActions myDecalActions;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        dynamicButtonUpdaterScript =  gameObject.GetComponent<DynamicButtonUpdater>();
+        
         global = GameObject.Find("Global").GetComponent<Global>(); // Shared pointer.
 
         player = GameObject.Find("Player");
         camera = GameObject.Find("Camera");
         cameraComponent = camera.GetComponent<Camera>();
-
+        dynamicButtonUpdaterScript = gameObject.GetComponent<DynamicButtonUpdater>();
+        myDecalActions = gameObject.GetComponent<DecalActions>();
         Platform();
         placeDecalScript = placeableDecal.GetComponent<placeDecal>();
+        lockMouse();
         //lockMouse();
 
         cameraRotation = new Vector3(0.0f, 0.0f, 0.0f);
@@ -86,8 +89,16 @@ public class Controller : MonoBehaviour
         if (global.platform == true) {
             Touch();
         } else {
-            Move();
-            Look();
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                global.inMenus = !global.inMenus;
+                oppositeMouse();
+            }
+            if (!global.inMenus)
+            {
+                Move();
+                Look();
+            }
         }
         rayCheck();
         Haunt(false);
@@ -122,6 +133,9 @@ public class Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) || trigger == true)
         {
+            
+            global.inMenus = false;
+            lockMouse();
             global.decided = true;
             global.action = Global.Action.One;
             if(itemInfo != null)
@@ -135,6 +149,8 @@ public class Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha2) || trigger == true)
         {
+            global.inMenus = false;
+            lockMouse();
             global.decided = true;
             global.action = Global.Action.Two;
             if (itemInfo != null)
@@ -148,6 +164,8 @@ public class Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha3) || trigger == true)
         {
+            global.inMenus = false;
+            lockMouse();
             global.decided = true;
             global.action = Global.Action.Three;
             if (itemInfo != null)
@@ -161,6 +179,8 @@ public class Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha4) || trigger == true)
         {
+            global.inMenus = false;
+            lockMouse();
             global.decided = true;
             global.action = Global.Action.Four;
             if (itemInfo != null)
@@ -179,6 +199,8 @@ public class Controller : MonoBehaviour
     {
         showDecalMenu(); // this will close the decal menu because someone just selected a decal
         placeableDecal.SetActive(true);
+        global.inMenus = false;
+        lockMouse();
         placeDecalScript.findSpot(selectedSprite, camera);
     }
 
@@ -234,13 +256,10 @@ public class Controller : MonoBehaviour
         }
         else
         {
-            selectorText.text = "Icon";
             selectorIcon.sprite = null;
-            itemInfo = null;
-            action1Text.text = "Action 1";
-            action2Text.text = "Action 2";
-            action3Text.text = "Action 3";
-            action4Text.text = "Action 4";
+            itemInfo = myDecalActions;
+            dynamicButtonUpdaterScript.receiveItemObject(gameObject, myDecalActions);
+            selectorText.text = "Decal";
         }
         //Debug.DrawRay(rayOrigin, gameCam.transform.forward * 3, Color.green); // this will draw a green line in editor for debugging
 
@@ -353,18 +372,6 @@ public class Controller : MonoBehaviour
         if (Input.GetKey(KeyCode.D) || deltaPosition.x > 0)
         {
             player.transform.position += new Vector3(camera.transform.right.x, 0.0f, camera.transform.right.z);
-        }
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            placeDecalScript.placeAtSpot();
-            //placeableDecal.SetActive(false);
-        }
-
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            showDecalMenu();
-            //placeableDecal.SetActive(false);
         }
     }
 

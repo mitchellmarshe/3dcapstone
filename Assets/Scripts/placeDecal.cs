@@ -10,6 +10,7 @@ public class placeDecal : MonoBehaviour
     private Camera camComponent;
     private bool isSnapped;
     private GameObject snappedObject = null;
+    private bool placed = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +69,16 @@ public class placeDecal : MonoBehaviour
         if (isSnapped)
         {
             global.placingDecal = false;
+            placed = true;
+        }
+    }
+
+    public void removeDecal()
+    {
+        if(!global.placingDecal && placed)
+        {
+            placed = false;
+            gameObject.GetComponentInChildren<SpriteRenderer>().sprite = null;
         }
     }
 }

@@ -12,7 +12,8 @@ public class Global : MonoBehaviour
     public bool decided;
     public enum Action {None, One, Two, Three, Four};
     public Action action;
-    public GameObject selectedItem = null;
+    public GameObject selectedItem;
+    public bool inMenus;
 
     // Defaults to PC controls.
     public bool platform;
@@ -25,6 +26,8 @@ public class Global : MonoBehaviour
         placingDecal = false;
         decided = false;
         action = Action.None;
+        selectedItem = null;
+        inMenus = false;
 
         //platform = false;
     }
