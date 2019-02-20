@@ -65,7 +65,9 @@ public class placeDecal : MonoBehaviour
 
     public void placeAtSpot()
     {
-        global.placingDecal = false;
-
+        if (isSnapped)
+        {
+            global.placingDecal = false;
+        }
     }
 }

@@ -19,8 +19,14 @@ public class Controller : MonoBehaviour
     private Camera cameraComponent;
 
     // Actions
+    private DynamicButtonUpdater dynamicButtonUpdaterScript;
+    ItemActionInterface itemInfo;
+
     private GameObject pcActions;
     private GameObject mobileActions;
+
+    private Image selectorIcon;
+    private Text selectorText;
 
     private Button action1Button;
     private Button action2Button;
@@ -56,6 +62,7 @@ public class Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        dynamicButtonUpdaterScript =  gameObject.GetComponent<DynamicButtonUpdater>();
         global = GameObject.Find("Global").GetComponent<Global>(); // Shared pointer.
 
         player = GameObject.Find("Player");
@@ -82,7 +89,7 @@ public class Controller : MonoBehaviour
             Move();
             Look();
         }
-
+        rayCheck();
         Haunt(false);
 
         Action1(false);
@@ -117,6 +124,10 @@ public class Controller : MonoBehaviour
         {
             global.decided = true;
             global.action = Global.Action.One;
+            if(itemInfo != null)
+            {
+                itemInfo.callAction1();
+            }
         }
     }
 
@@ -126,6 +137,10 @@ public class Controller : MonoBehaviour
         {
             global.decided = true;
             global.action = Global.Action.Two;
+            if (itemInfo != null)
+            {
+                itemInfo.callAction2();
+            }
         }
     }
 
@@ -135,6 +150,10 @@ public class Controller : MonoBehaviour
         {
             global.decided = true;
             global.action = Global.Action.Three;
+            if (itemInfo != null)
+            {
+                itemInfo.callAction3();
+            }
         }
     }
 
@@ -144,6 +163,10 @@ public class Controller : MonoBehaviour
         {
             global.decided = true;
             global.action = Global.Action.Four;
+            if (itemInfo != null)
+            {
+                itemInfo.callAction4();
+            }
         }
     }
 
@@ -190,16 +213,37 @@ public class Controller : MonoBehaviour
         }
     }
 
+
+
     private void rayCheck()
     {
+
         Vector3 rayOrigin = cameraComponent.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
         RaycastHit rayHit;
         if (Physics.Raycast(rayOrigin, cameraComponent.transform.forward, out rayHit, 3)) // 3 is the length of the ray drawn
         {
             GameObject other = rayHit.collider.gameObject;
+            if (other.tag == "Item")
+            {
+                //Call Dynamic button system
+                itemInfo = other.GetComponent<ItemActionInterface>();
+
+                dynamicButtonUpdaterScript.receiveItemObject(other, itemInfo);
+            }
             // do stuff like check other for tags or w/e you like
         }
+        else
+        {
+            selectorText.text = "Icon";
+            selectorIcon.sprite = null;
+            itemInfo = null;
+            action1Text.text = "Action 1";
+            action2Text.text = "Action 2";
+            action3Text.text = "Action 3";
+            action4Text.text = "Action 4";
+        }
         //Debug.DrawRay(rayOrigin, gameCam.transform.forward * 3, Color.green); // this will draw a green line in editor for debugging
+
     }
 
     private void Platform()
@@ -219,6 +263,9 @@ public class Controller : MonoBehaviour
             action2Text = GameObject.Find("PC Actions/Action 2 Button/Action 2 Text").GetComponent<Text>();
             action3Text = GameObject.Find("PC Actions/Action 3 Button/Action 3 Text").GetComponent<Text>();
             action4Text = GameObject.Find("PC Actions/Action 4 Button/Action 4 Text").GetComponent<Text>();
+
+            selectorIcon = GameObject.Find("PC Actions/Selection Icon").GetComponent<Image>();
+            selectorText = GameObject.Find("PC Actions/Selection Icon/Selection Text").GetComponent<Text>();
 
             pcDialogue = GameObject.Find("PC Dialogue") as GameObject;
             pcDialogue.SetActive(true);
@@ -257,6 +304,9 @@ public class Controller : MonoBehaviour
             action2Text = GameObject.Find("Mobile Actions/Action 2 Button/Action 2 Text").GetComponent<Text>();
             action3Text = GameObject.Find("Mobile Actions/Action 3 Button/Action 3 Text").GetComponent<Text>();
             action4Text = GameObject.Find("Mobile Actions/Action 4 Button/Action 4 Text").GetComponent<Text>();
+
+            selectorIcon = GameObject.Find("Mobile Actions/Selection Icon").GetComponent<Image>();
+            selectorText = GameObject.Find("Mobile Actions/Selection Icon/Selection Text").GetComponent<Text>();
 
             mobileDialogue = GameObject.Find("Mobile Dialogue") as GameObject;
             mobileDialogue.SetActive(true);
