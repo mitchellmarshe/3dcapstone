@@ -15,8 +15,8 @@ public class DecalActions : ItemActionInterface
     public override void callAction1()
     {
         myController.showDecalMenu();
-        myController.global.inMenus = true;
-        myController.unlockMouse();
+        //myController.global.inMenus = true;
+        //myController.unlockMouse();
     }
 
     public override void callAction2()

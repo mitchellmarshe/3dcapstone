@@ -192,8 +192,8 @@ public class Controller : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1) || trigger == true)
         {
             
-            global.inMenus = false;
-            lockMouse();
+            //global.inMenus = false;
+            //lockMouse();
             global.decided = true;
             global.action = Global.Action.One;
             if(itemInfo != null)
@@ -207,8 +207,8 @@ public class Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha2) || trigger == true)
         {
-            global.inMenus = false;
-            lockMouse();
+            //global.inMenus = false;
+            //lockMouse();
             global.decided = true;
             global.action = Global.Action.Two;
             if (itemInfo != null)
@@ -222,8 +222,8 @@ public class Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha3) || trigger == true)
         {
-            global.inMenus = false;
-            lockMouse();
+            //global.inMenus = false;
+            //lockMouse();
             global.decided = true;
             global.action = Global.Action.Three;
             if (itemInfo != null)
@@ -237,8 +237,8 @@ public class Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha4) || trigger == true)
         {
-            global.inMenus = false;
-            lockMouse();
+            //global.inMenus = false;
+            //lockMouse();
             global.decided = true;
             global.action = Global.Action.Four;
             if (itemInfo != null)
@@ -257,8 +257,8 @@ public class Controller : MonoBehaviour
     {
         showDecalMenu(); // this will close the decal menu because someone just selected a decal
         placeableDecal.SetActive(true);
-        global.inMenus = false;
-        lockMouse();
+        //global.inMenus = false;
+        //lockMouse();
         placeDecalScript.findSpot(selectedSprite, camera);
     }
 
