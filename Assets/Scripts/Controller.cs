@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // Note: This script handles EVERY single player action in this game!
+// TODO: Smooth rotation.
 
 public class Controller : MonoBehaviour
 {
@@ -13,7 +14,12 @@ public class Controller : MonoBehaviour
     public Global global;
 
     // Player
-    public float speed;
+    public float walkSpeed;
+    //public float strafeSpeed; // Difficult to implement with CharacterController.
+    public float lookSpeed; // Mouse Sensitity?
+
+    private Slider walkSlider;
+    private Slider lookSlider;
 
     private GameObject player;
     private GameObject camera;
@@ -22,6 +28,7 @@ public class Controller : MonoBehaviour
     private CharacterController characterController;
     private CollisionFlags collisionFlags;
     private Vector2 moveDirection;
+    private bool looking;
 
     // Actions
     private DynamicButtonUpdater dynamicButtonUpdaterScript;
@@ -77,7 +84,6 @@ public class Controller : MonoBehaviour
         myDecalActions = gameObject.GetComponent<DecalActions>();
         Platform();
         placeDecalScript = placeableDecal.GetComponent<placeDecal>();
-        lockMouse();
         //lockMouse();
 
         cameraRotation = new Vector3(0.0f, 0.0f, 0.0f);
@@ -85,6 +91,14 @@ public class Controller : MonoBehaviour
         startPosition = new Vector2(0.0f, 0.0f);
         deltaPosition = new Vector2(0.0f, 0.0f);
         endPosition = new Vector2(0.0f, 0.0f);
+
+        looking = false;
+
+        walkSlider = GameObject.Find("Walk Slider").GetComponent<Slider>();
+        lookSlider = GameObject.Find("Look Slider").GetComponent<Slider>();
+
+        walkSpeed = walkSlider.value;
+        lookSpeed = lookSlider.value;
     }
 
     // Update is called once per frame
@@ -93,6 +107,7 @@ public class Controller : MonoBehaviour
         if (global.platform == true) {
             Touch();
         } else {
+            /*
             if (Input.GetKeyDown(KeyCode.M))
             {
                 global.inMenus = !global.inMenus;
@@ -103,6 +118,9 @@ public class Controller : MonoBehaviour
                 Move();
                 Look();
             }
+            */
+            Move();
+            Look();
         }
         rayCheck();
         Haunt(false);
@@ -111,6 +129,9 @@ public class Controller : MonoBehaviour
         Action2(false);
         Action3(false);
         Action4(false);
+
+        walkSpeed = walkSlider.value;
+        lookSpeed = lookSlider.value;
     }
 
     private void FixedUpdate()
@@ -121,10 +142,13 @@ public class Controller : MonoBehaviour
         // Get a normal for the surface that is being touched to move along it.
         RaycastHit hitInfo;
         Physics.SphereCast(player.transform.position, characterController.radius, Vector3.down, out hitInfo,
-                           characterController.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
+                           characterController.height / 2.0f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
         position = Vector3.ProjectOnPlane(position, hitInfo.normal).normalized;
 
-        collisionFlags = characterController.Move(position * speed * Time.fixedDeltaTime);
+        position.x *= walkSpeed;
+        position.z *= walkSpeed;
+
+        collisionFlags = characterController.Move(position * Time.fixedDeltaTime);
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -413,15 +437,31 @@ public class Controller : MonoBehaviour
 
     private void Look()
     {
-        if (global.platform == false) {
-            cameraRotation.y += Input.GetAxis("Mouse X");
-            cameraRotation.x += Input.GetAxis("Mouse Y") * -1.0f;
-        } else
+        if (Input.GetMouseButton(0))
         {
-            cameraRotation.y += deltaPosition.x < 0.0f ? -1.0f : 1.0f;
-            cameraRotation.x += deltaPosition.y < 0.0f ? 1.0f : -1.0f;
+            //looking = true;
+            //lockMouse();
+            if (global.platform == false) // PC
+            {
+                cameraRotation.y += Input.GetAxis("Mouse X") * lookSpeed;
+                cameraRotation.x += Input.GetAxis("Mouse Y") * -lookSpeed;
+            }
+            else // Mobile
+            {
+                cameraRotation.y += (deltaPosition.x < 0.0f ? -1.0f : 1.0f) * lookSpeed;
+                cameraRotation.x += (deltaPosition.y < 0.0f ? 1.0f : -1.0f) * lookSpeed;
+            }
+
+            cameraRotation.x = Mathf.Clamp(cameraRotation.x, -90.0f, 90.0f);
+            camera.transform.eulerAngles = new Vector3(cameraRotation.x, cameraRotation.y, 0.0f);
         }
-        camera.transform.eulerAngles = cameraRotation;
+        /*
+        if (Input.GetMouseButtonUp(0) && looking == true)
+        {
+            unlockMouse();
+            looking = false;
+        }
+        */
     }
 
     private void Touch()
