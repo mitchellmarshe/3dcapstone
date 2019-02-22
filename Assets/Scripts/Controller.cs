@@ -94,8 +94,8 @@ public class Controller : MonoBehaviour
 
         looking = false;
 
-        walkSlider = GameObject.Find("Walk Slider").GetComponent<Slider>();
-        lookSlider = GameObject.Find("Look Slider").GetComponent<Slider>();
+        walkSlider = GameObject.Find("GUI/Debugger/Move Slider").GetComponent<Slider>();
+        lookSlider = GameObject.Find("GUI/Debugger/Look Slider").GetComponent<Slider>();
 
         walkSpeed = walkSlider.value;
         lookSpeed = lookSlider.value;
