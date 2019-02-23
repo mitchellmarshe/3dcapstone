@@ -15,7 +15,7 @@ public class DynamicButtonUpdater : MonoBehaviour
     private Text action2Text;
     private Text action3Text;
     private Text action4Text;
-    private Button selectorIcon;
+    private Image selectorIcon;
     private Text selectorText;
     // Start is called before the first frame update
     void Start()
@@ -33,7 +33,7 @@ public class DynamicButtonUpdater : MonoBehaviour
             action3Text = GameObject.Find("PC Actions/Action 3 Button/Action 3 Text").GetComponent<Text>();
             action4Text = GameObject.Find("PC Actions/Action 4 Button/Action 4 Text").GetComponent<Text>();
 
-            selectorIcon = GameObject.Find("PC Actions/Selection Icon").GetComponent<Button>();
+            selectorIcon = GameObject.Find("PC Actions/Selection Icon").GetComponent<Image>();
             selectorText = GameObject.Find("PC Actions/Selection Icon/Selection Text").GetComponent<Text>();
         }
         else // MOBILE
@@ -48,7 +48,7 @@ public class DynamicButtonUpdater : MonoBehaviour
             action3Text = GameObject.Find("Mobile Actions/Action 3 Button/Action 3 Text").GetComponent<Text>();
             action4Text = GameObject.Find("Mobile Actions/Action 4 Button/Action 4 Text").GetComponent<Text>();
 
-            selectorIcon = GameObject.Find("Mobile Actions/Selection Icon").GetComponent<Button>();
+            selectorIcon = GameObject.Find("Mobile Actions/Selection Icon").GetComponent<Image>();
             selectorText = GameObject.Find("Mobile Actions/Selection Icon/Selection Text").GetComponent<Text>();
         }
         
@@ -77,7 +77,7 @@ public class DynamicButtonUpdater : MonoBehaviour
         }
         else
         {
-            selectorIcon.image = tmpImage;
+            selectorIcon = tmpImage;
         }
         
     }
