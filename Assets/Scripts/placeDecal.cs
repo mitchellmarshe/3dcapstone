@@ -12,7 +12,7 @@ public class placeDecal : MonoBehaviour
     private GameObject snappedObject = null;
     private bool placed = false;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         isSnapped = false;
         global = GameObject.Find("Global").GetComponent<Global>();
