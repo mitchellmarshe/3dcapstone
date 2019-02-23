@@ -5,21 +5,20 @@ using UnityEngine;
 public class HauntActions : ItemActionInterface
 {
     public string[] myActionNames;
-
+    private Global global;
+    private Haunt myHauntScript;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        global = GameObject.Find("Global").GetComponent<Global>();
         myActionNames = new string[] { "Haunt", "...", "Unpossess", "..." };
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        myHauntScript = gameObject.GetComponent<Haunt>();
     }
 
     public override void callAction1()
     {
+        global.possessing = true;
+        myHauntScript.possess();
 
     }
 
@@ -30,7 +29,8 @@ public class HauntActions : ItemActionInterface
 
     public override void callAction3()
     {
-
+        global.possessing = false;
+        myHauntScript.unPossess();
     }
 
     public override void callAction4()

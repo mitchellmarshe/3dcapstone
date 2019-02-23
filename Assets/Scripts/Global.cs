@@ -10,6 +10,7 @@ public class Global : MonoBehaviour
     public bool mouseLocked;
     public bool placingDecal;
     public bool decided;
+    public bool possessing;
     public enum Action {None, One, Two, Three, Four};
     public Action action;
     public GameObject selectedItem;
@@ -21,6 +22,7 @@ public class Global : MonoBehaviour
     // Start is called before the first frame update.
     void Awake()
     {
+        possessing = false;
         haunted = false;
         mouseLocked = true;
         placingDecal = false;

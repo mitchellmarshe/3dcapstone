@@ -43,14 +43,11 @@ public class placeDecal : MonoBehaviour
                 }
             } else
             {
-                if (global.placingDecal)
-                {
-                    isSnapped = false ;
-                    origin = camComponent.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
-                    Vector3 newPos = origin + (camComponent.transform.forward * 3);
-                    decalTransform.position = newPos;
-                    decalTransform.rotation = camComponent.gameObject.transform.rotation;
-                }
+                isSnapped = false ;
+                origin = camComponent.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
+                Vector3 newPos = origin + (camComponent.transform.forward * 3);
+                decalTransform.position = newPos;
+                decalTransform.rotation = camComponent.gameObject.transform.rotation;
             }
         }
     }

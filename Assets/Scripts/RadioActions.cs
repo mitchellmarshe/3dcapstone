@@ -8,10 +8,12 @@ public class RadioActions : ItemActionInterface
     private AudioSource radioSound;
     private AudioClip jazz;
     private AudioClip jazzDistorted;
+    private Haunt myHaunt;
 
     private void Start()
     {
-        myActionNames = new string[] { "Turn On", "Turn Off", "...", "Distort" };
+        myActionNames = new string[] { "Turn On", "Turn Off", "Back...", "Distort" };
+        myHaunt = GameObject.Find("Player").GetComponentInChildren<Haunt>();
         radioSound = gameObject.GetComponent<AudioSource>();
         jazz = Resources.Load<AudioClip>("sounds/JazzSong_1");
         jazzDistorted = Resources.Load<AudioClip>("sounds/JazzSongDistorted_3");
@@ -30,7 +32,8 @@ public class RadioActions : ItemActionInterface
 
     public override void callAction3()
     {
-        
+        ItemActionInterface tmp = gameObject.GetComponent<ItemActionInterface>();
+        myHaunt.prepForHaunt(gameObject, tmp);
     }
 
     public override void callAction4()

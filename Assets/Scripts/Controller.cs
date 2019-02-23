@@ -32,7 +32,7 @@ public class Controller : MonoBehaviour
 
     // Actions
     private DynamicButtonUpdater dynamicButtonUpdaterScript;
-    ItemActionInterface itemInfo;
+    private ItemActionInterface itemInfo;
 
     private GameObject pcActions;
     private GameObject mobileActions;
@@ -70,6 +70,9 @@ public class Controller : MonoBehaviour
     public placeDecal placeDecalScript;
     private DecalActions myDecalActions;
 
+    private HauntActions myHauntActions;
+    private Haunt myHauntScript;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -82,6 +85,8 @@ public class Controller : MonoBehaviour
         characterController = player.GetComponent<CharacterController>();
         dynamicButtonUpdaterScript = gameObject.GetComponent<DynamicButtonUpdater>();
         myDecalActions = gameObject.GetComponent<DecalActions>();
+        myHauntActions = gameObject.GetComponent<HauntActions>();
+        myHauntScript = gameObject.GetComponent<Haunt>();
         Platform();
         placeDecalScript = placeableDecal.GetComponent<placeDecal>();
         //lockMouse();
@@ -293,31 +298,37 @@ public class Controller : MonoBehaviour
         }
     }
 
-
+    public void setItemInfo(ItemActionInterface itemInterface){
+        itemInfo = itemInterface;
+    }
 
     private void rayCheck()
     {
-
-        Vector3 rayOrigin = cameraComponent.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
-        RaycastHit rayHit;
-        if (Physics.Raycast(rayOrigin, cameraComponent.transform.forward, out rayHit, 3)) // 3 is the length of the ray drawn
+        if (!global.possessing)
         {
-            GameObject other = rayHit.collider.gameObject;
-            if (other.tag == "Item")
+            Vector3 rayOrigin = cameraComponent.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
+            RaycastHit rayHit;
+            if (Physics.Raycast(rayOrigin, cameraComponent.transform.forward, out rayHit, 3)) // 3 is the length of the ray drawn
             {
-                //Call Dynamic button system
-                itemInfo = other.GetComponent<ItemActionInterface>();
+                GameObject other = rayHit.collider.gameObject;
+                if (other.tag == "Item")
+                {
+                    //Call Dynamic button system
 
-                dynamicButtonUpdaterScript.receiveItemObject(other, itemInfo);
+                    ItemActionInterface tmp = other.GetComponent<ItemActionInterface>();
+                    itemInfo = myHauntActions;
+                    myHauntScript.prepForHaunt(other, tmp);
+                    //dynamicButtonUpdaterScript.receiveItemObject(gameObject, myHauntActions);
+                }
+                // do stuff like check other for tags or w/e you like
             }
-            // do stuff like check other for tags or w/e you like
-        }
-        else
-        {
-            selectorIcon.sprite = null;
-            itemInfo = myDecalActions;
-            dynamicButtonUpdaterScript.receiveItemObject(gameObject, myDecalActions);
-            selectorText.text = "Decal";
+            else
+            {
+                selectorIcon.sprite = null;
+                itemInfo = myDecalActions;
+                dynamicButtonUpdaterScript.receiveItemObject(gameObject, myDecalActions);
+                selectorText.text = "Decal";
+            }
         }
         //Debug.DrawRay(rayOrigin, gameCam.transform.forward * 3, Color.green); // this will draw a green line in editor for debugging
 
