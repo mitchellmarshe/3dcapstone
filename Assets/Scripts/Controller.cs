@@ -25,6 +25,9 @@ public class Controller : MonoBehaviour
     private GameObject camera;
     private Vector3 cameraRotation;
     private Camera cameraComponent;
+    private GameObject possessCam;
+    private Vector3 possessCamRotation;
+    private Camera possessCamComponent;
     private CharacterController characterController;
     private CollisionFlags collisionFlags;
     private Vector2 moveDirection;
@@ -82,6 +85,8 @@ public class Controller : MonoBehaviour
         player = GameObject.Find("Player");
         camera = GameObject.Find("Camera");
         cameraComponent = camera.GetComponent<Camera>();
+        possessCam = GameObject.Find("possessionCamera");
+        possessCamComponent = camera.GetComponent<Camera>();
         characterController = player.GetComponent<CharacterController>();
         dynamicButtonUpdaterScript = gameObject.GetComponent<DynamicButtonUpdater>();
         myDecalActions = gameObject.GetComponent<DecalActions>();
@@ -92,6 +97,7 @@ public class Controller : MonoBehaviour
         //lockMouse();
 
         cameraRotation = new Vector3(0.0f, 0.0f, 0.0f);
+         possessCamRotation = new Vector3(0.0f, 0.0f, 0.0f);
 
         startPosition = new Vector2(0.0f, 0.0f);
         deltaPosition = new Vector2(0.0f, 0.0f);
@@ -124,8 +130,16 @@ public class Controller : MonoBehaviour
                 Look();
             }
             */
-            Move();
-            Look();
+            if (!global.possessing)
+            {
+                Move();
+                Look();
+            } else
+            {
+                possessedLook();
+                possessedMove();
+            }
+            
         }
         rayCheck();
         Haunt(false);
@@ -452,20 +466,22 @@ public class Controller : MonoBehaviour
         {
             //looking = true;
             //lockMouse();
-            if (global.platform == false) // PC
-            {
-                cameraRotation.y += Input.GetAxis("Mouse X") * lookSpeed;
-                cameraRotation.x += Input.GetAxis("Mouse Y") * -lookSpeed;
-            }
-            else // Mobile
-            {
-                cameraRotation.y += (deltaPosition.x < 0.0f ? -1.0f : 1.0f) * lookSpeed;
-                cameraRotation.x += (deltaPosition.y < 0.0f ? 1.0f : -1.0f) * lookSpeed;
-            }
+                if (global.platform == false) // PC
+                {
+                    cameraRotation.y += Input.GetAxis("Mouse X") * lookSpeed;
+                    cameraRotation.x += Input.GetAxis("Mouse Y") * -lookSpeed;
+                }
+                else // Mobile
+                {
+                    cameraRotation.y += (deltaPosition.x < 0.0f ? -1.0f : 1.0f) * lookSpeed;
+                    cameraRotation.x += (deltaPosition.y < 0.0f ? 1.0f : -1.0f) * lookSpeed;
+                }
 
-            cameraRotation.x = Mathf.Clamp(cameraRotation.x, -90.0f, 90.0f);
-            camera.transform.eulerAngles = new Vector3(cameraRotation.x, cameraRotation.y, 0.0f);
+                cameraRotation.x = Mathf.Clamp(cameraRotation.x, -90.0f, 90.0f);
+                camera.transform.eulerAngles = new Vector3(cameraRotation.x, cameraRotation.y, 0.0f);
+            
         }
+            
         /*
         if (Input.GetMouseButtonUp(0) && looking == true)
         {
@@ -473,6 +489,56 @@ public class Controller : MonoBehaviour
             looking = false;
         }
         */
+    }
+
+    private void possessedLook()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            if (global.platform == false) // PC
+            {
+                possessCamRotation.y += Input.GetAxis("Mouse X") * lookSpeed;
+                possessCamRotation.x += Input.GetAxis("Mouse Y") * -lookSpeed;
+            }
+            else // Mobile
+            {
+                possessCamRotation.y += (deltaPosition.x < 0.0f ? -1.0f : 1.0f) * lookSpeed;
+                possessCamRotation.x += (deltaPosition.y < 0.0f ? 1.0f : -1.0f) * lookSpeed;
+            }
+
+            possessCamRotation.x = Mathf.Clamp(possessCamRotation.x, -90.0f, 90.0f);
+            possessCam.transform.eulerAngles = new Vector3(possessCamRotation.x, possessCamRotation.y, 0.0f);
+        }
+    }
+    private void possessedMove()
+    {
+
+        if (Input.GetKeyDown(KeyCode.W) || deltaPosition.y > 0)
+        {
+            GameObject possessedObj = myHauntScript.lastItemObject;
+            Rigidbody objRigidBody = possessedObj.GetComponent<Rigidbody>();
+            //Vector3 forcePosition = possessCamComponent.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
+            //forcePosition = forcePosition - possessCam.transform.forward;
+            //Debug.Log("Explode!!!");
+            //objRigidBody.AddExplosionForce((float) 10.0, forcePosition, (float) 10.0);
+            Vector3 hitForce = possessCam.transform.forward * 1000;
+            objRigidBody.AddForce(hitForce);
+        }
+
+        if (Input.GetKey(KeyCode.A) || deltaPosition.x < 0)
+        {
+
+        }
+
+        if (Input.GetKey(KeyCode.S) || deltaPosition.y < 0)
+        {
+
+        }
+
+        if (Input.GetKey(KeyCode.D) || deltaPosition.x > 0)
+        {
+
+        }
     }
 
     private void Touch()

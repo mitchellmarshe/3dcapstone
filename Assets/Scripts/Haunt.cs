@@ -7,18 +7,22 @@ public class Haunt : MonoBehaviour
     private HauntActions myHauntActions;
     private DynamicButtonUpdater dynamicButtonUpdaterScript;
     private ItemActionInterface lastItemInterface;
-    private GameObject lastItemObject;
+    public GameObject lastItemObject;
     private Controller myController;
     private GameObject myPlayer;
     private GameObject possessionCameraObj;
     private Camera possessionCam;
+    private Camera mainCam;
+    private CharacterController myCharController;
 
 
     // Start is called before the first frame update
     void Start()
     {
         myPlayer = GameObject.Find("Player");
+        myCharController = myPlayer.GetComponent<CharacterController>();
         possessionCameraObj = GameObject.Find("possessionCamera");
+        mainCam = GameObject.Find("Camera").GetComponent<Camera>();
         possessionCam = possessionCameraObj.GetComponent<Camera>();
         possessionCameraObj.SetActive(false);
         myController = gameObject.GetComponent<Controller>();
@@ -48,15 +52,22 @@ public class Haunt : MonoBehaviour
         dynamicButtonUpdaterScript.receiveItemObject(lastItemObject, lastItemInterface);
         possessionCameraObj.transform.position = lastItemObject.transform.position;
         possessionCameraObj.SetActive(true);
-        myPlayer.SetActive(false);
+        mainCam.enabled = false;
+        myCharController.enabled = false;
+        possessionCameraObj.transform.SetParent(lastItemObject.transform);
+        
         
     }
 
     public void unPossess()
     {
         // return to original player controls
-        myPlayer.SetActive(true);
+        mainCam.enabled = true;
+        myCharController.enabled = true;
+        possessionCameraObj.transform.SetParent(myPlayer.transform);
         possessionCameraObj.SetActive(false);
-        
+
+
+
     }
 }
