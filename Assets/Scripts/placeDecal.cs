@@ -11,7 +11,10 @@ public class placeDecal : MonoBehaviour
     private bool isSnapped;
     private GameObject snappedObject = null;
     private bool placed = false;
+    private Sprite lastSprite;
     // Start is called before the first frame update
+    private string[] redrumReactions = new string[] {"Terror"};
+    private string[] unicornReactions = new string[] {"Terror"};
     void Awake()
     {
         isSnapped = false;
@@ -55,6 +58,7 @@ public class placeDecal : MonoBehaviour
 
     public void findSpot(Sprite decal, GameObject camera)
     {
+        lastSprite = decal;
         gameObject.GetComponentInChildren<SpriteRenderer>().sprite = decal;
         camComponent = camera.GetComponent<Camera>();
         global.placingDecal = true;
@@ -77,5 +81,30 @@ public class placeDecal : MonoBehaviour
             placed = false;
             gameObject.GetComponentInChildren<SpriteRenderer>().sprite = null;
         }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.name == "humanAnim")
+        {
+            if(!global.placingDecal && placed)
+            {
+                if(lastSprite.name == "unicorn")
+                {
+                    other.GetComponent<npcWander>().reactToDecal(pickReaction(unicornReactions));
+                } else if (lastSprite.name == "redrum")
+                {
+                    other.GetComponent<npcWander>().reactToDecal(pickReaction(redrumReactions));
+                }
+                
+            }
+        }
+    }
+
+    private string pickReaction(string[] list)
+    {
+        int i = Random.Range(0, list.Length);
+
+        return list[i];
     }
 }

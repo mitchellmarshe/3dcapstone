@@ -12,6 +12,8 @@ public class npcWander : MonoBehaviour
     private NavMeshAgent agent;
     private bool arrived;
     private Animator anim;
+
+    private bool isReactingToDecal;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,24 +21,29 @@ public class npcWander : MonoBehaviour
         anim = GetComponent<Animator>();
         chooseNewDest();
         currentDest = new Vector3(0, 0, 0);
+        isReactingToDecal = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!arrived)
+        if (!isReactingToDecal)
         {
-            if (Vector3.Distance(transform.position,agent.destination) <= threshold)
+            if (!arrived)
             {
-                arrived = true;
-                anim.SetTrigger("Reset");
-                Invoke("chooseNewDest", 5f);
+                if (Vector3.Distance(transform.position, agent.destination) <= threshold)
+                {
+                    arrived = true;
+                    anim.SetTrigger("Reset");
+                    Invoke("chooseNewDest", 5f);
+                }
             }
         }
     }
 
     void chooseNewDest ()
     {
+        isReactingToDecal = false;
         arrived = false;
         do
         {
@@ -54,5 +61,12 @@ public class npcWander : MonoBehaviour
             anim.SetTrigger("Run");
             agent.speed = 5f;
         }
+    }
+    public void reactToDecal(string reaction)
+    {
+        isReactingToDecal = true;
+        anim.SetTrigger(reaction);
+        Invoke("chooseNewDest", 2f);
+
     }
 }
