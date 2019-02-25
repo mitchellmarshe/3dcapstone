@@ -132,6 +132,7 @@ public class Controller : MonoBehaviour
 
         walkSpeed = walkSlider.value;
         lookSpeed = lookSlider.value;
+        ActionWheel();
     }
 
     private void FixedUpdate()
@@ -293,7 +294,19 @@ public class Controller : MonoBehaviour
         }
     }
 
-
+    public void ActionWheel()
+    {
+        GameObject ActionWheel = GameObject.Find("GUI/PC Actions") as GameObject;
+        Toggle ActionWheelToggle = GameObject.Find("GUI/Debugger/Action Wheel Toggle").GetComponent<Toggle>();
+        if (ActionWheelToggle.isOn == true)
+        {
+            ActionWheel.GetComponent<RectTransform>().position = new Vector3(0, -300, 0);
+        }
+        else
+        {
+            ActionWheel.GetComponent<RectTransform>().position = new Vector3(800, -300, 0);
+        }
+    }
 
     private void rayCheck()
     {
