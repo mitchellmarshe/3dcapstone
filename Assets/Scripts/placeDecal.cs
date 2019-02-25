@@ -15,8 +15,10 @@ public class placeDecal : MonoBehaviour
     // Start is called before the first frame update
     private string[] redrumReactions = new string[] {"Terror"};
     private string[] unicornReactions = new string[] {"Terror"};
+    private bool npcDetected;
     void Awake()
     {
+        npcDetected = false;
         isSnapped = false;
         global = GameObject.Find("Global").GetComponent<Global>();
         decalTransform = gameObject.GetComponent<Transform>();
@@ -69,6 +71,7 @@ public class placeDecal : MonoBehaviour
     {
         if (isSnapped)
         {
+            npcDetected = false;
             global.placingDecal = false;
             placed = true;
         }
@@ -78,25 +81,34 @@ public class placeDecal : MonoBehaviour
     {
         if(!global.placingDecal && placed)
         {
+            npcDetected = false;
             placed = false;
             gameObject.GetComponentInChildren<SpriteRenderer>().sprite = null;
         }
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerStay(Collider other)
     {
         if(other.name == "humanAnim")
         {
             if(!global.placingDecal && placed)
             {
-                if(lastSprite.name == "unicorn")
+                Debug.Log("Hello " + npcDetected);
+                if (!npcDetected)
                 {
-                    other.GetComponent<npcWander>().reactToDecal(pickReaction(unicornReactions));
-                } else if (lastSprite.name == "redrum")
-                {
-                    other.GetComponent<npcWander>().reactToDecal(pickReaction(redrumReactions));
+                    npcDetected = true;
+                    if (lastSprite.name == "unicorn")
+                    {
+                        //other.GetComponent<npcWander>().reactToDecal(pickReaction(unicornReactions));
+                        other.gameObject.GetComponent<ReactiveNPC>().setDead();
+                    }
+                    else if (lastSprite.name == "redrum")
+                    {
+                        //other.GetComponent<npcWander>().reactToDecal(pickReaction(redrumReactions));
+                        other.gameObject.GetComponent<ReactiveNPC>().setSurprised();
+                        //other.gameObject.GetComponent<ReactiveNPC>().addFear(500);
+                    }
                 }
-                
             }
         }
     }
