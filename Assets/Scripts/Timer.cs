@@ -38,7 +38,7 @@ public class Timer : MonoBehaviour
 
         string timeFormat = string.Format("{0:00}:{1:00}", minutes, seconds);
         timeText.text = timeFormat;
-
+        /*
         if (minutes < 10 && rings == 0)
         {
             source.PlayOneShot(bellSound, volume);
@@ -58,5 +58,6 @@ public class Timer : MonoBehaviour
             ending.SetActive(true);
             cremated.SetActive(true);
         }
+        */
     }
 }
