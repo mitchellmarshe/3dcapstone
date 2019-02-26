@@ -50,6 +50,8 @@ public class Controller : MonoBehaviour
     private Text action3Text;
     private Text action4Text;
 
+    Toggle ActionWheelToggle;
+
     // Dialogue
     private GameObject pcDialogue;
     private GameObject mobileDialogue;
@@ -99,6 +101,8 @@ public class Controller : MonoBehaviour
 
         walkSpeed = walkSlider.value;
         lookSpeed = lookSlider.value;
+
+        ActionWheelToggle = GameObject.Find("GUI/Debugger/Action Wheel Toggle").GetComponent<Toggle>();
     }
 
     // Update is called once per frame
@@ -296,15 +300,13 @@ public class Controller : MonoBehaviour
 
     public void ActionWheel()
     {
-        GameObject ActionWheel = GameObject.Find("GUI/PC Actions") as GameObject;
-        Toggle ActionWheelToggle = GameObject.Find("GUI/Debugger/Action Wheel Toggle").GetComponent<Toggle>();
-        if (ActionWheelToggle.isOn == true)
+        if (!ActionWheelToggle.isOn)
         {
-            ActionWheel.GetComponent<RectTransform>().position = new Vector3(0, -300, 0);
+            pcActions.transform.localPosition = new Vector3(0, -300, 0);
         }
         else
         {
-            ActionWheel.GetComponent<RectTransform>().position = new Vector3(800, -300, 0);
+            pcActions.transform.localPosition = new Vector3(800, -300, 0);
         }
     }
 
