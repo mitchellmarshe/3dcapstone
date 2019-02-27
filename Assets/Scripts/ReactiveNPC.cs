@@ -170,7 +170,7 @@ public class ReactiveNPC : MonoBehaviour
         myAnimator.SetTrigger("dead");
         myAnimator.fireEvents = false;
         StopAllCoroutines();
-        myAnimator.SetInteger("fearFactor", 2500);
+        addFear(2500);
     }
 
     public void setSurprised()
@@ -180,7 +180,7 @@ public class ReactiveNPC : MonoBehaviour
         myAnimator.SetTrigger("surprised");
         myAnimator.fireEvents = false;
         IEnumerator coro = surprisedIenum(3.75f);
-        StopAllCoroutines();
+        //StopAllCoroutines();
         StartCoroutine(coro);
         
 
@@ -251,17 +251,17 @@ public class ReactiveNPC : MonoBehaviour
     public void addFear(int num)
     {
         int tmp = myAnimator.GetInteger("fearFactor");
-        myAnimator.SetInteger("fearFactor", tmp + num);
-
-        if (myCurrentFear <= 2500) {
-            if (myCurrentFear + num > 2500)
+        if(tmp < 2500)
+        {
+            int tmp2 = 2500 - tmp;
+            if(tmp2 < num)
             {
-                int f = 2500 - myCurrentFear;
-                global.points += f;
-            }
-            else
+                global.points += tmp2;
+                myAnimator.SetInteger("fearFactor", 2500);
+            } else
             {
                 global.points += num;
+                myAnimator.SetInteger("fearFactor", tmp + num);
             }
         }
     }

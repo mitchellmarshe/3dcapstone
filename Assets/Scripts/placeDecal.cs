@@ -17,11 +17,15 @@ public class placeDecal : MonoBehaviour
     private string[] redrumReactions = new string[] {"Terror"};
     private string[] unicornReactions = new string[] {"Terror"};
     private bool npcDetected;
+    private bool distorted;
+    private float timeHolder;
+    private List<GameObject> distortedNPCS = new List<GameObject>();
 
     void Awake()
     {
-
+        distorted = false;
         npcDetected = false;
+        timeHolder = 0;
         isSnapped = false;
         global = GameObject.Find("Global").GetComponent<Global>();
         decalTransform = gameObject.GetComponent<Transform>();
@@ -31,8 +35,17 @@ public class placeDecal : MonoBehaviour
     void Update()
     {
 
+        if (distortedNPCS.Count > 0)
+        {
+            distorted = true;
+        } else
+        {
+            distorted = false;
+        }
+
         if (global.placingDecal)
         {
+            
             Vector3 rayOrigin = camComponent.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
             RaycastHit rayHit;
             //int layerMask = LayerMask.GetMask("Ignore Raycast"); // this is unnecessesary because raycast autoblocks objects belonging to the built-in layer Ignore Raycast
@@ -59,6 +72,29 @@ public class placeDecal : MonoBehaviour
                 gameObject.GetComponentInChildren<SpriteRenderer>().sprite = invalid;
                 decalTransform.position = newPos;
                 decalTransform.rotation = camComponent.gameObject.transform.rotation;
+            }
+        } else if (distorted)
+        {
+            timeHolder += Time.deltaTime;
+            if (timeHolder >= 0.5f)
+            {
+
+                timeHolder = 0;
+                for (int i = 0; i < distortedNPCS.Count; i++)
+                {
+                    if (lastSprite.name == "unicorn")
+                    {
+                        //other.GetComponent<npcWander>().reactToDecal(pickReaction(unicornReactions));
+                        distortedNPCS[i].gameObject.GetComponent<ReactiveNPC>().setDead();
+
+                    }
+                    else if (lastSprite.name == "redrum")
+                    {
+                        //other.GetComponent<npcWander>().reactToDecal(pickReaction(redrumReactions));
+                        distortedNPCS[i].gameObject.GetComponent<ReactiveNPC>().setSurprised();
+                        //other.gameObject.GetComponent<ReactiveNPC>().addFear(500);
+                    }
+                }
             }
         }
     }
@@ -92,6 +128,29 @@ public class placeDecal : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "NPC")
+        {
+            if (!distortedNPCS.Contains(other.gameObject))
+            {
+                distortedNPCS.Add(other.gameObject);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "NPC")
+        {
+            if (distortedNPCS.Contains(other.gameObject))
+            {
+                distortedNPCS.Remove(other.gameObject);
+            }
+        }
+    }
+
+    /*
     public void OnTriggerStay(Collider other)
     {
         if(other.name == "humanAnim")
@@ -99,8 +158,8 @@ public class placeDecal : MonoBehaviour
             if(!global.placingDecal && placed)
             {
                 Debug.Log("Hello " + npcDetected);
-                if (!npcDetected)
-                {
+               // if (!npcDetected)
+               // {
                     npcDetected = true;
                     if (lastSprite.name == "unicorn")
                     {
@@ -116,10 +175,10 @@ public class placeDecal : MonoBehaviour
                     }
 
                     //removeDecal();
-                }
+               // }
             }
         }
-    }
+    } */
 
     private string pickReaction(string[] list)
     {
