@@ -397,7 +397,7 @@ public class Controller : MonoBehaviour
             pcDialogue = GameObject.Find("PC Dialogue") as GameObject;
             pcDialogue.SetActive(true);
 
-            dialogueText = GameObject.Find("PC Dialogue/Dialogue Text").GetComponent<Text>();
+            //dialogueText = GameObject.Find("PC Dialogue/Dialogue Text").GetComponent<Text>();
 
             mobileActions = GameObject.Find("Mobile Actions") as GameObject;
             mobileActions.SetActive(false);

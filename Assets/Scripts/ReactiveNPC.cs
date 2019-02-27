@@ -18,6 +18,7 @@ public class ReactiveNPC : MonoBehaviour
     private float timer;
 
     private Slider fearSlider;
+    private Global global;
     
 
     /*Trigger names
@@ -49,6 +50,7 @@ public class ReactiveNPC : MonoBehaviour
         myOldFear = checkFear();
         myCurrentFear = myOldFear;
         updateFearSlider();
+        global = GameObject.Find("Global").GetComponent<Global>();
     }
 
     void updateFearSlider()
@@ -248,7 +250,19 @@ public class ReactiveNPC : MonoBehaviour
 
     public void addFear(int num)
     {
-        int tmp =  myAnimator.GetInteger("fearFactor");
+        int tmp = myAnimator.GetInteger("fearFactor");
         myAnimator.SetInteger("fearFactor", tmp + num);
+
+        if (myCurrentFear <= 2500) {
+            if (myCurrentFear + num > 2500)
+            {
+                int f = 2500 - myCurrentFear;
+                global.points += f;
+            }
+            else
+            {
+                global.points += num;
+            }
+        }
     }
 }
