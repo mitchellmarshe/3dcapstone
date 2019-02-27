@@ -7091,7 +7091,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Spectral Energy
+  m_Text: Havok
 --- !u!1 &4388582327395179671
 GameObject:
   m_ObjectHideFlags: 0
@@ -9934,15 +9934,15 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 4388582329394122380}
   m_FillRect: {fileID: 4388582327416902893}
   m_HandleRect: {fileID: 4388582329394122383}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
-  m_Value: 1
+  m_MaxValue: 100000
+  m_WholeNumbers: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -10235,6 +10235,7 @@ MonoBehaviour:
   action: 0
   selectedItem: {fileID: 0}
   platform: 0
+  points: 0
 --- !u!4 &4388582328173303029
 Transform:
   m_ObjectHideFlags: 0
@@ -13308,6 +13309,7 @@ GameObject:
   - component: {fileID: 4388582329334084434}
   - component: {fileID: 4388582329334084432}
   - component: {fileID: 4388582329334084435}
+  - component: {fileID: 4388582329334084438}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -13315,6 +13317,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4388582329334084438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4388582329334084437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a0d58be267e455459c864d8909e3c36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4388582329363177484
 MonoBehaviour:
   m_ObjectHideFlags: 0

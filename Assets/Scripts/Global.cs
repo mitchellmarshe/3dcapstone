@@ -19,6 +19,7 @@ public class Global : MonoBehaviour
 
     // Defaults to PC controls.
     public bool platform;
+    public int points;
 
     // Start is called before the first frame update.
     void Awake()
@@ -34,6 +35,7 @@ public class Global : MonoBehaviour
         //inMenus = false;
 
         //platform = false;
+        points = 0;
     }
 
     // Update is called once per frame.
