@@ -18,7 +18,7 @@ public class SpecialRadioActions : ItemActionInterface
     {
         timeHolder = 0;
         distorted = false;
-        myActionNames = new string[] { "Distort", "Overload", "Back...", "..." };
+        myActionNames = new string[] { "Distort", "Overload*", "Back...", "..." };
         myHaunt = GameObject.Find("Player").GetComponentInChildren<Haunt>();
         radioSound = gameObject.GetComponent<AudioSource>();
         jazz = Resources.Load<AudioClip>("sounds/JazzSong_1");

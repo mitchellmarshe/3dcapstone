@@ -168,6 +168,7 @@ public class ReactiveNPC : MonoBehaviour
         myAnimator.SetTrigger("dead");
         myAnimator.fireEvents = false;
         StopAllCoroutines();
+        myAnimator.SetInteger("fearFactor", 2500);
     }
 
     public void setSurprised()
