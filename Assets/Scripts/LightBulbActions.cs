@@ -13,7 +13,7 @@ public class LightBulbActions : ItemActionInterface
 
     private void Start()
     {
-        Random.RandomRange(0.2f, 1.5f);
+        rand = Random.RandomRange(0.2f, 1.5f);
         flickering = false;
         myActionNames = new string[] { "Turn On", "Turn Off", "Back...", "Flicker" };
         myHaunt = GameObject.Find("Player").GetComponentInChildren<Haunt>();

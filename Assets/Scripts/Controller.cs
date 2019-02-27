@@ -79,7 +79,7 @@ public class Controller : MonoBehaviour
     private Haunt myHauntScript;
 
     // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
         
         global = GameObject.Find("Global").GetComponent<Global>(); // Shared pointer.
