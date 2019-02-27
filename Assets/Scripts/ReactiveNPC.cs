@@ -250,18 +250,26 @@ public class ReactiveNPC : MonoBehaviour
 
     public void addFear(int num)
     {
-        int tmp = myAnimator.GetInteger("fearFactor");
-        if(tmp < 2500)
+        if (!stopped)
         {
-            int tmp2 = 2500 - tmp;
-            if(tmp2 < num)
+            int tmp = myAnimator.GetInteger("fearFactor");
+            if (tmp < 2500)
             {
-                global.points += tmp2;
-                myAnimator.SetInteger("fearFactor", 2500);
-            } else
+                int tmp2 = 2500 - tmp;
+                if (tmp2 < num)
+                {
+                    global.points += tmp2;
+                    myAnimator.SetInteger("fearFactor", 2500);
+                }
+                else
+                {
+                    global.points += num;
+                    myAnimator.SetInteger("fearFactor", tmp + num);
+                }
+            }
+            else
             {
-                global.points += num;
-                myAnimator.SetInteger("fearFactor", tmp + num);
+                setDead();
             }
         }
     }
