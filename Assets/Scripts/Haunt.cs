@@ -14,11 +14,14 @@ public class Haunt : MonoBehaviour
     private Camera possessionCam;
     private Camera mainCam;
     private CharacterController myCharController;
+    private Queue<ItemActionInterface> previousMenus = new Queue<ItemActionInterface>();
+    private Global myGlobal;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        myGlobal = GameObject.Find("Global").GetComponent<Global>();
         myPlayer = GameObject.Find("Player");
         myCharController = myPlayer.GetComponent<CharacterController>();
         possessionCameraObj = GameObject.Find("possessionCamera");
@@ -44,10 +47,33 @@ public class Haunt : MonoBehaviour
         dynamicButtonUpdaterScript.receiveItemObject(gameObject, myHauntActions);
     }
 
+    public void goFowardAHaunt(ItemActionInterface info)
+    {
+        previousMenus.Enqueue(lastItemInterface);
+        lastItemInterface = info;
+        
+        myController.setItemInfo(info);
+        dynamicButtonUpdaterScript.receiveItemObject(lastItemObject, info);
+    }
+
+    public void goBackAHaunt()
+    {
+        if (previousMenus.Count > 0)
+        {
+            lastItemInterface = previousMenus.Dequeue();
+            myController.setItemInfo(lastItemInterface);
+            Debug.Log(lastItemInterface + "goBackAHaunt");
+            dynamicButtonUpdaterScript.receiveItemObject(lastItemObject, lastItemInterface);
+        }
+    }
+
     public void possess()
     {
         //Move onto object, fix camera
+
         Debug.Log(lastItemObject.name);
+        previousMenus.Clear();
+        
         myController.setItemInfo(lastItemInterface);
         dynamicButtonUpdaterScript.receiveItemObject(lastItemObject, lastItemInterface);
         possessionCameraObj.transform.position = lastItemObject.transform.position;
@@ -62,6 +88,9 @@ public class Haunt : MonoBehaviour
     public void unPossess()
     {
         // return to original player controls
+        myGlobal.possessing = false;
+        //myGlobal.possesMove = false;
+        previousMenus.Clear();
         mainCam.enabled = true;
         myCharController.enabled = true;
         possessionCameraObj.transform.SetParent(myPlayer.transform);

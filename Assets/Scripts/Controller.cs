@@ -138,7 +138,7 @@ public class Controller : MonoBehaviour
             {
                 Move();
                 Look();
-            } else
+            } else// if(global.possesMove)
             {
                 possessedLook();
                 possessedMove();
@@ -546,17 +546,26 @@ public class Controller : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A) || deltaPosition.x < 0)
         {
-
+            GameObject possessedObj = myHauntScript.lastItemObject;
+            Rigidbody objRigidBody = possessedObj.GetComponent<Rigidbody>();
+            Vector3 hitForce = possessCam.transform.right * -200;
+            objRigidBody.AddForce(hitForce);
         }
 
         if (Input.GetKey(KeyCode.S) || deltaPosition.y < 0)
         {
-
+            GameObject possessedObj = myHauntScript.lastItemObject;
+            Rigidbody objRigidBody = possessedObj.GetComponent<Rigidbody>();
+            Vector3 hitForce = possessCam.transform.forward * -200;
+            objRigidBody.AddForce(hitForce);
         }
 
         if (Input.GetKey(KeyCode.D) || deltaPosition.x > 0)
         {
-
+            GameObject possessedObj = myHauntScript.lastItemObject;
+            Rigidbody objRigidBody = possessedObj.GetComponent<Rigidbody>();
+            Vector3 hitForce = possessCam.transform.right * 200;
+            objRigidBody.AddForce(hitForce);
         }
     }
 

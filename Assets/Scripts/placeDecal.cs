@@ -64,6 +64,7 @@ public class placeDecal : MonoBehaviour
         gameObject.GetComponentInChildren<SpriteRenderer>().sprite = decal;
         camComponent = camera.GetComponent<Camera>();
         global.placingDecal = true;
+        npcDetected = false;
     }
 
 
@@ -71,7 +72,6 @@ public class placeDecal : MonoBehaviour
     {
         if (isSnapped)
         {
-            npcDetected = false;
             global.placingDecal = false;
             placed = true;
         }
@@ -81,7 +81,6 @@ public class placeDecal : MonoBehaviour
     {
         if(!global.placingDecal && placed)
         {
-            npcDetected = false;
             placed = false;
             gameObject.GetComponentInChildren<SpriteRenderer>().sprite = null;
         }
@@ -101,6 +100,7 @@ public class placeDecal : MonoBehaviour
                     {
                         //other.GetComponent<npcWander>().reactToDecal(pickReaction(unicornReactions));
                         other.gameObject.GetComponent<ReactiveNPC>().setDead();
+
                     }
                     else if (lastSprite.name == "redrum")
                     {
@@ -108,6 +108,8 @@ public class placeDecal : MonoBehaviour
                         other.gameObject.GetComponent<ReactiveNPC>().setSurprised();
                         //other.gameObject.GetComponent<ReactiveNPC>().addFear(500);
                     }
+
+                    //removeDecal();
                 }
             }
         }

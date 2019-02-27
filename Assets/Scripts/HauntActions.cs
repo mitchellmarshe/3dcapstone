@@ -24,7 +24,7 @@ public class HauntActions : ItemActionInterface
 
     public override void callAction2()
     {
-
+        //global.possesMove = !global.possesMove;
     }
 
     public override void callAction3()

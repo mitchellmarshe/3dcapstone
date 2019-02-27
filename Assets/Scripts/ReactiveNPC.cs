@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class ReactiveNPC : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class ReactiveNPC : MonoBehaviour
     private bool stopped;
     private bool arrived;
     private float timer;
+
+    private Slider fearSlider;
+    
 
     /*Trigger names
      * 
@@ -41,14 +45,28 @@ public class ReactiveNPC : MonoBehaviour
         decided = false;
         myAgent = gameObject.GetComponent<NavMeshAgent>();
         myAnimator = gameObject.GetComponent<Animator>();
+        fearSlider = gameObject.GetComponentInChildren<Slider>();
         myOldFear = checkFear();
         myCurrentFear = myOldFear;
+        updateFearSlider();
+    }
+
+    void updateFearSlider()
+    {
+        if(myCurrentFear <= 2500)
+        {
+            fearSlider.value = myCurrentFear;
+        } else
+        {
+            fearSlider.value = 2500;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         myCurrentFear = checkFear();
+        updateFearSlider();
 
 
 

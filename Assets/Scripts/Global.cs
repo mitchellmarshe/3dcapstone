@@ -11,6 +11,7 @@ public class Global : MonoBehaviour
     public bool placingDecal;
     public bool decided;
     public bool possessing;
+    //public bool possesMove;
     public enum Action {None, One, Two, Three, Four};
     public Action action;
     public GameObject selectedItem;
@@ -23,6 +24,7 @@ public class Global : MonoBehaviour
     void Awake()
     {
         possessing = false;
+        //possesMove = false;
         haunted = false;
         mouseLocked = true;
         placingDecal = false;
