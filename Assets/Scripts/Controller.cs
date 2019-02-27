@@ -141,7 +141,13 @@ public class Controller : MonoBehaviour
             } else// if(global.possesMove)
             {
                 possessedLook();
-                possessedMove();
+                try
+                {
+                    possessedMove();
+                } catch
+                {
+
+                }
             }
             
         }

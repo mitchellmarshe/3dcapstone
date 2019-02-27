@@ -12,12 +12,15 @@ public class placeDecal : MonoBehaviour
     private GameObject snappedObject = null;
     private bool placed = false;
     private Sprite lastSprite;
+    public Sprite invalid;
     // Start is called before the first frame update
     private string[] redrumReactions = new string[] {"Terror"};
     private string[] unicornReactions = new string[] {"Terror"};
     private bool npcDetected;
+
     void Awake()
     {
+
         npcDetected = false;
         isSnapped = false;
         global = GameObject.Find("Global").GetComponent<Global>();
@@ -43,7 +46,9 @@ public class placeDecal : MonoBehaviour
                 if (!isSnapped) {
                     isSnapped = true;
                     decalTransform.LookAt(hitPoint-hitNormal);
-                    
+                    gameObject.GetComponentInChildren<SpriteRenderer>().sprite = lastSprite;
+
+
 
                 }
             } else
@@ -51,6 +56,7 @@ public class placeDecal : MonoBehaviour
                 isSnapped = false ;
                 origin = camComponent.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
                 Vector3 newPos = origin + (camComponent.transform.forward * 3);
+                gameObject.GetComponentInChildren<SpriteRenderer>().sprite = invalid;
                 decalTransform.position = newPos;
                 decalTransform.rotation = camComponent.gameObject.transform.rotation;
             }
