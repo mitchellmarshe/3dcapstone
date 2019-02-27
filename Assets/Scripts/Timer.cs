@@ -59,5 +59,10 @@ public class Timer : MonoBehaviour
             cremated.SetActive(true);
         }
         */
+
+        if (minutes <= 0 && seconds <= 0)
+        {
+            Application.Quit();
+        }
     }
 }
