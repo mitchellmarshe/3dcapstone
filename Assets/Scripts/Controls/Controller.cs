@@ -153,7 +153,6 @@ public class Controller : MonoBehaviour
             
         }
         rayCheck();
-        Haunt(false);
 
         Action1(false);
         Action2(false);
@@ -162,7 +161,7 @@ public class Controller : MonoBehaviour
 
         walkSpeed = walkSlider.value;
         lookSpeed = lookSlider.value;
-        ActionWheel();
+        //ActionWheel();
     }
 
     private void FixedUpdate()
@@ -198,26 +197,19 @@ public class Controller : MonoBehaviour
         body.AddForceAtPosition(characterController.velocity * 0.1f, hit.point, ForceMode.Impulse);
     }
 
-    // Note: with a tag, enable this function and set up dialogue accordingly.
-    public void Haunt(bool trigger)
-    {
-        if (Input.GetKeyDown(KeyCode.E) || trigger == true)
-        {
-            global.haunted = !global.haunted;
-        }
-    }
-
-    // UPDATE
-    // Note: triggerable script for the button named Decision 1.
-    // When calling from Unity Editor, set trigger to true.
-    // Attaching this script to button, allows the button to be touchle for Mobile platforms.
-    // When using this script from another script, set trigger to false.
+    // The default state of the action wheel is to have no action buttons triggered.
     public void Action0()
     {
         global.decided = false;
         global.action = Global.Action.None;
+        action1Button.animator.SetTrigger("Normal");
+        action2Button.animator.SetTrigger("Normal");
+        action3Button.animator.SetTrigger("Normal");
+        action4Button.animator.SetTrigger("Normal");
     }
 
+    // Triggerable script for the action wheel button named Action 1.
+    // When calling from the Unity Editor, set trigger to true.
     public void Action1(bool trigger)
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) || trigger == true)
@@ -225,17 +217,21 @@ public class Controller : MonoBehaviour
             global.decided = true;
             global.action = Global.Action.One;
 
+            // Button colors are private; therefore, 
+            // we must control the state via animation.
             if (trigger == false)
             {
                 action1Button.animator.SetTrigger("Pressed");
             }
 
+            // Call specialized action (based on context).
             if(itemInfo != null)
             {
                 itemInfo.callAction1();
             }
         }
 
+        // Reset button animations.
         if (Input.GetKeyUp(KeyCode.Alpha1))
         {
             action1Button.animator.SetTrigger("Normal");
@@ -246,6 +242,7 @@ public class Controller : MonoBehaviour
         }
     }
 
+    // See Action1() for comments.
     public void Action2(bool trigger)
     {
         if (Input.GetKeyDown(KeyCode.Alpha2) || trigger == true)
@@ -275,6 +272,7 @@ public class Controller : MonoBehaviour
         }
     }
 
+    // See Action1() for comments.
     public void Action3(bool trigger)
     {
         if (Input.GetKeyDown(KeyCode.Alpha3) || trigger == true)
@@ -304,6 +302,7 @@ public class Controller : MonoBehaviour
         }
     }
 
+    // See Action1() for comments.
     public void Action4(bool trigger)
     {
         if (Input.GetKeyDown(KeyCode.Alpha4) || trigger == true)
@@ -449,16 +448,16 @@ public class Controller : MonoBehaviour
             selectorIcon = GameObject.Find("PC Actions/Selection Icon").GetComponent<Image>();
             selectorText = GameObject.Find("PC Actions/Selection Icon/Selection Text").GetComponent<Text>();
 
-            pcDialogue = GameObject.Find("PC Dialogue") as GameObject;
-            pcDialogue.SetActive(true);
+            //pcDialogue = GameObject.Find("PC Dialogue") as GameObject;
+            //pcDialogue.SetActive(true);
 
             //dialogueText = GameObject.Find("PC Dialogue/Dialogue Text").GetComponent<Text>();
 
             mobileActions = GameObject.Find("Mobile Actions") as GameObject;
             mobileActions.SetActive(false);
 
-            mobileDialogue = GameObject.Find("Mobile Dialogue") as GameObject;
-            mobileDialogue.SetActive(false);
+            //mobileDialogue = GameObject.Find("Mobile Dialogue") as GameObject;
+            //mobileDialogue.SetActive(false);
 
             mobileMoveJoystick = GameObject.Find("Mobile Move Joystick") as GameObject;
             mobileMoveJoystick.SetActive(false);
@@ -490,16 +489,16 @@ public class Controller : MonoBehaviour
             selectorIcon = GameObject.Find("Mobile Actions/Selection Icon").GetComponent<Image>();
             selectorText = GameObject.Find("Mobile Actions/Selection Icon/Selection Text").GetComponent<Text>();
 
-            mobileDialogue = GameObject.Find("Mobile Dialogue") as GameObject;
-            mobileDialogue.SetActive(true);
+            //mobileDialogue = GameObject.Find("Mobile Dialogue") as GameObject;
+            //mobileDialogue.SetActive(true);
 
-            dialogueText = GameObject.Find("Mobile Dialogue/Dialogue Text").GetComponent<Text>();
+            //dialogueText = GameObject.Find("Mobile Dialogue/Dialogue Text").GetComponent<Text>();
 
             pcActions = GameObject.Find("PC Actions") as GameObject;
             pcActions.SetActive(false);
 
-            pcDialogue = GameObject.Find("PC Dialogue") as GameObject;
-            pcDialogue.SetActive(false);
+            //pcDialogue = GameObject.Find("PC Dialogue") as GameObject;
+            //pcDialogue.SetActive(false);
 
             mobileMoveJoystick = GameObject.Find("Mobile Move Joystick") as GameObject;
             mobileMoveJoystick.SetActive(true);
