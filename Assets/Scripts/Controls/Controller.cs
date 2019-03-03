@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 // Note: This script handles EVERY single player action in this game!
 // TODO: Smooth rotation.
@@ -221,15 +222,27 @@ public class Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) || trigger == true)
         {
-            
-            //global.inMenus = false;
-            //lockMouse();
             global.decided = true;
             global.action = Global.Action.One;
+
+            if (trigger == false)
+            {
+                action1Button.animator.SetTrigger("Pressed");
+            }
+
             if(itemInfo != null)
             {
                 itemInfo.callAction1();
             }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            action1Button.animator.SetTrigger("Normal");
+        }
+
+        if (trigger == true) {
+            action1Button.OnDeselect(null);
         }
     }
 
@@ -237,14 +250,28 @@ public class Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha2) || trigger == true)
         {
-            //global.inMenus = false;
-            //lockMouse();
             global.decided = true;
             global.action = Global.Action.Two;
+
+            if (trigger == false)
+            {
+                action2Button.animator.SetTrigger("Pressed");
+            }
+
             if (itemInfo != null)
             {
                 itemInfo.callAction2();
             }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Alpha2))
+        {
+            action2Button.animator.SetTrigger("Normal");
+        }
+
+        if (trigger == true)
+        {
+            action2Button.OnDeselect(null);
         }
     }
 
@@ -252,14 +279,28 @@ public class Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha3) || trigger == true)
         {
-            //global.inMenus = false;
-            //lockMouse();
             global.decided = true;
             global.action = Global.Action.Three;
+
+            if (trigger == false)
+            {
+                action3Button.animator.SetTrigger("Pressed");
+            }
+
             if (itemInfo != null)
             {
                 itemInfo.callAction3();
             }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Alpha3))
+        {
+            action3Button.animator.SetTrigger("Normal");
+        }
+
+        if (trigger == true)
+        {
+            action3Button.OnDeselect(null);
         }
     }
 
@@ -267,14 +308,28 @@ public class Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha4) || trigger == true)
         {
-            //global.inMenus = false;
-            //lockMouse();
             global.decided = true;
             global.action = Global.Action.Four;
+
+            if (trigger == false)
+            {
+                action4Button.animator.SetTrigger("Pressed");
+            }
+
             if (itemInfo != null)
             {
                 itemInfo.callAction4();
             }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Alpha4))
+        {
+            action4Button.animator.SetTrigger("Normal");
+        }
+
+        if (trigger == true)
+        {
+            action4Button.OnDeselect(null);
         }
     }
 
