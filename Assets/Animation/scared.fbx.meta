@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 77e1e46a76251254aa6f75c3727d223c
+guid: 9f62356a872b98249aeb5d9cf0fe1ceb
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -26,8 +26,8 @@ ModelImporter:
     100040: R_Shldr
     100042: R_Toes
     100044: RootJNT
-    100046: Stomach
-    100048: //RootNode
+    100046: //RootNode
+    100048: Stomach
     400000: Chest
     400002: Head
     400004: ikHandle1
@@ -51,14 +51,13 @@ ModelImporter:
     400040: R_Shldr
     400042: R_Toes
     400044: RootJNT
-    400046: Stomach
-    400048: //RootNode
+    400046: //RootNode
+    400048: Stomach
     2100000: lambert1
     4300000: pCube1
     7400000: Take 001
     9500000: //RootNode
     13700000: pCube1
-    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -111,7 +110,7 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
+    previousCalculatedGlobalScale: 0.01
     hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
