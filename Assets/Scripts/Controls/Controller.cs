@@ -108,13 +108,13 @@ public class Controller : MonoBehaviour
 
         looking = false;
 
-        walkSlider = GameObject.Find("GUI/Debugger/Move Slider").GetComponent<Slider>();
-        lookSlider = GameObject.Find("GUI/Debugger/Look Slider").GetComponent<Slider>();
+        //walkSlider = GameObject.Find("GUI/Debugger/Move Slider").GetComponent<Slider>();
+        //lookSlider = GameObject.Find("GUI/Debugger/Look Slider").GetComponent<Slider>();
 
-        walkSpeed = walkSlider.value;
-        lookSpeed = lookSlider.value;
+        walkSpeed = 10;
+        lookSpeed = 5;
 
-        ActionWheelToggle = GameObject.Find("GUI/Debugger/Action Wheel Toggle").GetComponent<Toggle>();
+        //ActionWheelToggle = GameObject.Find("GUI/Debugger/Action Wheel Toggle").GetComponent<Toggle>();
     }
 
     // Update is called once per frame
@@ -159,8 +159,8 @@ public class Controller : MonoBehaviour
         Action3(false);
         Action4(false);
 
-        walkSpeed = walkSlider.value;
-        lookSpeed = lookSlider.value;
+        //walkSpeed = walkSlider.value;
+        //lookSpeed = lookSlider.value;
         //ActionWheel();
     }
 
