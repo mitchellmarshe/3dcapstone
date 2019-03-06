@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -949,6 +949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8c7cef18909644ea7909edc23cf3c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   opened: {fileID: 1517665484}
   closed: {fileID: 799534890}
@@ -3541,6 +3542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cddef2c58fa822c46997b17da5389a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   mySodaCan: {fileID: 1820439110}
 --- !u!65 &221366380
@@ -3897,6 +3899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb56c401720f1cd44baf586d228c1eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   opened: {fileID: 1293492168}
   closed: {fileID: 248781042}
@@ -7148,6 +7151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06deb99f31f7c284090c845e12229197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
 --- !u!114 &536147827
 MonoBehaviour:
@@ -7161,6 +7165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56d73ada48e7799489a3a62b11682d20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
 --- !u!114 &536147828
 MonoBehaviour:
@@ -7174,6 +7179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ea1c1aaf39e6a24ab84fc3b5f700ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
 --- !u!143 &536147829
 CharacterController:
@@ -7205,6 +7211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 357351b3d3a3bcd43bb47d85962edbe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames:
   - 
   - 
@@ -7703,6 +7710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb56c401720f1cd44baf586d228c1eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   opened: {fileID: 1814766263}
   closed: {fileID: 1832484553}
@@ -11314,6 +11322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06deb99f31f7c284090c845e12229197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
 --- !u!114 &875443076
 MonoBehaviour:
@@ -11327,6 +11336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56d73ada48e7799489a3a62b11682d20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
 --- !u!114 &875443077
 MonoBehaviour:
@@ -11340,6 +11350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ea1c1aaf39e6a24ab84fc3b5f700ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
 --- !u!143 &875443078
 CharacterController:
@@ -11371,6 +11382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 357351b3d3a3bcd43bb47d85962edbe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames:
   - 
   - 
@@ -11705,6 +11717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb56c401720f1cd44baf586d228c1eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   opened: {fileID: 413342829}
   closed: {fileID: 1022515282}
@@ -12631,6 +12644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb56c401720f1cd44baf586d228c1eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   opened: {fileID: 104570055}
   closed: {fileID: 671833509}
@@ -13232,6 +13246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8c7cef18909644ea7909edc23cf3c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   opened: {fileID: 1947515629}
   closed: {fileID: 1757715634}
@@ -14423,6 +14438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06deb99f31f7c284090c845e12229197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
 --- !u!114 &1046359037
 MonoBehaviour:
@@ -14436,6 +14452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56d73ada48e7799489a3a62b11682d20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
 --- !u!114 &1046359038
 MonoBehaviour:
@@ -14449,6 +14466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ea1c1aaf39e6a24ab84fc3b5f700ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
 --- !u!143 &1046359039
 CharacterController:
@@ -14480,6 +14498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 357351b3d3a3bcd43bb47d85962edbe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames:
   - 
   - 
@@ -17425,6 +17444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb56c401720f1cd44baf586d228c1eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   opened: {fileID: 951101543}
   closed: {fileID: 761187727}
@@ -18120,6 +18140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb56c401720f1cd44baf586d228c1eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   opened: {fileID: 1465059860}
   closed: {fileID: 1629171070}
@@ -19556,6 +19577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb56c401720f1cd44baf586d228c1eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   opened: {fileID: 931376955}
   closed: {fileID: 99175782}
@@ -20329,6 +20351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb56c401720f1cd44baf586d228c1eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   opened: {fileID: 1524841377}
   closed: {fileID: 846650606}
@@ -21439,6 +21462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3188913b47da4a498fa6fdffb44104b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   chair1: {fileID: 399163442}
   chair2: {fileID: 1283663038}
@@ -21739,6 +21763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3188913b47da4a498fa6fdffb44104b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   chair1: {fileID: 1733109493}
   chair2: {fileID: 1306817706}
@@ -24070,6 +24095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a04727b21adb734497e9cb783a727a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
 --- !u!54 &1820439113
 Rigidbody:
@@ -24353,6 +24379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06deb99f31f7c284090c845e12229197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
 --- !u!114 &1851226501
 MonoBehaviour:
@@ -24366,6 +24393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56d73ada48e7799489a3a62b11682d20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
 --- !u!114 &1851226502
 MonoBehaviour:
@@ -24379,6 +24407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ea1c1aaf39e6a24ab84fc3b5f700ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
 --- !u!143 &1851226503
 CharacterController:
@@ -24410,6 +24439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 357351b3d3a3bcd43bb47d85962edbe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames:
   - 
   - 
@@ -24676,6 +24706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3188913b47da4a498fa6fdffb44104b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   chair1: {fileID: 1961470389}
   chair2: {fileID: 692919113}
@@ -25283,6 +25314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb56c401720f1cd44baf586d228c1eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   opened: {fileID: 1705158915}
   closed: {fileID: 1496821923}
@@ -26455,18 +26487,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1961733321}
   m_PrefabAsset: {fileID: 0}
---- !u!108 &1961733340 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 209940495840899378, guid: cdf5ddd1d9fd6e04e865e3e2dfcc9d09,
-    type: 3}
-  m_PrefabInstance: {fileID: 1961733321}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1961733341 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 209940496387914832, guid: cdf5ddd1d9fd6e04e865e3e2dfcc9d09,
-    type: 3}
-  m_PrefabInstance: {fileID: 1961733321}
-  m_PrefabAsset: {fileID: 0}
 --- !u!108 &1961733342 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 209940495123237700, guid: cdf5ddd1d9fd6e04e865e3e2dfcc9d09,
@@ -26731,6 +26751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733322}
 --- !u!135 &1961733385
@@ -26758,6 +26779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733324}
 --- !u!135 &1961733387
@@ -26785,6 +26807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733326}
 --- !u!135 &1961733389
@@ -26812,6 +26835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733328}
 --- !u!135 &1961733391
@@ -26839,6 +26863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733330}
 --- !u!135 &1961733393
@@ -26866,6 +26891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733332}
 --- !u!135 &1961733395
@@ -26893,6 +26919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733334}
 --- !u!135 &1961733397
@@ -26920,6 +26947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733336}
 --- !u!135 &1961733399
@@ -26947,6 +26975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733338}
 --- !u!135 &1961733401
@@ -26956,33 +26985,6 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1961733339}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.05
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1961733402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1961733341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myActionNames: []
-  myLight: {fileID: 1961733340}
---- !u!135 &1961733403
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1961733341}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -27001,6 +27003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733342}
 --- !u!135 &1961733405
@@ -27028,6 +27031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733344}
 --- !u!135 &1961733407
@@ -27055,6 +27059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733346}
 --- !u!135 &1961733409
@@ -27082,6 +27087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733348}
 --- !u!135 &1961733411
@@ -27109,6 +27115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733350}
 --- !u!135 &1961733413
@@ -27136,6 +27143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733352}
 --- !u!135 &1961733415
@@ -27163,6 +27171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733354}
 --- !u!135 &1961733417
@@ -27190,6 +27199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733356}
 --- !u!135 &1961733419
@@ -27217,6 +27227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733358}
 --- !u!135 &1961733421
@@ -27244,6 +27255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733360}
 --- !u!135 &1961733423
@@ -27271,6 +27283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733362}
 --- !u!135 &1961733425
@@ -27298,6 +27311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733364}
 --- !u!135 &1961733427
@@ -27325,6 +27339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733366}
 --- !u!135 &1961733429
@@ -27352,6 +27367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733368}
 --- !u!135 &1961733431
@@ -27379,6 +27395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733370}
 --- !u!135 &1961733433
@@ -27406,6 +27423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733372}
 --- !u!135 &1961733435
@@ -27433,6 +27451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733374}
 --- !u!135 &1961733437
@@ -27460,6 +27479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733376}
 --- !u!135 &1961733439
@@ -27487,6 +27507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733378}
 --- !u!135 &1961733441
@@ -27514,6 +27535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733380}
 --- !u!135 &1961733443
@@ -27541,6 +27563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 1961733382}
 --- !u!135 &1961733445
@@ -27952,6 +27975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a455465f72cd2394b995fd5ea179f7c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames:
   - 
   - 
@@ -29582,6 +29606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cddef2c58fa822c46997b17da5389a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   mySodaCan: {fileID: 8037161872531739019}
 --- !u!54 &918739224321359837
@@ -29984,6 +30009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06deb99f31f7c284090c845e12229197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
 --- !u!1 &2679132758182501353
 GameObject:
@@ -30044,6 +30070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56d73ada48e7799489a3a62b11682d20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
 --- !u!1 &2679132758182501357
 GameObject:
@@ -30075,6 +30102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ea1c1aaf39e6a24ab84fc3b5f700ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
 --- !u!1 &2679132758182501359
 GameObject:
@@ -30106,6 +30134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 357351b3d3a3bcd43bb47d85962edbe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames:
   - 
   - 
@@ -31565,6 +31594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e862cf168abe4b4d9603d2137ef5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   myLight: {fileID: 8466412825936617078}
 --- !u!1 &3832117225727293023
@@ -32809,6 +32839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 357351b3d3a3bcd43bb47d85962edbe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames:
   - 
   - 
@@ -33289,6 +33320,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9c498f558b401547acf9ab2f666837c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  action1Button: {fileID: 0}
+  action2Button: {fileID: 0}
+  action3Button: {fileID: 0}
+  action4Button: {fileID: 0}
+  action1Text: {fileID: 0}
+  action2Text: {fileID: 0}
+  action3Text: {fileID: 0}
+  action4Text: {fileID: 0}
+  selectorIcon: {fileID: 0}
+  selectorText: {fileID: 0}
 --- !u!1 &4388582328867391042
 GameObject:
   m_ObjectHideFlags: 0
@@ -33337,6 +33378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 297564d260c46d040a8f5d6da8cfe99d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames:
   - Decal Menu
   - Place Decal
@@ -33705,6 +33747,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Action1
       objectReference: {fileID: 0}
+    - target: {fileID: 6745686857907718833, guid: 6af93d0ccf50409428093937dde04921,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6745686857907718833, guid: 6af93d0ccf50409428093937dde04921,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6745686858790669513, guid: 6af93d0ccf50409428093937dde04921,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -33744,6 +33796,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Action2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7023959646527309766, guid: 6af93d0ccf50409428093937dde04921,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6af93d0ccf50409428093937dde04921, type: 3}
@@ -33836,6 +33893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a04727b21adb734497e9cb783a727a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
 --- !u!65 &8037161872531739013
 BoxCollider:
@@ -34708,6 +34766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a04727b21adb734497e9cb783a727a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
 --- !u!65 &8466412825862727423
 BoxCollider:
@@ -35363,6 +35422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb56c401720f1cd44baf586d228c1eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   opened: {fileID: 8466412826619197570}
   closed: {fileID: 8466412825971246751}
@@ -36205,6 +36265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3188913b47da4a498fa6fdffb44104b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   chair1: {fileID: 5834248429792183027}
   chair2: {fileID: 8466412826591310458}
@@ -36336,6 +36397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8c7cef18909644ea7909edc23cf3c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: 
   myActionNames: []
   opened: {fileID: 8466412826024569860}
   closed: {fileID: 8466412826713854909}

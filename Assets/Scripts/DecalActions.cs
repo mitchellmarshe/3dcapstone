@@ -11,6 +11,7 @@ public class DecalActions : ItemActionInterface
     {
         myActionNames = new string[4]{ "Decal Menu", "Place Decal", "...", "Remove Decal" };
         myController = GameObject.Find("Player/Controller").GetComponent<Controller>();
+        states = new bool[4] { true, false, false, true };
     }
 
     public override void callAction1()

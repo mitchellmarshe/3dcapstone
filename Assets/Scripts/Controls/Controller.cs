@@ -78,11 +78,16 @@ public class Controller : MonoBehaviour
 
     private HauntActions myHauntActions;
     private Haunt myHauntScript;
+    bool[] decalStates;
+    bool decalOpen;
+    private bool start;
 
     // Start is called before the first frame update
     private void Awake()
     {
-        
+        start = false;
+        decalOpen = false;
+        decalStates = new bool[4] { true, false, true, false };
         global = GameObject.Find("Global").GetComponent<Global>(); // Shared pointer.
 
         player = GameObject.Find("Player");
@@ -97,6 +102,7 @@ public class Controller : MonoBehaviour
         myHauntScript = gameObject.GetComponent<Haunt>();
         Platform();
         placeDecalScript = placeableDecal.GetComponent<placeDecal>();
+        
         //lockMouse();
 
         cameraRotation = new Vector3(0.0f, 0.0f, 0.0f);
@@ -107,7 +113,7 @@ public class Controller : MonoBehaviour
         endPosition = new Vector2(0.0f, 0.0f);
 
         looking = false;
-
+        
         //walkSlider = GameObject.Find("GUI/Debugger/Move Slider").GetComponent<Slider>();
         //lookSlider = GameObject.Find("GUI/Debugger/Look Slider").GetComponent<Slider>();
 
@@ -120,6 +126,7 @@ public class Controller : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        
         if (global.platform == true) {
             Touch();
         } else {
@@ -158,6 +165,14 @@ public class Controller : MonoBehaviour
         Action2(false);
         Action3(false);
         Action4(false);
+
+        // this needs to be at bottom to properly disable buttons for decal at start
+        if (!start)
+        {
+            dynamicButtonUpdaterScript.setDisabledButton(2);
+            dynamicButtonUpdaterScript.setDisabledButton(4);
+            start = true;
+        }
 
         //walkSpeed = walkSlider.value;
         //lookSpeed = lookSlider.value;
@@ -212,123 +227,136 @@ public class Controller : MonoBehaviour
     // When calling from the Unity Editor, set trigger to true.
     public void Action1(bool trigger)
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) || trigger == true)
+        if (action1Button.interactable == true)
         {
-            global.decided = true;
-            global.action = Global.Action.One;
-
-            // Button colors are private; therefore, 
-            // we must control the state via animation.
-            if (trigger == false)
+            if (Input.GetKeyDown(KeyCode.Alpha1) || trigger == true)
             {
-                action1Button.animator.SetTrigger("Pressed");
+                global.decided = true;
+                global.action = Global.Action.One;
+
+                // Button colors are private; therefore, 
+                // we must control the state via animation.
+                if (trigger == false)
+                {
+                    action1Button.animator.SetTrigger("Pressed");
+                }
+
+                // Call specialized action (based on context).
+                if (itemInfo != null)
+                {
+                    itemInfo.callAction1();
+                }
             }
 
-            // Call specialized action (based on context).
-            if(itemInfo != null)
+            // Reset button animations.
+            if (Input.GetKeyUp(KeyCode.Alpha1))
             {
-                itemInfo.callAction1();
+                action1Button.animator.SetTrigger("Normal");
             }
-        }
 
-        // Reset button animations.
-        if (Input.GetKeyUp(KeyCode.Alpha1))
-        {
-            action1Button.animator.SetTrigger("Normal");
-        }
-
-        if (trigger == true) {
-            action1Button.OnDeselect(null);
+            if (trigger == true)
+            {
+                action1Button.OnDeselect(null);
+            }
         }
     }
 
     // See Action1() for comments.
     public void Action2(bool trigger)
     {
-        if (Input.GetKeyDown(KeyCode.Alpha2) || trigger == true)
+        if (action2Button.interactable == true)
         {
-            global.decided = true;
-            global.action = Global.Action.Two;
-
-            if (trigger == false)
+            if (Input.GetKeyDown(KeyCode.Alpha2) || trigger == true)
             {
-                action2Button.animator.SetTrigger("Pressed");
+                global.decided = true;
+                global.action = Global.Action.Two;
+
+                if (trigger == false)
+                {
+                    action2Button.animator.SetTrigger("Pressed");
+                }
+
+                if (itemInfo != null)
+                {
+                    itemInfo.callAction2();
+                }
             }
 
-            if (itemInfo != null)
+            if (Input.GetKeyUp(KeyCode.Alpha2))
             {
-                itemInfo.callAction2();
+                action2Button.animator.SetTrigger("Normal");
             }
-        }
 
-        if (Input.GetKeyUp(KeyCode.Alpha2))
-        {
-            action2Button.animator.SetTrigger("Normal");
-        }
-
-        if (trigger == true)
-        {
-            action2Button.OnDeselect(null);
+            if (trigger == true)
+            {
+                action2Button.OnDeselect(null);
+            }
         }
     }
 
     // See Action1() for comments.
     public void Action3(bool trigger)
     {
-        if (Input.GetKeyDown(KeyCode.Alpha3) || trigger == true)
+        if (action3Button.interactable == true)
         {
-            global.decided = true;
-            global.action = Global.Action.Three;
-
-            if (trigger == false)
+            if (Input.GetKeyDown(KeyCode.Alpha3) || trigger == true)
             {
-                action3Button.animator.SetTrigger("Pressed");
+                global.decided = true;
+                global.action = Global.Action.Three;
+
+                if (trigger == false)
+                {
+                    action3Button.animator.SetTrigger("Pressed");
+                }
+
+                if (itemInfo != null)
+                {
+                    itemInfo.callAction3();
+                }
             }
 
-            if (itemInfo != null)
+            if (Input.GetKeyUp(KeyCode.Alpha3))
             {
-                itemInfo.callAction3();
+                action3Button.animator.SetTrigger("Normal");
             }
-        }
 
-        if (Input.GetKeyUp(KeyCode.Alpha3))
-        {
-            action3Button.animator.SetTrigger("Normal");
-        }
-
-        if (trigger == true)
-        {
-            action3Button.OnDeselect(null);
+            if (trigger == true)
+            {
+                action3Button.OnDeselect(null);
+            }
         }
     }
 
     // See Action1() for comments.
     public void Action4(bool trigger)
     {
-        if (Input.GetKeyDown(KeyCode.Alpha4) || trigger == true)
+        if (action4Button.interactable == true)
         {
-            global.decided = true;
-            global.action = Global.Action.Four;
-
-            if (trigger == false)
+            if (Input.GetKeyDown(KeyCode.Alpha4) || trigger == true)
             {
-                action4Button.animator.SetTrigger("Pressed");
+                global.decided = true;
+                global.action = Global.Action.Four;
+
+                if (trigger == false)
+                {
+                    action4Button.animator.SetTrigger("Pressed");
+                }
+
+                if (itemInfo != null)
+                {
+                    itemInfo.callAction4();
+                }
             }
 
-            if (itemInfo != null)
+            if (Input.GetKeyUp(KeyCode.Alpha4))
             {
-                itemInfo.callAction4();
+                action4Button.animator.SetTrigger("Normal");
             }
-        }
 
-        if (Input.GetKeyUp(KeyCode.Alpha4))
-        {
-            action4Button.animator.SetTrigger("Normal");
-        }
-
-        if (trigger == true)
-        {
-            action4Button.OnDeselect(null);
+            if (trigger == true)
+            {
+                action4Button.OnDeselect(null);
+            }
         }
     }
 
@@ -407,20 +435,32 @@ public class Controller : MonoBehaviour
                 if (other.tag == "Item")
                 {
                     //Call Dynamic button system
-
+                    if (decalOpen)
+                    {
+                        decalStates = dynamicButtonUpdaterScript.getStates();
+                    }
+                    
                     ItemActionInterface tmp = other.GetComponent<ItemActionInterface>();
                     itemInfo = myHauntActions;
                     myHauntScript.prepForHaunt(other, tmp);
+                    decalOpen = false;
                     //dynamicButtonUpdaterScript.receiveItemObject(gameObject, myHauntActions);
                 }
                 // do stuff like check other for tags or w/e you like
             }
             else
             {
-                selectorIcon.sprite = null;
-                itemInfo = myDecalActions;
-                dynamicButtonUpdaterScript.receiveItemObject(gameObject, myDecalActions);
-                selectorText.text = "Decal";
+                if (!decalOpen)
+                {
+                    
+                    selectorIcon.sprite = null;
+                    itemInfo = myDecalActions;
+                    dynamicButtonUpdaterScript.receiveItemObject(gameObject, myDecalActions);
+                    selectorText.text = "Decal";
+                    dynamicButtonUpdaterScript.setStates(decalStates);
+                    decalOpen = true;
+                    
+                }
             }
         }
         //Debug.DrawRay(rayOrigin, gameCam.transform.forward * 3, Color.green); // this will draw a green line in editor for debugging

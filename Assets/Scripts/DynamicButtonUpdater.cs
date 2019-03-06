@@ -6,20 +6,21 @@ using UnityEngine.UI;
 public class DynamicButtonUpdater : MonoBehaviour
 {
     Global global;
-    private Button action1Button;
-    private Button action2Button;
-    private Button action3Button;
-    private Button action4Button;
+    public Button action1Button;
+    public Button action2Button;
+    public Button action3Button;
+    public Button action4Button;
 
-    private Text action1Text;
-    private Text action2Text;
-    private Text action3Text;
-    private Text action4Text;
-    private Image selectorIcon;
-    private Text selectorText;
+    public Text action1Text;
+    public Text action2Text;
+    public Text action3Text;
+    public Text action4Text;
+    public Image selectorIcon;
+    public Text selectorText;
     // Start is called before the first frame update
     void Start()
     {
+        
         global = GameObject.Find("Global").GetComponent<Global>();
         if (!global.platform) // PC
         {
@@ -65,8 +66,9 @@ public class DynamicButtonUpdater : MonoBehaviour
     // 2. The player chose to haunt an object
     public void receiveItemObject(GameObject item, ItemActionInterface itemInfo)
     {
+        
         selectorText.text = item.name;
-
+        enableAllButtons();
         string[] names = itemInfo.getActionNames();
         action1Text.text = names[0];
         action2Text.text = names[1];
@@ -83,6 +85,81 @@ public class DynamicButtonUpdater : MonoBehaviour
             selectorIcon = tmpImage;
         }
         
+    }
+
+    public void enableAllButtons()
+    {
+        setNormalButton(1);
+        setNormalButton(2);
+        setNormalButton(3);
+        setNormalButton(4);
+    }
+
+    public void setDisabledButton(int num)
+    {
+        if(num == 1)
+        {
+            action1Button.animator.SetTrigger(action1Button.animationTriggers.disabledTrigger);
+            action1Button.interactable = false;
+        } else if (num == 2)
+        {
+            action2Button.animator.SetTrigger(action2Button.animationTriggers.disabledTrigger);
+            action2Button.interactable = false;
+        }
+        else if (num == 3)
+        {
+            action3Button.animator.SetTrigger(action3Button.animationTriggers.disabledTrigger);
+            action3Button.interactable = false;
+        }
+        else if (num == 4)
+        {
+            action4Button.animator.SetTrigger(action4Button.animationTriggers.disabledTrigger);
+            action4Button.interactable = false;
+        }
+    }
+
+    public void setNormalButton(int num)
+    {
+        if (num == 1)
+        {
+            action1Button.animator.SetTrigger(action1Button.animationTriggers.normalTrigger);
+            action1Button.interactable = true;
+        }
+        else if (num == 2)
+        {
+            action2Button.animator.SetTrigger(action2Button.animationTriggers.normalTrigger);
+            action2Button.interactable = true;
+        }
+        else if (num == 3)
+        {
+            action3Button.animator.SetTrigger(action3Button.animationTriggers.normalTrigger);
+            action3Button.interactable = true;
+        }
+        else if (num == 4)
+        {
+            action4Button.animator.SetTrigger(action4Button.animationTriggers.normalTrigger);
+            action4Button.interactable = true;
+        }
+    }
+
+    public bool[] getStates()
+    {
+        bool[] result = new bool[4] {action1Button.interactable, action2Button.interactable , action3Button.interactable , action4Button.interactable };
+        return result;
+    }
+
+    public void setStates(bool[] newStates)
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            if (newStates[i])
+            {
+                setNormalButton(i+1);
+            } else
+            {
+                setDisabledButton(i+1);
+            }
+        }
     }
 
 }

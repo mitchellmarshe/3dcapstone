@@ -17,6 +17,7 @@ public class SoundActions : ItemActionInterface
         radioSound = gameObject.GetComponent<AudioSource>();
         jazz = Resources.Load<AudioClip>("sounds/JazzSong_1");
         jazzDistorted = Resources.Load<AudioClip>("sounds/JazzSongDistorted_3");
+        states = new bool[4] { true, true, true, true };
     }
 
     public override void callAction1()

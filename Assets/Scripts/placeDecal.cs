@@ -20,6 +20,7 @@ public class placeDecal : MonoBehaviour
     private bool distorted;
     private float timeHolder;
     private List<GameObject> distortedNPCS = new List<GameObject>();
+    private DynamicButtonUpdater myButtonUpdater;
 
     void Awake()
     {
@@ -29,6 +30,8 @@ public class placeDecal : MonoBehaviour
         isSnapped = false;
         global = GameObject.Find("Global").GetComponent<Global>();
         decalTransform = gameObject.GetComponent<Transform>();
+        myButtonUpdater = GameObject.Find("Controller").GetComponent<DynamicButtonUpdater>();
+        
     }
 
     // Update is called once per frame
@@ -64,13 +67,17 @@ public class placeDecal : MonoBehaviour
                     decalTransform.LookAt(hitPoint-hitNormal);
                     gameObject.GetComponentInChildren<SpriteRenderer>().sprite = lastSprite;
                     gameObject.GetComponentInChildren<SpriteRenderer>().color = new Color(255, 255, 255, 1);
-
+                    myButtonUpdater.setNormalButton(2);
 
 
                 }
             } else
             {
                 //this si the default hovering infront of the player decal mod
+                if (!isSnapped)
+                {
+                    myButtonUpdater.setDisabledButton(2);
+                }
                 isSnapped = false ;
                 origin = camComponent.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
                 Vector3 newPos = origin + (camComponent.transform.forward * 3);
@@ -114,6 +121,7 @@ public class placeDecal : MonoBehaviour
         camComponent = camera.GetComponent<Camera>();
         global.placingDecal = true;
         npcDetected = false;
+        myButtonUpdater.setNormalButton(2);
     }
 
     // This is fired when the player trys to place a decal
@@ -123,6 +131,8 @@ public class placeDecal : MonoBehaviour
         {
             global.placingDecal = false;
             placed = true;
+            myButtonUpdater.setNormalButton(4);
+            myButtonUpdater.setDisabledButton(2);
         }
     }
 
@@ -134,7 +144,7 @@ public class placeDecal : MonoBehaviour
             placed = false;
             isSnapped = false;
             gameObject.GetComponentInChildren<SpriteRenderer>().sprite = null;
-            
+            myButtonUpdater.setDisabledButton(4);
         }
     }
 

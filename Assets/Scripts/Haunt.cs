@@ -47,7 +47,9 @@ public class Haunt : MonoBehaviour
         lastItemObject = item;
         lastItemInterface = itemInfo;
         myController.setItemInfo(myHauntActions);
+        
         dynamicButtonUpdaterScript.receiveItemObject(gameObject, myHauntActions);
+        dynamicButtonUpdaterScript.setStates(myHauntActions.states);
     }
 
     //This is called to progress down a tree of actions
@@ -57,7 +59,9 @@ public class Haunt : MonoBehaviour
         lastItemInterface = info;
         
         myController.setItemInfo(info);
+        
         dynamicButtonUpdaterScript.receiveItemObject(lastItemObject, info);
+        dynamicButtonUpdaterScript.setStates(info.states);
     }
 
     //This returns to previous menus in the tree
@@ -69,6 +73,7 @@ public class Haunt : MonoBehaviour
             myController.setItemInfo(lastItemInterface);
             Debug.Log(lastItemInterface + "goBackAHaunt");
             dynamicButtonUpdaterScript.receiveItemObject(lastItemObject, lastItemInterface);
+            dynamicButtonUpdaterScript.setStates(lastItemInterface.states);
         }
     }
 
@@ -82,6 +87,7 @@ public class Haunt : MonoBehaviour
         
         myController.setItemInfo(lastItemInterface);
         dynamicButtonUpdaterScript.receiveItemObject(lastItemObject, lastItemInterface);
+        dynamicButtonUpdaterScript.setStates(lastItemInterface.states);
         possessionCameraObj.transform.position = lastItemObject.transform.position;
         possessionCameraObj.SetActive(true);
         mainCam.enabled = false;
@@ -102,7 +108,7 @@ public class Haunt : MonoBehaviour
         myCharController.enabled = true;
         possessionCameraObj.transform.SetParent(myPlayer.transform);
         possessionCameraObj.SetActive(false);
-
+        
 
 
     }

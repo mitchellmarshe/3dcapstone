@@ -23,6 +23,7 @@ public class DoorActions : ItemActionInterface
         myActionNames = new string[] { "Open", "Close", "Back...", "" };
         myHaunt = GameObject.Find("Player").GetComponentInChildren<Haunt>();
         global = GameObject.Find("Global").GetComponent<Global>();
+        states = new bool[4] { true, true, true, false };
 
     }
 

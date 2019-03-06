@@ -23,6 +23,7 @@ public class SodaCanActions : ItemActionInterface
         myRigid = gameObject.GetComponent<Rigidbody>();
         shaking = false;
         global = GameObject.Find("Global").GetComponent<Global>();
+        states = new bool[4] { true, true, true, false };
 
     }
 

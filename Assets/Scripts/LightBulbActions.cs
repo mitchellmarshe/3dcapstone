@@ -12,7 +12,6 @@ public class LightBulbActions : ItemActionInterface
     private float rand;
     private bool toggle;
     private Global global;
-    private Haunt myHauntScript;
 
 
     private void Start()
@@ -22,7 +21,9 @@ public class LightBulbActions : ItemActionInterface
         rand = Random.RandomRange(0.2f, 1.5f);
         flickering = false;
         myActionNames = new string[] { "On/Off", "...", "Unhaunt", "Flicker" };
+        states = new bool[4] { true, false, true, true };
         myHaunt = GameObject.Find("Player").GetComponentInChildren<Haunt>();
+        
     }
 
     public override void callAction1()

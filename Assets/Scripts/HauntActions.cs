@@ -12,6 +12,7 @@ public class HauntActions : ItemActionInterface
     {
         global = GameObject.Find("Global").GetComponent<Global>();
         myActionNames = new string[] { "Haunt", "...", "Unpossess", "..." };
+        states = new bool[4] { true, false, false, false };
         myHauntScript = gameObject.GetComponent<Haunt>();
     }
 

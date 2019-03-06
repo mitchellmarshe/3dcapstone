@@ -16,7 +16,7 @@ interface ItemInterface
 //provides a baseline for updating UI and performing actions
 public abstract class ItemActionInterface : MonoBehaviour, ItemInterface
 {
-
+    public bool[] states;
 
     public abstract void callAction1();
 

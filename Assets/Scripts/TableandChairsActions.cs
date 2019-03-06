@@ -32,6 +32,7 @@ public class TableandChairsActions : ItemActionInterface
         chair6.SetActive(false);
         chair7.SetActive(false);
         chair8.SetActive(false);
+        states = new bool[4] { true, false, true, false };
     }
 
     public override void callAction1()

@@ -21,6 +21,7 @@ public class VendingMachineActions : ItemActionInterface
         myActionNames = new string[] { "Shoot Soda*", "...", "Unhaunt", "..." };
         myHaunt = GameObject.Find("Player").GetComponentInChildren<Haunt>();
         global = GameObject.Find("Global").GetComponent<Global>();
+        states = new bool[4] { true, false, true, true };
     }
 
     private void Update()
