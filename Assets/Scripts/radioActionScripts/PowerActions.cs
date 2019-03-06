@@ -10,10 +10,12 @@ public class PowerActions : ItemActionInterface
     private AudioClip jazz;
     private AudioClip jazzDistorted;
     private Haunt myHaunt;
+    private bool playing;
 
     private void Start()
     {
-        myActionNames = new string[] { "Turn On", "Turn Off", "Back...", "..." };
+        playing = false;
+        myActionNames = new string[] { "On/Off", "...", "Back...", "..." };
 
         myHaunt = GameObject.Find("Player").GetComponentInChildren<Haunt>();
         radioSound = gameObject.GetComponent<AudioSource>();
@@ -23,13 +25,21 @@ public class PowerActions : ItemActionInterface
 
     public override void callAction1()
     {
-        radioSound.clip = jazz;
-        radioSound.Play();
+        if (playing)
+        {
+            radioSound.Pause();
+        }
+        else
+        {
+            radioSound.clip = jazz;
+            radioSound.Play();
+        }
+        playing = !playing;
     }
 
     public override void callAction2()
     {
-        radioSound.Pause();
+        
     }
 
     public override void callAction3()

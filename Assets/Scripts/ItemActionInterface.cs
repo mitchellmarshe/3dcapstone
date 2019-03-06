@@ -12,6 +12,8 @@ interface ItemInterface
     void callAction4();
 }
 
+//This abstract class will be used for most object-player interactions and
+//provides a baseline for updating UI and performing actions
 public abstract class ItemActionInterface : MonoBehaviour, ItemInterface
 {
 

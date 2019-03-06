@@ -60,6 +60,9 @@ public class DynamicButtonUpdater : MonoBehaviour
         //Global.Action myAction = global.action;
     }
 
+    // This is called in 2 cases
+    // 1. the player is looking/selected an object and will now display the option to haunt
+    // 2. The player chose to haunt an object
     public void receiveItemObject(GameObject item, ItemActionInterface itemInfo)
     {
         selectorText.text = item.name;

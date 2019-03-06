@@ -6,6 +6,7 @@ public class DecalActions : ItemActionInterface
 {
     public string[] myActionNames;
     Controller myController;
+
     private void Start()
     {
         myActionNames = new string[4]{ "Decal Menu", "Place Decal", "...", "Remove Decal" };

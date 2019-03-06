@@ -53,6 +53,7 @@ public class ReactiveNPC : MonoBehaviour
         global = GameObject.Find("Global").GetComponent<Global>();
     }
 
+    //This is called to update the NPCs gui fear bar
     void updateFearSlider()
     {
         if(myCurrentFear <= 2500)
@@ -71,14 +72,16 @@ public class ReactiveNPC : MonoBehaviour
         updateFearSlider();
 
 
-
+        //The stopped state is true when the NPC suffers a disabilitating
+        // animation such as dead, heart attack, fetal position, ect
         if (!stopped)
         {
             checkStates();
 
-
+            //Decided is true when the NPC is either idling or walking somewhere
             if (!decided)
             {
+                //This code below decides wether to idle or walk to a new target
                 decided = true;
                 int rand = Random.Range(1, 3);
                 if (rand == 1)
@@ -105,6 +108,8 @@ public class ReactiveNPC : MonoBehaviour
                     decided = false;
 
                 }
+                // This code below helps update the NPC walk animation
+                // if there fear level has changed
                 else
                 {
                     timer += Time.deltaTime;
@@ -136,6 +141,8 @@ public class ReactiveNPC : MonoBehaviour
 
     }
 
+    // This handles fear specific triggers like heart attacks and fetal position
+    // This also stops the NPC from moving
     public void checkStates()
     {
 
@@ -161,31 +168,40 @@ public class ReactiveNPC : MonoBehaviour
         }
     }
     
+    //Sets the NPC to dead by stopping movement, playing animation, and setting fear to max
     public void setDead()
     {
-        stopped = true;
-        myAgent.isStopped = true;
-        myAnimator.ResetTrigger("walk");
-        myAnimator.ResetTrigger("idle");
-        myAnimator.SetTrigger("dead");
-        myAnimator.fireEvents = false;
-        StopAllCoroutines();
-        addFear(2500);
+
+            stopped = true;
+            myAgent.isStopped = true;
+            myAnimator.ResetTrigger("walk");
+            myAnimator.ResetTrigger("idle");
+            myAnimator.SetTrigger("dead");
+            myAnimator.fireEvents = false;
+            StopAllCoroutines();
+            myAnimator.SetInteger("fearFactor", 2500);
+            checkFear();
+            updateFearSlider();
+        
     }
 
+    // This plays this surprised animation on the NPC when called
     public void setSurprised()
     {
-        stopped = true;
-        myAgent.isStopped = true;
-        myAnimator.SetTrigger("surprised");
-        myAnimator.fireEvents = false;
-        IEnumerator coro = surprisedIenum(3.75f);
-        //StopAllCoroutines();
-        StartCoroutine(coro);
-        
+        if (!myAgent.isStopped)
+        {
+            stopped = true;
+            myAgent.isStopped = true;
+            myAnimator.SetTrigger("surprised");
+            myAnimator.fireEvents = false;
+            IEnumerator coro = surprisedIenum(3.75f);
+            //StopAllCoroutines();
+            StartCoroutine(coro);
+        }
 
     }
 
+    // This picks a location in the list of possible targets
     public void setNewTarget(string name)
     {
         try { 
@@ -201,6 +217,7 @@ public class ReactiveNPC : MonoBehaviour
         Debug.Log("set new target");
     }
 
+    // Starts the walk animation and sets destination
     public void startWalk(Transform loc)
     {
         myAgent.SetDestination(myTarget.position);
@@ -210,6 +227,7 @@ public class ReactiveNPC : MonoBehaviour
         Debug.Log("started walk");
     }
 
+    // Keeps the NPC idling for the parameter time in seconds
     public void idleForTime(float time)
     {
         Debug.Log("idle for time " + time);
@@ -221,6 +239,7 @@ public class ReactiveNPC : MonoBehaviour
 
     }
 
+    // coroutine for idling
     private IEnumerator idling(float time)
     {
         yield return new WaitForSeconds(time);
@@ -231,6 +250,7 @@ public class ReactiveNPC : MonoBehaviour
         Debug.Log("Done idling");
     }
 
+    // coroutine for surprised, BUGGY
     private IEnumerator surprisedIenum(float time)
     {
 
@@ -243,15 +263,18 @@ public class ReactiveNPC : MonoBehaviour
         Debug.Log("Done surprising");
     }
 
+    //updates local fear var
     public int checkFear()
     {
         return myAnimator.GetInteger("fearFactor");
     }
 
+    //adds to the NPC fear attribute
+    // also sets dead if added fear puts NPC over max
     public void addFear(int num)
     {
-        if (!stopped)
-        {
+        //if (!stopped)
+        //{
             int tmp = myAnimator.GetInteger("fearFactor");
             if (tmp < 2500)
             {
@@ -271,6 +294,7 @@ public class ReactiveNPC : MonoBehaviour
             {
                 setDead();
             }
-        }
+        //}
+
     }
 }

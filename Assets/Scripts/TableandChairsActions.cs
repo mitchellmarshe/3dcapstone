@@ -18,11 +18,15 @@ public class TableandChairsActions : ItemActionInterface
     private List<GameObject> distortedNPCS = new List<GameObject>();
     float timeHolder;
     bool levitating;
+    private Global global;
+    float stopper;
 
     private void Start()
     {
+        stopper = 0f;
+        global = GameObject.Find("Global").GetComponent<Global>();
         levitating = false;
-        myActionNames = new string[] { "Levitate", "...", "Back...", "..." };
+        myActionNames = new string[] { "Levitate", "...", "Unhaunt", "..." };
         myHaunt = GameObject.Find("Player").GetComponentInChildren<Haunt>();
         chair5.SetActive(false);
         chair6.SetActive(false);
@@ -41,21 +45,37 @@ public class TableandChairsActions : ItemActionInterface
         chair6.SetActive(true);
         chair7.SetActive(true);
         chair8.SetActive(true);
+        global.possessing = false;
+        myHaunt.unPossess();
     }
 
     private void Update()
     {
+
         if (levitating)
         {
             timeHolder += Time.deltaTime;
             if (timeHolder >= 0.5f)
             {
-
+                stopper += 1;
                 timeHolder = 0;
                 for (int i = 0; i < distortedNPCS.Count; i++)
                 {
                     distortedNPCS[i].GetComponent<ReactiveNPC>().addFear(50);
                 }
+            }
+            if(stopper >= 20)
+            {
+                levitating = false;
+                chair1.SetActive(true);
+                chair2.SetActive(true);
+                chair3.SetActive(true);
+                chair4.SetActive(true);
+                chair5.SetActive(false);
+                chair6.SetActive(false);
+                chair7.SetActive(false);
+                chair8.SetActive(false);
+                stopper = 0;
             }
         }
     }
@@ -89,8 +109,11 @@ public class TableandChairsActions : ItemActionInterface
 
     public override void callAction3()
     {
-        ItemActionInterface tmp = gameObject.GetComponent<ItemActionInterface>();
-        myHaunt.prepForHaunt(gameObject, tmp);
+        //ItemActionInterface tmp = gameObject.GetComponent<ItemActionInterface>();
+        //myHaunt.prepForHaunt(gameObject, tmp);
+
+        global.possessing = false;
+        myHaunt.unPossess();
     }
 
     public override void callAction4()

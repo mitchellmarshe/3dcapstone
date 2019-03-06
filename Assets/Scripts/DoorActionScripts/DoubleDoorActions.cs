@@ -13,6 +13,7 @@ public class DoubleDoorActions : ItemActionInterface
     public BoxCollider openedCollider1;
     public BoxCollider openedCollider2;
     public BoxCollider closedCollider;
+    private Global global;
 
     private void Start()
     {
@@ -21,35 +22,46 @@ public class DoubleDoorActions : ItemActionInterface
         openedCollider2.enabled = false;
         myTransform = gameObject.transform;
         open = false;
-        myActionNames = new string[] { "Open", "Close", "Back...", "" };
+        myActionNames = new string[] { "Open/Close", "...", "Unhaunt", "" };
         myHaunt = GameObject.Find("Player").GetComponentInChildren<Haunt>();
+        global = GameObject.Find("Global").GetComponent<Global>();
 
     }
 
     public override void callAction1()
     {
-        open = true;
-        opened.SetActive(true);
-        openedCollider1.enabled = true;
-        openedCollider2.enabled = true;
-        closedCollider.enabled = false;
-        closed.SetActive(false);
+        if (!open)
+        {
+            open = true;
+            opened.SetActive(true);
+            openedCollider1.enabled = true;
+            openedCollider2.enabled = true;
+            closedCollider.enabled = false;
+            closed.SetActive(false);
+        }
+        else
+        {
+            open = false;
+            closed.SetActive(true);
+            openedCollider1.enabled = false;
+            openedCollider2.enabled = false;
+            closedCollider.enabled = true;
+            opened.SetActive(false);
+        }
     }
 
     public override void callAction2()
     {
-        open = false;
-        closed.SetActive(true);
-        openedCollider1.enabled = false;
-        openedCollider2.enabled = false;
-        closedCollider.enabled = true;
-        opened.SetActive(false);
+        
     }
 
     public override void callAction3()
     {
-        ItemActionInterface tmp = gameObject.GetComponent<ItemActionInterface>();
-        myHaunt.prepForHaunt(gameObject, tmp);
+        //ItemActionInterface tmp = gameObject.GetComponent<ItemActionInterface>();
+        //myHaunt.prepForHaunt(gameObject, tmp);
+
+        global.possessing = false;
+        myHaunt.unPossess();
     }
 
     public override void callAction4()

@@ -10,6 +10,7 @@ public class VendingMachineActions : ItemActionInterface
     private bool shooting;
     private float counter;
     private int cans;
+    private Global global;
 
     private void Start()
     {
@@ -17,8 +18,9 @@ public class VendingMachineActions : ItemActionInterface
         counter = 0;
         shooting = false;
         mySodaCan.SetActive(false);
-        myActionNames = new string[] { "Shoot Soda*", "...", "Back...", "..." };
+        myActionNames = new string[] { "Shoot Soda*", "...", "Unhaunt", "..." };
         myHaunt = GameObject.Find("Player").GetComponentInChildren<Haunt>();
+        global = GameObject.Find("Global").GetComponent<Global>();
     }
 
     private void Update()
@@ -56,8 +58,11 @@ public class VendingMachineActions : ItemActionInterface
 
     public override void callAction3()
     {
-        ItemActionInterface tmp = gameObject.GetComponent<ItemActionInterface>();
-        myHaunt.prepForHaunt(gameObject, tmp);
+        //ItemActionInterface tmp = gameObject.GetComponent<ItemActionInterface>();
+        //myHaunt.prepForHaunt(gameObject, tmp);
+
+        global.possessing = false;
+        myHaunt.unPossess();
     }
 
     public override void callAction4()

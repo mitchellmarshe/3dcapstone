@@ -10,29 +10,45 @@ public class LightBulbActions : ItemActionInterface
     private bool flickering;
     private float counter;
     private float rand;
+    private bool toggle;
+    private Global global;
+    private Haunt myHauntScript;
+
 
     private void Start()
     {
+        global = GameObject.Find("Global").GetComponent<Global>();
+        toggle = true;
         rand = Random.RandomRange(0.2f, 1.5f);
         flickering = false;
-        myActionNames = new string[] { "Turn On", "Turn Off", "Back...", "Flicker" };
+        myActionNames = new string[] { "On/Off", "...", "Unhaunt", "Flicker" };
         myHaunt = GameObject.Find("Player").GetComponentInChildren<Haunt>();
     }
 
     public override void callAction1()
     {
-        myLight.intensity = 5;
+        if (!toggle)
+        {
+            myLight.intensity = 5;
+        } else
+        {
+            myLight.intensity = 0;
+        }
+        toggle = !toggle;
     }
 
     public override void callAction2()
     {
-        myLight.intensity = 0;
+        
     }
 
     public override void callAction3()
     {
-        ItemActionInterface tmp = gameObject.GetComponent<ItemActionInterface>();
-        myHaunt.prepForHaunt(gameObject, tmp);
+        //ItemActionInterface tmp = gameObject.GetComponent<ItemActionInterface>();
+        //myHaunt.prepForHaunt(gameObject, tmp);
+
+        global.possessing = false;
+        myHaunt.unPossess();
     }
 
     public override void callAction4()

@@ -9,10 +9,12 @@ public class RadioActions : ItemActionInterface
     private AudioClip jazz;
     private AudioClip jazzDistorted;
     private Haunt myHaunt;
+    private Global global;
 
     private void Start()
     {
-        myActionNames = new string[] { "Power", "Sound", "Back...", "Special" };
+        global = GameObject.Find("Global").GetComponent<Global>();
+        myActionNames = new string[] { "Power", "Sound", "Unhaunt", "Special" };
         myHaunt = GameObject.Find("Player").GetComponentInChildren<Haunt>();
         radioSound = gameObject.GetComponent<AudioSource>();
         jazz = Resources.Load<AudioClip>("sounds/JazzSong_1");
@@ -33,8 +35,11 @@ public class RadioActions : ItemActionInterface
 
     public override void callAction3()
     {
-        ItemActionInterface tmp = gameObject.GetComponent<ItemActionInterface>();
-        myHaunt.prepForHaunt(gameObject, tmp);
+        //ItemActionInterface tmp = gameObject.GetComponent<ItemActionInterface>();
+        //myHaunt.prepForHaunt(gameObject, tmp);
+
+        global.possessing = false;
+        myHaunt.unPossess();
     }
 
     public override void callAction4()

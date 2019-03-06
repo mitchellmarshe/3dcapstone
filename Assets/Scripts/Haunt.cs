@@ -39,6 +39,9 @@ public class Haunt : MonoBehaviour
         
     }
 
+    //Sets up the haunt/unhaunt actions buttons when initially looking at an object
+    //Also stores the object and the implemented abstract ItemActionInterface
+    // associated with that object
     public void prepForHaunt(GameObject item, ItemActionInterface itemInfo)
     {
         lastItemObject = item;
@@ -47,6 +50,7 @@ public class Haunt : MonoBehaviour
         dynamicButtonUpdaterScript.receiveItemObject(gameObject, myHauntActions);
     }
 
+    //This is called to progress down a tree of actions
     public void goFowardAHaunt(ItemActionInterface info)
     {
         previousMenus.Enqueue(lastItemInterface);
@@ -56,6 +60,7 @@ public class Haunt : MonoBehaviour
         dynamicButtonUpdaterScript.receiveItemObject(lastItemObject, info);
     }
 
+    //This returns to previous menus in the tree
     public void goBackAHaunt()
     {
         if (previousMenus.Count > 0)
@@ -67,6 +72,7 @@ public class Haunt : MonoBehaviour
         }
     }
 
+    //This handles the camera switching and GUI updating
     public void possess()
     {
         //Move onto object, fix camera
@@ -85,6 +91,7 @@ public class Haunt : MonoBehaviour
         
     }
 
+    //This returns the player to normal controls/camera
     public void unPossess()
     {
         // return to original player controls
