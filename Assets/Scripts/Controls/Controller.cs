@@ -144,8 +144,8 @@ public class Controller : MonoBehaviour
             */
             if (!global.possessing)
             {
-                Move();
-                Look();
+                //Move();
+                //Look();
             } else// if(global.possesMove)
             {
                 possessedLook();
@@ -179,7 +179,7 @@ public class Controller : MonoBehaviour
         //lookSpeed = lookSlider.value;
         //ActionWheel();
     }
-
+    /*
     private void FixedUpdate()
     {
         // Get direction along the camera's orientation.
@@ -212,7 +212,7 @@ public class Controller : MonoBehaviour
         }
         body.AddForceAtPosition(characterController.velocity * 0.1f, hit.point, ForceMode.Impulse);
     }
-
+    */
     // The default state of the action wheel is to have no action buttons triggered.
     public void Action0()
     {
