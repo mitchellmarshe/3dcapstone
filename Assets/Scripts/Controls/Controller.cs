@@ -159,7 +159,8 @@ public class Controller : MonoBehaviour
             }
             
         }
-        rayCheck();
+        clickCheck();
+        //rayCheck();
 
         Action1(false);
         Action2(false);
@@ -423,6 +424,45 @@ public class Controller : MonoBehaviour
         }
     }
 
+    private void clickCheck()
+    {
+        if (!global.possessing)
+        {
+            RaycastHit rayHit;
+            Ray ray = cameraComponent.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out rayHit))
+            {
+                GameObject other = rayHit.collider.gameObject;
+                if (other.tag == "Item")
+                {
+                    if (decalOpen)
+                    {
+                        decalStates = dynamicButtonUpdaterScript.getStates();
+                    }
+
+                    ItemActionInterface tmp = other.GetComponent<ItemActionInterface>();
+                    itemInfo = myHauntActions;
+                    myHauntScript.prepForHaunt(other, tmp);
+                    decalOpen = false;
+                }
+            }
+            else
+            {
+                if (!decalOpen)
+                {
+
+                    selectorIcon.sprite = null;
+                    itemInfo = myDecalActions;
+                    dynamicButtonUpdaterScript.receiveItemObject(gameObject, myDecalActions);
+                    selectorText.text = "Decal";
+                    dynamicButtonUpdaterScript.setStates(decalStates);
+                    decalOpen = true;
+
+                }
+            }
+        }
+    }
     private void rayCheck()
     {
         if (!global.possessing)
