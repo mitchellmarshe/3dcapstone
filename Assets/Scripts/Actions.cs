@@ -61,6 +61,10 @@ public class Actions : MonoBehaviour
                 {
                     itemInfo.callAction1();
                 }
+                else
+                {
+                    print("itemInfo null in action button1");
+                }
             }
 
             // Reset button animations.
@@ -127,7 +131,7 @@ public class Actions : MonoBehaviour
                 if (itemInfo != null)
                 {
                     itemInfo.callAction3();
-                }
+                } 
             }
 
             if (Input.GetKeyUp(KeyCode.Alpha3))

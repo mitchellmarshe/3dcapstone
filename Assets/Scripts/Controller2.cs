@@ -109,7 +109,7 @@ public class Controller2 : MonoBehaviour
 
     private void Look()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(1))
         {
             if (global.platform == false) // PC
             {

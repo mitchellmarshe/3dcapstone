@@ -11,7 +11,8 @@ public class Global : MonoBehaviour
     public bool placingDecal;
     public bool decided;
     public bool possessing;
-    //public bool possesMove;
+    public GameObject softSelected = null;
+    public GameObject hardSelected = null;
     public enum Action {None, One, Two, Three, Four};
     public Action action;
     public GameObject selectedItem;
