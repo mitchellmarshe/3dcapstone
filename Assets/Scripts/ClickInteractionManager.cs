@@ -10,6 +10,7 @@ public class ClickInteractionManager : MonoBehaviour
 
     Controller2 myController;
     Global global;
+    Actions actions;
     Camera cameraComponent;
     DynamicButtonUpdater dynamicButtonUpdaterScript;
     public Shader normalShader;
@@ -19,6 +20,7 @@ public class ClickInteractionManager : MonoBehaviour
     void Start()
     {
         myController = gameObject.GetComponent<Controller2>();
+        actions = gameObject.GetComponent<Actions>();
         global = myController.global;
         cameraComponent = myController.camera.GetComponent<Camera>();
         dynamicButtonUpdaterScript = gameObject.GetComponent<DynamicButtonUpdater>();
@@ -51,7 +53,12 @@ public class ClickInteractionManager : MonoBehaviour
                             rend.material.shader = softSelectShader;
 
                         }
+                        //Debug.Log("setting soft select to other!!");
                         global.softSelected = other;
+                        global.itemInfo = other.GetComponent<ItemActionInterface>();
+                        
+                       // dynamicButtonUpdaterScript.setStates(global.itemInfo.states);
+                        
                     }
 
                     if (Input.GetMouseButtonDown(0))
@@ -78,6 +85,8 @@ public class ClickInteractionManager : MonoBehaviour
                             rend.material.shader = normalShader;
                         }
                     }
+                    //dynamicButtonUpdaterScript.enableAllButtons();
+                    global.itemInfo = null;
                     global.softSelected = null;
                 }
             } else
@@ -90,6 +99,8 @@ public class ClickInteractionManager : MonoBehaviour
                         rend.material.shader = normalShader;
                     }
                 }
+                //dynamicButtonUpdaterScript.enableAllButtons();
+                global.itemInfo = null;
                 global.softSelected = null;
             }
             setButtons = false;
@@ -155,22 +166,29 @@ public class ClickInteractionManager : MonoBehaviour
     // updates the actions according to what is hardSelected or softSelected
     private void actionUpdater()
     {
-        guiActionObj.SetActive(true);
+        
         if (!setButtons)
         {
+            guiActionObj.SetActive(true);
             if (global.hardSelected != null)
             {
 
-                dynamicButtonUpdaterScript.receiveItemObject(global.hardSelected, global.hardSelected.GetComponent<ItemActionInterface>());
-
+                dynamicButtonUpdaterScript.receiveItemObject(global.hardSelected, global.itemInfo);
+                global.softSelected = null;
             }
             else if (global.softSelected != null)
             {
-                dynamicButtonUpdaterScript.receiveItemObject(global.softSelected, global.softSelected.GetComponent<ItemActionInterface>());
+                dynamicButtonUpdaterScript.receiveItemObject(global.softSelected, global.itemInfo);
+                global.hardSelected = null;
             }
             else
             {
+                
+                //dynamicButtonUpdaterScript.enableAllButtons();
+                dynamicButtonUpdaterScript.setStates(new bool[] { true, true, false, true });
                 guiActionObj.SetActive(false);
+                global.itemInfo = null;
+
             }
             setButtons = true;
         }

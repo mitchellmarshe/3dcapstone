@@ -6,12 +6,11 @@ public class Haunt : MonoBehaviour
 {
     private HauntActions myHauntActions;
     private DynamicButtonUpdater dynamicButtonUpdaterScript;
-    private ItemActionInterface lastItemInterface;
     public GameObject lastItemObject;
     private Controller myController;
     private GameObject myPlayer;
-    private GameObject possessionCameraObj;
-    private Camera possessionCam;
+    //private GameObject possessionCameraObj;
+    //private Camera possessionCam;
     private Camera mainCam;
     private CharacterController myCharController;
     private Queue<ItemActionInterface> previousMenus = new Queue<ItemActionInterface>();
@@ -24,10 +23,10 @@ public class Haunt : MonoBehaviour
         myGlobal = GameObject.Find("Global").GetComponent<Global>();
         myPlayer = GameObject.Find("Player");
         myCharController = myPlayer.GetComponent<CharacterController>();
-        possessionCameraObj = GameObject.Find("possessionCamera");
+        //possessionCameraObj = GameObject.Find("possessionCamera");
         mainCam = GameObject.Find("Camera").GetComponent<Camera>();
-        possessionCam = possessionCameraObj.GetComponent<Camera>();
-        possessionCameraObj.SetActive(false);
+        //possessionCam = possessionCameraObj.GetComponent<Camera>();
+        //possessionCameraObj.SetActive(false);
         myController = gameObject.GetComponent<Controller>();
         myHauntActions = gameObject.GetComponent<HauntActions>();
         dynamicButtonUpdaterScript = gameObject.GetComponent<DynamicButtonUpdater>();
@@ -36,13 +35,18 @@ public class Haunt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(myGlobal.hardSelected == null && myGlobal.softSelected == null)
+        {
+            clearQueue();
+            myGlobal.itemInfo = null;
+            dynamicButtonUpdaterScript.setStates(new bool[] {true, true, false, true });
+        }
     }
 
     //Sets up the haunt/unhaunt actions buttons when initially looking at an object
     //Also stores the object and the implemented abstract ItemActionInterface
     // associated with that object
-    public void prepForHaunt(GameObject item, ItemActionInterface itemInfo)
+    /*public void prepForHaunt(GameObject item, ItemActionInterface itemInfo)
     {
         lastItemObject = item;
         lastItemInterface = itemInfo;
@@ -50,18 +54,19 @@ public class Haunt : MonoBehaviour
         
         dynamicButtonUpdaterScript.receiveItemObject(gameObject, myHauntActions);
         dynamicButtonUpdaterScript.setStates(myHauntActions.states);
-    }
+    } */
 
     //This is called to progress down a tree of actions
     public void goFowardAHaunt(ItemActionInterface info)
     {
-        previousMenus.Enqueue(lastItemInterface);
-        lastItemInterface = info;
+        //Debug.Log("before global item is: " + myGlobal.itemInfo );
+        previousMenus.Enqueue(myGlobal.itemInfo);
+        //Debug.Log("new global item is " + info);
+
+        myGlobal.itemInfo = info;
         
-        myController.setItemInfo(info);
-        
-        dynamicButtonUpdaterScript.receiveItemObject(lastItemObject, info);
-        dynamicButtonUpdaterScript.setStates(info.states);
+        dynamicButtonUpdaterScript.receiveItemObject(myGlobal.itemInfo.gameObject, info);
+        //dynamicButtonUpdaterScript.setStates(info.states);
     }
 
     //This returns to previous menus in the tree
@@ -69,15 +74,19 @@ public class Haunt : MonoBehaviour
     {
         if (previousMenus.Count > 0)
         {
-            lastItemInterface = previousMenus.Dequeue();
-            myController.setItemInfo(lastItemInterface);
-            Debug.Log(lastItemInterface + "goBackAHaunt");
-            dynamicButtonUpdaterScript.receiveItemObject(lastItemObject, lastItemInterface);
-            dynamicButtonUpdaterScript.setStates(lastItemInterface.states);
+            myGlobal.itemInfo = previousMenus.Dequeue();
+            dynamicButtonUpdaterScript.receiveItemObject(myGlobal.itemInfo.gameObject, myGlobal.itemInfo);
+            //dynamicButtonUpdaterScript.setStates(myGlobal.itemInfo.states);
         }
     }
 
+    public void clearQueue()
+    {
+        previousMenus.Clear();
+    }
+
     //This handles the camera switching and GUI updating
+    /*
     public void possess()
     {
         //Move onto object, fix camera
@@ -112,4 +121,5 @@ public class Haunt : MonoBehaviour
 
 
     }
+    */
 }

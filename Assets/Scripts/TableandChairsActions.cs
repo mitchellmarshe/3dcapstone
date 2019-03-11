@@ -27,7 +27,7 @@ public class TableandChairsActions : ItemActionInterface
         global = GameObject.Find("Global").GetComponent<Global>();
         levitating = false;
         myActionNames = new string[] { "Levitate", "...", "Unhaunt", "..." };
-        myHaunt = GameObject.Find("Player").GetComponentInChildren<Haunt>();
+        myHaunt = GameObject.Find("Player").GetComponent<Haunt>();
         chair5.SetActive(false);
         chair6.SetActive(false);
         chair7.SetActive(false);
@@ -46,8 +46,8 @@ public class TableandChairsActions : ItemActionInterface
         chair6.SetActive(true);
         chair7.SetActive(true);
         chair8.SetActive(true);
-        global.possessing = false;
-        myHaunt.unPossess();
+        //global.possessing = false;
+        //myHaunt.unPossess();
     }
 
     private void Update()
@@ -113,8 +113,8 @@ public class TableandChairsActions : ItemActionInterface
         //ItemActionInterface tmp = gameObject.GetComponent<ItemActionInterface>();
         //myHaunt.prepForHaunt(gameObject, tmp);
 
-        global.possessing = false;
-        myHaunt.unPossess();
+        //global.possessing = false;
+        //myHaunt.unPossess();
     }
 
     public override void callAction4()

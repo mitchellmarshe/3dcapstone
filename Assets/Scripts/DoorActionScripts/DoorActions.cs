@@ -21,7 +21,7 @@ public class DoorActions : ItemActionInterface
         myTransform = gameObject.transform;
         open = false;
         myActionNames = new string[] { "Open", "Close", "Back...", "" };
-        myHaunt = GameObject.Find("Player").GetComponentInChildren<Haunt>();
+        myHaunt = GameObject.Find("Player").GetComponent<Haunt>();
         global = GameObject.Find("Global").GetComponent<Global>();
         states = new bool[4] { true, true, true, false };
 
@@ -50,8 +50,8 @@ public class DoorActions : ItemActionInterface
         //ItemActionInterface tmp = gameObject.GetComponent<ItemActionInterface>();
         //myHaunt.prepForHaunt(gameObject, tmp);
 
-        global.possessing = false;
-        myHaunt.unPossess();
+        //global.possessing = false;
+        //myHaunt.unPossess();
     }
 
     public override void callAction4()

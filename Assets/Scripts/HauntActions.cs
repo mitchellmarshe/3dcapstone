@@ -18,8 +18,8 @@ public class HauntActions : ItemActionInterface
 
     public override void callAction1()
     {
-        global.possessing = true;
-        myHauntScript.possess();
+        //global.possessing = true;
+        //myHauntScript.possess();
 
     }
 
@@ -30,8 +30,8 @@ public class HauntActions : ItemActionInterface
 
     public override void callAction3()
     {
-        global.possessing = false;
-        myHauntScript.unPossess();
+        //global.possessing = false;
+        //myHauntScript.unPossess();
     }
 
     public override void callAction4()

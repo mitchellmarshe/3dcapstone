@@ -59,6 +59,7 @@ public class DynamicButtonUpdater : MonoBehaviour
     void Update()
     {
         //Global.Action myAction = global.action;
+        //enableAllButtons();
     }
 
     // This is called in 2 cases
@@ -66,9 +67,11 @@ public class DynamicButtonUpdater : MonoBehaviour
     // 2. The player chose to haunt an object
     public void receiveItemObject(GameObject item, ItemActionInterface itemInfo)
     {
-        
+        //Debug.Log("iteminfo " + itemInfo);
         selectorText.text = item.name;
-        enableAllButtons();
+        global.itemInfo = itemInfo;
+        //enableAllButtons();
+        //setStates(global.itemInfo.states);
         string[] names = itemInfo.getActionNames();
         action1Text.text = names[0];
         action2Text.text = names[1];
@@ -78,7 +81,7 @@ public class DynamicButtonUpdater : MonoBehaviour
         Image tmpImage = item.GetComponentInChildren<Image>();
         if (tmpImage == null || tmpImage.sprite == null)
         {
-            Debug.Log(selectorText.text + " has no associated icon Image");
+            //Debug.Log(selectorText.text + " has no associated icon Image");
         }
         else
         {
@@ -89,30 +92,44 @@ public class DynamicButtonUpdater : MonoBehaviour
 
     public void enableAllButtons()
     {
+        //Debug.Log("enabling all buttons");
         setNormalButton(1);
         setNormalButton(2);
         setNormalButton(3);
         setNormalButton(4);
     }
 
-    public void setDisabledButton(int num)
+    private void setDisabledButton(int num)
     {
+        //Debug.Log("Setting Disabled button!");
         if(num == 1)
         {
+            action1Button.animator.ResetTrigger(action1Button.animationTriggers.normalTrigger);
+            action1Button.animator.ResetTrigger(action1Button.animationTriggers.pressedTrigger);
+            action1Button.animator.ResetTrigger(action1Button.animationTriggers.disabledTrigger);
             action1Button.animator.SetTrigger(action1Button.animationTriggers.disabledTrigger);
             action1Button.interactable = false;
         } else if (num == 2)
         {
+            action1Button.animator.ResetTrigger(action2Button.animationTriggers.normalTrigger);
+            action2Button.animator.ResetTrigger(action2Button.animationTriggers.pressedTrigger);
+            action2Button.animator.ResetTrigger(action2Button.animationTriggers.disabledTrigger);
             action2Button.animator.SetTrigger(action2Button.animationTriggers.disabledTrigger);
             action2Button.interactable = false;
         }
         else if (num == 3)
         {
+            action3Button.animator.ResetTrigger(action3Button.animationTriggers.normalTrigger);
+            action3Button.animator.ResetTrigger(action3Button.animationTriggers.pressedTrigger);
+            action3Button.animator.ResetTrigger(action3Button.animationTriggers.disabledTrigger);
             action3Button.animator.SetTrigger(action3Button.animationTriggers.disabledTrigger);
             action3Button.interactable = false;
         }
         else if (num == 4)
         {
+            action4Button.animator.ResetTrigger(action4Button.animationTriggers.normalTrigger);
+            action4Button.animator.ResetTrigger(action4Button.animationTriggers.pressedTrigger);
+            action4Button.animator.ResetTrigger(action4Button.animationTriggers.disabledTrigger);
             action4Button.animator.SetTrigger(action4Button.animationTriggers.disabledTrigger);
             action4Button.interactable = false;
         }
@@ -122,23 +139,48 @@ public class DynamicButtonUpdater : MonoBehaviour
     {
         if (num == 1)
         {
-            action1Button.animator.SetTrigger(action1Button.animationTriggers.normalTrigger);
             action1Button.interactable = true;
+            action1Button.animator.ResetTrigger(action1Button.animationTriggers.normalTrigger);
+            action1Button.animator.ResetTrigger(action1Button.animationTriggers.pressedTrigger);
+            action1Button.animator.ResetTrigger(action1Button.animationTriggers.disabledTrigger);
+            action1Button.animator.SetTrigger(action1Button.animationTriggers.normalTrigger);
+            action1Button.animator.SetTrigger(action1Button.animationTriggers.pressedTrigger);
+            
+            
+
         }
         else if (num == 2)
         {
-            action2Button.animator.SetTrigger(action2Button.animationTriggers.normalTrigger);
             action2Button.interactable = true;
+            action2Button.animator.ResetTrigger(action2Button.animationTriggers.normalTrigger);
+            action2Button.animator.ResetTrigger(action2Button.animationTriggers.pressedTrigger);
+            action2Button.animator.ResetTrigger(action2Button.animationTriggers.disabledTrigger);
+            action2Button.animator.SetTrigger(action2Button.animationTriggers.normalTrigger);
+            action2Button.animator.SetTrigger(action2Button.animationTriggers.pressedTrigger);
+            
+            
         }
         else if (num == 3)
         {
-            action3Button.animator.SetTrigger(action3Button.animationTriggers.normalTrigger);
             action3Button.interactable = true;
+            action3Button.animator.ResetTrigger(action3Button.animationTriggers.normalTrigger);
+            action3Button.animator.ResetTrigger(action3Button.animationTriggers.pressedTrigger);
+            action3Button.animator.ResetTrigger(action3Button.animationTriggers.disabledTrigger);
+            action3Button.animator.SetTrigger(action3Button.animationTriggers.normalTrigger);
+            action3Button.animator.SetTrigger(action3Button.animationTriggers.pressedTrigger);
+            
+            
         }
         else if (num == 4)
         {
-            action4Button.animator.SetTrigger(action4Button.animationTriggers.normalTrigger);
             action4Button.interactable = true;
+            action4Button.animator.ResetTrigger(action4Button.animationTriggers.normalTrigger);
+            action4Button.animator.ResetTrigger(action4Button.animationTriggers.pressedTrigger);
+            action4Button.animator.ResetTrigger(action4Button.animationTriggers.disabledTrigger);
+            action4Button.animator.SetTrigger(action4Button.animationTriggers.normalTrigger);
+            action4Button.animator.SetTrigger(action4Button.animationTriggers.pressedTrigger);
+            
+            
         }
     }
 

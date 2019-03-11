@@ -22,7 +22,7 @@ public class LightBulbActions : ItemActionInterface
         flickering = false;
         myActionNames = new string[] { "On/Off", "...", "Unhaunt", "Flicker" };
         states = new bool[4] { true, false, true, true };
-        myHaunt = GameObject.Find("Player").GetComponentInChildren<Haunt>();
+        myHaunt = GameObject.Find("Player").GetComponent<Haunt>();
         
     }
 
@@ -48,8 +48,8 @@ public class LightBulbActions : ItemActionInterface
         //ItemActionInterface tmp = gameObject.GetComponent<ItemActionInterface>();
         //myHaunt.prepForHaunt(gameObject, tmp);
 
-        global.possessing = false;
-        myHaunt.unPossess();
+        //global.possessing = false;
+        //myHaunt.unPossess();
     }
 
     public override void callAction4()

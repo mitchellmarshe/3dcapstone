@@ -14,12 +14,12 @@ public class RadioActions : ItemActionInterface
     private void Start()
     {
         global = GameObject.Find("Global").GetComponent<Global>();
-        myActionNames = new string[] { "Power", "Sound", "Unhaunt", "Special" };
-        myHaunt = GameObject.Find("Player").GetComponentInChildren<Haunt>();
+        myActionNames = new string[] { "Power", "Sound", "...", "Special" };
+        myHaunt = GameObject.Find("Player").GetComponent<Haunt>();
         radioSound = gameObject.GetComponent<AudioSource>();
         jazz = Resources.Load<AudioClip>("sounds/JazzSong_1");
         jazzDistorted = Resources.Load<AudioClip>("sounds/JazzSongDistorted_3");
-        states = new bool[4] { true, true, true, true };
+        states = new bool[4] { true, true, false, true };
     }
 
     public override void  callAction1()
@@ -39,8 +39,8 @@ public class RadioActions : ItemActionInterface
         //ItemActionInterface tmp = gameObject.GetComponent<ItemActionInterface>();
         //myHaunt.prepForHaunt(gameObject, tmp);
 
-        global.possessing = false;
-        myHaunt.unPossess();
+        //global.possessing = false;
+        //myHaunt.unPossess();
     }
 
     public override void callAction4()

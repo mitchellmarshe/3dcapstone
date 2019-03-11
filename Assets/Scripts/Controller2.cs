@@ -107,6 +107,7 @@ public class Controller2 : MonoBehaviour
         }
     }
 
+
     private void Look()
     {
         if (Input.GetMouseButton(1))

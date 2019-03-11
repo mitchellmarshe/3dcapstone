@@ -17,7 +17,7 @@ public class PowerActions : ItemActionInterface
         playing = false;
         myActionNames = new string[] { "On/Off", "...", "Back...", "..." };
 
-        myHaunt = GameObject.Find("Player").GetComponentInChildren<Haunt>();
+        myHaunt = GameObject.Find("Player").GetComponent<Haunt>();
         radioSound = gameObject.GetComponent<AudioSource>();
         jazz = Resources.Load<AudioClip>("sounds/JazzSong_1");
         jazzDistorted = Resources.Load<AudioClip>("sounds/JazzSongDistorted_3");

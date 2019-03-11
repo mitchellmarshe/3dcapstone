@@ -12,6 +12,7 @@ public class Global : MonoBehaviour
     public bool decided;
     public bool possessing;
     public GameObject softSelected = null;
+    public ItemActionInterface itemInfo;
     public GameObject hardSelected = null;
     public enum Action {None, One, Two, Three, Four};
     public Action action;
@@ -25,6 +26,7 @@ public class Global : MonoBehaviour
     // Start is called before the first frame update.
     void Awake()
     {
+        itemInfo = null;
         possessing = false;
         //possesMove = false;
         haunted = false;

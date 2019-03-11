@@ -23,7 +23,7 @@ public class DoubleDoorActions : ItemActionInterface
         myTransform = gameObject.transform;
         open = false;
         myActionNames = new string[] { "Open/Close", "...", "Unhaunt", "" };
-        myHaunt = GameObject.Find("Player").GetComponentInChildren<Haunt>();
+        myHaunt = GameObject.Find("Player").GetComponent<Haunt>();
         global = GameObject.Find("Global").GetComponent<Global>();
         states = new bool[4] { true, false, true, false };
 
@@ -61,8 +61,8 @@ public class DoubleDoorActions : ItemActionInterface
         //ItemActionInterface tmp = gameObject.GetComponent<ItemActionInterface>();
         //myHaunt.prepForHaunt(gameObject, tmp);
 
-        global.possessing = false;
-        myHaunt.unPossess();
+        //global.possessing = false;
+        //myHaunt.unPossess();
     }
 
     public override void callAction4()

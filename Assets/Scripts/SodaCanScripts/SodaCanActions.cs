@@ -19,7 +19,7 @@ public class SodaCanActions : ItemActionInterface
         popped = false;
         shakeStopper = 0;
         myActionNames = new string[] { "Shake", "POP*", "Back...", "..." };
-        myHaunt = GameObject.Find("Player").GetComponentInChildren<Haunt>();
+        myHaunt = GameObject.Find("Player").GetComponent<Haunt>();
         myRigid = gameObject.GetComponent<Rigidbody>();
         shaking = false;
         global = GameObject.Find("Global").GetComponent<Global>();
@@ -74,7 +74,7 @@ public class SodaCanActions : ItemActionInterface
             {
             scaredNPCS[i].GetComponent<ReactiveNPC>().addFear(150);
             }
-            myHaunt.unPossess();
+            //myHaunt.unPossess();
             gameObject.SetActive(false);
 
         }
@@ -118,8 +118,8 @@ public class SodaCanActions : ItemActionInterface
         //ItemActionInterface tmp = gameObject.GetComponent<ItemActionInterface>();
         //myHaunt.prepForHaunt(gameObject, tmp);
 
-        global.possessing = false;
-        myHaunt.unPossess();
+        //global.possessing = false;
+        //myHaunt.unPossess();
     }
 
     public override void callAction4()

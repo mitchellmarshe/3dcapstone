@@ -30,7 +30,7 @@ public class placeDecal : MonoBehaviour
         isSnapped = false;
         global = GameObject.Find("Global").GetComponent<Global>();
         decalTransform = gameObject.GetComponent<Transform>();
-        myButtonUpdater = GameObject.Find("Controller").GetComponent<DynamicButtonUpdater>();
+        myButtonUpdater = GameObject.Find("Player").GetComponent<DynamicButtonUpdater>();
         
     }
 
@@ -76,7 +76,7 @@ public class placeDecal : MonoBehaviour
                 //this si the default hovering infront of the player decal mod
                 if (!isSnapped)
                 {
-                    myButtonUpdater.setDisabledButton(2);
+                    //myButtonUpdater.setDisabledButton(2);
                 }
                 isSnapped = false ;
                 origin = camComponent.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
@@ -132,7 +132,7 @@ public class placeDecal : MonoBehaviour
             global.placingDecal = false;
             placed = true;
             myButtonUpdater.setNormalButton(4);
-            myButtonUpdater.setDisabledButton(2);
+            //myButtonUpdater.setDisabledButton(2);
         }
     }
 
@@ -144,7 +144,7 @@ public class placeDecal : MonoBehaviour
             placed = false;
             isSnapped = false;
             gameObject.GetComponentInChildren<SpriteRenderer>().sprite = null;
-            myButtonUpdater.setDisabledButton(4);
+            //myButtonUpdater.setDisabledButton(4);
         }
     }
 

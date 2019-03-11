@@ -20,7 +20,7 @@ public class SpecialRadioActions : ItemActionInterface
         distorted = false;
         myActionNames = new string[] { "Distort", "Overload*", "Back...", "..." };
         states = new bool[4] { true, true, true, false };
-        myHaunt = GameObject.Find("Player").GetComponentInChildren<Haunt>();
+        myHaunt = GameObject.Find("Player").GetComponent<Haunt>();
         radioSound = gameObject.GetComponent<AudioSource>();
         jazz = Resources.Load<AudioClip>("sounds/JazzSong_1");
         jazzDistorted = Resources.Load<AudioClip>("sounds/JazzSongDistorted_3");
@@ -87,7 +87,7 @@ public class SpecialRadioActions : ItemActionInterface
             distortedNPCS[i].GetComponent<ReactiveNPC>().setDead();
 
         }
-        myHaunt.unPossess();
+        //myHaunt.unPossess();
         gameObject.SetActive(false);
     }
 

@@ -15,7 +15,7 @@ public class Actions : MonoBehaviour
     public Button action3Button;
     public Button action4Button;
 
-    private ItemActionInterface itemInfo;
+    
 
     void Start()
     {
@@ -25,6 +25,23 @@ public class Actions : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public ItemActionInterface getItemInfo()
+    {
+        if(global.hardSelected != null)
+        {
+            global.itemInfo = global.hardSelected.GetComponent<ItemActionInterface>();
+            return global.itemInfo;
+        } else if(global.softSelected != null)
+        {
+            global.itemInfo = global.softSelected.GetComponent<ItemActionInterface>();
+            return global.itemInfo;
+        } else
+        {
+            global.itemInfo = null;
+            return null;
+        }
     }
 
     // The default state of the action wheel is to have no action buttons triggered.
@@ -55,11 +72,11 @@ public class Actions : MonoBehaviour
                 {
                     action1Button.animator.SetTrigger("Pressed");
                 }
-
+               //getItemInfo();
                 // Call specialized action (based on context).
-                if (itemInfo != null)
+                if (global.itemInfo != null)
                 {
-                    itemInfo.callAction1();
+                    global.itemInfo.callAction1();
                 }
                 else
                 {
@@ -94,10 +111,10 @@ public class Actions : MonoBehaviour
                 {
                     action2Button.animator.SetTrigger("Pressed");
                 }
-
-                if (itemInfo != null)
+                //getItemInfo();
+                if (global.itemInfo != null)
                 {
-                    itemInfo.callAction2();
+                    global.itemInfo.callAction2();
                 }
             }
 
@@ -127,10 +144,10 @@ public class Actions : MonoBehaviour
                 {
                     action3Button.animator.SetTrigger("Pressed");
                 }
-
-                if (itemInfo != null)
+                //getItemInfo();
+                if (global.itemInfo != null)
                 {
-                    itemInfo.callAction3();
+                    global.itemInfo.callAction3();
                 } 
             }
 
@@ -160,10 +177,10 @@ public class Actions : MonoBehaviour
                 {
                     action4Button.animator.SetTrigger("Pressed");
                 }
-
-                if (itemInfo != null)
+                //getItemInfo();
+                if (global.itemInfo != null)
                 {
-                    itemInfo.callAction4();
+                    global.itemInfo.callAction4();
                 }
             }
 

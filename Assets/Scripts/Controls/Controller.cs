@@ -170,8 +170,8 @@ public class Controller : MonoBehaviour
         // this needs to be at bottom to properly disable buttons for decal at start
         if (!start)
         {
-            dynamicButtonUpdaterScript.setDisabledButton(2);
-            dynamicButtonUpdaterScript.setDisabledButton(4);
+            //dynamicButtonUpdaterScript.setDisabledButton(2);
+            //dynamicButtonUpdaterScript.setDisabledButton(4);
             start = true;
         }
 
@@ -443,7 +443,7 @@ public class Controller : MonoBehaviour
 
                     ItemActionInterface tmp = other.GetComponent<ItemActionInterface>();
                     itemInfo = myHauntActions;
-                    myHauntScript.prepForHaunt(other, tmp);
+                    //myHauntScript.prepForHaunt(other, tmp);
                     decalOpen = false;
                 }
             }
@@ -456,7 +456,7 @@ public class Controller : MonoBehaviour
                     itemInfo = myDecalActions;
                     dynamicButtonUpdaterScript.receiveItemObject(gameObject, myDecalActions);
                     selectorText.text = "Decal";
-                    dynamicButtonUpdaterScript.setStates(decalStates);
+                    //dynamicButtonUpdaterScript.setStates(decalStates);
                     decalOpen = true;
 
                 }
@@ -482,7 +482,7 @@ public class Controller : MonoBehaviour
                     
                     ItemActionInterface tmp = other.GetComponent<ItemActionInterface>();
                     itemInfo = myHauntActions;
-                    myHauntScript.prepForHaunt(other, tmp);
+                    //myHauntScript.prepForHaunt(other, tmp);
                     decalOpen = false;
                     //dynamicButtonUpdaterScript.receiveItemObject(gameObject, myHauntActions);
                 }
@@ -497,7 +497,7 @@ public class Controller : MonoBehaviour
                     itemInfo = myDecalActions;
                     dynamicButtonUpdaterScript.receiveItemObject(gameObject, myDecalActions);
                     selectorText.text = "Decal";
-                    dynamicButtonUpdaterScript.setStates(decalStates);
+                    //dynamicButtonUpdaterScript.setStates(decalStates);
                     decalOpen = true;
                     
                 }

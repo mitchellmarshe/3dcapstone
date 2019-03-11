@@ -13,7 +13,7 @@ public class SoundActions : ItemActionInterface
     private void Start()
     {
         myActionNames = new string[] { "Random Pitch", "Volume Up", "Back...", "Volume Down" };
-        myHaunt = GameObject.Find("Player").GetComponentInChildren<Haunt>();
+        myHaunt = GameObject.Find("Player").GetComponent<Haunt>();
         radioSound = gameObject.GetComponent<AudioSource>();
         jazz = Resources.Load<AudioClip>("sounds/JazzSong_1");
         jazzDistorted = Resources.Load<AudioClip>("sounds/JazzSongDistorted_3");
