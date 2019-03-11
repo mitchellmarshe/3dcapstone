@@ -70,8 +70,8 @@ public class DynamicButtonUpdater : MonoBehaviour
         //Debug.Log("iteminfo " + itemInfo);
         selectorText.text = item.name;
         global.itemInfo = itemInfo;
-        //enableAllButtons();
-        //setStates(global.itemInfo.states);
+        enableAllButtons();
+        setStates(global.itemInfo.states);
         string[] names = itemInfo.getActionNames();
         action1Text.text = names[0];
         action2Text.text = names[1];
