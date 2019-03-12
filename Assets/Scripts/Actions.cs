@@ -94,6 +94,7 @@ public class Actions : MonoBehaviour
             {
                 action1Button.OnDeselect(null);
             }
+
         }
     }
 

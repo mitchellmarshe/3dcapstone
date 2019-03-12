@@ -35,6 +35,7 @@ public class Haunt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if(myGlobal.hardSelected == null && myGlobal.softSelected == null)
         {
             clearQueue();

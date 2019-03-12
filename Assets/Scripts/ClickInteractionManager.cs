@@ -55,10 +55,11 @@ public class ClickInteractionManager : MonoBehaviour
                         }
                         //Debug.Log("setting soft select to other!!");
                         global.softSelected = other;
+                        //dynamicButtonUpdaterScript.enableAllButtons();
                         global.itemInfo = other.GetComponent<ItemActionInterface>();
-                        
-                       // dynamicButtonUpdaterScript.setStates(global.itemInfo.states);
-                        
+
+                        // dynamicButtonUpdaterScript.setStates(global.itemInfo.states);
+                        //dynamicButtonUpdaterScript.enableAllButtons();
                     }
 
                     if (Input.GetMouseButtonDown(0))
@@ -184,7 +185,7 @@ public class ClickInteractionManager : MonoBehaviour
             else
             {
                 
-                //dynamicButtonUpdaterScript.enableAllButtons();
+                dynamicButtonUpdaterScript.enableAllButtons();
                 dynamicButtonUpdaterScript.setStates(new bool[] { true, true, false, true });
                 guiActionObj.SetActive(false);
                 global.itemInfo = null;
