@@ -18,9 +18,11 @@ public class Controller2 : MonoBehaviour
     private CollisionFlags collisionFlags;
     private Vector3 playerDirection;
     private Vector3 cameraRotation;
+    private DynamicButtonUpdater myButtonUpdater;
 
     private void Awake()
     {
+        myButtonUpdater = gameObject.GetComponent<DynamicButtonUpdater>();
         characterController = player.GetComponent<CharacterController>();
         playerDirection = new Vector3(0.0f, 0.0f, 0.0f);
         cameraRotation = new Vector3(0.0f, 0.0f, 0.0f);

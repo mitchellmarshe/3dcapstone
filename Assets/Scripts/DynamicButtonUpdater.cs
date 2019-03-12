@@ -108,6 +108,7 @@ public class DynamicButtonUpdater : MonoBehaviour
             action1Button.animator.ResetTrigger(action1Button.animationTriggers.normalTrigger);
             action1Button.animator.ResetTrigger(action1Button.animationTriggers.pressedTrigger);
             action1Button.animator.ResetTrigger(action1Button.animationTriggers.disabledTrigger);
+            action1Button.animator.ResetTrigger(action1Button.animationTriggers.highlightedTrigger);
             action1Button.animator.SetTrigger(action1Button.animationTriggers.disabledTrigger);
             action1Button.interactable = false;
         } else if (num == 2)
@@ -115,6 +116,7 @@ public class DynamicButtonUpdater : MonoBehaviour
             action1Button.animator.ResetTrigger(action2Button.animationTriggers.normalTrigger);
             action2Button.animator.ResetTrigger(action2Button.animationTriggers.pressedTrigger);
             action2Button.animator.ResetTrigger(action2Button.animationTriggers.disabledTrigger);
+            action2Button.animator.ResetTrigger(action2Button.animationTriggers.highlightedTrigger);
             action2Button.animator.SetTrigger(action2Button.animationTriggers.disabledTrigger);
             action2Button.interactable = false;
         }
@@ -123,6 +125,7 @@ public class DynamicButtonUpdater : MonoBehaviour
             action3Button.animator.ResetTrigger(action3Button.animationTriggers.normalTrigger);
             action3Button.animator.ResetTrigger(action3Button.animationTriggers.pressedTrigger);
             action3Button.animator.ResetTrigger(action3Button.animationTriggers.disabledTrigger);
+            action3Button.animator.ResetTrigger(action3Button.animationTriggers.highlightedTrigger);
             action3Button.animator.SetTrigger(action3Button.animationTriggers.disabledTrigger);
             action3Button.interactable = false;
         }
@@ -131,6 +134,7 @@ public class DynamicButtonUpdater : MonoBehaviour
             action4Button.animator.ResetTrigger(action4Button.animationTriggers.normalTrigger);
             action4Button.animator.ResetTrigger(action4Button.animationTriggers.pressedTrigger);
             action4Button.animator.ResetTrigger(action4Button.animationTriggers.disabledTrigger);
+            action4Button.animator.ResetTrigger(action4Button.animationTriggers.highlightedTrigger);
             action4Button.animator.SetTrigger(action4Button.animationTriggers.disabledTrigger);
             action4Button.interactable = false;
         }
@@ -144,8 +148,9 @@ public class DynamicButtonUpdater : MonoBehaviour
             action1Button.animator.ResetTrigger(action1Button.animationTriggers.normalTrigger);
             action1Button.animator.ResetTrigger(action1Button.animationTriggers.pressedTrigger);
             action1Button.animator.ResetTrigger(action1Button.animationTriggers.disabledTrigger);
-            action1Button.animator.SetTrigger(action1Button.animationTriggers.normalTrigger);
+            action1Button.animator.ResetTrigger(action1Button.animationTriggers.highlightedTrigger);
             action1Button.animator.SetTrigger(action1Button.animationTriggers.pressedTrigger);
+            //action1Button.animator.SetTrigger(action1Button.animationTriggers.pressedTrigger);
             
             
 
@@ -156,8 +161,9 @@ public class DynamicButtonUpdater : MonoBehaviour
             action2Button.animator.ResetTrigger(action2Button.animationTriggers.normalTrigger);
             action2Button.animator.ResetTrigger(action2Button.animationTriggers.pressedTrigger);
             action2Button.animator.ResetTrigger(action2Button.animationTriggers.disabledTrigger);
-            action2Button.animator.SetTrigger(action2Button.animationTriggers.normalTrigger);
+            action2Button.animator.ResetTrigger(action2Button.animationTriggers.highlightedTrigger);
             action2Button.animator.SetTrigger(action2Button.animationTriggers.pressedTrigger);
+            //action2Button.animator.SetTrigger(action2Button.animationTriggers.pressedTrigger);
             
             
         }
@@ -167,10 +173,12 @@ public class DynamicButtonUpdater : MonoBehaviour
             action3Button.animator.ResetTrigger(action3Button.animationTriggers.normalTrigger);
             action3Button.animator.ResetTrigger(action3Button.animationTriggers.pressedTrigger);
             action3Button.animator.ResetTrigger(action3Button.animationTriggers.disabledTrigger);
-            action3Button.animator.SetTrigger(action3Button.animationTriggers.normalTrigger);
+            action3Button.animator.ResetTrigger(action3Button.animationTriggers.highlightedTrigger);
             action3Button.animator.SetTrigger(action3Button.animationTriggers.pressedTrigger);
             
-            
+            //action3Button.animator.SetTrigger(action3Button.animationTriggers.pressedTrigger);
+
+
         }
         else if (num == 4)
         {
@@ -178,10 +186,12 @@ public class DynamicButtonUpdater : MonoBehaviour
             action4Button.animator.ResetTrigger(action4Button.animationTriggers.normalTrigger);
             action4Button.animator.ResetTrigger(action4Button.animationTriggers.pressedTrigger);
             action4Button.animator.ResetTrigger(action4Button.animationTriggers.disabledTrigger);
-            action4Button.animator.SetTrigger(action4Button.animationTriggers.normalTrigger);
+            action4Button.animator.ResetTrigger(action4Button.animationTriggers.highlightedTrigger);
             action4Button.animator.SetTrigger(action4Button.animationTriggers.pressedTrigger);
             
-            
+            //action4Button.animator.SetTrigger(action4Button.animationTriggers.pressedTrigger);
+
+
         }
     }
 
