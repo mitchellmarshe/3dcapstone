@@ -15,6 +15,8 @@ public class ClickInteractionManager : MonoBehaviour
     DynamicButtonUpdater dynamicButtonUpdaterScript;
     public Shader normalShader;
 
+    private bool holdingObject = false;
+
     private bool setButtons = false;
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,7 @@ public class ClickInteractionManager : MonoBehaviour
     {
         raySelectCheck();
         actionUpdater();
+        rigidBodyHandler();
     }
 
     // raySelectCheck handles updating global states depending what objects are being hovered/clicked on
@@ -133,8 +136,10 @@ public class ClickInteractionManager : MonoBehaviour
                             rend.material.shader = hardSelectShader;
 
                         }
+                        dropObject();
                         global.hardSelected = other;
                         global.itemInfo = other.GetComponent<ItemActionInterface>();
+
 
                     } else
                     {
@@ -194,5 +199,76 @@ public class ClickInteractionManager : MonoBehaviour
             }
             setButtons = true;
         }
+    }
+
+    private void rigidBodyHandler()
+    {
+        try
+        {
+           Rigidbody tmp =  global.hardSelected.GetComponent<Rigidbody>();
+            if(tmp != null)
+            {
+                if (global.hardSelected != null && !holdingObject)
+                {
+                    holdingObject = true;
+
+                }
+                else if (global.hardSelected == null)
+                {
+                    holdingObject = false;
+                }
+
+                if (holdingObject)
+                {
+                    pickupObject();
+                }
+                Debug.Log("Before mouse button down");
+                if (Input.GetMouseButtonDown(2) && holdingObject)
+                {
+                    Debug.Log("Middle mouse pressed");
+                    throwObject(tmp);
+                }
+            }
+        }
+        catch
+        {
+
+        }
+        
+        
+    }
+
+    private void pickupObject()
+    {
+        global.hardSelected.transform.position = gameObject.transform.position + cameraComponent.transform.forward*3;
+    }
+
+    private void dropObject()
+    {
+        MeshRenderer[] myRenders = global.hardSelected.GetComponentsInChildren<MeshRenderer>();
+        foreach (MeshRenderer rend in myRenders)
+        {
+            rend.material.shader = normalShader;
+        }
+
+        if (global.softSelected != null)
+        {
+            MeshRenderer[] myRenders2 = global.softSelected.GetComponentsInChildren<MeshRenderer>();
+            foreach (MeshRenderer rend in myRenders2)
+            {
+                rend.material.shader = normalShader;
+            }
+        }
+
+        holdingObject = false;
+        global.hardSelected = null;
+        global.softSelected = null;
+        global.itemInfo = null;
+    }
+
+    private void throwObject(Rigidbody rig)
+    {
+        dropObject();
+        rig.AddForce(cameraComponent.transform.forward * 5000);
     }
 }

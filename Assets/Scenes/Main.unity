@@ -10398,6 +10398,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7402001852757340039, guid: ea0a5d6242993104eb72a502b7022c41,
+        type: 3}
+      propertyPath: m_Radius
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7402001852757340039, guid: ea0a5d6242993104eb72a502b7022c41,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7402001852757340039, guid: ea0a5d6242993104eb72a502b7022c41,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea0a5d6242993104eb72a502b7022c41, type: 3}
 --- !u!1 &1384919438 stripped
@@ -10600,6 +10615,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7402001852757340039, guid: ea0a5d6242993104eb72a502b7022c41,
+        type: 3}
+      propertyPath: m_Radius
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7402001852757340039, guid: ea0a5d6242993104eb72a502b7022c41,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea0a5d6242993104eb72a502b7022c41, type: 3}
@@ -11495,6 +11520,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7402001852757340039, guid: ea0a5d6242993104eb72a502b7022c41,
+        type: 3}
+      propertyPath: m_Radius
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7402001852757340039, guid: ea0a5d6242993104eb72a502b7022c41,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7402001852757340039, guid: ea0a5d6242993104eb72a502b7022c41,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea0a5d6242993104eb72a502b7022c41, type: 3}
