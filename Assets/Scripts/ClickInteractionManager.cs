@@ -124,6 +124,7 @@ public class ClickInteractionManager : MonoBehaviour
                             {
                                 rend.material.shader = normalShader;
                             }
+                            
                         }
 
                         MeshRenderer[] myRenders2 = other.GetComponentsInChildren<MeshRenderer>();
@@ -133,7 +134,7 @@ public class ClickInteractionManager : MonoBehaviour
 
                         }
                         global.hardSelected = other;
-                        
+                        global.itemInfo = other.GetComponent<ItemActionInterface>();
 
                     } else
                     {
