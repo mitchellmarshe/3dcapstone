@@ -4,12 +4,24 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: pCube7
+    100004: single_door:pCube1
     400000: //RootNode
+    400002: pCube7
+    400004: single_door:pCube1
     2100000: lambert1
     2100002: phong1
+    2100004: single_door_phong1
+    2100006: lambert2
     2300000: //RootNode
+    2300002: pCube7
+    2300004: single_door:pCube1
     3300000: //RootNode
+    3300002: pCube7
+    3300004: single_door:pCube1
     4300000: pCube1
+    4300002: single_door:pCube1
+    4300004: pCube7
   externalObjects: {}
   materials:
     importMaterials: 1
