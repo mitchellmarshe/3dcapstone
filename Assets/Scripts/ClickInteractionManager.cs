@@ -264,9 +264,10 @@ public class ClickInteractionManager : MonoBehaviour
         global.hardSelected.GetComponent<Rigidbody>().useGravity = false;
         Vector3 rayOrigin = cameraComponent.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
         RaycastHit rayHit;
-        if (Physics.Raycast(rayOrigin, cameraComponent.transform.forward, out rayHit, holdLength + .5f, ~LayerMask.GetMask("item"))) // 3 is the length of the ray drawn
+        if (Physics.Raycast(rayOrigin, cameraComponent.transform.forward, out rayHit, holdLength + .2f)) // 3 is the length of the ray drawn
         {
-            global.hardSelected.transform.position = gameObject.transform.position + cameraComponent.transform.forward * (rayHit.distance - .5f);
+            global.hardSelected.transform.position = Vector3.MoveTowards(global.hardSelected.transform.position, gameObject.transform.position + cameraComponent.transform.forward * (rayHit.distance -.2f), 15 * Time.deltaTime);
+            Debug.Log("held object is hitting a collider");
         }
         else
         {
