@@ -35,6 +35,7 @@ public class Controller2 : MonoBehaviour
 
     private void Update()
     {
+        
         Move();
         Look();
 
@@ -59,6 +60,7 @@ public class Controller2 : MonoBehaviour
         position.z *= walkSpeed;
 
         collisionFlags = characterController.Move(position * Time.fixedDeltaTime);
+        transform.position = new Vector3(transform.position.x, 1, transform.position.z);
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
