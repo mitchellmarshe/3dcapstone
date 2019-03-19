@@ -21,7 +21,7 @@ public class VendingMachineActions : ItemActionInterface
         myActionNames = new string[] { "Shoot Soda*", "...", "Unhaunt", "..." };
         myHaunt = GameObject.Find("Player").GetComponentInChildren<Haunt>();
         global = GameObject.Find("Global").GetComponent<Global>();
-        states = new bool[4] { true, false, true, true };
+        states = new bool[4] { true, false, true, false };
     }
 
     private void Update()
@@ -36,6 +36,7 @@ public class VendingMachineActions : ItemActionInterface
                 GameObject newSodaCan = Instantiate(mySodaCan, gameObject.transform);
                 newSodaCan.SetActive(true);
                 newSodaCan.GetComponent<Rigidbody>().AddForce(1000 * newSodaCan.transform.up);
+                newSodaCan.transform.parent = null;
             }
             if(cans > 8)
             {

@@ -13,9 +13,11 @@ public class SpecialRadioActions : ItemActionInterface
     private List<GameObject> distortedNPCS = new List<GameObject>();
     private bool distorted;
     private float timeHolder;
+    private Global global;
 
     private void Start()
     {
+        global = GameObject.Find("Global").GetComponent<Global>();
         timeHolder = 0;
         distorted = false;
         myActionNames = new string[] { "Distort", "Overload*", "Back...", "..." };
@@ -88,6 +90,8 @@ public class SpecialRadioActions : ItemActionInterface
 
         }
         //myHaunt.unPossess();
+        global.softSelected = null;
+        global.hardSelected = null;
         gameObject.SetActive(false);
     }
 

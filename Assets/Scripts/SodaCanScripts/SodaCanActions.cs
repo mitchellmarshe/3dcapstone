@@ -75,6 +75,8 @@ public class SodaCanActions : ItemActionInterface
             scaredNPCS[i].GetComponent<ReactiveNPC>().addFear(150);
             }
             //myHaunt.unPossess();
+            global.softSelected = null;
+            global.hardSelected = null;
             gameObject.SetActive(false);
 
         }
