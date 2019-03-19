@@ -239,9 +239,9 @@ public class ClickInteractionManager : MonoBehaviour
                 if(holdLength > 10)
                 {
                     holdLength = 10;
-                } else if(holdLength < 2)
+                } else if(holdLength < 2.2f)
                 {
-                    holdLength = 2;
+                    holdLength = 2.2f;
                 }
 
                 pickupObject();
