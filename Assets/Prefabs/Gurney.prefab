@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 6207127081201801302}
   - component: {fileID: 6207127081200704150}
   m_Layer: 0
-  m_Name: autopsy table (8)
+  m_Name: Gurney
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6207127081198409846
 Transform:
@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6207127081198699606}
-  m_LocalRotation: {x: -0, y: -0.72918665, z: -0, w: 0.68431497}
-  m_LocalPosition: {x: 46.260773, y: 1.8063853, z: -41.128193}
-  m_LocalScale: {x: 153.96588, y: 34.73983, z: 385.42886}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 120, y: 20, z: 300}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -93.636, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!33 &6207127081201801302
 MeshFilter:
   m_ObjectHideFlags: 0
