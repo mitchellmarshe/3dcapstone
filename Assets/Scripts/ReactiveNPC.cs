@@ -12,7 +12,7 @@ public class ReactiveNPC : MonoBehaviour
     private int myCurrentFear;
     private bool decided;
     private Transform myTarget;
-    private int numZones = 3;
+    private int numZones = 10;
     private bool stopped;
     private bool arrived;
     private float timer;

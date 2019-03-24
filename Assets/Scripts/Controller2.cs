@@ -20,6 +20,8 @@ public class Controller2 : MonoBehaviour
     private Vector3 cameraRotation;
     private DynamicButtonUpdater myButtonUpdater;
 
+    public GameObject tmpDecal;
+
     private void Awake()
     {
         myButtonUpdater = gameObject.GetComponent<DynamicButtonUpdater>();
