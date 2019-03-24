@@ -1,20 +1,15 @@
 fileFormatVersion: 2
-guid: ac65bc944319ec64eb88ad1084d954f7
+guid: b6407b9d46945f845933bd0fe1515140
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: blinn1
+    2100000: lambert1
     2300000: //RootNode
     3300000: //RootNode
-    4300000: pCylinder1
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: blinn1
-    second: {fileID: 2100000, guid: 95854652abbe3764f986d1594345e20b, type: 2}
+    4300000: pCube1
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
