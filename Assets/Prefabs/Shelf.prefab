@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 5003519129595881245}
   - component: {fileID: 5003519129603066397}
   m_Layer: 0
-  m_Name: shelf
+  m_Name: Shelf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5003519129593456125
 Transform:
