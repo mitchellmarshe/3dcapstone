@@ -51,7 +51,7 @@ public class ClickInteractionManager : MonoBehaviour
             if (Physics.Raycast(ray, out rayHit, 200)) // 200 may be too long or short and should be adjusted
             {
                 GameObject other = rayHit.collider.gameObject;
-                if (other.tag == "Item")
+                if (other.GetComponent<ItemActionInterface>() != null)
                 {
                     if (global.softSelected == null)// && !Input.GetMouseButton(1))
                     {
@@ -239,9 +239,9 @@ public class ClickInteractionManager : MonoBehaviour
                 if(holdLength > 10)
                 {
                     holdLength = 10;
-                } else if(holdLength < 2.2f)
+                } else if(holdLength < 3)
                 {
-                    holdLength = 2.2f;
+                    holdLength = 3;
                 }
 
                 pickupObject();
