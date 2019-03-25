@@ -18905,6 +18905,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1491756828}
+  - {fileID: 7367793197620097751}
   m_Father: {fileID: 7693892154084959193}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24861,6 +24862,75 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2907804735155716959}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7083112530976865790
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1623836538}
+    m_Modifications:
+    - target: {fileID: 320861343648748297, guid: 6d806988095b1aa4cabe06c219affd71,
+        type: 3}
+      propertyPath: m_Name
+      value: Interior Double Door Opened
+      objectReference: {fileID: 0}
+    - target: {fileID: 320861343648386857, guid: 6d806988095b1aa4cabe06c219affd71,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 320861343648386857, guid: 6d806988095b1aa4cabe06c219affd71,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 320861343648386857, guid: 6d806988095b1aa4cabe06c219affd71,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 320861343648386857, guid: 6d806988095b1aa4cabe06c219affd71,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 320861343648386857, guid: 6d806988095b1aa4cabe06c219affd71,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 320861343648386857, guid: 6d806988095b1aa4cabe06c219affd71,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 320861343648386857, guid: 6d806988095b1aa4cabe06c219affd71,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 320861343648386857, guid: 6d806988095b1aa4cabe06c219affd71,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 320861343648386857, guid: 6d806988095b1aa4cabe06c219affd71,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 320861343648386857, guid: 6d806988095b1aa4cabe06c219affd71,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 320861343648386857, guid: 6d806988095b1aa4cabe06c219affd71,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6d806988095b1aa4cabe06c219affd71, type: 3}
 --- !u!1001 &7181188837415510674
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25100,6 +25170,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6af93d0ccf50409428093937dde04921, type: 3}
+--- !u!4 &7367793197620097751 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 320861343648386857, guid: 6d806988095b1aa4cabe06c219affd71,
+    type: 3}
+  m_PrefabInstance: {fileID: 7083112530976865790}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7692677966089162760
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25110,14 +25186,6 @@ PrefabInstance:
     - target: {fileID: 2203406082164830, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
       propertyPath: m_Name
       value: Interior Double Door
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164830, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164830, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2203406082331774, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25161,70 +25229,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2203406082331774, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164816, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164816, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164822, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164822, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164824, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164824, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164826, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164826, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164818, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164818, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164820, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164820, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164812, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164812, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164814, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164814, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -25334,14 +25338,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interior Double Door (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164830, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164830, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2203406082331774, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3
@@ -25384,70 +25380,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2203406082331774, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164816, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164816, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164822, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164822, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164824, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164824, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164826, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164826, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164818, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164818, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164820, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164820, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164812, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164812, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164814, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164814, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -29255,14 +29187,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interior Double Door (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164830, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164830, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2203406082331774, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.8
@@ -29305,70 +29229,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2203406082331774, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164816, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164816, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164822, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164822, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164824, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164824, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164826, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164826, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164818, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164818, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164820, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164820, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164812, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164812, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164814, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164814, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -30016,14 +29876,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interior Double Door (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164830, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164830, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2203406082331774, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.8
@@ -30066,70 +29918,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2203406082331774, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164816, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164816, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164822, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164822, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164824, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164824, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164826, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164826, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164818, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164818, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164820, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164820, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164812, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164812, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164814, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164814, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -30931,14 +30719,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interior Double Door (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164830, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164830, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2203406082331774, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.8
@@ -30981,70 +30761,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2203406082331774, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164816, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164816, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164822, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164822, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164824, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164824, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164826, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164826, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164818, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164818, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164820, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164820, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164812, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164812, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164814, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164814, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -31906,14 +31622,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interior Double Door (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164830, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164830, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2203406082331774, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.8
@@ -31956,70 +31664,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2203406082331774, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164816, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164816, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164822, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164822, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164824, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164824, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164826, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164826, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164818, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164818, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164820, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164820, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164812, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164812, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164814, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164814, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -32787,14 +32431,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interior Double Door (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164830, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164830, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2203406082331774, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.8
@@ -32837,70 +32473,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2203406082331774, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164816, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164816, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164822, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164822, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164824, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164824, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164826, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164826, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164818, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164818, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164820, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164820, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164812, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164812, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164814, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164814, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -33420,14 +32992,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interior Double Door (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164830, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164830, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2203406082331774, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.8
@@ -33470,70 +33034,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2203406082331774, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164816, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164816, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164822, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164822, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164824, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164824, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164826, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164826, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164818, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164818, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164820, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164820, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164812, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164812, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164814, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164814, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -38190,14 +37690,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interior Double Door (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164830, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164830, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2203406082331774, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.8
@@ -38240,70 +37732,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2203406082331774, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164816, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164816, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164822, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164822, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164824, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164824, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164826, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164826, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164818, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164818, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164820, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164820, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164812, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164812, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164814, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164814, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -39419,14 +38847,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interior Double Door (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164830, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164830, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2203406082331774, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.8
@@ -39469,70 +38889,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2203406082331774, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164816, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164816, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164822, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164822, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164824, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164824, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164826, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164826, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164818, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164818, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164820, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164820, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164812, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164812, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164814, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164814, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -41451,14 +40807,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interior Double Door (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164830, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164830, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2203406082331774, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.8
@@ -41501,70 +40849,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2203406082331774, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164816, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164816, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164822, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164822, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164824, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164824, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164826, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164826, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164818, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164818, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164820, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164820, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164812, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164812, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164814, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2203406082164814, guid: 6d0a1d844f8ede54c8f77abe4db668a8, type: 3}
-      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
