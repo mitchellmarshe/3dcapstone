@@ -72,7 +72,7 @@ public class SodaCanActions : ItemActionInterface
             
             for (int i = 0; i < scaredNPCS.Count; i++)
             {
-            scaredNPCS[i].GetComponent<ReactiveNPC>().addFear(150);
+            scaredNPCS[i].GetComponent<ReactiveAIMK2>().addFear(150);
             }
             //myHaunt.unPossess();
             global.softSelected = null;

@@ -33,7 +33,7 @@ public class SpecialRadioActions : ItemActionInterface
     {
         radioSound.clip = jazzDistorted;
         radioSound.Play();
-        distorted = !distorted;
+        distorted = true;
         // summon NPC to fix back to normal
     }
     private void Update()
@@ -50,7 +50,7 @@ public class SpecialRadioActions : ItemActionInterface
                 timeHolder = 0;
                 for (int i = 0; i < distortedNPCS.Count; i++)
                 {
-                    distortedNPCS[i].GetComponent<ReactiveNPC>().addFear(50);
+                    distortedNPCS[i].GetComponent<ReactiveAIMK2>().addFear(50);
                 }
             }
         }
@@ -85,8 +85,8 @@ public class SpecialRadioActions : ItemActionInterface
         radioSound.Play();
         for (int i = 0; i < distortedNPCS.Count; i++)
         {
-            distortedNPCS[i].GetComponent<ReactiveNPC>().addFear(2500);
-            distortedNPCS[i].GetComponent<ReactiveNPC>().setDead();
+            distortedNPCS[i].GetComponent<ReactiveAIMK2>().addFear(2500);
+            distortedNPCS[i].GetComponent<ReactiveAIMK2>().setDead();
 
         }
         //myHaunt.unPossess();

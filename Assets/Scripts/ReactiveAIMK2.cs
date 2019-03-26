@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class ReactiveNPC : MonoBehaviour
+public class ReactiveAIMK2 : MonoBehaviour
 {
     private NavMeshAgent myAgent;
     private Animator myAnimator;
@@ -19,7 +19,12 @@ public class ReactiveNPC : MonoBehaviour
 
     private Slider fearSlider;
     private Global global;
-    
+
+    public AnimatorOverrideController noFearController;
+    public AnimatorOverrideController lowFearController; 
+    public AnimatorOverrideController medFearController;
+    public AnimatorOverrideController highFearController;
+
 
     /*Trigger names
      * 
@@ -53,21 +58,27 @@ public class ReactiveNPC : MonoBehaviour
         global = GameObject.Find("Global").GetComponent<Global>();
     }
 
+
     //This is called to update the NPCs gui fear bar
     void updateFearSlider()
     {
-        if(myCurrentFear <= 2500)
+        if (myCurrentFear <= 2500 && myCurrentFear >= 0)
         {
             fearSlider.value = myCurrentFear;
-        } else
+        } else if(myCurrentFear > 2500)
         {
             fearSlider.value = 2500;
+        }
+        else
+        {
+            fearSlider.value = 0;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        myOldFear = myCurrentFear;
         myCurrentFear = checkFear();
         updateFearSlider();
 
@@ -83,6 +94,8 @@ public class ReactiveNPC : MonoBehaviour
             {
                 //This code below decides wether to idle or walk to a new target
                 decided = true;
+                arrived = false;
+                setAllAnimBoolsToBool(false);
                 int rand = Random.Range(1, 3);
                 if (rand == 1)
                 {
@@ -91,9 +104,11 @@ public class ReactiveNPC : MonoBehaviour
                     string targetname = "idlezone" + rand;
                     setNewTarget(targetname);
                     startWalk(myTarget);
+                    Debug.Log("Walking");
                 }
                 else
                 {
+                    Debug.Log("Idling");
                     idleForTime(Random.Range(3, 8));
                 }
 
@@ -101,7 +116,7 @@ public class ReactiveNPC : MonoBehaviour
             }
             else
             {
-                myAnimator.SetTrigger("walk");
+                
 
                 if (arrived)
                 {
@@ -112,8 +127,9 @@ public class ReactiveNPC : MonoBehaviour
                 // if there fear level has changed
                 else
                 {
+                    /*
                     timer += Time.deltaTime;
-                    if (timer > 0.5)
+                    if (timer > 0.1)
                     {
                         int tmp = myOldFear;
                         myOldFear = checkFear();
@@ -125,15 +141,18 @@ public class ReactiveNPC : MonoBehaviour
 
                         timer = 0f;
                     }
+                    */
                 }
+                
             }
-            if (Vector3.Distance(transform.position, myAgent.destination) <= 3)
+            if (myAnimator.GetBool("walk") &&  Vector3.Distance(transform.position, myAgent.destination) <= 3)
             {
                 arrived = true;
             }
 
 
-        } else
+        }
+        else
         {
 
         }
@@ -143,59 +162,97 @@ public class ReactiveNPC : MonoBehaviour
 
     // This handles fear specific triggers like heart attacks and fetal position
     // This also stops the NPC from moving
+
+    /* Fear walk levels
+     * 
+     * 0-249 casual
+     * 250-749 normal
+     * 750-1249 walk scared
+     * 1250-1999 run scared
+     * 
+     * */
+     public void setAllAnimBoolsToBool(bool newBool)
+    {
+        myAnimator.SetBool("idle", newBool);
+        myAnimator.SetBool("walk", newBool);
+        myAnimator.SetBool("surprised", newBool);
+        myAnimator.SetBool("surprisedDuck", newBool);
+        myAnimator.SetBool("deadPose", newBool);
+        myAnimator.SetBool("heartAttack", newBool);
+        myAnimator.SetBool("fetalPosition", newBool);
+
+    }
     public void checkStates()
     {
-        //Sets fetal position
-        if(myCurrentFear < 2500 && myCurrentFear >= 2000)
+        if (myOldFear != myCurrentFear)
         {
-            stopped = true;
-            myAgent.isStopped = true;
-            
-            myAnimator.ResetTrigger("walk");
-            myAnimator.ResetTrigger("idle");
-            myAnimator.SetTrigger("fetal");
-            myAnimator.fireEvents = false;
-            StopAllCoroutines();
-            //Triggers Heart attack
-        } else if (myCurrentFear > 2500)
-        {
-            stopped = true;
-            myAgent.isStopped = true;
-            myAnimator.ResetTrigger("walk");
-            myAnimator.ResetTrigger("idle");
-            myAnimator.SetTrigger("heartAttack");
-            myAnimator.fireEvents = false;
-            StopAllCoroutines();
+            if (myCurrentFear >= 2500)
+            {
+                setDead();
+            }
+            else if (myCurrentFear < 2500 && myCurrentFear >= 2000) // fetal position
+            {
+                stopped = true;
+                myAgent.isStopped = true;
+
+                setAllAnimBoolsToBool(false);
+                myAnimator.SetBool("fetalPosition", true);
+                myAnimator.SetTrigger("fireTransition");
+                StopAllCoroutines();
+                myAnimator.fireEvents = false;
+
+            } else if (myAnimator.GetBool("walk")) {
+                if (myCurrentFear >= 1250) // run scared
+                {
+                    myAnimator.runtimeAnimatorController = highFearController;
+                }
+                else if (myCurrentFear >= 750) // walk scared
+                {
+                    myAnimator.runtimeAnimatorController = medFearController;
+                }
+                else if (myCurrentFear >= 250) // walk normal
+                {
+                    myAnimator.runtimeAnimatorController = lowFearController;
+                }
+                else // walk casual
+                {
+                    myAnimator.runtimeAnimatorController = noFearController;
+                }
+            }
         }
+
+
     }
-    
+
     //Sets the NPC to dead by stopping movement, playing animation, and setting fear to max
     public void setDead()
     {
 
-            stopped = true;
-            myAgent.isStopped = true;
-            myAnimator.ResetTrigger("walk");
-            myAnimator.ResetTrigger("idle");
-            myAnimator.SetTrigger("dead");
-            myAnimator.fireEvents = false;
-            StopAllCoroutines();
-            myAnimator.SetInteger("fearFactor", 2500);
-            checkFear();
-            updateFearSlider();
-        
+        stopped = true;
+        myAgent.isStopped = true;
+        setAllAnimBoolsToBool(false);
+        myAnimator.SetBool("deadPose", true);
+        myAnimator.SetTrigger("fireTransition");
+        myAnimator.fireEvents = false;
+        StopAllCoroutines();
+        myAnimator.SetInteger("fearFactor", 2500);
+        checkFear();
+        updateFearSlider();
+
     }
 
     // This plays this surprised animation on the NPC when called
     // You need to create a new method for every new NPC reaction and make sure they can be called at any point and
     // pathfinding/walking is paused and then resumed
-    public void setSurprised() 
+    public void setSurprised()
     {
         if (!myAgent.isStopped)
         {
             stopped = true;
             myAgent.isStopped = true;
-            myAnimator.SetTrigger("surprised");
+            setAllAnimBoolsToBool(false);
+            myAnimator.SetBool("surprised", true);
+            myAnimator.SetTrigger("fireTransition");
             myAnimator.fireEvents = false;
             IEnumerator coro = surprisedIenum(3.75f);
             //StopAllCoroutines();
@@ -215,36 +272,35 @@ public class ReactiveNPC : MonoBehaviour
     // This picks a location in the list of possible targets
     public void setNewTarget(string name)
     {
-        try { 
+        try
+        {
             decided = true;
             arrived = false;
             myTarget = GameObject.Find(name).GetComponent<Transform>();
         }
         catch
         {
-            Debug.Log("setNewTarget in ReactiveNPC script has failed to find a GameObject with name " + name);
         }
 
-        Debug.Log("set new target");
     }
 
     // Starts the walk animation and sets destination
     public void startWalk(Transform loc)
     {
         myAgent.SetDestination(myTarget.position);
-        myAnimator.ResetTrigger("idle");
-        myAnimator.SetTrigger("walk");
+        setAllAnimBoolsToBool(false);
+        myAnimator.SetBool("walk", true);
+        myAnimator.SetTrigger("fireTransition");
         myAgent.speed = 3.5f;
-        Debug.Log("started walk");
     }
 
     // Keeps the NPC idling for the parameter time in seconds
     public void idleForTime(float time)
     {
-        Debug.Log("idle for time " + time);
-        myAnimator.ResetTrigger("walk");
-        stopped = true;
-        myAnimator.SetTrigger("idle");
+
+        setAllAnimBoolsToBool(false);
+        myAnimator.SetBool("idle", true);
+        myAnimator.SetTrigger("fireTransition");
         IEnumerator coro = idling(time);
         StartCoroutine(coro);
 
@@ -255,10 +311,11 @@ public class ReactiveNPC : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         stopped = false;
+        decided = false;
         myAgent.isStopped = false;
         myAnimator.fireEvents = true;
         
-        Debug.Log("Done idling");
+
     }
 
     // coroutine for surprised, BUGGY
@@ -267,11 +324,9 @@ public class ReactiveNPC : MonoBehaviour
 
         yield return new WaitForSeconds(time);
         stopped = false;
-        myAnimator.ResetTrigger("surprised");
         myAgent.isStopped = false;
         myAnimator.fireEvents = true;
         addFear(500);
-        Debug.Log("Done surprising");
     }
 
     //updates local fear var
@@ -286,26 +341,25 @@ public class ReactiveNPC : MonoBehaviour
     {
         //if (!stopped)
         //{
-            int tmp = myAnimator.GetInteger("fearFactor");
-            if (tmp < 2500)
+        int tmp = myAnimator.GetInteger("fearFactor");
+        if (tmp < 2500)
+        {
+            int tmp2 = 2500 - tmp;
+            if (tmp2 < num)
             {
-                int tmp2 = 2500 - tmp;
-                if (tmp2 < num)
-                {
-                    global.points += tmp2;
-                    myAnimator.SetInteger("fearFactor", 2500);
-                }
-                else
-                {
-                    global.points += num;
-                    myAnimator.SetInteger("fearFactor", tmp + num);
-                }
+                global.points += tmp2;
+                myAnimator.SetInteger("fearFactor", 2500);
             }
             else
             {
-                setDead();
+                global.points += num;
+                myAnimator.SetInteger("fearFactor", tmp + num);
             }
-        //}
+        }
+        else
+        {
+            setDead();
+        }
 
     }
 }
