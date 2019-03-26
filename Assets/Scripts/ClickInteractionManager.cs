@@ -313,6 +313,6 @@ public class ClickInteractionManager : MonoBehaviour
     private void throwObject(Rigidbody rig)
     {
         dropObject();
-        rig.AddForce(cameraComponent.transform.forward * 5000);
+        rig.AddForce(cameraComponent.transform.forward.normalized * 5000);
     }
 }

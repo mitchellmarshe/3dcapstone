@@ -186,7 +186,9 @@ public class ReactiveNPC : MonoBehaviour
     }
 
     // This plays this surprised animation on the NPC when called
-    public void setSurprised()
+    // You need to create a new method for every new NPC reaction and make sure they can be called at any point and
+    // pathfinding/walking is paused and then resumed
+    public void setSurprised() 
     {
         if (!myAgent.isStopped)
         {
