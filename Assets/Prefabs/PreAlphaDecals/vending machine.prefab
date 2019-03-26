@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 4768577335614800931}
   - component: {fileID: 5830506172251043290}
   m_Layer: 0
-  m_Name: vending machine
+  m_Name: Vending Machine
   m_TagString: Ignore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -225,11 +225,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7446072684999980466}
     m_Modifications:
-    - target: {fileID: 2136580224162487267, guid: 63f71d8064836164386c8433337b3ca0,
-        type: 3}
-      propertyPath: m_Name
-      value: Soda Can
-      objectReference: {fileID: 0}
     - target: {fileID: 4143152887603806826, guid: 63f71d8064836164386c8433337b3ca0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -284,6 +279,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136580224162487267, guid: 63f71d8064836164386c8433337b3ca0,
+        type: 3}
+      propertyPath: m_Name
+      value: Soda Can
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f71d8064836164386c8433337b3ca0, type: 3}
