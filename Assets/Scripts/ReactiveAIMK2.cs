@@ -20,10 +20,14 @@ public class ReactiveAIMK2 : MonoBehaviour
     private Slider fearSlider;
     private Global global;
 
+    public AudioSource myAudioSource;
+
     public AnimatorOverrideController noFearController;
     public AnimatorOverrideController lowFearController; 
     public AnimatorOverrideController medFearController;
     public AnimatorOverrideController highFearController;
+
+    public AudioClip[] generalQuotes;
 
 
     /*Trigger names
@@ -47,6 +51,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        myAudioSource = gameObject.GetComponent<AudioSource>();
         timer = 0f;
         decided = false;
         myAgent = gameObject.GetComponent<NavMeshAgent>();
@@ -223,6 +228,11 @@ public class ReactiveAIMK2 : MonoBehaviour
 
     }
 
+    public void saySomethingGeneral()
+    {
+        int rando = Random.Range(0, generalQuotes.Length);
+        myAudioSource.PlayOneShot(generalQuotes[rando]);
+    }
     //Sets the NPC to dead by stopping movement, playing animation, and setting fear to max
     public void setDead()
     {
@@ -272,6 +282,7 @@ public class ReactiveAIMK2 : MonoBehaviour
             addFear(250);
             IEnumerator coro = idling(2);
             StartCoroutine(coro);
+            saySomethingGeneral();
         }
     }
 

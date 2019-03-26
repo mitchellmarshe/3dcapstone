@@ -122,7 +122,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6320750279866835201}
-  m_LocalRotation: {x: -0.611861, y: -0.3233206, z: 0.277162, w: 0.6665368}
+  m_LocalRotation: {x: -0.61186093, y: -0.32332057, z: 0.27716196, w: 0.66653675}
   m_LocalPosition: {x: -0.0054731816, y: 5.281292e-19, z: -1.04083406e-19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -215,7 +215,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6320750279866835207}
-  m_LocalRotation: {x: -0.566194, y: -0.38279986, z: 0.37562755, w: 0.62593347}
+  m_LocalRotation: {x: -0.56619394, y: -0.3827998, z: 0.3756275, w: 0.6259334}
   m_LocalPosition: {x: -0.012369075, y: -3.7747583e-17, z: -1.0658141e-16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -457,7 +457,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 56d54796174589749bb5af85c137e7a9, type: 3}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -581,8 +581,8 @@ GameObject:
   - component: {fileID: 6320750279876186829}
   - component: {fileID: 6320750279866835216}
   - component: {fileID: 6320750279866835220}
-  - component: {fileID: 6320750279866835222}
   - component: {fileID: 6320750279866835218}
+  - component: {fileID: 458147374}
   m_Layer: 0
   m_Name: humanAnim
   m_TagString: NPC
@@ -617,7 +617,7 @@ Animator:
   m_GameObject: {fileID: 6320750279866835227}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 56d54796174589749bb5af85c137e7a9, type: 3}
-  m_Controller: {fileID: 9100000, guid: 67ab80e2b7456b543bbdd78506936e18, type: 2}
+  m_Controller: {fileID: 9100000, guid: a5d46a4e615c44a4b92004aceabe9d2c, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -635,18 +635,18 @@ NavMeshAgent:
   m_GameObject: {fileID: 6320750279866835227}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.02
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 3
-  m_AutoTraverseOffMeshLink: 1
+  m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 0.07
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!136 &6320750279866835220
 CapsuleCollider:
@@ -662,18 +662,6 @@ CapsuleCollider:
   m_Height: 0.08
   m_Direction: 1
   m_Center: {x: 0, y: 0.03, z: 0}
---- !u!114 &6320750279866835222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6320750279866835227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dc3bbd4f97269d408ef1a66aeaab876, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &6320750279866835218
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -690,6 +678,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &458147374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6320750279866835227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6b15735847cca6419fe738283867f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noFearController: {fileID: 22100000, guid: 58610709520fb704db104af916002f01, type: 2}
+  lowFearController: {fileID: 22100000, guid: 8a3ec7ed6c135dd4dbdda3355f0ef4f8, type: 2}
+  medFearController: {fileID: 22100000, guid: 2cea8448113928649b0b0c12f6e38eb2, type: 2}
+  highFearController: {fileID: 22100000, guid: f2b327606dd6e0b439e38cf69bc0547e, type: 2}
 --- !u!1 &6320750279866835229
 GameObject:
   m_ObjectHideFlags: 0

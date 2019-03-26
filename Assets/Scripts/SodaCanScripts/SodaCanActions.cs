@@ -13,6 +13,9 @@ public class SodaCanActions : ItemActionInterface
     private List<GameObject> scaredNPCS = new List<GameObject>();
     private bool popped;
     private Global global;
+    private bool destroy = false;
+
+    public AudioClip bang;
 
     private void Start()
     {
@@ -72,12 +75,19 @@ public class SodaCanActions : ItemActionInterface
             
             for (int i = 0; i < scaredNPCS.Count; i++)
             {
-            scaredNPCS[i].GetComponent<ReactiveAIMK2>().addFear(150);
+                scaredNPCS[i].GetComponent<ReactiveAIMK2>().setSurprisedDuck();
             }
             //myHaunt.unPossess();
+            popped = false;
+            gameObject.GetComponent<AudioSource>().PlayOneShot(bang);
             global.softSelected = null;
             global.hardSelected = null;
-            gameObject.SetActive(false);
+            destroy = true;
+            foreach(MeshRenderer mesh in gameObject.GetComponentsInChildren<MeshRenderer>())
+            {
+                mesh.enabled = false;
+            }
+            Destroy(gameObject, 1);
 
         }
     }
