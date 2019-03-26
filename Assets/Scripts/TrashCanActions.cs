@@ -16,6 +16,7 @@ public class TrashCanActions : ItemActionInterface
 
     private AudioSource audio;
 
+    private List<GameObject> distortedNPCS = new List<GameObject>();
 
     public GameObject paper1;
     public GameObject paper2;
@@ -56,13 +57,18 @@ public class TrashCanActions : ItemActionInterface
                 {
                     audio.PlayOneShot(audio.clip);
                     soundFired = true;
+                    for (int i = 0; i < distortedNPCS.Count; i++)
+                    {
+                        distortedNPCS[i].GetComponent<ReactiveAIMK2>().setSurprisedDuck();
+                    }
                 }
                 if (counter >= .25f)
                 {
                     enabledPapers = true;
                     ejectPapers();
                 }
-                
+               
+
             }
         }
     }
@@ -96,6 +102,28 @@ public class TrashCanActions : ItemActionInterface
     public override void callAction4()
     {
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "NPC")
+        {
+            if (!distortedNPCS.Contains(other.gameObject))
+            {
+                distortedNPCS.Add(other.gameObject);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "NPC")
+        {
+            if (distortedNPCS.Contains(other.gameObject))
+            {
+                distortedNPCS.Remove(other.gameObject);
+            }
+        }
     }
 
     public override string[] getActionNames()

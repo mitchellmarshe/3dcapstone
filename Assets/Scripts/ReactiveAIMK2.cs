@@ -184,41 +184,40 @@ public class ReactiveAIMK2 : MonoBehaviour
     }
     public void checkStates()
     {
-        if (myOldFear != myCurrentFear)
+
+        if (myCurrentFear >= 2500)
         {
-            if (myCurrentFear >= 2500)
-            {
-                setDead();
-            }
-            else if (myCurrentFear < 2500 && myCurrentFear >= 2000) // fetal position
-            {
-                stopped = true;
-                myAgent.isStopped = true;
+            setDead();
+        }
+        else if (myCurrentFear < 2500 && myCurrentFear >= 2000) // fetal position
+        {
+            stopped = true;
+            myAgent.isStopped = true;
 
-                setAllAnimBoolsToBool(false);
-                myAnimator.SetBool("fetalPosition", true);
-                myAnimator.SetTrigger("fireTransition");
-                StopAllCoroutines();
-                myAnimator.fireEvents = false;
+            setAllAnimBoolsToBool(false);
+            myAnimator.SetBool("fetalPosition", true);
+            myAnimator.SetTrigger("fireTransition");
+            StopAllCoroutines();
+            myAnimator.fireEvents = false;
 
-            } else if (myAnimator.GetBool("walk")) {
-                if (myCurrentFear >= 1250) // run scared
-                {
-                    myAnimator.runtimeAnimatorController = highFearController;
-                }
-                else if (myCurrentFear >= 750) // walk scared
-                {
-                    myAnimator.runtimeAnimatorController = medFearController;
-                }
-                else if (myCurrentFear >= 250) // walk normal
-                {
-                    myAnimator.runtimeAnimatorController = lowFearController;
-                }
-                else // walk casual
-                {
-                    myAnimator.runtimeAnimatorController = noFearController;
-                }
+        } else if (myAnimator.GetBool("walk")) {
+            if (myCurrentFear >= 1250) // run scared
+            {
+                myAnimator.runtimeAnimatorController = highFearController;
             }
+            else if (myCurrentFear >= 750) // walk scared
+            {
+                myAnimator.runtimeAnimatorController = medFearController;
+            }
+            else if (myCurrentFear >= 250) // walk normal
+            {
+                myAnimator.runtimeAnimatorController = lowFearController;
+            }
+            else // walk casual
+            {
+                myAnimator.runtimeAnimatorController = noFearController;
+            }
+            
         }
 
 
@@ -265,7 +264,14 @@ public class ReactiveAIMK2 : MonoBehaviour
     {
         if (!myAgent.isStopped)
         {
-
+            stopped = true;
+            myAgent.isStopped = true;
+            setAllAnimBoolsToBool(false);
+            myAnimator.SetBool("surprisedDuck", true);
+            myAnimator.SetTrigger("fireTransition");
+            addFear(250);
+            IEnumerator coro = idling(2);
+            StartCoroutine(coro);
         }
     }
 
@@ -306,12 +312,15 @@ public class ReactiveAIMK2 : MonoBehaviour
 
     }
 
-    // coroutine for idling
+    // coroutine for idling/ or generic waiting
     private IEnumerator idling(float time)
     {
         yield return new WaitForSeconds(time);
+        setAllAnimBoolsToBool(false);
+        myAgent.destination = gameObject.transform.position;
         stopped = false;
         decided = false;
+        arrived = true;
         myAgent.isStopped = false;
         myAnimator.fireEvents = true;
         
