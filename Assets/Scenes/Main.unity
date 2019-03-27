@@ -90,7 +90,7 @@ LightmapSettings:
     m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 112000000, guid: 3ef63843f679c104eb52545b5fdfbc81,
     type: 2}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -28639,7 +28639,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1528282088
 GameObject:
@@ -40296,6 +40296,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3023214763599590638, guid: daed3100d05cc1242a2ff394305511f9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: daed3100d05cc1242a2ff394305511f9, type: 3}
 --- !u!1001 &1658427109
@@ -46979,7 +46984,7 @@ Transform:
   m_Children:
   - {fileID: 2679132759538201128}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2679132760000278798
 GameObject:
@@ -47433,6 +47438,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1136191455464080715, guid: dd0b8c2eb233923448fe031b9945167b,
+        type: 3}
+      propertyPath: global
+      value: 
+      objectReference: {fileID: 4388582328173303028}
+    - target: {fileID: 1136191455464080715, guid: dd0b8c2eb233923448fe031b9945167b,
+        type: 3}
+      propertyPath: action1Button
+      value: 
+      objectReference: {fileID: 225276273}
+    - target: {fileID: 1136191455464080715, guid: dd0b8c2eb233923448fe031b9945167b,
+        type: 3}
+      propertyPath: action2Button
+      value: 
+      objectReference: {fileID: 571678851}
+    - target: {fileID: 1136191455464080715, guid: dd0b8c2eb233923448fe031b9945167b,
+        type: 3}
+      propertyPath: action3Button
+      value: 
+      objectReference: {fileID: 1311649829}
+    - target: {fileID: 1136191455464080715, guid: dd0b8c2eb233923448fe031b9945167b,
+        type: 3}
+      propertyPath: action4Button
+      value: 
+      objectReference: {fileID: 1269097607}
     - target: {fileID: 1136191455464080731, guid: dd0b8c2eb233923448fe031b9945167b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -47471,7 +47501,7 @@ PrefabInstance:
     - target: {fileID: 1136191455464080731, guid: dd0b8c2eb233923448fe031b9945167b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1136191455464080731, guid: dd0b8c2eb233923448fe031b9945167b,
         type: 3}
@@ -47498,36 +47528,16 @@ PrefabInstance:
       propertyPath: tmpDecal
       value: 
       objectReference: {fileID: 2679132760000278798}
-    - target: {fileID: 1136191455464080715, guid: dd0b8c2eb233923448fe031b9945167b,
-        type: 3}
-      propertyPath: global
-      value: 
-      objectReference: {fileID: 4388582328173303028}
-    - target: {fileID: 1136191455464080715, guid: dd0b8c2eb233923448fe031b9945167b,
-        type: 3}
-      propertyPath: action1Button
-      value: 
-      objectReference: {fileID: 225276273}
-    - target: {fileID: 1136191455464080715, guid: dd0b8c2eb233923448fe031b9945167b,
-        type: 3}
-      propertyPath: action2Button
-      value: 
-      objectReference: {fileID: 571678851}
-    - target: {fileID: 1136191455464080715, guid: dd0b8c2eb233923448fe031b9945167b,
-        type: 3}
-      propertyPath: action3Button
-      value: 
-      objectReference: {fileID: 1311649829}
-    - target: {fileID: 1136191455464080715, guid: dd0b8c2eb233923448fe031b9945167b,
-        type: 3}
-      propertyPath: action4Button
-      value: 
-      objectReference: {fileID: 1269097607}
     - target: {fileID: 1136191455464080713, guid: dd0b8c2eb233923448fe031b9945167b,
         type: 3}
       propertyPath: guiActionObj
       value: 
       objectReference: {fileID: 1384919438}
+    - target: {fileID: 1136191455216159812, guid: dd0b8c2eb233923448fe031b9945167b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd0b8c2eb233923448fe031b9945167b, type: 3}
 --- !u!4 &3119140669202149823 stripped
@@ -47725,7 +47735,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4388582328173303031
 GameObject:
@@ -48089,7 +48099,7 @@ PrefabInstance:
     - target: {fileID: 6745686858425261804, guid: 6af93d0ccf50409428093937dde04921,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6745686858425261804, guid: 6af93d0ccf50409428093937dde04921,
         type: 3}

@@ -438,7 +438,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     public void idleForTime(float time)
     {
         stopped = true;
-        myAgent.isStopped = true;
+        //myAgent.isStopped = true;
         setAllAnimBoolsToBool(false);
         myAnimator.SetBool("idle", true);
         myAnimator.SetTrigger("fireTransition");
