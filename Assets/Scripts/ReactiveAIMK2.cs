@@ -33,6 +33,11 @@ public class ReactiveAIMK2 : MonoBehaviour
 
     public AudioClip[] fetalCrys;
 
+    public AudioClip cough;
+    public AudioClip coughingToDeath;
+
+    int coughCount = 0;
+
 
     /*Trigger names
      * 
@@ -163,7 +168,7 @@ public class ReactiveAIMK2 : MonoBehaviour
         }
         else
         {
-
+            
         }
 
 
@@ -189,6 +194,10 @@ public class ReactiveAIMK2 : MonoBehaviour
         myAnimator.SetBool("deadPose", newBool);
         myAnimator.SetBool("heartAttack", newBool);
         myAnimator.SetBool("fetalPosition", newBool);
+        myAnimator.SetBool("coughingDeath", newBool);
+        myAnimator.SetBool("cough", newBool);
+        myAnimator.SetBool("laughLight", newBool);
+        myAnimator.SetBool("trapped", newBool);
 
     }
     public void checkStates()
@@ -273,6 +282,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     {
         if (!myAgent.isStopped)
         {
+            StopAllCoroutines();
             stopped = true;
             myAgent.isStopped = true;
             setAllAnimBoolsToBool(false);
@@ -293,6 +303,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     {
         if (!myAgent.isStopped)
         {
+            StopAllCoroutines();
             stopped = true;
             myAgent.isStopped = true;
             setAllAnimBoolsToBool(false);
@@ -302,6 +313,47 @@ public class ReactiveAIMK2 : MonoBehaviour
             IEnumerator coro = idling(2);
             StartCoroutine(coro);
             saySomethingGeneral(generalQuotes);
+        }
+    }
+
+    public void setCough()
+    {
+        if (!myAgent.isStopped)
+        {
+            if (coughCount < 4)
+            {
+                StopAllCoroutines();
+                coughCount++;
+                stopped = true;
+                myAgent.isStopped = true;
+                setAllAnimBoolsToBool(false);
+                myAnimator.SetBool("cough", true);
+                myAnimator.SetTrigger("fireTransition");
+                addFear(250);
+                IEnumerator coro = idling(2);
+                StartCoroutine(coro);
+                myAudioSource.PlayOneShot(cough);
+            } else
+            {
+                setCoughToDeath();
+            }
+        }
+    }
+
+    public void setCoughToDeath()
+    {
+        if (!myAnimator.GetBool("coughingDeath") && !myAgent.isStopped)
+        {
+            StopAllCoroutines();
+            stopped = true;
+            myAgent.isStopped = true;
+            setAllAnimBoolsToBool(false);
+            myAnimator.SetBool("coughingDeath", true);
+            myAnimator.SetTrigger("fireTransition");
+            IEnumerator coro = coughingDeathCoro(4);
+            StartCoroutine(coro);
+            myAudioSource.PlayOneShot(coughingToDeath);
+
         }
     }
 
@@ -354,6 +406,21 @@ public class ReactiveAIMK2 : MonoBehaviour
         myAgent.isStopped = false;
         myAnimator.fireEvents = true;
         
+
+    }
+
+    private IEnumerator coughingDeathCoro(float time)
+    {
+        yield return new WaitForSeconds(time);
+        setAllAnimBoolsToBool(false);
+        myAgent.destination = gameObject.transform.position;
+        stopped = false;
+        decided = false;
+        arrived = true;
+        myAgent.isStopped = false;
+        myAnimator.fireEvents = true;
+        setDead();
+
 
     }
 

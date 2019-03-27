@@ -17,8 +17,11 @@ public class IncineratorActions : ItemActionInterface
     public Avatar closedAvatar;
     private List<GameObject> distortedNPCS = new List<GameObject>();
 
+    public GameObject smokingLight;
+
 
     float counter = 0;
+    int coughCount = 0;
 
 
     private void Start()
@@ -34,13 +37,27 @@ public class IncineratorActions : ItemActionInterface
 
     private void Update()
     {
-
+        if (smoking)
+        {
+            counter += Time.deltaTime;
+            if (counter >= 4)
+            {
+                counter = 0;
+                for (int i = 0; i < distortedNPCS.Count; i++)
+                {
+                    distortedNPCS[i].GetComponent<ReactiveAIMK2>().setCough();
+                }
+            }
+        }
     }
 
     public override void callAction1()
     {
         open = !open;
-        
+        if (smoking)
+        {
+            smokingEffects(false);
+        }
         if (!open)
         {
            //myAnim.avatar = closedAvatar;    
@@ -59,7 +76,31 @@ public class IncineratorActions : ItemActionInterface
 
     public override void callAction2()
     {
+        if (open)
+        {
+            smokingEffects(true);
+        } else
+        {
+            smokingEffects(false);
+        }
+    }
 
+    public void smokingEffects(bool on)
+    {
+        if (on)
+        {
+            smoking = true;
+            gameObject.GetComponent<ParticleSystem>().Play();
+            gameObject.GetComponent<AudioSource>().Play();
+            smokingLight.SetActive(true);
+
+        } else
+        {
+            smoking = false;
+            gameObject.GetComponent<ParticleSystem>().Stop();
+            gameObject.GetComponent<AudioSource>().Stop();
+            smokingLight.SetActive(false);
+        }
     }
 
     public override void callAction3()

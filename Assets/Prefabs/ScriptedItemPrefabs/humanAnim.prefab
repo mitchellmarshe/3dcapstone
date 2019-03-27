@@ -705,10 +705,11 @@ MonoBehaviour:
   deathCrys:
   - {fileID: 8300000, guid: 41f86eae806a8494bace9a6377f66b57, type: 3}
   - {fileID: 8300000, guid: 966ab1625d3a3034584d667574159c37, type: 3}
-  - {fileID: 8300000, guid: a41830829929589489810a10732167ad, type: 3}
   fetalCrys:
   - {fileID: 8300000, guid: 85ceef811d4b98f4cb8be3e2990bc22b, type: 3}
   - {fileID: 8300000, guid: 6dca682ce746d424f89e519c28523656, type: 3}
+  cough: {fileID: 8300000, guid: 2886d6404489557438322513d65b982b, type: 3}
+  coughingToDeath: {fileID: 8300000, guid: 2e33ac8945025dd48be44a459dee189b, type: 3}
 --- !u!82 &458147380
 AudioSource:
   m_ObjectHideFlags: 0
