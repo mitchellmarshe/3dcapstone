@@ -36,6 +36,8 @@ public class ReactiveAIMK2 : MonoBehaviour
     public AudioClip cough;
     public AudioClip coughingToDeath;
 
+    public AudioClip lightLaugh;
+
     int coughCount = 0;
 
 
@@ -263,6 +265,23 @@ public class ReactiveAIMK2 : MonoBehaviour
         }
 
     }
+
+    public void setHeartAttack()
+    {
+        if (!myAnimator.GetBool("heartAttack") && !myAgent.isStopped)
+        {
+            StopAllCoroutines();
+            stopped = true;
+            myAgent.isStopped = true;
+            setAllAnimBoolsToBool(false);
+            myAnimator.SetBool("heartAttack", true);
+            myAnimator.SetTrigger("fireTransition");
+            saySomethingGeneral(deathCrys);
+            IEnumerator coro = coughingDeathCoro(4);
+            StartCoroutine(coro);
+
+        }
+    }
     public void setFetalPosition()
     {
         if (!myAgent.isStopped)
@@ -369,6 +388,22 @@ public class ReactiveAIMK2 : MonoBehaviour
             StartCoroutine(coro);
             myAudioSource.PlayOneShot(coughingToDeath);
 
+        }
+    }
+
+    public void setLaughLight()
+    {
+        if (!myAgent.isStopped)
+        {
+            StopAllCoroutines();
+            stopped = true;
+            myAgent.isStopped = true;
+            setAllAnimBoolsToBool(false);
+            myAnimator.SetBool("laughLight", true);
+            myAnimator.SetTrigger("fireTransition");
+            IEnumerator coro = idling(2);
+            StartCoroutine(coro);
+            myAudioSource.PlayOneShot(lightLaugh);
         }
     }
 

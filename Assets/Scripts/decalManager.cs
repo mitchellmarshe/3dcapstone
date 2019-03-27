@@ -26,7 +26,30 @@ public class decalManager : MonoBehaviour
             {
                 foreach(GameObject npc in nearbyNPCs)
                 {
-                    npc.GetComponent<ReactiveNPC>().setSurprised();
+                    npc.GetComponent<ReactiveAIMK2>().setSurprised();
+                }
+                nearbyNPCs.Clear();
+            } else if (myRenderer.sprite.name == "unicorn")
+            {
+                foreach (GameObject npc in nearbyNPCs)
+                {
+                    npc.GetComponent<ReactiveAIMK2>().setLaughLight();
+                }
+                nearbyNPCs.Clear();
+            }
+            else if (myRenderer.sprite.name == "skull decal")
+            {
+                foreach (GameObject npc in nearbyNPCs)
+                {
+                    npc.GetComponent<ReactiveAIMK2>().setCoughToDeath();
+                }
+                nearbyNPCs.Clear();
+            }
+            else if (myRenderer.sprite.name == "hypnolizard")
+            {
+                foreach (GameObject npc in nearbyNPCs)
+                {
+                    npc.GetComponent<ReactiveAIMK2>().setHeartAttack();
                 }
                 nearbyNPCs.Clear();
             }
