@@ -96,12 +96,12 @@ public class ReactiveAIMK2 : MonoBehaviour
         myCurrentFear = checkFear();
         updateFearSlider();
 
-
+        checkStates();
         //The stopped state is true when the NPC suffers a disabilitating
         // animation such as dead, heart attack, fetal position, ect
         if (!stopped)
         {
-            checkStates();
+            
 
             //Decided is true when the NPC is either idling or walking somewhere
             if (!decided)
@@ -117,7 +117,7 @@ public class ReactiveAIMK2 : MonoBehaviour
                     Debug.Log(rand);
                     string targetname = "idlezone" + rand;
                     setNewTarget(targetname);
-                    startWalk(myTarget);
+                    StartWalk(myTarget);
                     Debug.Log("Walking");
                 }
                 else
@@ -211,22 +211,26 @@ public class ReactiveAIMK2 : MonoBehaviour
         {
             setFetalPosition();
 
-        } else if (myAnimator.GetBool("walk")) {
+        } else if (myAnimator.GetBool("walk") && myCurrentFear < 2000) {
             if (myCurrentFear >= 1250) // run scared
             {
+                if(myAnimator.runtimeAnimatorController != highFearController)
                 myAnimator.runtimeAnimatorController = highFearController;
             }
             else if (myCurrentFear >= 750) // walk scared
             {
-                myAnimator.runtimeAnimatorController = medFearController;
+                if (myAnimator.runtimeAnimatorController != medFearController)
+                    myAnimator.runtimeAnimatorController = medFearController;
             }
             else if (myCurrentFear >= 250) // walk normal
             {
-                myAnimator.runtimeAnimatorController = lowFearController;
+                if (myAnimator.runtimeAnimatorController != lowFearController)
+                    myAnimator.runtimeAnimatorController = lowFearController;
             }
             else // walk casual
             {
-                myAnimator.runtimeAnimatorController = noFearController;
+                if (myAnimator.runtimeAnimatorController != noFearController)
+                    myAnimator.runtimeAnimatorController = noFearController;
             }
             
         }
@@ -261,7 +265,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     }
     public void setFetalPosition()
     {
-        if (!myAnimator.GetBool("fetalPosition"))
+        if (!myAgent.isStopped)
         {
             StopAllCoroutines();
             stopped = true;
@@ -271,9 +275,11 @@ public class ReactiveAIMK2 : MonoBehaviour
             myAnimator.SetBool("fetalPosition", true);
             myAnimator.SetTrigger("fireTransition");
             saySomethingGeneral(fetalCrys);
+            //myAnimator.fireEvents = true;
+            //Debug.Log("end of fetal call");
+        }
             
             //myAnimator.fireEvents = false;
-        }
     }
     // This plays this surprised animation on the NPC when called
     // You need to create a new method for every new NPC reaction and make sure they can be called at any point and
@@ -295,6 +301,9 @@ public class ReactiveAIMK2 : MonoBehaviour
             IEnumerator coro = idling(3.5f);
             StartCoroutine(coro);
             saySomethingGeneral(generalQuotes);
+        } else
+        {
+            addFear(250);
         }
 
     }
@@ -313,6 +322,9 @@ public class ReactiveAIMK2 : MonoBehaviour
             IEnumerator coro = idling(2);
             StartCoroutine(coro);
             saySomethingGeneral(generalQuotes);
+        } else
+        {
+            addFear(250);
         }
     }
 
@@ -337,6 +349,9 @@ public class ReactiveAIMK2 : MonoBehaviour
             {
                 setCoughToDeath();
             }
+        } else
+        {
+            addFear(250);
         }
     }
 
@@ -373,7 +388,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     }
 
     // Starts the walk animation and sets destination
-    public void startWalk(Transform loc)
+    public void StartWalk(Transform loc)
     {
         myAgent.SetDestination(myTarget.position);
         setAllAnimBoolsToBool(false);
@@ -385,7 +400,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     // Keeps the NPC idling for the parameter time in seconds
     public void idleForTime(float time)
     {
-
+        stopped = true;
         setAllAnimBoolsToBool(false);
         myAnimator.SetBool("idle", true);
         myAnimator.SetTrigger("fireTransition");
