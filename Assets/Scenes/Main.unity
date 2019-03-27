@@ -5782,6 +5782,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6320750279872048141, guid: ce740db7083feb24b99761179b46ee7b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d52d3240d97fd114aa04ec5f0aa6707e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce740db7083feb24b99761179b46ee7b, type: 3}
 --- !u!1001 &267047286
@@ -6126,6 +6131,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6320750279872048141, guid: ce740db7083feb24b99761179b46ee7b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d52d3240d97fd114aa04ec5f0aa6707e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce740db7083feb24b99761179b46ee7b, type: 3}
 --- !u!4 &286533115 stripped
@@ -16752,6 +16762,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6320750279872048141, guid: ce740db7083feb24b99761179b46ee7b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d52d3240d97fd114aa04ec5f0aa6707e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce740db7083feb24b99761179b46ee7b, type: 3}
 --- !u!1001 &1027745947
@@ -40475,6 +40490,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6320750279872048141, guid: ce740db7083feb24b99761179b46ee7b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d52d3240d97fd114aa04ec5f0aa6707e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce740db7083feb24b99761179b46ee7b, type: 3}
 --- !u!1001 &1658945059
@@ -46052,6 +46072,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6320750279872048141, guid: ce740db7083feb24b99761179b46ee7b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d52d3240d97fd114aa04ec5f0aa6707e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce740db7083feb24b99761179b46ee7b, type: 3}
 --- !u!1001 &2078642907
