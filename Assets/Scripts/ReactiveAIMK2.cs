@@ -426,6 +426,8 @@ public class ReactiveAIMK2 : MonoBehaviour
     public void StartWalk(Transform loc)
     {
         myAgent.SetDestination(myTarget.position);
+        stopped = false;
+        myAgent.isStopped = false;
         setAllAnimBoolsToBool(false);
         myAnimator.SetBool("walk", true);
         myAnimator.SetTrigger("fireTransition");
@@ -436,6 +438,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     public void idleForTime(float time)
     {
         stopped = true;
+        myAgent.isStopped = true;
         setAllAnimBoolsToBool(false);
         myAnimator.SetBool("idle", true);
         myAnimator.SetTrigger("fireTransition");
