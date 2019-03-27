@@ -92,8 +92,9 @@ public class SpecialRadioActions : ItemActionInterface
 
         }
         //myHaunt.unPossess();
-        radioSound.clip = null;
         radioSound.Stop();
+        radioSound.clip = null;
+        
         radioSound.PlayOneShot(radioOverload);
         global.softSelected = null;
         global.hardSelected = null;

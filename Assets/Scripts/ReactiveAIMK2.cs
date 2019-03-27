@@ -235,6 +235,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     {
         if (!myAnimator.GetBool("deadPose"))
         {
+            StopAllCoroutines();
             stopped = true;
             myAgent.isStopped = true;
             setAllAnimBoolsToBool(false);
@@ -242,7 +243,7 @@ public class ReactiveAIMK2 : MonoBehaviour
             myAnimator.SetTrigger("fireTransition");
             saySomethingGeneral(deathCrys);
             myAnimator.fireEvents = false;
-            StopAllCoroutines();
+            
             myAnimator.SetInteger("fearFactor", 2500);
             checkFear();
             updateFearSlider();
@@ -253,6 +254,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     {
         if (!myAnimator.GetBool("fetalPosition"))
         {
+            StopAllCoroutines();
             stopped = true;
             myAgent.isStopped = true;
 
@@ -260,8 +262,8 @@ public class ReactiveAIMK2 : MonoBehaviour
             myAnimator.SetBool("fetalPosition", true);
             myAnimator.SetTrigger("fireTransition");
             saySomethingGeneral(fetalCrys);
-            StopAllCoroutines();
-            myAnimator.fireEvents = false;
+            
+            //myAnimator.fireEvents = false;
         }
     }
     // This plays this surprised animation on the NPC when called
@@ -276,10 +278,13 @@ public class ReactiveAIMK2 : MonoBehaviour
             setAllAnimBoolsToBool(false);
             myAnimator.SetBool("surprised", true);
             myAnimator.SetTrigger("fireTransition");
-            myAnimator.fireEvents = false;
-            IEnumerator coro = surprisedIenum(3.75f);
+            addFear(250);
+            //myAnimator.fireEvents = false;
+            //IEnumerator coro = surprisedIenum(3.75f);
             //StopAllCoroutines();
+            IEnumerator coro = idling(3.5f);
             StartCoroutine(coro);
+            saySomethingGeneral(generalQuotes);
         }
 
     }
