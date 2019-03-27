@@ -15,6 +15,8 @@ public class SpecialRadioActions : ItemActionInterface
     private float timeHolder;
     private Global global;
 
+    public AudioClip radioOverload;
+
     private void Start()
     {
         global = GameObject.Find("Global").GetComponent<Global>();
@@ -80,9 +82,9 @@ public class SpecialRadioActions : ItemActionInterface
 
     public override void callAction2()
     {
-        // need to play explosion sound, do vfx, add fear at anynearby NPC, call unpossess, and then remove gameobject.
-        radioSound.clip = jazzDistorted;
-        radioSound.Play();
+        
+        //radioSound.clip = radioOverload;
+        
         for (int i = 0; i < distortedNPCS.Count; i++)
         {
             distortedNPCS[i].GetComponent<ReactiveAIMK2>().addFear(2500);
@@ -90,9 +92,16 @@ public class SpecialRadioActions : ItemActionInterface
 
         }
         //myHaunt.unPossess();
+        radioSound.clip = null;
+        radioSound.Stop();
+        radioSound.PlayOneShot(radioOverload);
         global.softSelected = null;
         global.hardSelected = null;
-        gameObject.SetActive(false);
+        foreach (MeshRenderer mesh in gameObject.GetComponentsInChildren<MeshRenderer>())
+        {
+            mesh.enabled = false;
+        }
+        Destroy(gameObject, 1);
     }
 
     public override void callAction3()

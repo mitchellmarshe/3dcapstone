@@ -29,6 +29,10 @@ public class ReactiveAIMK2 : MonoBehaviour
 
     public AudioClip[] generalQuotes;
 
+    public AudioClip[] deathCrys;
+
+    public AudioClip[] fetalCrys;
+
 
     /*Trigger names
      * 
@@ -196,14 +200,7 @@ public class ReactiveAIMK2 : MonoBehaviour
         }
         else if (myCurrentFear < 2500 && myCurrentFear >= 2000) // fetal position
         {
-            stopped = true;
-            myAgent.isStopped = true;
-
-            setAllAnimBoolsToBool(false);
-            myAnimator.SetBool("fetalPosition", true);
-            myAnimator.SetTrigger("fireTransition");
-            StopAllCoroutines();
-            myAnimator.fireEvents = false;
+            setFetalPosition();
 
         } else if (myAnimator.GetBool("walk")) {
             if (myCurrentFear >= 1250) // run scared
@@ -228,28 +225,45 @@ public class ReactiveAIMK2 : MonoBehaviour
 
     }
 
-    public void saySomethingGeneral()
+    public void saySomethingGeneral(AudioClip[] general)
     {
-        int rando = Random.Range(0, generalQuotes.Length);
-        myAudioSource.PlayOneShot(generalQuotes[rando]);
+        int rando = Random.Range(0, general.Length);
+        myAudioSource.PlayOneShot(general[rando]);
     }
     //Sets the NPC to dead by stopping movement, playing animation, and setting fear to max
     public void setDead()
     {
-
-        stopped = true;
-        myAgent.isStopped = true;
-        setAllAnimBoolsToBool(false);
-        myAnimator.SetBool("deadPose", true);
-        myAnimator.SetTrigger("fireTransition");
-        myAnimator.fireEvents = false;
-        StopAllCoroutines();
-        myAnimator.SetInteger("fearFactor", 2500);
-        checkFear();
-        updateFearSlider();
+        if (!myAnimator.GetBool("deadPose"))
+        {
+            stopped = true;
+            myAgent.isStopped = true;
+            setAllAnimBoolsToBool(false);
+            myAnimator.SetBool("deadPose", true);
+            myAnimator.SetTrigger("fireTransition");
+            saySomethingGeneral(deathCrys);
+            myAnimator.fireEvents = false;
+            StopAllCoroutines();
+            myAnimator.SetInteger("fearFactor", 2500);
+            checkFear();
+            updateFearSlider();
+        }
 
     }
+    public void setFetalPosition()
+    {
+        if (!myAnimator.GetBool("fetalPosition"))
+        {
+            stopped = true;
+            myAgent.isStopped = true;
 
+            setAllAnimBoolsToBool(false);
+            myAnimator.SetBool("fetalPosition", true);
+            myAnimator.SetTrigger("fireTransition");
+            saySomethingGeneral(fetalCrys);
+            StopAllCoroutines();
+            myAnimator.fireEvents = false;
+        }
+    }
     // This plays this surprised animation on the NPC when called
     // You need to create a new method for every new NPC reaction and make sure they can be called at any point and
     // pathfinding/walking is paused and then resumed
@@ -282,7 +296,7 @@ public class ReactiveAIMK2 : MonoBehaviour
             addFear(250);
             IEnumerator coro = idling(2);
             StartCoroutine(coro);
-            saySomethingGeneral();
+            saySomethingGeneral(generalQuotes);
         }
     }
 

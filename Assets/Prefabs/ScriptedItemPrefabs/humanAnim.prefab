@@ -583,6 +583,7 @@ GameObject:
   - component: {fileID: 6320750279866835220}
   - component: {fileID: 6320750279866835218}
   - component: {fileID: 458147374}
+  - component: {fileID: 458147380}
   m_Layer: 0
   m_Name: humanAnim
   m_TagString: NPC
@@ -690,10 +691,120 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b15735847cca6419fe738283867f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myAudioSource: {fileID: 0}
   noFearController: {fileID: 22100000, guid: 58610709520fb704db104af916002f01, type: 2}
   lowFearController: {fileID: 22100000, guid: 8a3ec7ed6c135dd4dbdda3355f0ef4f8, type: 2}
   medFearController: {fileID: 22100000, guid: 2cea8448113928649b0b0c12f6e38eb2, type: 2}
   highFearController: {fileID: 22100000, guid: f2b327606dd6e0b439e38cf69bc0547e, type: 2}
+  generalQuotes:
+  - {fileID: 8300000, guid: b25c04ef468b9d24888b96b83e9dacbe, type: 3}
+  - {fileID: 8300000, guid: 116022b46a5cf914986b60b2e738996f, type: 3}
+  - {fileID: 8300000, guid: df588ef7143ba9f43b2b0ac09f2a4f83, type: 3}
+  - {fileID: 8300000, guid: 5ba21407c736a6f49a38b60c213862ba, type: 3}
+  - {fileID: 8300000, guid: abe61aab09fda594c9a0d399bccf3a65, type: 3}
+  deathCrys:
+  - {fileID: 8300000, guid: 41f86eae806a8494bace9a6377f66b57, type: 3}
+  - {fileID: 8300000, guid: 966ab1625d3a3034584d667574159c37, type: 3}
+  - {fileID: 8300000, guid: a41830829929589489810a10732167ad, type: 3}
+  fetalCrys:
+  - {fileID: 8300000, guid: 85ceef811d4b98f4cb8be3e2990bc22b, type: 3}
+  - {fileID: 8300000, guid: 6dca682ce746d424f89e519c28523656, type: 3}
+--- !u!82 &458147380
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6320750279866835227}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 20
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6320750279866835229
 GameObject:
   m_ObjectHideFlags: 0

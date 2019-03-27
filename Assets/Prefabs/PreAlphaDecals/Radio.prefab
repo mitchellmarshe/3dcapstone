@@ -1228,6 +1228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   states: 
   myActionNames: []
+  radioOverload: {fileID: 8300000, guid: 2d62a9c0c2174274da0b7e06b5a56a14, type: 3}
 --- !u!82 &4584733155689364965
 AudioSource:
   m_ObjectHideFlags: 0

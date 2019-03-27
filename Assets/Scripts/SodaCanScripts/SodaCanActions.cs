@@ -70,7 +70,7 @@ public class SodaCanActions : ItemActionInterface
 
             }
         }
-        if (popped)
+        if (popped && !destroy)
         {
             
             for (int i = 0; i < scaredNPCS.Count; i++)
