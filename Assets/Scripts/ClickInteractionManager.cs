@@ -56,7 +56,8 @@ public class ClickInteractionManager : MonoBehaviour
                     if (global.softSelected == null)// && !Input.GetMouseButton(1))
                     {
                         MeshRenderer[] myRenders = other.GetComponentsInChildren<MeshRenderer>();
-                        foreach(MeshRenderer rend in myRenders){
+                        foreach (MeshRenderer rend in myRenders)
+                        {
                             rend.material.shader = softSelectShader;
 
                         }
@@ -68,19 +69,35 @@ public class ClickInteractionManager : MonoBehaviour
                         // dynamicButtonUpdaterScript.setStates(global.itemInfo.states);
                         //dynamicButtonUpdaterScript.enableAllButtons();
                     }
-
-                    if (Input.GetMouseButtonDown(0))
+                    else if (global.softSelected != other)
                     {
-                        MeshRenderer[] myRenders = other.GetComponentsInChildren<MeshRenderer>();
+                        MeshRenderer[] myRenders = global.softSelected.GetComponentsInChildren<MeshRenderer>();
                         foreach (MeshRenderer rend in myRenders)
                         {
-                            rend.material.shader = hardSelectShader;
-
+                            rend.material.shader = normalShader;
+                        }
+                        MeshRenderer[] myRenders2 = other.GetComponentsInChildren<MeshRenderer>();
+                        foreach (MeshRenderer rend in myRenders2)
+                        {
+                            rend.material.shader = softSelectShader;
                         }
 
-                        global.hardSelected = other;
-                        setButtons = false;
+                        global.softSelected = other;
+                        global.itemInfo = other.GetComponent<ItemActionInterface>();
                     }
+
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            MeshRenderer[] myRenders3 = other.GetComponentsInChildren<MeshRenderer>();
+                            foreach (MeshRenderer rend in myRenders3)
+                            {
+                                rend.material.shader = hardSelectShader;
+
+                            }
+
+                            global.hardSelected = other;
+                            setButtons = false;
+                        }
 
                 }
                 else
