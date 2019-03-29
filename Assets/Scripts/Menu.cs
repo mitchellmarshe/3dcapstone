@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 // Script to handle menu system.
 
@@ -203,6 +204,7 @@ public class Menu : MonoBehaviour
     private void StartGame()
     {
         inGame = true;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         SetInGameMenu();
     }
 
