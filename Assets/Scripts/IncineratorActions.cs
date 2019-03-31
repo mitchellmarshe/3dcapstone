@@ -90,14 +90,14 @@ public class IncineratorActions : ItemActionInterface
         if (on)
         {
             smoking = true;
-            gameObject.GetComponent<ParticleSystem>().Play();
+            gameObject.GetComponentInChildren<ParticleSystem>().Play();
             gameObject.GetComponent<AudioSource>().Play();
             smokingLight.SetActive(true);
 
         } else
         {
             smoking = false;
-            gameObject.GetComponent<ParticleSystem>().Stop();
+            gameObject.GetComponentInChildren<ParticleSystem>().Stop();
             gameObject.GetComponent<AudioSource>().Stop();
             smokingLight.SetActive(false);
         }
