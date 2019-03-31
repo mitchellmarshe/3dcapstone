@@ -27,7 +27,7 @@ public class Controller2 : MonoBehaviour
         myButtonUpdater = gameObject.GetComponent<DynamicButtonUpdater>();
         characterController = player.GetComponent<CharacterController>();
         playerDirection = new Vector3(0.0f, 0.0f, 0.0f);
-        cameraRotation = new Vector3(0.0f, 0.0f, 0.0f);
+        cameraRotation = camera.transform.eulerAngles;
     }
 
     private void Start()
@@ -92,24 +92,27 @@ public class Controller2 : MonoBehaviour
     {
         playerDirection = new Vector2(0.0f, 0.0f);
 
-        if (Input.GetKey(KeyCode.W))
+        if (global.currentScene == 1)
         {
-            playerDirection.y = 1.0f;
-        }
+            if (Input.GetKey(KeyCode.W))
+            {
+                playerDirection.y = 1.0f;
+            }
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            playerDirection.x = -1.0f;
-        }
+            if (Input.GetKey(KeyCode.A))
+            {
+                playerDirection.x = -1.0f;
+            }
 
-        if (Input.GetKey(KeyCode.S))
-        {
-            playerDirection.y = -1.0f;
-        }
+            if (Input.GetKey(KeyCode.S))
+            {
+                playerDirection.y = -1.0f;
+            }
 
-        if (Input.GetKey(KeyCode.D))
-        {
-            playerDirection.x = 1.0f;
+            if (Input.GetKey(KeyCode.D))
+            {
+                playerDirection.x = 1.0f;
+            }
         }
     }
 
@@ -129,8 +132,16 @@ public class Controller2 : MonoBehaviour
                 //cameraRotation.x += (deltaPosition.y < 0.0f ? 1.0f : -1.0f) * lookSpeed;
             }
 
-            cameraRotation.x = Mathf.Clamp(cameraRotation.x, -90.0f, 90.0f);
-            camera.transform.eulerAngles = new Vector3(cameraRotation.x, cameraRotation.y, 0.0f);
+            if (global.currentScene == 0)
+            {
+                cameraRotation.y = Mathf.Clamp(cameraRotation.y, -180.0f, 0.0f);
+                camera.transform.eulerAngles = new Vector3(cameraRotation.y, 270.0f, -90.0f);
+            }
+            else
+            {
+                cameraRotation.x = Mathf.Clamp(cameraRotation.x, -90.0f, 90.0f);
+                camera.transform.eulerAngles = new Vector3(cameraRotation.x, cameraRotation.y, 0.0f);
+            }
         }
     }
 

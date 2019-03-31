@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Global settings/variable for the whole game!
 
@@ -23,6 +24,8 @@ public class Global : MonoBehaviour
     public bool platform;
     public int points;
 
+    public int currentScene;
+
     // Start is called before the first frame update.
     void Awake()
     {
@@ -39,6 +42,9 @@ public class Global : MonoBehaviour
 
         //platform = false;
         points = 0;
+
+
+        currentScene = SceneManager.GetActiveScene().buildIndex;
     }
 
     // Update is called once per frame.

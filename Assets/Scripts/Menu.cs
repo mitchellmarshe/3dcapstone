@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 // Script to handle menu system.
 
 public class Menu : MonoBehaviour
 {
     // Ensure these are hooked up from GUI/Menu!
+    [Header("Scripts")]
+    public Global global;
+
     [Header("Knob")]
     public GameObject knob;
 
@@ -34,6 +38,9 @@ public class Menu : MonoBehaviour
     [Header("Credits")]
     public GameObject credits;
 
+    [Header("Animations")]
+    public Animator animator;
+
     private bool inMenu;
     private bool inConfirm;
     private bool inControls;
@@ -52,24 +59,31 @@ public class Menu : MonoBehaviour
         inOptions = false;
         inCredits = false;
 
-        inGame = false;
         isRestarting = false;
         isQuitting = false;
 
         knob.SetActive(true); // Script it?
 
-        ShowMenu(true);
         ShowConfirm();
         ShowControls();
         ShowOptions();
         ShowCredits();
-
-        SetOutGameMenu();
     }
 
     private void Start()
     {
-        
+        if (global.currentScene == 0)
+        {
+            inGame = false;
+            SetOutGameMenu();
+            ShowMenu(true);
+        }
+        else
+        {
+            inGame = true;
+            SetInGameMenu();
+            ShowMenu(false);
+        }
     }
 
     private void Update()
@@ -202,8 +216,8 @@ public class Menu : MonoBehaviour
     // Start game.
     private void StartGame()
     {
-        inGame = true;
-        SetInGameMenu();
+        //animator.Play("Death");
+        SceneManager.LoadScene("Main"); // Invoke or trigger?
     }
 
     // Context switch for the player to confirm whether or not they want to restart the game.
@@ -216,7 +230,7 @@ public class Menu : MonoBehaviour
     // Restart game.
     private void RestartGame()
     {
-
+        SceneManager.LoadScene("Start");
     }
 
     // Context switch for the player to confirm whether or not they want to quit the game.

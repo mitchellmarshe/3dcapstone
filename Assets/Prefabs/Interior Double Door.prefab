@@ -13,7 +13,7 @@ GameObject:
   m_Name: transform2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2203406082331756
@@ -43,7 +43,7 @@ GameObject:
   m_Name: transform1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2203406082331758
@@ -71,13 +71,14 @@ GameObject:
   - component: {fileID: 2203406082331760}
   - component: {fileID: 2203406083101784}
   - component: {fileID: 2203406084101784}
-  - component: {fileID: 8631161544942409807}
-  - component: {fileID: 886658867111891672}
-  m_Layer: 0
+  - component: {fileID: 6125259366776902757}
+  - component: {fileID: 4595757705741223051}
+  - component: {fileID: 2684204822540732472}
+  m_Layer: 9
   m_Name: pCube6
-  m_TagString: Untagged
+  m_TagString: Ignore
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2203406082331760
@@ -140,23 +141,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!208 &8631161544942409807
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2203406082164816}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.015, y: 0.0050000004, z: 0.0055}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 0
-  m_Center: {x: 0, y: -0.001, z: 0}
-  m_TimeToStationary: 0.5
---- !u!54 &886658867111891672
+--- !u!54 &6125259366776902757
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,6 +157,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!208 &4595757705741223051
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2203406082164816}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.01, y: 0.006, z: 0.006}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!65 &2684204822540732472
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2203406082164816}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01363923, y: 0.010000001, z: 0.0100000035}
+  m_Center: {x: -0.000019738685, y: 0.0000000018626454, z: 0.000000013038516}
 --- !u!1 &2203406082164818
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,9 +197,9 @@ GameObject:
   - component: {fileID: 2203406082331762}
   m_Layer: 0
   m_Name: pCube5
-  m_TagString: Untagged
+  m_TagString: Ignore
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2203406082331762
@@ -214,9 +228,9 @@ GameObject:
   - component: {fileID: 2203406082331764}
   m_Layer: 0
   m_Name: pCube4 1
-  m_TagString: Untagged
+  m_TagString: Ignore
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2203406082331764
@@ -245,11 +259,12 @@ GameObject:
   - component: {fileID: 2203406082331766}
   - component: {fileID: 2203406083101786}
   - component: {fileID: 2203406084101786}
+  - component: {fileID: 49513759852032740}
   m_Layer: 0
   m_Name: pCube4
-  m_TagString: Untagged
+  m_TagString: Ignore
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2203406082331766
@@ -311,6 +326,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &49513759852032740
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2203406082164822}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300004, guid: f1802e693a423b648a7a8e6ee6c7c3bf, type: 3}
 --- !u!1 &2203406082164824
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,9 +351,9 @@ GameObject:
   - component: {fileID: 2203406082331768}
   m_Layer: 0
   m_Name: pCube3
-  m_TagString: Untagged
+  m_TagString: Ignore
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2203406082331768
@@ -354,13 +383,14 @@ GameObject:
   - component: {fileID: 2203406082331770}
   - component: {fileID: 2203406083101788}
   - component: {fileID: 2203406084101788}
-  - component: {fileID: 3875974532149015971}
-  - component: {fileID: 6442712669461103161}
-  m_Layer: 0
+  - component: {fileID: 4322160723417442432}
+  - component: {fileID: 3031902135018931015}
+  - component: {fileID: 4517605734572054369}
+  m_Layer: 9
   m_Name: pCube2
-  m_TagString: Untagged
+  m_TagString: Ignore
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2203406082331770
@@ -423,23 +453,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!208 &3875974532149015971
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2203406082164826}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.015, y: 0.0050000004, z: 0.0055}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 0
-  m_Center: {x: 0, y: -0.001, z: 0}
-  m_TimeToStationary: 0.5
---- !u!54 &6442712669461103161
+--- !u!54 &4322160723417442432
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -455,6 +469,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!208 &3031902135018931015
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2203406082164826}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.01, y: 0.006, z: 0.006}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!65 &4517605734572054369
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2203406082164826}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.013639231, y: 0.010000001, z: 0.0100000035}
+  m_Center: {x: -0.00001961948, y: 0.0000000018626448, z: -0.000000016763806}
 --- !u!1 &2203406082164830
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,11 +507,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2203406082331774}
-  m_Layer: 0
+  - component: {fileID: 1025565286558052003}
+  - component: {fileID: 5378075333212773204}
+  - component: {fileID: 3765948492143781860}
+  m_Layer: 9
   m_Name: Interior Double Door
   m_TagString: Ignore
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2203406082331774
@@ -478,7 +524,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2203406082164830}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.121, y: 0, z: -30.247}
   m_LocalScale: {x: 30, y: 40, z: 30}
   m_Children:
@@ -489,3 +535,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1025565286558052003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2203406082164830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4ab77239738ff4d9f65da98b268642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: 
+  myActionNames: []
+--- !u!95 &5378075333212773204
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2203406082164830}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e8eb9b8c5a6520d4ea761a9d669be802, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &3765948492143781860
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2203406082164830}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01, y: 0.07, z: 0.085}
+  m_Center: {x: 0, y: 0.0365, z: 0.02}
