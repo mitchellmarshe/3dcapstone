@@ -216,8 +216,14 @@ public class Menu : MonoBehaviour
     // Start game.
     private void StartGame()
     {
-        //animator.Play("Death");
-        SceneManager.LoadScene("Main"); // Invoke or trigger?
+        animator.Play("Death");
+        Invoke("LoadGame", 3);
+    }
+
+    // Load game.
+    private void LoadGame()
+    {
+        SceneManager.LoadScene("Main");
     }
 
     // Context switch for the player to confirm whether or not they want to restart the game.
