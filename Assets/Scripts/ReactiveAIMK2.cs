@@ -6,14 +6,14 @@ using UnityEngine.UI;
 
 public class ReactiveAIMK2 : MonoBehaviour
 {
-    private NavMeshAgent myAgent;
+    public NavMeshAgent myAgent;
     private Animator myAnimator;
     private int myOldFear;
     private int myCurrentFear;
     private bool decided;
     private Transform myTarget;
     private int numZones = 10;
-    private bool stopped;
+    public bool stopped;
     private bool arrived;
     private float timer;
 
@@ -116,15 +116,15 @@ public class ReactiveAIMK2 : MonoBehaviour
                 if (rand == 1)
                 {
                     rand = Random.Range(1, numZones + 1);
-                    Debug.Log(rand);
+                    //Debug.Log(rand);
                     string targetname = "idlezone" + rand;
                     setNewTarget(targetname);
                     StartWalk(myTarget);
-                    Debug.Log("Walking");
+                    //Debug.Log("Walking");
                 }
                 else
                 {
-                    Debug.Log("Idling");
+                    //Debug.Log("Idling");
                     idleForTime(Random.Range(3, 8));
                 }
 
@@ -407,14 +407,55 @@ public class ReactiveAIMK2 : MonoBehaviour
         }
     }
 
+    public bool getPath(Transform loc, ref NavMeshPath newPath)
+    {
+        return myAgent.CalculatePath(loc.position, newPath);
+
+    }
+
+    public float GetPathLength(NavMeshPath path)
+    {
+        float resultLength = 0.0f;
+
+        if ((path.status != NavMeshPathStatus.PathInvalid) && (path.corners.Length > 1))
+        {
+            for (int i = 1; i < path.corners.Length; ++i)
+            {
+                resultLength += Vector3.Distance(path.corners[i - 1], path.corners[i]);
+            }
+        }
+
+        return resultLength;
+    }
+
     // This picks a location in the list of possible targets
     public void setNewTarget(string name)
     {
         try
         {
+            setAllAnimBoolsToBool(false);
             decided = true;
             arrived = false;
             myTarget = GameObject.Find(name).GetComponent<Transform>();
+            stopped = false;
+            myAgent.isStopped = false;
+        }
+        catch
+        {
+        }
+
+    }
+
+    public void setNewTarget(Transform loc)
+    {
+        try
+        {
+            setAllAnimBoolsToBool(false);
+            decided = true;
+            arrived = false;
+            myTarget = loc;
+            stopped = false;
+            myAgent.isStopped = false;
         }
         catch
         {

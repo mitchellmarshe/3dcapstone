@@ -18,10 +18,10 @@ public class VendingMachineActions : ItemActionInterface
         counter = 0;
         shooting = false;
         mySodaCan.SetActive(false);
-        myActionNames = new string[] { "Shoot Soda*", "...", "Unhaunt", "..." };
+        myActionNames = new string[] { "Shoot Soda*", "...", "...", "..." };
         myHaunt = GameObject.Find("Player").GetComponentInChildren<Haunt>();
         global = GameObject.Find("Global").GetComponent<Global>();
-        states = new bool[4] { true, false, true, false };
+        states = new bool[4] { true, false, false, false };
     }
 
     private void Update()
