@@ -18,13 +18,15 @@ public class Menu : MonoBehaviour
     [Header("Drawer")]
     public GameObject drawer;
     public Button menu1Button;
-    public Text menu1Text;
+    public GameObject startImage;
+    public GameObject restartImage;
     public Button menu2Button;
-    public Text menu2Text;
+    public GameObject controlsImage;
     public Button menu3Button;
-    public Text menu3Text;
+    public GameObject creditsImage;
+    public GameObject optionsImage;
     public Button menu4Button;
-    public Text menu4Text;
+    public GameObject quitImage;
 
     [Header("Confirm")]
     public GameObject confirm;
@@ -255,18 +257,22 @@ public class Menu : MonoBehaviour
     // Set up the out-game menu.
     private void SetOutGameMenu()
     {
-        menu1Text.text = "Start";
-        menu2Text.text = "Controls";
-        menu3Text.text = "Credits";
-        menu4Text.text = "Quit";
+        startImage.SetActive(true);
+        restartImage.SetActive(false);
+        controlsImage.SetActive(true);
+        creditsImage.SetActive(true);
+        optionsImage.SetActive(false);
+        quitImage.SetActive(true);
     }
 
     // Set up the in-game menu.
     private void SetInGameMenu()
     {
-        menu1Text.text = "Restart";
-        menu2Text.text = "Controls";
-        menu3Text.text = "Options";
-        menu4Text.text = "Quit";
+        startImage.SetActive(false);
+        restartImage.SetActive(true);
+        controlsImage.SetActive(true);
+        creditsImage.SetActive(false);
+        optionsImage.SetActive(true);
+        quitImage.SetActive(true);
     }
 }
