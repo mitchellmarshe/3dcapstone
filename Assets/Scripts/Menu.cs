@@ -184,6 +184,18 @@ public class Menu : MonoBehaviour
         {
             inMenu = !inMenu;
             drawer.SetActive(inMenu);
+
+            if (inMenu == false)
+            {
+                inConfirm = false;
+                ShowConfirm();
+                inControls = false;
+                ShowControls();
+                inOptions = false;
+                ShowOptions();
+                inCredits = false;
+                ShowCredits();
+            }
         }
     }
 
@@ -192,11 +204,24 @@ public class Menu : MonoBehaviour
     {
         confirm.SetActive(inConfirm);
         inConfirm = !inConfirm;
+
+        menu1Button.interactable = inConfirm;
+        menu2Button.interactable = inConfirm;
+        menu3Button.interactable = inConfirm;
+        menu4Button.interactable = inConfirm;
     }
 
     // Triggerable script to show controls window.
     public void ShowControls()
     {
+        if (inControls == true)
+        {
+            inCredits = false;
+            ShowCredits();
+            inOptions = false;
+            ShowOptions();
+        }
+
         controls.SetActive(inControls);
         inControls = !inControls;
     }
@@ -204,6 +229,12 @@ public class Menu : MonoBehaviour
     // Triggerable script to show options window.
     public void ShowOptions()
     {
+        if (inOptions == true)
+        {
+            inControls = false;
+            ShowControls();
+        }
+
         options.SetActive(inOptions);
         inOptions = !inOptions;
     }
@@ -211,6 +242,12 @@ public class Menu : MonoBehaviour
     // Triggerable script to show credits windows.
     public void ShowCredits()
     {
+        if (inCredits == true)
+        {
+            inControls = false;
+            ShowControls();
+        }
+
         credits.SetActive(inCredits);
         inCredits = !inCredits;
     }
@@ -218,6 +255,7 @@ public class Menu : MonoBehaviour
     // Start game.
     private void StartGame()
     {
+        ShowMenu(true);
         animator.Play("Death");
         Invoke("LoadGame", 3);
     }
