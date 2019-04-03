@@ -49,6 +49,7 @@ public class PhoneActions : ItemActionInterface
                 myTime = 0;
                 answering = false;
                 arrived = false;
+                Debug.Log("Time Killer");
             }
         }
         if (ringing && !answering)
@@ -56,6 +57,7 @@ public class PhoneActions : ItemActionInterface
 
             if (selectedNPC == null)
             {
+                Debug.Log("Selected NPC is NULL");
                 for (int i = 0; i < scaredNPCS.Count; i++)
                 {
                     ReactiveAIMK2 npc = scaredNPCS[i].GetComponent<ReactiveAIMK2>();
@@ -78,6 +80,11 @@ public class PhoneActions : ItemActionInterface
                     }
                     else
                     {
+                        Debug.Log("a-0");
+                        selectedNPC = null;
+                        answering = false;
+                        arrived = false;
+                        dist = 1000000;
                     }
 
                 }
@@ -104,12 +111,16 @@ public class PhoneActions : ItemActionInterface
         }
         else if (answering && arrived)
         {
+            Debug.Log("b-1");
             ringing = false;
             animator.SetBool("ringing", ringing);
             answering = false;
             arrived = false;
             myAudio.Stop();
             myAudio.PlayOneShot(randomMsg());
+            selectedNPC.GetComponent<ReactiveAIMK2>().StopAllCoroutines();
+            selectedNPC.GetComponent<ReactiveAIMK2>().myAgent.isStopped = false;
+            selectedNPC.GetComponent<ReactiveAIMK2>().stopped = false;
             selectedNPC.GetComponent<ReactiveAIMK2>().setHeartAttack();
             dist = 1000000;
 
@@ -121,6 +132,7 @@ public class PhoneActions : ItemActionInterface
                 float tmpDist = Vector3.Distance(selectedNPC.transform.position, npcPosition.position);
                 if(tmpDist <= 3)
                 {
+                    Debug.Log("c-1");
                     arrived = true;
                 }
                 /*
@@ -166,11 +178,14 @@ public class PhoneActions : ItemActionInterface
 
     public override void callAction1()
     {
-        ringing = true;
-        myTime = 0f;
-        myAudio.PlayOneShot(ring);
-        selectedNPC = null;
-        animator.SetBool("ringing", ringing);
+        if (!ringing)
+        {
+            ringing = true;
+            myTime = 0f;
+            myAudio.PlayOneShot(ring);
+            selectedNPC = null;
+            animator.SetBool("ringing", ringing);
+        }
 
 
 
