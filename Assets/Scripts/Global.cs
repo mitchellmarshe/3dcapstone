@@ -25,6 +25,8 @@ public class Global : MonoBehaviour
     public int points;
 
     public int currentScene;
+    public int startScene;
+    public int mainScene;
 
     // Start is called before the first frame update.
     void Awake()
@@ -45,6 +47,8 @@ public class Global : MonoBehaviour
 
 
         currentScene = SceneManager.GetActiveScene().buildIndex;
+        startScene = 0;
+        mainScene = 0;
     }
 
     // Update is called once per frame.

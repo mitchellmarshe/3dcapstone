@@ -92,7 +92,7 @@ public class Controller2 : MonoBehaviour
     {
         playerDirection = new Vector2(0.0f, 0.0f);
 
-        if (global.currentScene == 1)
+        if (global.currentScene == global.mainScene)
         {
             if (Input.GetKey(KeyCode.W))
             {
@@ -132,7 +132,7 @@ public class Controller2 : MonoBehaviour
                 //cameraRotation.x += (deltaPosition.y < 0.0f ? 1.0f : -1.0f) * lookSpeed;
             }
 
-            if (global.currentScene == 0)
+            if (global.currentScene == global.startScene)
             {
                 cameraRotation.y = Mathf.Clamp(cameraRotation.y, -180.0f, 0.0f);
                 camera.transform.eulerAngles = new Vector3(cameraRotation.y, 270.0f, -90.0f);

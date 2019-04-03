@@ -73,7 +73,7 @@ public class Menu : MonoBehaviour
         ShowOptions();
         ShowCredits();
 
-        if (global.currentScene == 0)
+        if (global.currentScene == global.startScene)
         {
             inGame = false;
             SetOutGameMenu();
@@ -222,7 +222,7 @@ public class Menu : MonoBehaviour
                 controlsImage.GetComponent<Animator>().Play("MenuImageAlphaUp");
                 quitImage.GetComponent<Animator>().Play("MenuImageAlphaUp");
 
-                if (global.currentScene == 0)
+                if (global.currentScene == global.startScene)
                 {
                     startImage.GetComponent<Animator>().Play("MenuImageAlphaUp");
                     creditsImage.GetComponent<Animator>().Play("MenuImageAlphaUp");
@@ -238,7 +238,7 @@ public class Menu : MonoBehaviour
                 controlsImage.GetComponent<Animator>().Play("MenuImageAlphaDown");
                 quitImage.GetComponent<Animator>().Play("MenuImageAlphaDown");
 
-                if (global.currentScene == 0)
+                if (global.currentScene == global.startScene)
                 {
                     startImage.GetComponent<Animator>().Play("MenuImageAlphaDown");
                     creditsImage.GetComponent<Animator>().Play("MenuImageAlphaDown");
