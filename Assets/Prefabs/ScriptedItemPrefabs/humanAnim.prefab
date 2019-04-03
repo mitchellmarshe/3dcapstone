@@ -165,7 +165,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 6320750279866835227}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.02
+  m_Radius: 0.01
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -220,6 +220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b15735847cca6419fe738283867f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myAgent: {fileID: 0}
+  stopped: 0
   myAudioSource: {fileID: 0}
   noFearController: {fileID: 22100000, guid: 58610709520fb704db104af916002f01, type: 2}
   lowFearController: {fileID: 22100000, guid: 8a3ec7ed6c135dd4dbdda3355f0ef4f8, type: 2}

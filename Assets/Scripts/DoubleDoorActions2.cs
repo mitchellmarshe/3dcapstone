@@ -26,6 +26,11 @@ public class DoubleDoorActions2 : ItemActionInterface
         myAnim.SetBool("open", open);
     }
 
+    public bool isOpen()
+    {
+        return open;
+    }
+
     public override void callAction2()
     {
 

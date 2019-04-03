@@ -39,26 +39,32 @@ public class PhoneActions : ItemActionInterface
 
     private void Update()
     {
-        if (ringing && !answering)
+        if (ringing)
         {
             myTime += Time.deltaTime;
-            if (myTime >= ring.length-1)
+            if (myTime >= ring.length - 1)
             {
                 ringing = false;
                 animator.SetBool("ringing", ringing);
                 myTime = 0;
+                answering = false;
+                arrived = false;
             }
+        }
+        if (ringing && !answering)
+        {
+
             if (selectedNPC == null)
             {
                 for (int i = 0; i < scaredNPCS.Count; i++)
                 {
                     ReactiveAIMK2 npc = scaredNPCS[i].GetComponent<ReactiveAIMK2>();
-                    NavMeshPath newPath = new NavMeshPath();
+                    //NavMeshPath newPath = new NavMeshPath();
                     //bool validPath = npc.myAgent.CalculatePath(npcPosition.position, newPath);
 
                     if (!npc.stopped)
                     {
-                        float tmpDist = Vector3.Distance(transform.position, npcPosition.position);
+                        float tmpDist = Vector3.Distance(npc.transform.position, npcPosition.position);
                         if (tmpDist < dist)
                         {
                             dist = tmpDist;
@@ -67,7 +73,7 @@ public class PhoneActions : ItemActionInterface
                         }
                         else
                         {
-                            Debug.Log("Longer than infinity");
+                            Debug.Log("tmpDist: " + tmpDist + " >= dis: " + dist);
                         }
                     }
                     else
@@ -75,21 +81,28 @@ public class PhoneActions : ItemActionInterface
                     }
 
                 }
-            } else
+            }
+            else
             {
-                if(selectedNPC.GetComponent<NavMeshAgent>().destination != npcPosition.position)
+                if (selectedNPC.GetComponent<NavMeshAgent>().destination != npcPosition.position)
                 {
+                    Debug.Log("a-1");
                     selectedNPC = null;
+                    answering = false;
+                    arrived = false;
+                    dist = 1000000;
                 }
             }
-            if (selectedNPC != null)
+            if (selectedNPC != null && !answering)
             {
-                //Debug.Log("SET NEW PATH");
+                Debug.Log("SET NEW PATH");
                 selectedNPC.GetComponent<ReactiveAIMK2>().setNewTarget(npcPosition);
+                selectedNPC.GetComponent<ReactiveAIMK2>().StartWalk(npcPosition);
                 answering = true;
                 dist = 1000000;
             }
-        } else if (answering && arrived)
+        }
+        else if (answering && arrived)
         {
             ringing = false;
             animator.SetBool("ringing", ringing);
@@ -98,23 +111,58 @@ public class PhoneActions : ItemActionInterface
             myAudio.Stop();
             myAudio.PlayOneShot(randomMsg());
             selectedNPC.GetComponent<ReactiveAIMK2>().setHeartAttack();
+            dist = 1000000;
 
-        } else if (answering && selectedNPC != null)
+        }
+        else if (answering && selectedNPC != null)
         {
-            if(selectedNPC.GetComponent<ReactiveAIMK2>().stopped)
+            if (selectedNPC.GetComponent<ReactiveAIMK2>().stopped)
             {
+                float tmpDist = Vector3.Distance(selectedNPC.transform.position, npcPosition.position);
+                if(tmpDist <= 3)
+                {
+                    arrived = true;
+                }
+                /*
+                Debug.Log("c-1");
+                arrived = true;
+                ringing = false;
+                animator.SetBool("ringing", ringing);
                 answering = false;
-                
-            } else if (selectedNPC.GetComponent<NavMeshAgent>().destination != npcPosition.position)
+                arrived = false;
+                myAudio.Stop();
+                myAudio.PlayOneShot(randomMsg());
+                selectedNPC.GetComponent<ReactiveAIMK2>().setHeartAttack();
+                dist = 1000000;
+                */
+
+            } /*else 
+            if (selectedNPC.GetComponent<NavMeshAgent>().destination != npcPosition.position)
             {
+                Debug.Log("c-2");
                 selectedNPC = null;
+                answering = false;
+                arrived = false;
+                dist = 1000000;
             }
+            
             else if(selectedNPC.GetComponent<ReactiveAIMK2>().myAgent.remainingDistance <= 3)
             {
+                Debug.Log("c-3");
                 arrived = true;
+                ringing = false;
+                animator.SetBool("ringing", ringing);
+                answering = false;
+                arrived = false;
+                myAudio.Stop();
+                myAudio.PlayOneShot(randomMsg());
+                selectedNPC.GetComponent<ReactiveAIMK2>().setHeartAttack();
+                dist = 1000000;
             }
+            */
         }
     }
+    
 
     public override void callAction1()
     {
