@@ -48,7 +48,7 @@ public class Global : MonoBehaviour
 
         currentScene = SceneManager.GetActiveScene().buildIndex;
         startScene = 0;
-        mainScene = 0;
+        mainScene = 1;
     }
 
     // Update is called once per frame.

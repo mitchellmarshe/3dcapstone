@@ -41,7 +41,8 @@ public class Menu : MonoBehaviour
     public GameObject credits;
 
     [Header("Animations")]
-    public Animator animator;
+    public Animator fade;
+    public Animator title;
 
     private bool inMenu;
     private bool inConfirm;
@@ -297,7 +298,8 @@ public class Menu : MonoBehaviour
     private void StartGame()
     {
         ShowMenu(true);
-        animator.Play("Death");
+        fade.Play("Death");
+        title.Play("Title");
         Invoke("LoadGame", 3);
     }
 
