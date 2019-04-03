@@ -65,26 +65,28 @@ public class Menu : MonoBehaviour
         isQuitting = false;
 
         knob.SetActive(true); // Script it?
-
-        ShowConfirm();
-        ShowControls();
-        ShowOptions();
-        ShowCredits();
     }
 
     private void Start()
     {
+        ShowControls();
+        ShowOptions();
+        ShowCredits();
+
         if (global.currentScene == 0)
         {
             inGame = false;
             SetOutGameMenu();
             ShowMenu(true);
+            ShowConfirm();
         }
         else
         {
             inGame = true;
             SetInGameMenu();
-            ShowMenu(false);
+            ShowMenu(true);
+            ShowConfirm();
+            ShowMenu(true);
         }
     }
 
@@ -195,6 +197,9 @@ public class Menu : MonoBehaviour
                 ShowOptions();
                 inCredits = false;
                 ShowCredits();
+
+                isRestarting = false;
+                isQuitting = false;
             }
         }
     }
@@ -209,6 +214,42 @@ public class Menu : MonoBehaviour
         menu2Button.interactable = inConfirm;
         menu3Button.interactable = inConfirm;
         menu4Button.interactable = inConfirm;
+
+        if (inMenu == true)
+        {
+            if (inConfirm == true)
+            {
+                controlsImage.GetComponent<Animator>().Play("MenuImageAlphaUp");
+                quitImage.GetComponent<Animator>().Play("MenuImageAlphaUp");
+
+                if (global.currentScene == 0)
+                {
+                    startImage.GetComponent<Animator>().Play("MenuImageAlphaUp");
+                    creditsImage.GetComponent<Animator>().Play("MenuImageAlphaUp");
+                }
+                else
+                {
+                    restartImage.GetComponent<Animator>().Play("MenuImageAlphaUp");
+                    optionsImage.GetComponent<Animator>().Play("MenuImageAlphaUp");
+                }
+            }
+            else
+            {
+                controlsImage.GetComponent<Animator>().Play("MenuImageAlphaDown");
+                quitImage.GetComponent<Animator>().Play("MenuImageAlphaDown");
+
+                if (global.currentScene == 0)
+                {
+                    startImage.GetComponent<Animator>().Play("MenuImageAlphaDown");
+                    creditsImage.GetComponent<Animator>().Play("MenuImageAlphaDown");
+                }
+                else
+                {
+                    restartImage.GetComponent<Animator>().Play("MenuImageAlphaDown");
+                    optionsImage.GetComponent<Animator>().Play("MenuImageAlphaDown");
+                }
+            }
+        }
     }
 
     // Triggerable script to show controls window.
