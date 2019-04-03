@@ -7,7 +7,7 @@ public class PhoneActions : ItemActionInterface
 {
     public string[] myActionNames;
     private Haunt myHaunt;
-    private float myTime;
+    private float myTime = 0f;
     private List<GameObject> scaredNPCS = new List<GameObject>();
     private Global global;
     private bool ringing;
@@ -39,43 +39,52 @@ public class PhoneActions : ItemActionInterface
 
     private void Update()
     {
-        Debug.Log("Start Update");
-        printDebug();
         if (ringing && !answering)
         {
-            if (myAudio.time >= ring.length-1)
+            myTime += Time.deltaTime;
+            if (myTime >= ring.length-1)
             {
                 ringing = false;
                 animator.SetBool("ringing", ringing);
+                myTime = 0;
             }
-
-            for (int i = 0; i < scaredNPCS.Count; i++)
+            if (selectedNPC == null)
             {
-                ReactiveAIMK2 npc = scaredNPCS[i].GetComponent<ReactiveAIMK2>();
-                NavMeshPath newPath = new NavMeshPath();
-                bool exists = npc.getPath(npcPosition, ref newPath);
-                
-                if (exists)
+                for (int i = 0; i < scaredNPCS.Count; i++)
                 {
-                    Debug.Log("PATH ISNT NULL");
-                    float tmpDist = Vector3.Distance(transform.position, npcPosition.position);
-                    if (tmpDist < dist)
+                    ReactiveAIMK2 npc = scaredNPCS[i].GetComponent<ReactiveAIMK2>();
+                    NavMeshPath newPath = new NavMeshPath();
+                    //bool validPath = npc.myAgent.CalculatePath(npcPosition.position, newPath);
+
+                    if (!npc.stopped)
                     {
-                        dist = tmpDist;
-                        selectedNPC = npc.gameObject;
-                        
-                    } else
-                    {
-                        Debug.Log("Longer than infinity");
+                        float tmpDist = Vector3.Distance(transform.position, npcPosition.position);
+                        if (tmpDist < dist)
+                        {
+                            dist = tmpDist;
+                            selectedNPC = npc.gameObject;
+
+                        }
+                        else
+                        {
+                            Debug.Log("Longer than infinity");
+                        }
                     }
-                } else
-                {
-                    Debug.Log("New path is : NULL");
+                    else
+                    {
+                    }
+
                 }
-                
+            } else
+            {
+                if(selectedNPC.GetComponent<NavMeshAgent>().destination != npcPosition.position)
+                {
+                    selectedNPC = null;
+                }
             }
             if (selectedNPC != null)
             {
+                //Debug.Log("SET NEW PATH");
                 selectedNPC.GetComponent<ReactiveAIMK2>().setNewTarget(npcPosition);
                 answering = true;
                 dist = 1000000;
@@ -90,14 +99,17 @@ public class PhoneActions : ItemActionInterface
             myAudio.PlayOneShot(randomMsg());
             selectedNPC.GetComponent<ReactiveAIMK2>().setHeartAttack();
 
-        } else if (answering)
+        } else if (answering && selectedNPC != null)
         {
-            if(selectedNPC.GetComponent<ReactiveAIMK2>().stopped || selectedNPC.GetComponent<ReactiveAIMK2>().myAgent.pathStatus == NavMeshPathStatus.PathInvalid)
+            if(selectedNPC.GetComponent<ReactiveAIMK2>().stopped)
             {
                 answering = false;
                 
+            } else if (selectedNPC.GetComponent<NavMeshAgent>().destination != npcPosition.position)
+            {
+                selectedNPC = null;
             }
-            else if(selectedNPC.GetComponent<ReactiveAIMK2>().myAgent.nextPosition == selectedNPC.GetComponent<ReactiveAIMK2>().myAgent.pathEndPosition || selectedNPC.GetComponent<ReactiveAIMK2>().myAgent.remainingDistance <= 3)
+            else if(selectedNPC.GetComponent<ReactiveAIMK2>().myAgent.remainingDistance <= 3)
             {
                 arrived = true;
             }
@@ -107,11 +119,10 @@ public class PhoneActions : ItemActionInterface
     public override void callAction1()
     {
         ringing = true;
+        myTime = 0f;
         myAudio.PlayOneShot(ring);
         selectedNPC = null;
         animator.SetBool("ringing", ringing);
-        Debug.Log("CALLACTION1");
-        printDebug();
 
 
 
@@ -125,7 +136,7 @@ public class PhoneActions : ItemActionInterface
         Debug.Log("arrived : " + arrived);
         if (selectedNPC != null)
         {
-            Debug.Log("selectedNPC : " + selectedNPC.name);
+            Debug.Log("selectedNPC is : " + selectedNPC.name);
         } else
         {
             Debug.Log("selectedNPC : NULL");
