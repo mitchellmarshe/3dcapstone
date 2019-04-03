@@ -87,7 +87,8 @@ public class SodaCanActions : ItemActionInterface
             {
                 mesh.enabled = false;
             }
-            Destroy(gameObject, 1);
+            GetComponentInChildren<ParticleSystem>().Play();
+            Destroy(gameObject, 5);
 
         }
     }

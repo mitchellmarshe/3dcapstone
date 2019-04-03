@@ -102,6 +102,7 @@ public class SpecialRadioActions : ItemActionInterface
         {
             mesh.enabled = false;
         }
+        GetComponentInChildren<ParticleSystem>().Play();
         Destroy(gameObject, 1);
     }
 
