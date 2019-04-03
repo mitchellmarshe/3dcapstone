@@ -154,6 +154,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f56907314250b9340bd5196541968391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &528491554 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6745686858303974091, guid: 6af93d0ccf50409428093937dde04921,
+    type: 3}
+  m_PrefabInstance: {fileID: 563234435}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &563234435
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -382,6 +388,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6af93d0ccf50409428093937dde04921, type: 3}
+--- !u!114 &563234436 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 782504415454545963, guid: 6af93d0ccf50409428093937dde04921,
+    type: 3}
+  m_PrefabInstance: {fileID: 563234435}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528491554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3558ca6054e2348b045acd02bdfb62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &569560460 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6745686859904629297, guid: 6af93d0ccf50409428093937dde04921,
@@ -904,6 +922,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1200064691}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1204526029 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6745686858877822076, guid: 6af93d0ccf50409428093937dde04921,
+    type: 3}
+  m_PrefabInstance: {fileID: 563234435}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1463385822
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1011,6 +1035,21 @@ PrefabInstance:
       propertyPath: tmpDecal
       value: 
       objectReference: {fileID: 251569991}
+    - target: {fileID: 1136191455464080708, guid: dd0b8c2eb233923448fe031b9945167b,
+        type: 3}
+      propertyPath: mobileLookJoystick
+      value: 
+      objectReference: {fileID: 528491554}
+    - target: {fileID: 1136191455464080708, guid: dd0b8c2eb233923448fe031b9945167b,
+        type: 3}
+      propertyPath: lookBase
+      value: 
+      objectReference: {fileID: 1204526029}
+    - target: {fileID: 1136191455464080708, guid: dd0b8c2eb233923448fe031b9945167b,
+        type: 3}
+      propertyPath: lookJoystick
+      value: 
+      objectReference: {fileID: 563234436}
     - target: {fileID: 1136191455464080713, guid: dd0b8c2eb233923448fe031b9945167b,
         type: 3}
       propertyPath: guiActionObj
@@ -1308,6 +1347,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Global
+      objectReference: {fileID: 0}
+    - target: {fileID: 1936722676866144888, guid: 9e839bb0f006bfb4c84e03fa24a67da7,
+        type: 3}
+      propertyPath: platform
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1936722676866144889, guid: 9e839bb0f006bfb4c84e03fa24a67da7,
         type: 3}

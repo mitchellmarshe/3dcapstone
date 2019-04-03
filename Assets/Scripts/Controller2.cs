@@ -14,11 +14,18 @@ public class Controller2 : MonoBehaviour
     public float walkSpeed;
     public float lookSpeed;
 
+    [Header("Mobile")]
+    public Joystick moveJoystick;
+    public Joystick lookJoystick;
+
     private CharacterController characterController;
     private CollisionFlags collisionFlags;
     private Vector3 playerDirection;
     private Vector3 cameraRotation;
     private DynamicButtonUpdater myButtonUpdater;
+
+    private Vector2 moveDelta;
+    private Vector2 lookDelta;
 
     public GameObject tmpDecal;
 
@@ -28,6 +35,9 @@ public class Controller2 : MonoBehaviour
         characterController = player.GetComponent<CharacterController>();
         playerDirection = new Vector3(0.0f, 0.0f, 0.0f);
         cameraRotation = camera.transform.eulerAngles;
+
+        moveDelta = new Vector2(0.0f, 0.0f);
+        lookDelta = new Vector2(0.0f, 0.0f);
     }
 
     private void Start()
@@ -37,7 +47,7 @@ public class Controller2 : MonoBehaviour
 
     private void Update()
     {
-        
+        //Touch();
         Move();
         Look();
 
@@ -119,7 +129,7 @@ public class Controller2 : MonoBehaviour
 
     private void Look()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) || global.platform == true)
         {
             if (global.platform == false) // PC
             {
@@ -128,8 +138,9 @@ public class Controller2 : MonoBehaviour
             }
             else // Mobile
             {
-                //cameraRotation.y += (deltaPosition.x < 0.0f ? -1.0f : 1.0f) * lookSpeed;
-                //cameraRotation.x += (deltaPosition.y < 0.0f ? 1.0f : -1.0f) * lookSpeed;
+                Vector2 coordinate = lookJoystick.Coordinate();
+                cameraRotation.y += coordinate.x; // * lookSpeed;
+                cameraRotation.x += -coordinate.y; // * -lookSpeed;
             }
 
             if (global.currentScene == global.startScene)
@@ -144,47 +155,4 @@ public class Controller2 : MonoBehaviour
             }
         }
     }
-
-    /*
-    private void Touch()
-    {
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.touches[0];
-
-            if (touch.phase == TouchPhase.Began)
-            {
-                startPosition = touch.position;
-            }
-
-            if (touch.phase == TouchPhase.Moved)
-            {
-                deltaPosition = touch.deltaPosition;
-                if (RectTransformUtility.RectangleContainsScreenPoint(mobileLookJoystick.GetComponent<RectTransform>(), touch.position))
-                {
-                    Look();
-                }
-                debugger.text = "" + deltaPosition;
-            }
-
-            if (touch.phase == TouchPhase.Stationary)
-            {
-                if (RectTransformUtility.RectangleContainsScreenPoint(mobileLookJoystick.GetComponent<RectTransform>(), touch.position))
-                {
-                    Look();
-                }
-            }
-
-            if (touch.phase == TouchPhase.Ended)
-            {
-                endPosition = touch.position;
-            }
-
-            if (touch.phase == TouchPhase.Canceled)
-            {
-
-            }
-        }
-    }
-    */
 }

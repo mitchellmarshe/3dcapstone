@@ -22,8 +22,8 @@ public class DynamicButtonUpdater : MonoBehaviour
     {
         
         global = GameObject.Find("Global").GetComponent<Global>();
-        if (!global.platform) // PC
-        {
+        //if (!global.platform) // PC
+        //{
             action1Button = GameObject.Find("PC Actions/Action 1 Button").GetComponent<Button>();
             action2Button = GameObject.Find("PC Actions/Action 2 Button").GetComponent<Button>();
             action3Button = GameObject.Find("PC Actions/Action 3 Button").GetComponent<Button>();
@@ -36,7 +36,8 @@ public class DynamicButtonUpdater : MonoBehaviour
 
             selectorIcon = GameObject.Find("PC Actions/Selection Icon").GetComponent<Image>();
             selectorText = GameObject.Find("PC Actions/Selection Icon/Selection Text").GetComponent<Text>();
-        }
+        //}
+        /*
         else // MOBILE
         {
             action1Button = GameObject.Find("Mobile Actions/Action 1 Button").GetComponent<Button>();
@@ -52,6 +53,7 @@ public class DynamicButtonUpdater : MonoBehaviour
             selectorIcon = GameObject.Find("Mobile Actions/Selection Icon").GetComponent<Image>();
             selectorText = GameObject.Find("Mobile Actions/Selection Icon/Selection Text").GetComponent<Text>();
         }
+        */
         
     }
 
