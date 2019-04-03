@@ -24,6 +24,7 @@ public class PhoneActions : ItemActionInterface
     private float maxDis;
 
     private bool arrived = false;
+    bool wasStopped = false;
 
 
     private void Start()

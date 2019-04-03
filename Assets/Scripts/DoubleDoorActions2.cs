@@ -9,21 +9,36 @@ public class DoubleDoorActions2 : ItemActionInterface
     private Haunt myHaunt;
     private Global global;
     private bool open = true;
+    private AudioSource audio;
+    public AudioClip doorSound;
 
 
     private void Start()
     {
-        myAnim = gameObject.GetComponent<Animator>();
+        myAnim = transform.parent.GetComponent<Animator>();
         global = GameObject.Find("Global").GetComponent<Global>();
         myActionNames = new string[] { "Open/Close", "...", "...", "..." };
         myHaunt = GameObject.Find("Player").GetComponent<Haunt>();
         states = new bool[4] { true, false, false, false };
+        audio = gameObject.GetComponent<AudioSource>();
     }
 
     public override void callAction1()
     {
-        open = !open;
-        myAnim.SetBool("open", open);
+        if (!audio.isPlaying) {
+            if (myAnim.GetCurrentAnimatorStateInfo(0).tagHash == Animator.StringToHash("open"))
+            {
+                open = true;
+                myAnim.SetBool("open", false);
+                audio.PlayOneShot(doorSound);
+            } else
+            {
+                open = false;
+                myAnim.SetBool("open", true);
+                audio.PlayOneShot(doorSound);
+            }
+        }
+        
     }
 
     public bool isOpen()

@@ -12,6 +12,7 @@ public class FridgeActions : ItemActionInterface
     private float counter = 0;
     private AudioSource audio;
     public AudioClip fridgeSounds;
+    public Light myLight;
 
 
     private void Start()
@@ -34,6 +35,8 @@ public class FridgeActions : ItemActionInterface
                 thrashing = false;
                 counter = 0;
                 myAnim.SetBool("thrashing", false);
+                myLight.enabled = false;
+
 
             }
         }
@@ -45,6 +48,7 @@ public class FridgeActions : ItemActionInterface
         {
             thrashing = true;
             myAnim.SetBool("thrashing", true);
+            myLight.enabled = true;
             audio.PlayOneShot(fridgeSounds);
             counter = 0;
         }
