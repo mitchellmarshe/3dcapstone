@@ -14,6 +14,9 @@ public class Controller2 : MonoBehaviour
     public float walkSpeed;
     public float lookSpeed;
 
+    [Header("Decal")]
+    public GameObject tmpDecal;
+
     [Header("Mobile")]
     public Joystick moveJoystick;
     public Joystick lookJoystick;
@@ -22,12 +25,8 @@ public class Controller2 : MonoBehaviour
     private CollisionFlags collisionFlags;
     private Vector3 playerDirection;
     private Vector3 cameraRotation;
+
     private DynamicButtonUpdater myButtonUpdater;
-
-    private Vector2 moveDelta;
-    private Vector2 lookDelta;
-
-    public GameObject tmpDecal;
 
     private void Awake()
     {
@@ -35,9 +34,6 @@ public class Controller2 : MonoBehaviour
         characterController = player.GetComponent<CharacterController>();
         playerDirection = new Vector3(0.0f, 0.0f, 0.0f);
         cameraRotation = camera.transform.eulerAngles;
-
-        moveDelta = new Vector2(0.0f, 0.0f);
-        lookDelta = new Vector2(0.0f, 0.0f);
     }
 
     private void Start()
@@ -47,7 +43,6 @@ public class Controller2 : MonoBehaviour
 
     private void Update()
     {
-        //Touch();
         Move();
         Look();
 
@@ -100,26 +95,32 @@ public class Controller2 : MonoBehaviour
 
     private void Move()
     {
-        playerDirection = new Vector2(0.0f, 0.0f);
-
         if (global.currentScene == global.mainScene)
         {
-            if (Input.GetKey(KeyCode.W))
+            playerDirection = new Vector2(0.0f, 0.0f);
+
+            Vector2 coordinate = new Vector2(0.0f, 0.0f);
+            if (global.platform == true)
+            {
+                coordinate = moveJoystick.Coordinate();
+            }
+
+            if (Input.GetKey(KeyCode.W) || coordinate.y > 0)
             {
                 playerDirection.y = 1.0f;
             }
 
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.A) || coordinate.x < 0)
             {
                 playerDirection.x = -1.0f;
             }
 
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.S) || coordinate.y < 0)
             {
                 playerDirection.y = -1.0f;
             }
 
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.D) || coordinate.x > 0)
             {
                 playerDirection.x = 1.0f;
             }

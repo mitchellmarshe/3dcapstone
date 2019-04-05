@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DynamicButtonUpdater : MonoBehaviour
 {
-    Global global;
+    public Global global;
     public Button action1Button;
     public Button action2Button;
     public Button action3Button;
@@ -17,44 +17,11 @@ public class DynamicButtonUpdater : MonoBehaviour
     public Text action4Text;
     public Image selectorIcon;
     public Text selectorText;
+
     // Start is called before the first frame update
     void Start()
     {
-        
-        global = GameObject.Find("Global").GetComponent<Global>();
-        //if (!global.platform) // PC
-        //{
-            action1Button = GameObject.Find("PC Actions/Action 1 Button").GetComponent<Button>();
-            action2Button = GameObject.Find("PC Actions/Action 2 Button").GetComponent<Button>();
-            action3Button = GameObject.Find("PC Actions/Action 3 Button").GetComponent<Button>();
-            action4Button = GameObject.Find("PC Actions/Action 4 Button").GetComponent<Button>();
-
-            action1Text = GameObject.Find("PC Actions/Action 1 Button/Action 1 Text").GetComponent<Text>();
-            action2Text = GameObject.Find("PC Actions/Action 2 Button/Action 2 Text").GetComponent<Text>();
-            action3Text = GameObject.Find("PC Actions/Action 3 Button/Action 3 Text").GetComponent<Text>();
-            action4Text = GameObject.Find("PC Actions/Action 4 Button/Action 4 Text").GetComponent<Text>();
-
-            selectorIcon = GameObject.Find("PC Actions/Selection Icon").GetComponent<Image>();
-            selectorText = GameObject.Find("PC Actions/Selection Icon/Selection Text").GetComponent<Text>();
-        //}
-        /*
-        else // MOBILE
-        {
-            action1Button = GameObject.Find("Mobile Actions/Action 1 Button").GetComponent<Button>();
-            action2Button = GameObject.Find("Mobile Actions/Action 2 Button").GetComponent<Button>();
-            action3Button = GameObject.Find("Mobile Actions/Action 3 Button").GetComponent<Button>();
-            action4Button = GameObject.Find("Mobile Actions/Action 4 Button").GetComponent<Button>();
-
-            action1Text = GameObject.Find("Mobile Actions/Action 1 Button/Action 1 Text").GetComponent<Text>();
-            action2Text = GameObject.Find("Mobile Actions/Action 2 Button/Action 2 Text").GetComponent<Text>();
-            action3Text = GameObject.Find("Mobile Actions/Action 3 Button/Action 3 Text").GetComponent<Text>();
-            action4Text = GameObject.Find("Mobile Actions/Action 4 Button/Action 4 Text").GetComponent<Text>();
-
-            selectorIcon = GameObject.Find("Mobile Actions/Selection Icon").GetComponent<Image>();
-            selectorText = GameObject.Find("Mobile Actions/Selection Icon/Selection Text").GetComponent<Text>();
-        }
-        */
-        
+ 
     }
 
     // Update is called once per frame

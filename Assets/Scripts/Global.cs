@@ -20,9 +20,11 @@ public class Global : MonoBehaviour
     public GameObject selectedItem;
     //public bool inMenus;
 
-    // Defaults to PC controls.
-    public bool platform;
     public int points;
+
+    public bool platform;
+    public int height;
+    public int width;
 
     public int currentScene;
     public int startScene;
@@ -31,6 +33,26 @@ public class Global : MonoBehaviour
     // Start is called before the first frame update.
     void Awake()
     {
+        #if UNITY_STANDALONE_WIN
+            Debug.Log("Win");
+            platform = false;
+        #elif UNITY_STANDALONE_OSX
+            Debug.Log("OSX");
+            platform = false;
+        #elif UNITY_ANDROID
+            Debug.Log("Android");
+            platform = true;
+        #elif UNITY_IOS
+            Debug.Log("IOS");
+            platform = true;
+        #else
+            Debug.Log("Unsupported");
+            platform = false;
+        #endif
+
+        height = Screen.height;
+        width = Screen.width;
+
         itemInfo = null;
         possessing = false;
         //possesMove = false;
@@ -41,10 +63,7 @@ public class Global : MonoBehaviour
         action = Action.None;
         selectedItem = null;
         //inMenus = false;
-
-        //platform = false;
         points = 0;
-
 
         currentScene = SceneManager.GetActiveScene().buildIndex;
         startScene = 0;
