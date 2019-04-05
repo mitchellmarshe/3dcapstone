@@ -28,13 +28,11 @@ public class GUI : MonoBehaviour
             actions.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0.0f);
             actions.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0.0f);
             actions.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.0f);
-            actions.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0.0f, padding, 0.0f);
+            float height = decals.GetComponent<RectTransform>().rect.height;
+            height = (2 * padding) + height;
+            actions.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0.0f, height, 0.0f);
 
             decals.SetActive(true);
-            decals.GetComponent<RectTransform>().anchorMin = new Vector2(0.0f, 0.0f);
-            decals.GetComponent<RectTransform>().anchorMax = new Vector2(0.0f, 0.0f);
-            decals.GetComponent<RectTransform>().pivot = new Vector2(0.0f, 0.0f);
-            decals.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(padding, padding, 0.0f);
 
             mobileMoveJoystick.SetActive(false);
             mobileLookJoystick.SetActive(false);
@@ -52,10 +50,6 @@ public class GUI : MonoBehaviour
             actions.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(-radius, radius, 0.0f);
 
             decals.SetActive(true);
-            decals.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0.0f);
-            decals.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0.0f);
-            decals.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.0f);
-            decals.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0.0f, padding, 0.0f);
 
             mobileMoveJoystick.SetActive(true);
             mobileLookJoystick.SetActive(true);
