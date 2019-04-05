@@ -239,12 +239,12 @@ public class ClickInteractionManager : MonoBehaviour
         Rigidbody tmp =  global.hardSelected.GetComponent<Rigidbody>();
         if(tmp != null)
         {
-            if (global.hardSelected != null && !holdingObject && Input.GetMouseButtonDown(2))
+            if (global.hardSelected != null && !holdingObject && Input.GetMouseButtonDown(0))
             {
                 holdingObject = true;
                 pickupObject();
 
-            } else if(holdingObject && Input.GetMouseButtonDown(2))
+            } else if(holdingObject && Input.GetMouseButtonDown(0))
             {
                 throwObject(tmp);
             }
