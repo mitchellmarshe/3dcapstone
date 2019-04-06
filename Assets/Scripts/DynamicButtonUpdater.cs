@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Extension to Actions.cs
+
 public class DynamicButtonUpdater : MonoBehaviour
 {
     public Global global;
+
     public Button action1Button;
     public Button action2Button;
     public Button action3Button;
@@ -15,6 +18,7 @@ public class DynamicButtonUpdater : MonoBehaviour
     public Text action2Text;
     public Text action3Text;
     public Text action4Text;
+
     public Image selectorIcon;
     public Text selectorText;
 

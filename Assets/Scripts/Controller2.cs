@@ -7,6 +7,7 @@ public class Controller2 : MonoBehaviour
     [Header("Scripts")]
     public Global global;
     public Actions actions;
+    public Menu menu;
 
     [Header("Player")]
     public GameObject player;
@@ -50,6 +51,8 @@ public class Controller2 : MonoBehaviour
         actions.Action2(false);
         actions.Action3(false);
         actions.Action4(false);
+
+        menu.ShowMenu(false);
     }
 
     private void FixedUpdate()

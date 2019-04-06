@@ -1386,6 +1386,11 @@ PrefabInstance:
       propertyPath: lookJoystick
       value: 
       objectReference: {fileID: 563234436}
+    - target: {fileID: 1136191455464080708, guid: dd0b8c2eb233923448fe031b9945167b,
+        type: 3}
+      propertyPath: menu
+      value: 
+      objectReference: {fileID: 1883285119}
     - target: {fileID: 1136191455464080713, guid: dd0b8c2eb233923448fe031b9945167b,
         type: 3}
       propertyPath: guiActionObj
@@ -1694,6 +1699,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e839bb0f006bfb4c84e03fa24a67da7, type: 3}
+--- !u!114 &1883285119 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7023959645229270680, guid: 6af93d0ccf50409428093937dde04921,
+    type: 3}
+  m_PrefabInstance: {fileID: 563234435}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5029ee8e276cf9541b7a1924ff7f2c83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1919107775 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6497229482280745296, guid: 6af93d0ccf50409428093937dde04921,
@@ -1983,6 +2000,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4215839690606298807, guid: ece0e6a60e6011d4fa370094de2c0e82,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1282408596771115483, guid: ece0e6a60e6011d4fa370094de2c0e82,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3720054590298735003, guid: ece0e6a60e6011d4fa370094de2c0e82,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2219941785962454550, guid: ece0e6a60e6011d4fa370094de2c0e82,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7381309912668025306, guid: ece0e6a60e6011d4fa370094de2c0e82,
         type: 3}
       propertyPath: m_Center.x
@@ -1997,6 +2034,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Radius
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381309912668025306, guid: ece0e6a60e6011d4fa370094de2c0e82,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ece0e6a60e6011d4fa370094de2c0e82, type: 3}
