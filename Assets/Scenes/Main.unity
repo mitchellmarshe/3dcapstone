@@ -2822,6 +2822,11 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5701241529951771770, guid: 42ade2fca9e0a06478179a1081717268,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e22aad6cfe41db741b3e3d113c85d7bb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42ade2fca9e0a06478179a1081717268, type: 3}
 --- !u!114 &2679132759656081976 stripped
