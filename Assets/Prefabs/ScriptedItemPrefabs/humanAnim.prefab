@@ -242,6 +242,15 @@ MonoBehaviour:
   cough: {fileID: 8300000, guid: 2886d6404489557438322513d65b982b, type: 3}
   coughingToDeath: {fileID: 8300000, guid: 2e33ac8945025dd48be44a459dee189b, type: 3}
   lightLaugh: {fileID: 8300000, guid: 7e8ab2979c1aa024384c14c695817759, type: 3}
+  mySkinMeshRend: {fileID: 3055758166552434858}
+  human_crying: {fileID: 2800000, guid: 40dc02dd1f6daf142b6b0db022e719d4, type: 3}
+  human_dead: {fileID: 2800000, guid: 73aef18c24a88c14e9b520bc8e0833c8, type: 3}
+  human_frowning: {fileID: 2800000, guid: d527711f2d80d0640a515143243c00e5, type: 3}
+  human_idle: {fileID: 2800000, guid: ebc970ae36b4a034f8e86605db8c0b8b, type: 3}
+  human_scared: {fileID: 2800000, guid: c16df1654ca7b394283097406b371050, type: 3}
+  human_smiling: {fileID: 2800000, guid: 81c3d8b0ef73a81459cc16916287ca4e, type: 3}
+  human_screaming: {fileID: 2800000, guid: 09ba767662c9de84092e7f57d90768d4, type: 3}
+  human_surprised: {fileID: 2800000, guid: 5aa4a3b7f790f0249b5fb9f3758787cf, type: 3}
 --- !u!82 &458147380
 AudioSource:
   m_ObjectHideFlags: 0
@@ -781,6 +790,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 4ea7c90544b34724bab3437a539f31a5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 409ba4867ffb95440b4a3551159b4b1f, type: 3}
+--- !u!137 &3055758166552434858 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 13700000, guid: 409ba4867ffb95440b4a3551159b4b1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 3055758166538736394}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3055758166538865064 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400034, guid: 409ba4867ffb95440b4a3551159b4b1f,

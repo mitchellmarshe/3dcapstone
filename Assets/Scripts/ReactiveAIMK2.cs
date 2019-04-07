@@ -38,6 +38,19 @@ public class ReactiveAIMK2 : MonoBehaviour
 
     public AudioClip lightLaugh;
 
+    public SkinnedMeshRenderer mySkinMeshRend;
+    public Texture human_crying;
+    public Texture human_dead;
+    public Texture human_frowning;
+    public Texture human_idle;
+    public Texture human_scared;
+    public Texture human_smiling;
+    public Texture human_screaming;
+    public Texture human_surprised;
+
+    private Texture lastFace;
+    private bool reactionFace = false;
+
     int coughCount = 0;
 
 
@@ -62,6 +75,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        lastFace = human_smiling;
         myAudioSource = gameObject.GetComponent<AudioSource>();
         timer = 0f;
         decided = false;
@@ -103,7 +117,14 @@ public class ReactiveAIMK2 : MonoBehaviour
         // animation such as dead, heart attack, fetal position, ect
         if (!stopped)
         {
-            
+            if (lastFace != mySkinMeshRend && reactionFace)
+            {
+                reactionFace = false;
+                mySkinMeshRend.material.mainTexture = lastFace;
+            } else
+            {
+                lastFace = mySkinMeshRend.material.mainTexture;
+            }
 
             //Decided is true when the NPC is either idling or walking somewhere
             if (!decided)
@@ -207,32 +228,62 @@ public class ReactiveAIMK2 : MonoBehaviour
 
         if (myCurrentFear >= 2500)
         {
+            
             setDead();
         }
         else if (myCurrentFear < 2500 && myCurrentFear >= 2000) // fetal position
         {
             setFetalPosition();
 
-        } else if (myAnimator.GetBool("walk") && myCurrentFear < 2000) {
+        } else if (myAnimator.GetBool("walk") || myAnimator.GetBool("idle") && myCurrentFear < 2000) {
             if (myCurrentFear >= 1250) // run scared
             {
-                if(myAnimator.runtimeAnimatorController != highFearController)
-                myAnimator.runtimeAnimatorController = highFearController;
+                if(myAnimator.runtimeAnimatorController != highFearController) {
+                 myAnimator.runtimeAnimatorController = highFearController;
+                    
+                }
+                if(mySkinMeshRend.material.mainTexture != human_screaming)
+                {
+                    mySkinMeshRend.material.mainTexture = human_screaming;
+                    lastFace = human_screaming;
+                }
             }
-            else if (myCurrentFear >= 750) // walk scared
+            else if (myCurrentFear >= 750){ // walk scared
             {
                 if (myAnimator.runtimeAnimatorController != medFearController)
                     myAnimator.runtimeAnimatorController = medFearController;
+                    
+                }
+                if (mySkinMeshRend.material.mainTexture != human_scared)
+                {
+                    mySkinMeshRend.material.mainTexture = human_scared;
+                    lastFace = human_scared;
+                }
             }
-            else if (myCurrentFear >= 250) // walk normal
+            else if (myCurrentFear >= 250){ // walk normal
             {
                 if (myAnimator.runtimeAnimatorController != lowFearController)
                     myAnimator.runtimeAnimatorController = lowFearController;
+                    
+                }
+                if (mySkinMeshRend.material.mainTexture != human_idle)
+                {
+                    mySkinMeshRend.material.mainTexture = human_idle;
+                    lastFace = human_idle;
+                }
             }
             else // walk casual
             {
                 if (myAnimator.runtimeAnimatorController != noFearController)
+                {
                     myAnimator.runtimeAnimatorController = noFearController;
+                    
+                }
+                if (mySkinMeshRend.material.mainTexture != human_smiling)
+                {
+                    mySkinMeshRend.material.mainTexture = human_smiling;
+                    lastFace = human_smiling;
+                }
             }
             
         }
@@ -262,6 +313,8 @@ public class ReactiveAIMK2 : MonoBehaviour
             myAnimator.SetInteger("fearFactor", 2500);
             checkFear();
             updateFearSlider();
+            mySkinMeshRend.material.mainTexture = human_dead;
+            reactionFace = true;
         }
 
     }
@@ -279,7 +332,8 @@ public class ReactiveAIMK2 : MonoBehaviour
             saySomethingGeneral(deathCrys);
             IEnumerator coro = coughingDeathCoro(4);
             StartCoroutine(coro);
-
+            mySkinMeshRend.material.mainTexture = human_screaming;
+            reactionFace = true;
         }
     }
     public void setFetalPosition()
@@ -294,6 +348,8 @@ public class ReactiveAIMK2 : MonoBehaviour
             myAnimator.SetBool("fetalPosition", true);
             myAnimator.SetTrigger("fireTransition");
             saySomethingGeneral(fetalCrys);
+            mySkinMeshRend.material.mainTexture = human_crying;
+            reactionFace = true;
             //myAnimator.fireEvents = true;
             //Debug.Log("end of fetal call");
         }
@@ -320,6 +376,8 @@ public class ReactiveAIMK2 : MonoBehaviour
             IEnumerator coro = idling(3.5f);
             StartCoroutine(coro);
             saySomethingGeneral(generalQuotes);
+            mySkinMeshRend.material.mainTexture = human_surprised;
+            reactionFace = true;
         } else
         {
             addFear(250);
@@ -341,6 +399,8 @@ public class ReactiveAIMK2 : MonoBehaviour
             IEnumerator coro = idling(2);
             StartCoroutine(coro);
             saySomethingGeneral(generalQuotes);
+            mySkinMeshRend.material.mainTexture = human_surprised;
+            reactionFace = true;
         } else
         {
             addFear(250);
@@ -364,6 +424,8 @@ public class ReactiveAIMK2 : MonoBehaviour
                 IEnumerator coro = idling(2);
                 StartCoroutine(coro);
                 myAudioSource.PlayOneShot(cough);
+                mySkinMeshRend.material.mainTexture = human_scared;
+                reactionFace = true;
             } else
             {
                 setCoughToDeath();
@@ -387,6 +449,8 @@ public class ReactiveAIMK2 : MonoBehaviour
             IEnumerator coro = coughingDeathCoro(4);
             StartCoroutine(coro);
             myAudioSource.PlayOneShot(coughingToDeath);
+            mySkinMeshRend.material.mainTexture = human_screaming;
+            reactionFace = true;
 
         }
     }
@@ -404,6 +468,8 @@ public class ReactiveAIMK2 : MonoBehaviour
             IEnumerator coro = idling(2);
             StartCoroutine(coro);
             myAudioSource.PlayOneShot(lightLaugh);
+            mySkinMeshRend.material.mainTexture = human_smiling;
+            reactionFace = true;
         }
     }
 
