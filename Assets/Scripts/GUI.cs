@@ -92,7 +92,7 @@ public class GUI : MonoBehaviour
 
     private void SetOverlays()
     {
-
+        overlays.SetActive(false);
     }
 
     private void SetMenu()

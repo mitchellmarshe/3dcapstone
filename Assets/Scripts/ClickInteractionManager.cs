@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ClickInteractionManager : MonoBehaviour
 {
     public GameObject guiActionObj;
     public Shader softSelectShader;
     public Shader hardSelectShader;
+
 
     Controller2 myController;
     Global global;
@@ -19,10 +21,7 @@ public class ClickInteractionManager : MonoBehaviour
     private float holdLength = 3f;
 
     private bool setButtons = false;
-    public RectTransform button1Rect;
-    public RectTransform button2Rect;
-    public RectTransform button3Rect;
-    public RectTransform button4Rect;
+    public GameObject GUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,26 +45,20 @@ public class ClickInteractionManager : MonoBehaviour
 
     public bool checkUIClick()
     {
-        Vector2 localMousePosition = button1Rect.InverseTransformPoint(Input.mousePosition);
-        if (button1Rect.rect.Contains(localMousePosition))
-        {
-            return true;
+        Image[] UISprites = GUI.GetComponentsInChildren<Image>();
+        foreach (Image component in UISprites) {
+            if (component.gameObject.activeSelf)
+            {
+                RectTransform tmpRect = component.gameObject.GetComponent<RectTransform>();
+                Vector2 localMousePosition = tmpRect.InverseTransformPoint(Input.mousePosition);
+                if (tmpRect.rect.Contains(localMousePosition))
+                {
+                    Debug.Log("Clicked on " + component.gameObject.name + " | Returning true");
+                    return true;
+                }
+            }
         }
-        localMousePosition = button2Rect.InverseTransformPoint(Input.mousePosition);
-        if (button2Rect.rect.Contains(localMousePosition))
-        {
-            return true;
-        }
-        localMousePosition = button3Rect.InverseTransformPoint(Input.mousePosition);
-        if (button3Rect.rect.Contains(localMousePosition))
-        {
-            return true;
-        }
-        localMousePosition = button4Rect.InverseTransformPoint(Input.mousePosition);
-        if (button4Rect.rect.Contains(localMousePosition))
-        {
-            return true;
-        }
+        Debug.Log("returning false from chuckUICLick()");
         return false;
     }
 
