@@ -19,6 +19,10 @@ public class ClickInteractionManager : MonoBehaviour
     private float holdLength = 3f;
 
     private bool setButtons = false;
+    public RectTransform button1Rect;
+    public RectTransform button2Rect;
+    public RectTransform button3Rect;
+    public RectTransform button4Rect;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +44,31 @@ public class ClickInteractionManager : MonoBehaviour
         }
     }
 
+    public bool checkUIClick()
+    {
+        Vector2 localMousePosition = button1Rect.InverseTransformPoint(Input.mousePosition);
+        if (button1Rect.rect.Contains(localMousePosition))
+        {
+            return true;
+        }
+        localMousePosition = button2Rect.InverseTransformPoint(Input.mousePosition);
+        if (button2Rect.rect.Contains(localMousePosition))
+        {
+            return true;
+        }
+        localMousePosition = button3Rect.InverseTransformPoint(Input.mousePosition);
+        if (button3Rect.rect.Contains(localMousePosition))
+        {
+            return true;
+        }
+        localMousePosition = button4Rect.InverseTransformPoint(Input.mousePosition);
+        if (button4Rect.rect.Contains(localMousePosition))
+        {
+            return true;
+        }
+        return false;
+    }
+
     // raySelectCheck handles updating global states depending what objects are being hovered/clicked on
     private void raySelectCheck()
     {
@@ -51,6 +80,8 @@ public class ClickInteractionManager : MonoBehaviour
             if (Physics.Raycast(ray, out rayHit, 200)) // 200 may be too long or short and should be adjusted
             {
                 GameObject other = rayHit.collider.gameObject;
+                if (!checkUIClick())
+                {
                     if (other.GetComponent<ItemActionInterface>() != null)
                     {
                         if (global.softSelected == null)// && !Input.GetMouseButton(1))
@@ -114,19 +145,21 @@ public class ClickInteractionManager : MonoBehaviour
                         global.itemInfo = null;
                         global.softSelected = null;
                     }
-            } else
-            {
-                if (global.softSelected != null)
-                {
-                    MeshRenderer[] myRenders = global.softSelected.GetComponentsInChildren<MeshRenderer>();
-                    foreach (MeshRenderer rend in myRenders)
-                    {
-                        rend.material.shader = normalShader;
-                    }
                 }
-                //dynamicButtonUpdaterScript.enableAllButtons();
-                global.itemInfo = null;
-                global.softSelected = null;
+                else
+                {
+                    if (global.softSelected != null)
+                    {
+                        MeshRenderer[] myRenders = global.softSelected.GetComponentsInChildren<MeshRenderer>();
+                        foreach (MeshRenderer rend in myRenders)
+                        {
+                            rend.material.shader = normalShader;
+                        }
+                    }
+                    //dynamicButtonUpdaterScript.enableAllButtons();
+                    global.itemInfo = null;
+                    global.softSelected = null;
+                }
             }
             setButtons = false;
         } else // if the player has something hardselected
@@ -139,7 +172,8 @@ public class ClickInteractionManager : MonoBehaviour
                 if (Physics.Raycast(ray, out rayHit, 200)) // 200 may be too long or short and should be adjusted
                 {
                     GameObject other = rayHit.collider.gameObject;
-
+                    if (!checkUIClick())
+                    {
                         if (other.GetComponent<ItemActionInterface>() != null)
                         {
                             if (global.hardSelected != null)
@@ -183,6 +217,7 @@ public class ClickInteractionManager : MonoBehaviour
                             global.hardSelected = null;
 
                         }
+                   }
 
                 } else
                 {
