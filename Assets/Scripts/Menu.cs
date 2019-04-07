@@ -54,6 +54,8 @@ public class Menu : MonoBehaviour
     private bool isRestarting;
     private bool isQuitting;
 
+    private bool knobOn;
+
     private void Awake()
     {
         inMenu = false;
@@ -65,11 +67,12 @@ public class Menu : MonoBehaviour
         isRestarting = false;
         isQuitting = false;
 
-        knob.SetActive(true); // Script it?
+        knobOn = false;
     }
 
     private void Start()
     {
+        ShowKnob();
         ShowControls();
         ShowOptions();
         ShowCredits();
@@ -89,11 +92,6 @@ public class Menu : MonoBehaviour
             ShowConfirm();
             ShowMenu(true);
         }
-    }
-
-    private void Update()
-    {
-        ShowMenu(false); // place in Controller?
     }
 
     // Triggerable script for Menu 1 Button.
@@ -294,10 +292,18 @@ public class Menu : MonoBehaviour
         inCredits = !inCredits;
     }
 
+    // Triggerable script to show knob.
+    private void ShowKnob()
+    {
+        knobOn = !knobOn;
+        knob.SetActive(knobOn);
+    }
+
     // Start game.
     private void StartGame()
     {
         ShowMenu(true);
+        ShowKnob();
         fade.Play("Death");
         title.Play("Title");
         Invoke("LoadGame", 3);

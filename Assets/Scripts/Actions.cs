@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Base script to action buttons.
+
 public class Actions : MonoBehaviour
 {
     [Header("Scripts")]
@@ -14,8 +16,6 @@ public class Actions : MonoBehaviour
     public Button action2Button;
     public Button action3Button;
     public Button action4Button;
-
-    
 
     void Start()
     {

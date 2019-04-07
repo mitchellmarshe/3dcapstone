@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ClickInteractionManager : MonoBehaviour
 {
     public GameObject guiActionObj;
     public Shader softSelectShader;
     public Shader hardSelectShader;
+
 
     Controller2 myController;
     Global global;
@@ -19,9 +21,12 @@ public class ClickInteractionManager : MonoBehaviour
     private float holdLength = 3f;
 
     private bool setButtons = false;
+    public GameObject GUI;
+    private Image[] UISprites;
     // Start is called before the first frame update
     void Start()
     {
+        UISprites = GUI.GetComponentsInChildren<Image>();
         myController = gameObject.GetComponent<Controller2>();
         actions = gameObject.GetComponent<Actions>();
         global = myController.global;
@@ -36,8 +41,33 @@ public class ClickInteractionManager : MonoBehaviour
         actionUpdater();
         if (global.hardSelected != null)
         {
-            rigidBodyHandler();
+            //rigidBodyHandler(); currently breaks objects when spam clicking them
         }
+    }
+
+    public bool checkUIClick()
+    {
+        if (global.hardSelected != null)
+        {
+            foreach (Image component in UISprites)
+            {
+                //Debug.Log(component.gameObject.name + " is " + component.gameObject.activeInHierarchy);
+                if (component.gameObject.activeInHierarchy)
+                {
+
+                    RectTransform tmpRect = component.gameObject.GetComponent<RectTransform>();
+                    Vector2 localMousePosition = tmpRect.InverseTransformPoint(Input.mousePosition);
+                    if (tmpRect.rect.Contains(localMousePosition))
+                    {
+                        //Debug.Log("Clicked on " + component.gameObject.name + " | Returning true");
+                        return true;
+                    }
+                }
+            }
+        }
+        //Debug.Log("returning false from chuckUICLick()");
+        return false;
+
     }
 
     // raySelectCheck handles updating global states depending what objects are being hovered/clicked on
@@ -51,40 +81,42 @@ public class ClickInteractionManager : MonoBehaviour
             if (Physics.Raycast(ray, out rayHit, 200)) // 200 may be too long or short and should be adjusted
             {
                 GameObject other = rayHit.collider.gameObject;
-                if (other.GetComponent<ItemActionInterface>() != null)
+                if (!checkUIClick())
                 {
-                    if (global.softSelected == null)// && !Input.GetMouseButton(1))
+                    if (other.GetComponent<ItemActionInterface>() != null)
                     {
-                        MeshRenderer[] myRenders = other.GetComponentsInChildren<MeshRenderer>();
-                        foreach (MeshRenderer rend in myRenders)
+                        if (global.softSelected == null)// && !Input.GetMouseButton(1))
                         {
-                            rend.material.shader = softSelectShader;
+                            MeshRenderer[] myRenders = other.GetComponentsInChildren<MeshRenderer>();
+                            foreach (MeshRenderer rend in myRenders)
+                            {
+                                rend.material.shader = softSelectShader;
 
+                            }
+                            //Debug.Log("setting soft select to other!!");
+                            global.softSelected = other;
+                            //dynamicButtonUpdaterScript.enableAllButtons();
+                            global.itemInfo = other.GetComponent<ItemActionInterface>();
+
+                            // dynamicButtonUpdaterScript.setStates(global.itemInfo.states);
+                            //dynamicButtonUpdaterScript.enableAllButtons();
                         }
-                        //Debug.Log("setting soft select to other!!");
-                        global.softSelected = other;
-                        //dynamicButtonUpdaterScript.enableAllButtons();
-                        global.itemInfo = other.GetComponent<ItemActionInterface>();
-
-                        // dynamicButtonUpdaterScript.setStates(global.itemInfo.states);
-                        //dynamicButtonUpdaterScript.enableAllButtons();
-                    }
-                    else if (global.softSelected != other)
-                    {
-                        MeshRenderer[] myRenders = global.softSelected.GetComponentsInChildren<MeshRenderer>();
-                        foreach (MeshRenderer rend in myRenders)
+                        else if (global.softSelected != other)
                         {
-                            rend.material.shader = normalShader;
-                        }
-                        MeshRenderer[] myRenders2 = other.GetComponentsInChildren<MeshRenderer>();
-                        foreach (MeshRenderer rend in myRenders2)
-                        {
-                            rend.material.shader = softSelectShader;
-                        }
+                            MeshRenderer[] myRenders = global.softSelected.GetComponentsInChildren<MeshRenderer>();
+                            foreach (MeshRenderer rend in myRenders)
+                            {
+                                rend.material.shader = normalShader;
+                            }
+                            MeshRenderer[] myRenders2 = other.GetComponentsInChildren<MeshRenderer>();
+                            foreach (MeshRenderer rend in myRenders2)
+                            {
+                                rend.material.shader = softSelectShader;
+                            }
 
-                        global.softSelected = other;
-                        global.itemInfo = other.GetComponent<ItemActionInterface>();
-                    }
+                            global.softSelected = other;
+                            global.itemInfo = other.GetComponent<ItemActionInterface>();
+                        }
 
                         if (Input.GetMouseButtonDown(0))
                         {
@@ -99,6 +131,21 @@ public class ClickInteractionManager : MonoBehaviour
                             setButtons = false;
                         }
 
+                    }
+                    else
+                    {
+                        if (global.softSelected != null)
+                        {
+                            MeshRenderer[] myRenders = global.softSelected.GetComponentsInChildren<MeshRenderer>();
+                            foreach (MeshRenderer rend in myRenders)
+                            {
+                                rend.material.shader = normalShader;
+                            }
+                        }
+                        //dynamicButtonUpdaterScript.enableAllButtons();
+                        global.itemInfo = null;
+                        global.softSelected = null;
+                    }
                 }
                 else
                 {
@@ -114,19 +161,6 @@ public class ClickInteractionManager : MonoBehaviour
                     global.itemInfo = null;
                     global.softSelected = null;
                 }
-            } else
-            {
-                if (global.softSelected != null)
-                {
-                    MeshRenderer[] myRenders = global.softSelected.GetComponentsInChildren<MeshRenderer>();
-                    foreach (MeshRenderer rend in myRenders)
-                    {
-                        rend.material.shader = normalShader;
-                    }
-                }
-                //dynamicButtonUpdaterScript.enableAllButtons();
-                global.itemInfo = null;
-                global.softSelected = null;
             }
             setButtons = false;
         } else // if the player has something hardselected
@@ -139,50 +173,56 @@ public class ClickInteractionManager : MonoBehaviour
                 if (Physics.Raycast(ray, out rayHit, 200)) // 200 may be too long or short and should be adjusted
                 {
                     GameObject other = rayHit.collider.gameObject;
-                    if (other.GetComponent<ItemActionInterface>() != null)
+                    if (!checkUIClick())
                     {
-                        if (global.hardSelected != null)
+                        if (other.GetComponent<ItemActionInterface>() != null)
                         {
-                            MeshRenderer[] myRenders = global.hardSelected.GetComponentsInChildren<MeshRenderer>();
-                            foreach (MeshRenderer rend in myRenders)
+                            if (global.hardSelected != null)
                             {
-                                rend.material.shader = normalShader;
+                                MeshRenderer[] myRenders = global.hardSelected.GetComponentsInChildren<MeshRenderer>();
+                                foreach (MeshRenderer rend in myRenders)
+                                {
+                                    rend.material.shader = normalShader;
+                                }
+
                             }
-                            
+
+                            MeshRenderer[] myRenders2 = other.GetComponentsInChildren<MeshRenderer>();
+                            foreach (MeshRenderer rend in myRenders2)
+                            {
+                                rend.material.shader = hardSelectShader;
+
+                            }
+
+                            global.hardSelected = other;
+                            global.itemInfo = other.GetComponent<ItemActionInterface>();
+                            setButtons = false;
+
+
                         }
-                        
-                        MeshRenderer[] myRenders2 = other.GetComponentsInChildren<MeshRenderer>();
-                        foreach (MeshRenderer rend in myRenders2)
+                        else
                         {
-                            rend.material.shader = hardSelectShader;
+                            if (global.hardSelected != null)
+                            {
+                                MeshRenderer[] myRenders = global.hardSelected.GetComponentsInChildren<MeshRenderer>();
+                                foreach (MeshRenderer rend in myRenders)
+                                {
+                                    rend.material.shader = normalShader;
+                                }
+                                if (holdingObject)
+                                {
+                                    dropObject();
+                                }
+
+                            }
+                            global.hardSelected = null;
 
                         }
-                        
-                        global.hardSelected = other;
-                        global.itemInfo = other.GetComponent<ItemActionInterface>();
-                        setButtons = false;
+                   }
 
-
-                    } else
-                    {
-                        if (global.hardSelected != null)
-                        {
-                            MeshRenderer[] myRenders = global.hardSelected.GetComponentsInChildren<MeshRenderer>();
-                            foreach (MeshRenderer rend in myRenders)
-                            {
-                                rend.material.shader = normalShader;
-                            }
-                            if (holdingObject)
-                            {
-                                dropObject();
-                            }
-                            
-                        }
-                        global.hardSelected = null;
-
-                    }
                 } else
                 {
+
                     if (global.hardSelected != null)
                     {
                         MeshRenderer[] myRenders = global.hardSelected.GetComponentsInChildren<MeshRenderer>();
@@ -239,12 +279,12 @@ public class ClickInteractionManager : MonoBehaviour
         Rigidbody tmp =  global.hardSelected.GetComponent<Rigidbody>();
         if(tmp != null)
         {
-            if (global.hardSelected != null && !holdingObject && Input.GetMouseButtonDown(2))
+            if (global.hardSelected != null && !holdingObject && Input.GetMouseButtonDown(0))
             {
                 holdingObject = true;
                 pickupObject();
 
-            } else if(holdingObject && Input.GetMouseButtonDown(2))
+            } else if(holdingObject && Input.GetMouseButtonDown(0))
             {
                 throwObject(tmp);
             }
@@ -279,6 +319,7 @@ public class ClickInteractionManager : MonoBehaviour
 
     private void pickupObject()
     {
+
         global.hardSelected.GetComponent<Rigidbody>().useGravity = false;
         Vector3 rayOrigin = cameraComponent.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
         RaycastHit rayHit;
