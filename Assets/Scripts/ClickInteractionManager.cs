@@ -22,9 +22,11 @@ public class ClickInteractionManager : MonoBehaviour
 
     private bool setButtons = false;
     public GameObject GUI;
+    private Image[] UISprites;
     // Start is called before the first frame update
     void Start()
     {
+        UISprites = GUI.GetComponentsInChildren<Image>();
         myController = gameObject.GetComponent<Controller2>();
         actions = gameObject.GetComponent<Actions>();
         global = myController.global;
@@ -45,21 +47,27 @@ public class ClickInteractionManager : MonoBehaviour
 
     public bool checkUIClick()
     {
-        Image[] UISprites = GUI.GetComponentsInChildren<Image>();
-        foreach (Image component in UISprites) {
-            if (component.gameObject.activeSelf)
+        if (global.hardSelected != null)
+        {
+            foreach (Image component in UISprites)
             {
-                RectTransform tmpRect = component.gameObject.GetComponent<RectTransform>();
-                Vector2 localMousePosition = tmpRect.InverseTransformPoint(Input.mousePosition);
-                if (tmpRect.rect.Contains(localMousePosition))
+                //Debug.Log(component.gameObject.name + " is " + component.gameObject.activeInHierarchy);
+                if (component.gameObject.activeInHierarchy)
                 {
-                    Debug.Log("Clicked on " + component.gameObject.name + " | Returning true");
-                    return true;
+
+                    RectTransform tmpRect = component.gameObject.GetComponent<RectTransform>();
+                    Vector2 localMousePosition = tmpRect.InverseTransformPoint(Input.mousePosition);
+                    if (tmpRect.rect.Contains(localMousePosition))
+                    {
+                        //Debug.Log("Clicked on " + component.gameObject.name + " | Returning true");
+                        return true;
+                    }
                 }
             }
         }
-        Debug.Log("returning false from chuckUICLick()");
+        //Debug.Log("returning false from chuckUICLick()");
         return false;
+
     }
 
     // raySelectCheck handles updating global states depending what objects are being hovered/clicked on

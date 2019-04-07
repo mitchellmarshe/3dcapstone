@@ -92,6 +92,8 @@ public class GUI : MonoBehaviour
 
     private void SetOverlays()
     {
+        overlays.transform.GetChild(0).gameObject.SetActive(false);
+        overlays.transform.GetChild(1).gameObject.SetActive(false);
         overlays.SetActive(false);
     }
 
