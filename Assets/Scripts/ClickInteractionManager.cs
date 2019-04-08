@@ -333,12 +333,15 @@ public class ClickInteractionManager : MonoBehaviour
 
     private void pickupObject(Rigidbody body)
     {
-        holdingObject = true;
-        body.useGravity = false;
-        body.detectCollisions = false;
-        body.gameObject.transform.position = heldObject.transform.parent.position;
-        heldObject.GetComponentInChildren<HeldItemTranslation>().resetAnim(true);
-        body.transform.SetParent(heldObject.transform);
+        if (body.mass >= 2)
+        {
+            holdingObject = true;
+            body.useGravity = false;
+            body.detectCollisions = false;
+            body.gameObject.transform.position = heldObject.transform.parent.position;
+            heldObject.GetComponentInChildren<HeldItemTranslation>().resetAnim(true);
+            body.transform.SetParent(heldObject.transform);
+        }
     }
 
     private void dropObject()
