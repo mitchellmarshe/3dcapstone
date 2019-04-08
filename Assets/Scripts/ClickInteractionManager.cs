@@ -26,7 +26,11 @@ public class ClickInteractionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GUI.GetComponent<GUI>().ShowOverlays(false);
         UISprites = GUI.GetComponentsInChildren<Image>();
+        GUI.GetComponent<GUI>().ShowOverlays(true);
+        GUI.GetComponent<GUI>().SetOverlays();
+
         myController = gameObject.GetComponent<Controller2>();
         actions = gameObject.GetComponent<Actions>();
         global = myController.global;
