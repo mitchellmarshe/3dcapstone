@@ -19,57 +19,82 @@ public class dragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     private Color valid;
 
     private bool validPlacement = false;
+    private bool cooldown = false;
 
-    public void Start()
+    public void Awake()
     {
         camComponent = GameObject.Find("Player").GetComponentInChildren<Camera>();
         tmpDecal = camComponent.GetComponentInParent<Controller2>().tmpDecal;
         spriteRenderer = tmpDecal.GetComponentInChildren<SpriteRenderer>();
-        tmpDecal.SetActive(false);
+        //tmpDecal.SetActive(false);
+        
+    }
+
+    public void Start()
+    {
+        spriteRenderer.gameObject.SetActive(false);
     }
 
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        tmpDecal.SetActive(true);
-        tmpDecal.GetComponent<decalManager>().disableDecalEffects();
-        spriteRenderer.sprite = gameObject.GetComponent<Image>().sprite;
-        invalid = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, .4f);
-        valid = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
-        validPlacement = false;
+        if (tmpDecal.GetComponent<decalManager2>().isDecalReady(gameObject.GetComponent<Image>()))
+        {
+
+            //tmpDecal.SetActive(true);
+            //tmpDecal.GetComponent<decalManager>().disableDecalEffects();
+            spriteRenderer.gameObject.SetActive(true);
+            spriteRenderer.sprite = gameObject.GetComponent<Image>().sprite;
+            invalid = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, .4f);
+            valid = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
+            validPlacement = false;
+            cooldown = false;
+
+        } else
+        {
+            Debug.Log("Decal not ready to be placed");
+            cooldown = true;
+            spriteRenderer.gameObject.SetActive(false);
+        }
 
     }
 
     public void OnDrag(PointerEventData data)
     {
-        validPlacement = false;
-        RaycastHit rayHit;
-        Ray ray = camComponent.ScreenPointToRay(Input.mousePosition);
+        if (!cooldown)
+        {
+            validPlacement = false;
+            RaycastHit rayHit;
+            Ray ray = camComponent.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out rayHit, 12))
-        {
-            GameObject other = rayHit.collider.gameObject;
-            Vector3 hitPoint = rayHit.point;
-            Vector3 hitNormal = rayHit.normal;
-            tmpDecal.transform.position = hitPoint;
-            tmpDecal.transform.LookAt(hitPoint - hitNormal);
-            if (other.tag == "Ignore")
+
+            if (Physics.Raycast(ray, out rayHit, 12))
             {
-                validPlacement = true;
-                spriteRenderer.color = valid;
-                
-            } else // the decal has hit something but it is invalid placement
-            {
-                spriteRenderer.color = invalid;
+                GameObject other = rayHit.collider.gameObject;
+                Vector3 hitPoint = rayHit.point;
+                Vector3 hitNormal = rayHit.normal;
+                tmpDecal.transform.position = hitPoint;
+                tmpDecal.transform.LookAt(hitPoint - hitNormal);
+                if (other.tag == "Ignore")
+                {
+                    validPlacement = true;
+                    spriteRenderer.color = valid;
+
+                }
+                else // the decal has hit something but it is invalid placement
+                {
+                    spriteRenderer.color = invalid;
+                }
             }
-        } else // Ray has not hit anything at all, decal should float in free space as invalid placement
-        {
-            
-            spriteRenderer.color = invalid;
-            Vector3 origin = camComponent.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
-            Vector3 newPos = origin + (camComponent.transform.forward * 3);
-            tmpDecal.transform.position = newPos;
-            tmpDecal.transform.rotation = camComponent.gameObject.transform.rotation;
+            else // Ray has not hit anything at all, decal should float in free space as invalid placement
+            {
+
+                spriteRenderer.color = invalid;
+                Vector3 origin = camComponent.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
+                Vector3 newPos = origin + (camComponent.transform.forward * 3);
+                tmpDecal.transform.position = newPos;
+                tmpDecal.transform.rotation = camComponent.gameObject.transform.rotation;
+            }
         }
     }
 
@@ -77,14 +102,23 @@ public class dragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        //tmpDecal.SetActive(false);
-        if (validPlacement)
+        if (!cooldown)
         {
-            tmpDecal.GetComponent<decalManager>().enableDecalEffects();
-        } else
-        {
-            
-            tmpDecal.SetActive(false);
+            //tmpDecal.SetActive(false);
+            if (validPlacement)
+            {
+                //tmpDecal.GetComponent<decalManager>().enableDecalEffects();
+                tmpDecal.GetComponent<decalManager2>().placedADecal(gameObject.GetComponent<Image>());
+                GameObject newDecal = Instantiate(spriteRenderer.gameObject, spriteRenderer.transform.position, spriteRenderer.transform.rotation, null);
+                newDecal.transform.localScale = spriteRenderer.transform.lossyScale;
+                Destroy(newDecal, 15.0f);
+            }
+            else
+            {
+
+                //tmpDecal.SetActive(false);
+            }
+            spriteRenderer.gameObject.SetActive(false);
         }
     }
 
