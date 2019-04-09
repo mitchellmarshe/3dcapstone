@@ -140,6 +140,7 @@ public class RoomManager : MonoBehaviour
     }
     */
 
+     /*
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "NPC")
@@ -160,5 +161,6 @@ public class RoomManager : MonoBehaviour
                 npcs.Remove(other.gameObject.GetComponent<ReactiveAIMK2>());
             }
         }
-    }
+    } 
+    */
 }
