@@ -111,6 +111,7 @@ public class dragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
                 tmpDecal.GetComponent<decalManager2>().placedADecal(gameObject.GetComponent<Image>());
                 GameObject newDecal = Instantiate(spriteRenderer.gameObject, spriteRenderer.transform.position, spriteRenderer.transform.rotation, null);
                 newDecal.transform.localScale = spriteRenderer.transform.lossyScale;
+                newDecal.tag = "Decal";
                 Destroy(newDecal, 15.0f);
             }
             else
