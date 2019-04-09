@@ -89,7 +89,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -142,6 +142,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1996998514}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &326625307 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5400876544115924709, guid: 6af93d0ccf50409428093937dde04921,
+    type: 3}
+  m_PrefabInstance: {fileID: 563234435}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &339199133 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3132432422171919658, guid: 6af93d0ccf50409428093937dde04921,
+    type: 3}
+  m_PrefabInstance: {fileID: 563234435}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &391817580 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1936722676866144888, guid: 9e839bb0f006bfb4c84e03fa24a67da7,
@@ -191,6 +203,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3499707548823687939, guid: 6af93d0ccf50409428093937dde04921,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3499707548823687939, guid: 6af93d0ccf50409428093937dde04921,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3499707548823687939, guid: 6af93d0ccf50409428093937dde04921,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3499707548823687939, guid: 6af93d0ccf50409428093937dde04921,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6745686858425261800, guid: 6af93d0ccf50409428093937dde04921,
         type: 3}
       propertyPath: m_Name
@@ -727,6 +759,12 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &585643503 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5029443718220707760, guid: 6af93d0ccf50409428093937dde04921,
+    type: 3}
+  m_PrefabInstance: {fileID: 563234435}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &596478424 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3389480099246860545, guid: 6af93d0ccf50409428093937dde04921,
@@ -983,6 +1021,12 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &876002546 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2816429456519278166, guid: 6af93d0ccf50409428093937dde04921,
+    type: 3}
+  m_PrefabInstance: {fileID: 563234435}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1043091917 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1564204957787133733, guid: 030f6648ca4e7fc4cb4d1c35f6e575a4,
@@ -1469,6 +1513,26 @@ PrefabInstance:
       propertyPath: action1Image
       value: 
       objectReference: {fileID: 563234440}
+    - target: {fileID: 1136191455464080714, guid: dd0b8c2eb233923448fe031b9945167b,
+        type: 3}
+      propertyPath: action1
+      value: 
+      objectReference: {fileID: 585643503}
+    - target: {fileID: 1136191455464080714, guid: dd0b8c2eb233923448fe031b9945167b,
+        type: 3}
+      propertyPath: action2
+      value: 
+      objectReference: {fileID: 326625307}
+    - target: {fileID: 1136191455464080714, guid: dd0b8c2eb233923448fe031b9945167b,
+        type: 3}
+      propertyPath: action3
+      value: 
+      objectReference: {fileID: 876002546}
+    - target: {fileID: 1136191455464080714, guid: dd0b8c2eb233923448fe031b9945167b,
+        type: 3}
+      propertyPath: action4
+      value: 
+      objectReference: {fileID: 339199133}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd0b8c2eb233923448fe031b9945167b, type: 3}
 --- !u!4 &1533696601 stripped

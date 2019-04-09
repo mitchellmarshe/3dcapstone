@@ -90,7 +90,7 @@ LightmapSettings:
     m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 112000000, guid: 3ef63843f679c104eb52545b5fdfbc81,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -4532,6 +4532,26 @@ PrefabInstance:
       propertyPath: action1Image
       value: 
       objectReference: {fileID: 90622089}
+    - target: {fileID: 1136191455464080714, guid: dd0b8c2eb233923448fe031b9945167b,
+        type: 3}
+      propertyPath: action1
+      value: 
+      objectReference: {fileID: 7181188837415510689}
+    - target: {fileID: 1136191455464080714, guid: dd0b8c2eb233923448fe031b9945167b,
+        type: 3}
+      propertyPath: action2
+      value: 
+      objectReference: {fileID: 7181188837415510688}
+    - target: {fileID: 1136191455464080714, guid: dd0b8c2eb233923448fe031b9945167b,
+        type: 3}
+      propertyPath: action3
+      value: 
+      objectReference: {fileID: 7181188837415510690}
+    - target: {fileID: 1136191455464080714, guid: dd0b8c2eb233923448fe031b9945167b,
+        type: 3}
+      propertyPath: action4
+      value: 
+      objectReference: {fileID: 7181188837415510691}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd0b8c2eb233923448fe031b9945167b, type: 3}
 --- !u!1001 &7181188837415510674
@@ -5175,6 +5195,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5029ee8e276cf9541b7a1924ff7f2c83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7181188837415510688 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5400876544115924709, guid: 6af93d0ccf50409428093937dde04921,
+    type: 3}
+  m_PrefabInstance: {fileID: 7181188837415510674}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7181188837415510689 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5029443718220707760, guid: 6af93d0ccf50409428093937dde04921,
+    type: 3}
+  m_PrefabInstance: {fileID: 7181188837415510674}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7181188837415510690 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2816429456519278166, guid: 6af93d0ccf50409428093937dde04921,
+    type: 3}
+  m_PrefabInstance: {fileID: 7181188837415510674}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7181188837415510691 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3132432422171919658, guid: 6af93d0ccf50409428093937dde04921,
+    type: 3}
+  m_PrefabInstance: {fileID: 7181188837415510674}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8466412825504912338
 Transform:
   m_ObjectHideFlags: 0

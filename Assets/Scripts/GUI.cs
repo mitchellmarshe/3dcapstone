@@ -12,6 +12,10 @@ public class GUI : MonoBehaviour
     public GameObject menu;
     public GameObject knob;
     public GameObject actions;
+    public GameObject hotkey1;
+    public GameObject hotkey2;
+    public GameObject hotkey3;
+    public GameObject hotkey4;
     public GameObject decals;
     public GameObject mobileMoveJoystick;
     public GameObject mobileLookJoystick;
@@ -36,6 +40,11 @@ public class GUI : MonoBehaviour
             mobileMoveJoystick.SetActive(false);
             mobileLookJoystick.SetActive(false);
 
+            hotkey1.SetActive(true);
+            hotkey2.SetActive(true);
+            hotkey3.SetActive(true);
+            hotkey4.SetActive(true);
+
             if (global.currentScene == global.startScene)
             {
                 actions.SetActive(false);
@@ -58,6 +67,11 @@ public class GUI : MonoBehaviour
 
             mobileLookJoystick.SetActive(true);
             SetMobileLookJoystick();
+
+            hotkey1.SetActive(false);
+            hotkey2.SetActive(false);
+            hotkey3.SetActive(false);
+            hotkey4.SetActive(false);
 
             if (global.currentScene == global.startScene)
             {

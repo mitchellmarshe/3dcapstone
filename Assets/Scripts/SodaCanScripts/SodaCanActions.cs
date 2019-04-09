@@ -21,7 +21,7 @@ public class SodaCanActions : ItemActionInterface
     {
         popped = false;
         shakeStopper = 0;
-        myActionNames = new string[] { "Shake", "POP*", "Back...", "..." };
+        myActionNames = new string[] { "Shake", "POP*", "...", "..." };
         myHaunt = GameObject.Find("Player").GetComponent<Haunt>();
         myRigid = gameObject.GetComponent<Rigidbody>();
         shaking = false;
