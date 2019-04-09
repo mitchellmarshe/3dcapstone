@@ -13,7 +13,8 @@ public class decalManager : MonoBehaviour
     {
         myRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
         nearbyNPCs = new List<GameObject>();
-
+        enableDecalEffects();
+        disableDecalEffects();
     }
 
     // Update is called once per frame
@@ -79,27 +80,32 @@ public class decalManager : MonoBehaviour
     }
 
 
-
-    private void OnTriggerEnter(Collider other)
+    
+    public void OnTriggerEnter(Collider other)
     {
+        Debug.Log("other is " + other.gameObject.name);
         if (other.gameObject.tag == "NPC")
         {
+            Debug.Log("NPC Detected");
             if (!nearbyNPCs.Contains(other.gameObject))
             {
+                Debug.Log("Added NPC");
                 nearbyNPCs.Add(other.gameObject);
             }
         }
     }
 
     // updates distoredNPCs list
-    private void OnTriggerExit(Collider other)
+    public void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "NPC")
         {
             if (nearbyNPCs.Contains(other.gameObject))
             {
+                Debug.Log("removed NPC");
                 nearbyNPCs.Remove(other.gameObject);
             }
         }
     }
+    
 }
