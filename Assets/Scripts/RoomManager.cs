@@ -8,6 +8,7 @@ public class RoomManager : MonoBehaviour
     public List<RoomManager> neighbors;
     private bool lockdown = false;
     private List<ReactiveAIMK2> npcs;
+    public bool isHallWay = false;
     //private RoomManager theRoomMan;
 
 

@@ -67,7 +67,7 @@ public class decalManager : MonoBehaviour
             if (other.gameObject.tag == "NPC")
             {
                 nearbyNPCs.Add(other.gameObject);
-                Debug.Log("Added " + other.gameObject.name);
+                //Debug.Log("Added " + other.gameObject.name);
             }
         }
 
@@ -83,13 +83,13 @@ public class decalManager : MonoBehaviour
     
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("other is " + other.gameObject.name);
+        //Debug.Log("other is " + other.gameObject.name);
         if (other.gameObject.tag == "NPC")
         {
-            Debug.Log("NPC Detected");
+            //Debug.Log("NPC Detected");
             if (!nearbyNPCs.Contains(other.gameObject))
             {
-                Debug.Log("Added NPC");
+                //Debug.Log("Added NPC");
                 nearbyNPCs.Add(other.gameObject);
             }
         }
@@ -102,7 +102,7 @@ public class decalManager : MonoBehaviour
         {
             if (nearbyNPCs.Contains(other.gameObject))
             {
-                Debug.Log("removed NPC");
+                //Debug.Log("removed NPC");
                 nearbyNPCs.Remove(other.gameObject);
             }
         }
