@@ -40,13 +40,16 @@ public class RoomManager : MonoBehaviour
 
     public bool atleastOneDoorOpen()
     {
+        
         bool tmp = false;
-        int i = 0;
-        while (!tmp)
+        if (!isHallWay)
         {
-            tmp = doors[i].isOpen();
+            int i = 0;
+            while (!tmp)
+            {
+                tmp = doors[i].isOpen();
+            }
         }
-
         return tmp;
     }
 
