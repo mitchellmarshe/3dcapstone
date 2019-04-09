@@ -16,15 +16,25 @@ public class DynamicButtonUpdater : MonoBehaviour
     public Button action3Button;
     public Button action4Button;
 
+    public Image action1Image;
+    public Image action2Image;
+    public Image action3Image;
+    public Image action4Image;
+
     public Text action1Text;
     public Text action2Text;
     public Text action3Text;
     public Text action4Text;
 
-    [Header("Icon")]
+    [Header("Icons")]
     public Image selectorIcon;
     public Text selectorText;
-    public Image selectorIconDefault; // Sprite?
+    public Sprite selectorIconDefault;
+
+    public Sprite[] icons1;
+    public Sprite[] icons2;
+    public Sprite[] icons3;
+    public Sprite[] icons4;
 
     void Start()
     {
@@ -41,29 +51,107 @@ public class DynamicButtonUpdater : MonoBehaviour
     // 2. The player chose to haunt an object
     public void receiveItemObject(GameObject item, ItemActionInterface itemInfo)
     {
-        //Debug.Log("iteminfo " + itemInfo);
         selectorText.text = item.name;
+
         global.itemInfo = itemInfo;
+
         enableAllButtons();
-        //Debug.Log(global.itemInfo.states[1]);
         setStates(global.itemInfo.states);
         string[] names = itemInfo.getActionNames();
         action1Text.text = names[0];
+
+        if (names[0] == "Open2")
+        {
+            action1Image.sprite = icons1[0];
+        }
+        else if (names[0] == "Close2")
+        {
+            action1Image.sprite = icons1[1];
+        }
+        else if (names[0] == "Open1")
+        {
+            action1Image.sprite = icons1[2];
+        }
+        else if (names[0] == "Close1")
+        {
+            action1Image.sprite = icons1[3];
+        }
+        else if (names[0] == "Burst")
+        {
+            action1Image.sprite = icons1[4];
+        }
+        else if (names[0] == "Power" 
+            || names[0] == "On/Off")
+        {
+            action1Image.sprite = icons1[5];
+        }
+        else if (names[0] == "Slam" || 
+            names[0] == "Haunt Call" || 
+            names[0] == "Spookify")
+        {
+            action1Image.sprite = icons1[6];
+        }
+        else if (names[0] == "Crumble")
+        {
+            action1Image.sprite = icons1[7];
+        }
+        else if (names[0] == "Random Pitch")
+        {
+            action1Image.sprite = icons1[8];
+        }
+        else if (names[0] == "Distort")
+        {
+            action1Image.sprite = icons1[9];
+        }
+
         action2Text.text = names[1];
+
+        if (names[1] == "Smoke")
+        {
+            action2Image.sprite = icons2[0];
+        }
+        else if (names[1] == "Sound")
+        {
+            action2Image.sprite = icons2[1];
+        }
+        else if (names[1] == "Volume Up")
+        {
+            action2Image.sprite = icons2[2];
+        }
+        else if (names[1] == "Overload*")
+        {
+            action2Image.sprite = icons2[3];
+        }
+
         action3Text.text = names[2];
+
+        if (names[2] == "Back...")
+        {
+            action3Image.sprite = icons3[0];
+        }
+
         action4Text.text = names[3];
+
+        if (names[3] == "Special")
+        {
+            action4Image.sprite = icons4[0];
+        }
+        else if (names[3] == "Volume Down")
+        {
+            action4Image.sprite = icons4[1];
+        }
+
         global.selectedItem = item;
 
         Image tmpImage = item.GetComponentInChildren<Image>();
         if (tmpImage == null || tmpImage.sprite == null)
         {
-            selectorIcon.sprite = selectorIconDefault.sprite;
+            selectorIcon.sprite = selectorIconDefault;
         }
         else
         {
             selectorIcon.sprite = tmpImage.sprite;
         }
-        
     }
 
     public void enableAllButtons()
@@ -172,18 +260,19 @@ public class DynamicButtonUpdater : MonoBehaviour
 
     public bool[] getStates()
     {
-        bool[] result = new bool[4] {action1Button.interactable, action2Button.interactable , action3Button.interactable , action4Button.interactable };
+        bool[] result = new bool[4] {action1Button.interactable, action2Button.interactable, action3Button.interactable, action4Button.interactable};
         return result;
     }
 
     public void setStates(bool[] newStates)
     {
-        for(int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             if (newStates[i])
             {
                 setNormalButton(i+1);
-            } else
+            }
+            else
             {
                 setDisabledButton(i+1);
             }

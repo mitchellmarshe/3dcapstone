@@ -135,6 +135,7 @@ public class Controller2 : MonoBehaviour
     {
         if (Input.GetMouseButton(1) || global.platform == true)
         {
+            
             Cursor.visible = false;
             if (global.platform == false) // PC
             {

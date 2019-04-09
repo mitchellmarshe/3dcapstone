@@ -30,7 +30,7 @@ public class IncineratorActions : ItemActionInterface
         audio = gameObject.GetComponent<AudioSource>();
         myAnim = gameObject.GetComponent<Animator>();
         global = GameObject.Find("Global").GetComponent<Global>();
-        myActionNames = new string[] { "Open/Close", "Smoke", "...", "..." };
+        myActionNames = new string[] {"Open", "Smoke", "...", "..."};
         myHaunt = GameObject.Find("Player").GetComponent<Haunt>();
         states = new bool[4] { true, true, false, false };
     }
@@ -60,11 +60,13 @@ public class IncineratorActions : ItemActionInterface
         }
         if (!open)
         {
-           //myAnim.avatar = closedAvatar;    
+            //myAnim.avatar = closedAvatar;
+            myActionNames = new string[] {"Close", "Smoke", "...", "..."};
             states = new bool[4] { true, false, false, false };
         } else
         {
             //myAnim.avatar = openAvatar;
+            myActionNames = new string[] {"Open", "Smoke", "...", "..."};
             states = new bool[4] { true, true, false, false };
         }
         myAnim.SetBool("open", open);

@@ -79,7 +79,7 @@ public class decalManager : MonoBehaviour
 
     }
 
-
+    /*
     
     public void OnTriggerEnter(Collider other)
     {
@@ -107,5 +107,7 @@ public class decalManager : MonoBehaviour
             }
         }
     }
+
+    */
     
 }

@@ -169,6 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   global: {fileID: 0}
   actions: {fileID: 1136191455464080715}
+  menu: {fileID: 0}
   player: {fileID: 1136191455464080710}
   camera: {fileID: 1136191455216159812}
   walkSpeed: 10
@@ -211,12 +212,61 @@ MonoBehaviour:
   action2Button: {fileID: 0}
   action3Button: {fileID: 0}
   action4Button: {fileID: 0}
+  action1Image: {fileID: 0}
+  action2Image: {fileID: 0}
+  action3Image: {fileID: 0}
+  action4Image: {fileID: 0}
   action1Text: {fileID: 0}
   action2Text: {fileID: 0}
   action3Text: {fileID: 0}
   action4Text: {fileID: 0}
   selectorIcon: {fileID: 0}
   selectorText: {fileID: 0}
+  selectorIconDefault: {fileID: 0}
+  icons1:
+  - {fileID: 21300000, guid: 749d89e5fa341524d81ae543cab7369c, type: 3}
+  - {fileID: 21300000, guid: a4df8772bd9b25e45a8c50a5b1ec5798, type: 3}
+  - {fileID: 21300000, guid: cc54e79a5c7f2f548993b2c09eaec731, type: 3}
+  - {fileID: 21300000, guid: e363683c63ba1bb49828a8710c74f25e, type: 3}
+  - {fileID: 21300000, guid: d3a0268b4eed0ea4e888de3f90de968c, type: 3}
+  - {fileID: 21300000, guid: fa255179c293df44092b73141306f0d3, type: 3}
+  - {fileID: 21300000, guid: c1ae2d1e91482f446becf7bb36556bef, type: 3}
+  - {fileID: 21300000, guid: 11f62ffa139398946b6e1a7ba1cfcf05, type: 3}
+  - {fileID: 21300000, guid: 97914a9fc874daf429ac1dc66771f2d6, type: 3}
+  - {fileID: 21300000, guid: 8e137dd286988a24ea05fda5a3e46d85, type: 3}
+  icons2:
+  - {fileID: 21300000, guid: 6025ec769f62c884aa59e3311926e429, type: 3}
+  - {fileID: 21300000, guid: 11f62ffa139398946b6e1a7ba1cfcf05, type: 3}
+  - {fileID: 21300000, guid: 7b439c8446d44524882f8b2b669be9cc, type: 3}
+  - {fileID: 21300000, guid: d3a0268b4eed0ea4e888de3f90de968c, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  icons3:
+  - {fileID: 21300000, guid: 11f62ffa139398946b6e1a7ba1cfcf05, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  icons4:
+  - {fileID: 21300000, guid: 11f62ffa139398946b6e1a7ba1cfcf05, type: 3}
+  - {fileID: 21300000, guid: a98c3f74569d8b749996c520727c29a3, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1136191455464080713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +283,8 @@ MonoBehaviour:
   softSelectShader: {fileID: 4800000, guid: 2cada8d447a73aa448b090ec71320bc0, type: 3}
   hardSelectShader: {fileID: 4800000, guid: 0f012265fdd413c4b9dce32e5f7346ea, type: 3}
   normalShader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  GUI: {fileID: 0}
+  heldObject: {fileID: 0}
 --- !u!114 &1136191455464080712
 MonoBehaviour:
   m_ObjectHideFlags: 0
