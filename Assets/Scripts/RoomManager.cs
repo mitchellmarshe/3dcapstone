@@ -8,6 +8,7 @@ public class RoomManager : MonoBehaviour
     public List<RoomManager> neighbors;
     private bool lockdown = false;
     private List<ReactiveAIMK2> npcs;
+    public bool isHallWay = false;
     //private RoomManager theRoomMan;
 
 
@@ -39,13 +40,16 @@ public class RoomManager : MonoBehaviour
 
     public bool atleastOneDoorOpen()
     {
+        
         bool tmp = false;
-        int i = 0;
-        while (!tmp)
+        if (!isHallWay)
         {
-            tmp = doors[i].isOpen();
+            int i = 0;
+            while (!tmp)
+            {
+                tmp = doors[i].isOpen();
+            }
         }
-
         return tmp;
     }
 
@@ -136,6 +140,7 @@ public class RoomManager : MonoBehaviour
     }
     */
 
+     /*
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "NPC")
@@ -156,5 +161,6 @@ public class RoomManager : MonoBehaviour
                 npcs.Remove(other.gameObject.GetComponent<ReactiveAIMK2>());
             }
         }
-    }
+    } 
+    */
 }

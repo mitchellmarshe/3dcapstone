@@ -7,8 +7,10 @@ using UnityEngine.UI;
 
 public class DynamicButtonUpdater : MonoBehaviour
 {
+    [Header("Scripts")]
     public Global global;
 
+    [Header("Buttons")]
     public Button action1Button;
     public Button action2Button;
     public Button action3Button;
@@ -19,20 +21,19 @@ public class DynamicButtonUpdater : MonoBehaviour
     public Text action3Text;
     public Text action4Text;
 
+    [Header("Icon")]
     public Image selectorIcon;
     public Text selectorText;
+    public Image selectorIconDefault; // Sprite?
 
-    // Start is called before the first frame update
     void Start()
     {
  
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //Global.Action myAction = global.action;
-        //enableAllButtons();
+
     }
 
     // This is called in 2 cases
@@ -52,14 +53,15 @@ public class DynamicButtonUpdater : MonoBehaviour
         action3Text.text = names[2];
         action4Text.text = names[3];
         global.selectedItem = item;
+
         Image tmpImage = item.GetComponentInChildren<Image>();
         if (tmpImage == null || tmpImage.sprite == null)
         {
-            //Debug.Log(selectorText.text + " has no associated icon Image");
+            selectorIcon.sprite = selectorIconDefault.sprite;
         }
         else
         {
-            selectorIcon = tmpImage;
+            selectorIcon.sprite = tmpImage.sprite;
         }
         
     }

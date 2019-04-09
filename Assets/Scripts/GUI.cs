@@ -29,9 +29,6 @@ public class GUI : MonoBehaviour
 
         if (global.platform == false)
         {
-            overlays.SetActive(true);
-            SetOverlays();
-
             menu.SetActive(true);
             SetMenu();
             SetKnob();
@@ -55,9 +52,6 @@ public class GUI : MonoBehaviour
         }
         else
         {
-            overlays.SetActive(true);
-            SetOverlays();
-
             menu.SetActive(true);
             SetMenu();
             SetKnob();
@@ -90,11 +84,16 @@ public class GUI : MonoBehaviour
         
     }
 
-    private void SetOverlays()
+    public void ShowOverlays(bool trigger)
     {
-        overlays.transform.GetChild(0).gameObject.SetActive(false);
-        overlays.transform.GetChild(1).gameObject.SetActive(false);
-        overlays.SetActive(false);
+        overlays.transform.GetChild(0).gameObject.SetActive(trigger);
+        overlays.transform.GetChild(1).gameObject.SetActive(trigger);
+        overlays.SetActive(trigger);
+    }
+
+    public void SetOverlays()
+    {
+
     }
 
     private void SetMenu()

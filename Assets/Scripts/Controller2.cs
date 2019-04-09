@@ -135,6 +135,7 @@ public class Controller2 : MonoBehaviour
     {
         if (Input.GetMouseButton(1) || global.platform == true)
         {
+            Cursor.visible = false;
             if (global.platform == false) // PC
             {
                 cameraRotation.y += Input.GetAxis("Mouse X") * lookSpeed;
@@ -157,6 +158,9 @@ public class Controller2 : MonoBehaviour
                 cameraRotation.x = Mathf.Clamp(cameraRotation.x, -90.0f, 90.0f);
                 camera.transform.eulerAngles = new Vector3(cameraRotation.x, cameraRotation.y, 0.0f);
             }
+        } else
+        {
+            Cursor.visible = true;
         }
     }
 }
