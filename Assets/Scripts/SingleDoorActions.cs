@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoubleDoorActions2 : ItemActionInterface
+public class SingleDoorActions : ItemActionInterface
 {
     public string[] myActionNames;
     private Animator myAnim;
@@ -17,7 +17,7 @@ public class DoubleDoorActions2 : ItemActionInterface
     {
         myAnim = transform.parent.GetComponent<Animator>();
         global = GameObject.Find("Global").GetComponent<Global>();
-        myActionNames = new string[] { "Close2", "...", "...", "..." };
+        myActionNames = new string[] { "Close1", "...", "...", "..." };
         myHaunt = GameObject.Find("Player").GetComponent<Haunt>();
         states = new bool[4] { true, false, false, false };
         audio = gameObject.GetComponent<AudioSource>();
@@ -25,22 +25,24 @@ public class DoubleDoorActions2 : ItemActionInterface
 
     public override void callAction1()
     {
-        if (!audio.isPlaying) {
+        if (!audio.isPlaying)
+        {
             if (myAnim.GetCurrentAnimatorStateInfo(0).tagHash == Animator.StringToHash("open"))
             {
                 open = true;
-                myActionNames = new string[] { "Open2", "...", "...", "..." };
+                myActionNames = new string[] { "Open1", "...", "...", "..." };
                 myAnim.SetBool("open", false);
                 audio.PlayOneShot(doorSound);
-            } else
+            }
+            else
             {
                 open = false;
-                myActionNames = new string[] { "Close2", "...", "...", "..." };
+                myActionNames = new string[] { "Close1", "...", "...", "..." };
                 myAnim.SetBool("open", true);
                 audio.PlayOneShot(doorSound);
             }
         }
-        
+
     }
 
     public bool isOpen()

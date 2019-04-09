@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 8893319385769438077}
   - component: {fileID: 8187322817939668649}
   - component: {fileID: 5465159620545737023}
-  - component: {fileID: 6100872130079748228}
   - component: {fileID: 8799380256623261819}
+  - component: {fileID: 846642171332316832}
   m_Layer: 9
   m_Name: single_door:pCube1
   m_TagString: Ignore
@@ -149,21 +149,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6100872130079748228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1766339856109290795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e4ab77239738ff4d9f65da98b268642, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  states: 
-  myActionNames: []
-  doorSound: {fileID: 8300000, guid: c1dd0d1238edf9d4882e0c8ff33aa5d8, type: 3}
 --- !u!82 &8799380256623261819
 AudioSource:
   m_ObjectHideFlags: 0
@@ -260,6 +245,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &846642171332316832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766339856109290795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd8e98e2f24be7144823748d382d4f1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: 
+  myActionNames: []
+  doorSound: {fileID: 8300000, guid: c1dd0d1238edf9d4882e0c8ff33aa5d8, type: 3}
 --- !u!1 &1766339856109290797
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,9 +362,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1766339856109525263}
   - component: {fileID: 677787005976332200}
-  - component: {fileID: 4907426720367228270}
   - component: {fileID: 5886513323097005897}
   - component: {fileID: 3860955990555540948}
+  - component: {fileID: 8248449307983724552}
   m_Layer: 9
   m_Name: Interior Door
   m_TagString: Ignore
@@ -407,21 +407,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4907426720367228270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1766339856109290799}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e4ab77239738ff4d9f65da98b268642, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  states: 
-  myActionNames: []
-  doorSound: {fileID: 8300000, guid: c1dd0d1238edf9d4882e0c8ff33aa5d8, type: 3}
 --- !u!65 &5886513323097005897
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -531,6 +516,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8248449307983724552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766339856109290799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd8e98e2f24be7144823748d382d4f1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: 
+  myActionNames: []
+  doorSound: {fileID: 8300000, guid: c1dd0d1238edf9d4882e0c8ff33aa5d8, type: 3}
 --- !u!1 &5277889306804858129
 GameObject:
   m_ObjectHideFlags: 0
