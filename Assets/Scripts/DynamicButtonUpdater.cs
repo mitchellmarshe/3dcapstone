@@ -22,6 +22,8 @@ public class DynamicButtonUpdater : MonoBehaviour
     public Image selectorIcon;
     public Text selectorText;
 
+    private Image tmpImage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,8 @@ public class DynamicButtonUpdater : MonoBehaviour
     {
         //Global.Action myAction = global.action;
         //enableAllButtons();
+
+        //selectorIcon = tmpImage;
     }
 
     // This is called in 2 cases
@@ -52,14 +56,16 @@ public class DynamicButtonUpdater : MonoBehaviour
         action3Text.text = names[2];
         action4Text.text = names[3];
         global.selectedItem = item;
-        Image tmpImage = item.GetComponentInChildren<Image>();
+
+        tmpImage = item.GetComponentInChildren<Image>();
         if (tmpImage == null || tmpImage.sprite == null)
         {
-            //Debug.Log(selectorText.text + " has no associated icon Image");
+            Debug.Log(selectorText.text + " has no associated icon Image");
         }
         else
         {
-            selectorIcon = tmpImage;
+            selectorIcon.sprite = tmpImage.sprite;
+            Debug.Log("Hi");
         }
         
     }
