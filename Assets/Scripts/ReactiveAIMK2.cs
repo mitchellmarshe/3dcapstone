@@ -54,6 +54,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     int coughCount = 0;
 
 
+
     /*Trigger names
      * 
      * walk
@@ -628,4 +629,40 @@ public class ReactiveAIMK2 : MonoBehaviour
         }
 
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        //Debug.Log("other is " + other.gameObject.name);
+        if (other.gameObject.tag == "Decal")
+        {
+            Sprite tmp = other.gameObject.GetComponent<SpriteRenderer>().sprite;
+            //Debug.Log("NPC Detected");
+            if (tmp.name == "redrum")
+            {
+                setSurprised();
+            }
+            else if (tmp.name == "unicorn")
+            {
+                setSurprised();
+            }
+            else if (tmp.name == "skull")
+            {
+                setSurprised();
+            }
+            else if (tmp.name == "hypnolizard")
+            {
+                setSurprised();
+            }
+            else if (tmp.name == "pentagram")
+            {
+                setSurprised();
+            }
+            else
+            {
+                Debug.Log("decal has non-decal image");
+            }
+        }
+    }
+    
+
 }
