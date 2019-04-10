@@ -177,6 +177,7 @@ MonoBehaviour:
   tmpDecal: {fileID: 0}
   moveJoystick: {fileID: 0}
   lookJoystick: {fileID: 0}
+  fade: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1136191455464080715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,7 +236,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d3a0268b4eed0ea4e888de3f90de968c, type: 3}
   - {fileID: 21300000, guid: fa255179c293df44092b73141306f0d3, type: 3}
   - {fileID: 21300000, guid: c1ae2d1e91482f446becf7bb36556bef, type: 3}
-  - {fileID: 21300000, guid: 11f62ffa139398946b6e1a7ba1cfcf05, type: 3}
+  - {fileID: 21300000, guid: d7a02e0373c640448950f9b143dfc2f8, type: 3}
   - {fileID: 21300000, guid: 97914a9fc874daf429ac1dc66771f2d6, type: 3}
   - {fileID: 21300000, guid: 8e137dd286988a24ea05fda5a3e46d85, type: 3}
   - {fileID: 21300000, guid: b150a4b0b87c4bb40a89af1c3f2fef7d, type: 3}
@@ -245,7 +246,7 @@ MonoBehaviour:
   - {fileID: 0}
   icons2:
   - {fileID: 21300000, guid: 6025ec769f62c884aa59e3311926e429, type: 3}
-  - {fileID: 21300000, guid: 11f62ffa139398946b6e1a7ba1cfcf05, type: 3}
+  - {fileID: 21300000, guid: 7b439c8446d44524882f8b2b669be9cc, type: 3}
   - {fileID: 21300000, guid: 7b439c8446d44524882f8b2b669be9cc, type: 3}
   - {fileID: 21300000, guid: d3a0268b4eed0ea4e888de3f90de968c, type: 3}
   - {fileID: 0}
@@ -255,7 +256,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   icons3:
-  - {fileID: 21300000, guid: 11f62ffa139398946b6e1a7ba1cfcf05, type: 3}
+  - {fileID: 21300000, guid: 0df39ec002086ec40b45f98212946f2c, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -266,7 +267,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   icons4:
-  - {fileID: 21300000, guid: 11f62ffa139398946b6e1a7ba1cfcf05, type: 3}
+  - {fileID: 21300000, guid: 6ff818af5ec495b4e8cdf3cc208d3b76, type: 3}
   - {fileID: 21300000, guid: a98c3f74569d8b749996c520727c29a3, type: 3}
   - {fileID: 0}
   - {fileID: 0}

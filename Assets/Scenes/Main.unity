@@ -3798,7 +3798,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 5000
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -3865,7 +3865,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 100, y: 100, z: 1}
+    m_Scale: {x: 60, y: 60, z: 30}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -7843,7 +7843,7 @@ Transform:
   m_GameObject: {fileID: 1418041114}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.9911, y: 1.9911, z: 1.9911}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 17
@@ -8877,16 +8877,25 @@ PrefabInstance:
       propertyPath: m_LocalRotation.y
       value: -0.16640611
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 3055758166538865084, guid: ce740db7083feb24b99761179b46ee7b,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.14106245
       objectReference: {fileID: 0}
     - target: {fileID: 3055758166538865084, guid: ce740db7083feb24b99761179b46ee7b,
+=======
+    - target: {fileID: 3055758166538835400, guid: ce740db7083feb24b99761179b46ee7b,
+>>>>>>> c2076e2e9d0454425769b708a85381cb51a9ebbb
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.97566795
       objectReference: {fileID: 0}
+    - target: {fileID: 6320750279872048141, guid: ce740db7083feb24b99761179b46ee7b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d52d3240d97fd114aa04ec5f0aa6707e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce740db7083feb24b99761179b46ee7b, type: 3}
 --- !u!1 &1757138518 stripped
