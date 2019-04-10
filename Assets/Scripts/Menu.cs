@@ -44,7 +44,11 @@ public class Menu : MonoBehaviour
     public Animator fade;
     public Animator title;
     public Animator getUpCam;
+
+    [Header("Props")]
     public GameObject player;
+    public GameObject npc1;
+    public GameObject npc2;
 
     private bool inMenu;
     private bool inConfirm;
@@ -311,17 +315,20 @@ public class Menu : MonoBehaviour
         ShowKnob();
         fade.Play("Death");
         title.Play("Title");
-        Invoke("startCamAnim", 7);
-        Invoke("LoadGame", 22);
+        //Invoke("startCamAnim", 7);
+        //Invoke("LoadGame", 22);
+        Invoke("LoadGame", 7);
     }
 
     private void startCamAnim()
     {
         player.SetActive(false);
-        getUpCam.gameObject.SetActive(true);
-        fade.Play("reverseDeath");
-        title.Play("reverseTitle");
-        getUpCam.SetTrigger("getUp");
+        npc1.SetActive(false);
+        npc2.SetActive(false);
+        //getUpCam.gameObject.SetActive(true);
+        //fade.Play("reverseDeath");
+        //title.Play("reverseTitle");
+        //getUpCam.SetTrigger("getUp");
     }
 
     // Load game.
