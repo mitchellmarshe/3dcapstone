@@ -3234,6 +3234,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1793334847}
   m_CullTransparentMesh: 0
+--- !u!114 &1805862670 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1102488051, guid: 6af93d0ccf50409428093937dde04921,
+    type: 3}
+  m_PrefabInstance: {fileID: 7181188837415510674}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1809119531 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3706740696564128095, guid: 9be32765e9800f441b200ffa31b2d78d,
@@ -4396,6 +4408,11 @@ PrefabInstance:
       propertyPath: menu
       value: 
       objectReference: {fileID: 7181188837415510687}
+    - target: {fileID: 1136191455464080708, guid: dd0b8c2eb233923448fe031b9945167b,
+        type: 3}
+      propertyPath: fade
+      value: 
+      objectReference: {fileID: 1805862670}
     - target: {fileID: 1136191455464080713, guid: dd0b8c2eb233923448fe031b9945167b,
         type: 3}
       propertyPath: guiActionObj
