@@ -39,6 +39,17 @@ public class Controller2 : MonoBehaviour
         characterController = player.GetComponent<CharacterController>();
         playerDirection = new Vector3(0.0f, 0.0f, 0.0f);
         cameraRotation = camera.transform.eulerAngles;
+
+        if (global.platform == false)
+        {
+            walkSpeed = 10.0f;
+            lookSpeed = 5.0f;
+        }
+        else
+        {
+            walkSpeed = 10.0f;
+            lookSpeed = 5.0f;
+        }
     }
 
     private void Start()
