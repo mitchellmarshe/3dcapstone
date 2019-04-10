@@ -208,6 +208,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   global: {fileID: 0}
+  action1: {fileID: 0}
+  action2: {fileID: 0}
+  action3: {fileID: 0}
+  action4: {fileID: 0}
   action1Button: {fileID: 0}
   action2Button: {fileID: 0}
   action3Button: {fileID: 0}
@@ -234,6 +238,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 11f62ffa139398946b6e1a7ba1cfcf05, type: 3}
   - {fileID: 21300000, guid: 97914a9fc874daf429ac1dc66771f2d6, type: 3}
   - {fileID: 21300000, guid: 8e137dd286988a24ea05fda5a3e46d85, type: 3}
+  - {fileID: 21300000, guid: b150a4b0b87c4bb40a89af1c3f2fef7d, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   icons2:
   - {fileID: 21300000, guid: 6025ec769f62c884aa59e3311926e429, type: 3}
   - {fileID: 21300000, guid: 11f62ffa139398946b6e1a7ba1cfcf05, type: 3}

@@ -365,12 +365,13 @@ public class ReactiveAIMK2 : MonoBehaviour
         if (!myAgent.isStopped)
         {
             StopAllCoroutines();
+            addFear(250);
             stopped = true;
             myAgent.isStopped = true;
             setAllAnimBoolsToBool(false);
             myAnimator.SetBool("surprised", true);
             myAnimator.SetTrigger("fireTransition");
-            addFear(250);
+            
             //myAnimator.fireEvents = false;
             //IEnumerator coro = surprisedIenum(3.75f);
             //StopAllCoroutines();
@@ -643,7 +644,7 @@ public class ReactiveAIMK2 : MonoBehaviour
             }
             else if (tmp.name == "unicorn")
             {
-                setSurprised();
+                setLaughLight();
             }
             else if (tmp.name == "skull")
             {
