@@ -62,11 +62,6 @@ public class DynamicButtonUpdater : MonoBehaviour
         setStates(global.itemInfo.states);
         string[] names = itemInfo.getActionNames();
 
-        //Debug.Log(names[0]);
-        //Debug.Log(names[0]);
-        Debug.Log(names[3]);
-        //Debug.Log(names[0]);
-
         action1Text.text = names[0];
 
         if (names[0] == "Open2")
