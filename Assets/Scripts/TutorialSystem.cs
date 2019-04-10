@@ -10,7 +10,7 @@ public class TutorialSystem : MonoBehaviour
 
     public void nextTip()
     {
-        if(i >= tips.Length)
+        if(i >= tips.Length - 1)
         {
             gameObject.SetActive(false);
         } else
