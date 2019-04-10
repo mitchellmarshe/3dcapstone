@@ -227,6 +227,7 @@ public class ReactiveAIMK2 : MonoBehaviour
         myAnimator.SetBool("trapped", newBool);
         myAnimator.SetBool("startHypno", newBool);
         myAnimator.SetBool("endHypno", newBool);
+        myAnimator.SetBool("pentagram", newBool);
 
     }
     public void checkStates()
@@ -508,9 +509,53 @@ public class ReactiveAIMK2 : MonoBehaviour
             IEnumerator coro = idling(2);
             StartCoroutine(coro);
             saySomethingGeneral(generalQuotes);
-            mySkinMeshRend.material.mainTexture = human_surprised;
+            mySkinMeshRend.material.mainTexture = human_frowning;
             reactionFace = true;
         
+    }
+
+    public void setPentagram(Transform decal)
+    {
+        if (!myAgent.isStopped)
+        {
+            StopAllCoroutines();
+            stopped = true;
+            myAgent.isStopped = true;
+            setAllAnimBoolsToBool(false);
+            myAnimator.SetBool("pentagram", true);
+            myAnimator.SetTrigger("fireTransition");
+            IEnumerator coro = pentagraming(100f, decal);
+            StartCoroutine(coro);
+            saySomethingGeneral(generalQuotes);
+            mySkinMeshRend.material.mainTexture = human_screaming;
+            reactionFace = true;
+        }
+    }
+
+    private IEnumerator pentagraming(float times, Transform target)
+    {
+        Material npcMat = gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material;
+        Color newColor = new Color(npcMat.color.r + .01f, npcMat.color.g - .01f, npcMat.color.b - .01f, npcMat.color.a-.01f);
+        gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material.color = newColor;
+        //Vector3 newv3 = new Vector3(0.02f, 0.02f, 0.02f);
+       // Vector3 myForward = transform.forward;
+        //myForward.Scale(newv3);
+        //transform.LookAt(target);
+        myAgent.Move(transform.forward * (Vector3.Distance(transform.position, target.position)/100));
+        Debug.Log("In pentagraming");
+        if (times > 0)
+        {
+            yield return new WaitForSeconds(.01f);
+            IEnumerator coro = pentagraming(times-1, target);
+            StartCoroutine(coro);
+        } else
+        {
+            Debug.Log("Destroy");
+
+            Destroy(gameObject);
+        }
+
+
     }
 
 
@@ -748,7 +793,7 @@ public class ReactiveAIMK2 : MonoBehaviour
         }
         else if (tmp.name == "pentagram")
         {
-            setSurprised();
+            setPentagram(obj.transform);
         }
         else
         {
