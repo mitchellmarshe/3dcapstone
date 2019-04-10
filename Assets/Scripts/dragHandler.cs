@@ -113,6 +113,7 @@ public class dragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
                 newDecal.transform.localScale = spriteRenderer.transform.lossyScale;
                 newDecal.tag = "Decal";
                 Destroy(newDecal, 15.0f);
+                
             }
             else
             {

@@ -53,6 +53,8 @@ public class ReactiveAIMK2 : MonoBehaviour
 
     int coughCount = 0;
 
+    private List<GameObject> closeDecals = new List<GameObject>();
+
 
 
     /*Trigger names
@@ -114,6 +116,7 @@ public class ReactiveAIMK2 : MonoBehaviour
         updateFearSlider();
 
         checkStates();
+        checkCloseDecals();
         //The stopped state is true when the NPC suffers a disabilitating
         // animation such as dead, heart attack, fetal position, ect
         if (!stopped)
@@ -222,6 +225,8 @@ public class ReactiveAIMK2 : MonoBehaviour
         myAnimator.SetBool("cough", newBool);
         myAnimator.SetBool("laughLight", newBool);
         myAnimator.SetBool("trapped", newBool);
+        myAnimator.SetBool("startHypno", newBool);
+        myAnimator.SetBool("endHypno", newBool);
 
     }
     public void checkStates()
@@ -475,6 +480,41 @@ public class ReactiveAIMK2 : MonoBehaviour
         }
     }
 
+    public void setHypnotized()
+    {
+        if (!myAgent.isStopped)
+        {
+            StopAllCoroutines();
+            stopped = true;
+            myAgent.isStopped = true;
+            setAllAnimBoolsToBool(false);
+            myAnimator.SetBool("startHypno", true);
+            myAnimator.SetTrigger("fireTransition");
+            saySomethingGeneral(generalQuotes);
+            mySkinMeshRend.material.mainTexture = human_surprised;
+            reactionFace = true;
+        }
+    }
+
+    public void endHypnotized()
+    {
+
+            StopAllCoroutines();
+            stopped = true;
+            myAgent.isStopped = true;
+            setAllAnimBoolsToBool(false);
+            myAnimator.SetBool("endHypno", true);
+            myAnimator.SetTrigger("fireTransition");
+            IEnumerator coro = idling(2);
+            StartCoroutine(coro);
+            saySomethingGeneral(generalQuotes);
+            mySkinMeshRend.material.mainTexture = human_surprised;
+            reactionFace = true;
+        
+    }
+
+
+
     public bool getPath(Transform loc, ref NavMeshPath newPath)
     {
         return myAgent.CalculatePath(loc.position, newPath);
@@ -637,31 +677,82 @@ public class ReactiveAIMK2 : MonoBehaviour
         if (other.gameObject.tag == "Decal")
         {
             Sprite tmp = other.gameObject.GetComponent<SpriteRenderer>().sprite;
+            closeDecals.Add(other.gameObject);
             //Debug.Log("NPC Detected");
-            if (tmp.name == "redrum")
+            
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        //Debug.Log("other is " + other.gameObject.name);
+        if (other.gameObject.tag == "Decal" && closeDecals.Contains(other.gameObject))
+        {
+            closeDecals.Remove(other.gameObject);
+            //Debug.Log("NPC Detected");
+
+        }
+    }
+
+    public void checkCloseDecals()
+    {
+        int i = 0;
+        while (i < closeDecals.Count)
+        {
+            if (closeDecals[i] != null)
             {
-                setSurprised();
-            }
-            else if (tmp.name == "unicorn")
-            {
-                setLaughLight();
-            }
-            else if (tmp.name == "skull")
-            {
-                setSurprised();
-            }
-            else if (tmp.name == "hypnolizard")
-            {
-                setSurprised();
-            }
-            else if (tmp.name == "pentagram")
-            {
-                setSurprised();
+
+                LayerMask newMask = LayerMask.GetMask("walls");
+                if (Physics.Linecast(transform.position, closeDecals[i].transform.position, newMask, QueryTriggerInteraction.UseGlobal))
+                {
+                    i++;
+                }
+                else
+                {
+                    reactToDecal(closeDecals[i]);
+                    transform.LookAt(closeDecals[i].transform);
+
+                    
+                    closeDecals.RemoveAt(i);
+                }
             }
             else
             {
-                Debug.Log("decal has non-decal image");
+                closeDecals.RemoveAt(i);
             }
+            
+        }
+    }
+
+    public void reactToDecal(GameObject obj)
+    {
+        Sprite tmp = obj.GetComponent<SpriteRenderer>().sprite;
+        //Debug.Log("NPC Detected");
+        if (tmp.name == "redrum")
+        {
+            setSurprised();
+        }
+        else if (tmp.name == "unicorn")
+        {
+            setLaughLight();
+        }
+        else if (tmp.name == "skull")
+        {
+            setSurprised();
+        }
+        else if (tmp.name == "hypnolizard")
+        {
+            setHypnotized();
+            obj.GetComponent<EndHypnoOnDestroy>().hypnoNPCS.Add(gameObject.GetComponent<ReactiveAIMK2>());
+
+        }
+        else if (tmp.name == "pentagram")
+        {
+            setSurprised();
+        }
+        else
+        {
+            Debug.Log("decal has non-decal image");
         }
     }
     
