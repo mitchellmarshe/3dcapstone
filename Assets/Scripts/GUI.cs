@@ -20,11 +20,15 @@ public class GUI : MonoBehaviour
     public GameObject mobileMoveJoystick;
     public GameObject mobileLookJoystick;
 
+    public GameObject lookTutorial;
+    public bool lookTutorialOn;
+
     private float padding;
 
     private void Awake()
     {
         padding = 16.0f;
+        lookTutorialOn = false;
     }
 
     private void Start()
@@ -49,6 +53,9 @@ public class GUI : MonoBehaviour
             {
                 actions.SetActive(false);
                 decals.SetActive(false);
+
+                ShowLookTutorial();
+                ShowLookTutorial();
             }
             else
             {
@@ -57,6 +64,8 @@ public class GUI : MonoBehaviour
 
                 decals.SetActive(true);
                 SetDecals();
+
+                ShowLookTutorial();
             }
         }
         else
@@ -72,6 +81,8 @@ public class GUI : MonoBehaviour
             hotkey2.SetActive(false);
             hotkey3.SetActive(false);
             hotkey4.SetActive(false);
+
+            ShowLookTutorial();
 
             if (global.currentScene == global.startScene)
             {
@@ -103,6 +114,12 @@ public class GUI : MonoBehaviour
         overlays.transform.GetChild(0).gameObject.SetActive(trigger);
         overlays.transform.GetChild(1).gameObject.SetActive(trigger);
         overlays.SetActive(trigger);
+    }
+
+    public void ShowLookTutorial()
+    {
+        lookTutorial.SetActive(lookTutorialOn);
+        lookTutorialOn = !lookTutorialOn;
     }
 
     public void SetOverlays()

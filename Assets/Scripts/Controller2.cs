@@ -8,6 +8,7 @@ public class Controller2 : MonoBehaviour
     [Header("Scripts")]
     public Global global;
     public Actions actions;
+    public GUI gui;
     public Menu menu;
 
     [Header("Player")]
@@ -170,6 +171,12 @@ public class Controller2 : MonoBehaviour
             {
                 cameraRotation.y += Input.GetAxis("Mouse X") * lookSpeed;
                 cameraRotation.x += Input.GetAxis("Mouse Y") * -lookSpeed;
+
+                if (gui.lookTutorialOn == false)
+                {
+                    gui.ShowLookTutorial();
+                    menu.ShowMenu(true);
+                }
             }
             else // Mobile
             {

@@ -91,6 +91,7 @@ public class Menu : MonoBehaviour
             SetOutGameMenu();
             ShowMenu(true);
             ShowConfirm();
+            ShowMenu(true);
             getUpCam.gameObject.SetActive(false);
         }
         else
