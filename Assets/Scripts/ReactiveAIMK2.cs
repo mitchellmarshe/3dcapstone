@@ -133,6 +133,7 @@ public class ReactiveAIMK2 : MonoBehaviour
             //Decided is true when the NPC is either idling or walking somewhere
             if (!decided)
             {
+                Debug.Log("I am going to" + myAgent.destination);
                 //This code below decides wether to idle or walk to a new target
                 decided = true;
                 arrived = false;
