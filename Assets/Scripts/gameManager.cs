@@ -9,6 +9,7 @@ public class gameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //finds the number of npcs in the scene
         npcCount = GameObject.FindGameObjectsWithTag("NPC").Length;
     }
     
