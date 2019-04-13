@@ -138,6 +138,7 @@ public class ReactiveAIMK2 : MonoBehaviour
                 decided = true;
                 arrived = false;
                 setAllAnimBoolsToBool(false);
+                StopAllCoroutines();
                 int rand = Random.Range(1, 3);
                 if (rand == 1)
                 {
@@ -187,6 +188,8 @@ public class ReactiveAIMK2 : MonoBehaviour
                 }
                 
             }
+            //Debug.Log("my Loc: " + transform.position + " | MyDestination: " + myAgent.destination);
+            Debug.Log(Vector3.Distance(transform.position, myAgent.destination));
             if (myAnimator.GetBool("walk") &&  Vector3.Distance(transform.position, myAgent.destination) <= 3)
             {
                 arrived = true;
@@ -587,6 +590,8 @@ public class ReactiveAIMK2 : MonoBehaviour
     {
         try
         {
+            Debug.Log("setNewTarget");
+            StopAllCoroutines();
             setAllAnimBoolsToBool(false);
             decided = true;
             arrived = false;
@@ -604,6 +609,8 @@ public class ReactiveAIMK2 : MonoBehaviour
     {
         try
         {
+            Debug.Log("setNewTarget");
+            StopAllCoroutines();
             setAllAnimBoolsToBool(false);
             decided = true;
             arrived = false;
