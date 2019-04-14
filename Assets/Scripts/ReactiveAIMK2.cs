@@ -727,12 +727,27 @@ public class ReactiveAIMK2 : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         //Debug.Log("other is " + other.gameObject.name);
+        
         if (other.gameObject.tag == "Decal")
         {
             Sprite tmp = other.gameObject.GetComponent<SpriteRenderer>().sprite;
             closeDecals.Add(other.gameObject);
             //Debug.Log("NPC Detected");
             
+        }
+        
+    }
+
+    public void OnCloseTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Ignore")
+        {
+            ItemActionInterface actions = other.GetComponent<ItemActionInterface>();
+            Rigidbody body = other.attachedRigidbody;
+            if (actions != null && body != null && body.velocity.magnitude > 2)
+            {
+                setSurprisedDuck();
+            }
         }
     }
 
@@ -808,6 +823,7 @@ public class ReactiveAIMK2 : MonoBehaviour
             Debug.Log("decal has non-decal image");
         }
     }
-    
+
+
 
 }
