@@ -745,9 +745,10 @@ public class ReactiveAIMK2 : MonoBehaviour
             //Debug.Log("NPC Detected");
             
         }
-        if (!seesObj && !closeMiss)
+        if (!seesObj && !closeMiss && other.isTrigger == false)
         {
-            if (other.gameObject.tag == "Ignore")
+            LayerMask newMask = LayerMask.GetMask("walls");
+            if (other.gameObject.tag == "Ignore" && !Physics.Linecast(transform.position, other.gameObject.transform.position, newMask, QueryTriggerInteraction.UseGlobal))
             {
                 ItemActionInterface actions = other.GetComponent<ItemActionInterface>();
                 Rigidbody body = other.attachedRigidbody;
@@ -755,6 +756,7 @@ public class ReactiveAIMK2 : MonoBehaviour
                 {
                     seesObj = true;
                     setSurprised();
+                    Debug.Log("Just seen it");
                 }
             }
         }
@@ -763,16 +765,20 @@ public class ReactiveAIMK2 : MonoBehaviour
 
     public void OnCloseTriggerEnter(Collider other)
     {
-        if (!closeMiss)
+        if (!closeMiss && other.isTrigger == false)
         {
-            if (other.gameObject.tag == "Ignore")
+            Debug.Log("Close Miss!!");
+            LayerMask newMask = LayerMask.GetMask("walls");
+            if (other.gameObject.tag == "Ignore" && !Physics.Linecast(transform.position, other.gameObject.transform.position, newMask, QueryTriggerInteraction.UseGlobal))
             {
+                
                 ItemActionInterface actions = other.GetComponent<ItemActionInterface>();
                 Rigidbody body = other.attachedRigidbody;
                 if (actions != null && body != null && body.velocity.magnitude > 2)
                 {
                     if (seesObj)
                     {
+                        Debug.Log("I saw the obj first");
                         myAgent.isStopped = false;
                         stopped = false;
                     }
