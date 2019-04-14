@@ -54,7 +54,9 @@ public class ReactiveAIMK2 : MonoBehaviour
     int coughCount = 0;
 
     private List<GameObject> closeDecals = new List<GameObject>();
-
+    private bool seesObj = false;
+    private bool closeMiss = false;
+    private float thrownCounter = 2f;
 
 
     /*Trigger names
@@ -111,6 +113,14 @@ public class ReactiveAIMK2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        thrownCounter -= Time.deltaTime;
+        if(thrownCounter <= 0)
+        {
+            thrownCounter = 2f;
+            closeMiss = false;
+            seesObj = false;
+        }
+
         myOldFear = myCurrentFear;
         myCurrentFear = checkFear();
         updateFearSlider();
@@ -735,18 +745,41 @@ public class ReactiveAIMK2 : MonoBehaviour
             //Debug.Log("NPC Detected");
             
         }
-        
+        if (!seesObj && !closeMiss)
+        {
+            if (other.gameObject.tag == "Ignore")
+            {
+                ItemActionInterface actions = other.GetComponent<ItemActionInterface>();
+                Rigidbody body = other.attachedRigidbody;
+                if (actions != null && body != null && body.velocity.magnitude > 2)
+                {
+                    seesObj = true;
+                    setSurprised();
+                }
+            }
+        }
+
     }
 
     public void OnCloseTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Ignore")
+        if (!closeMiss)
         {
-            ItemActionInterface actions = other.GetComponent<ItemActionInterface>();
-            Rigidbody body = other.attachedRigidbody;
-            if (actions != null && body != null && body.velocity.magnitude > 2)
+            if (other.gameObject.tag == "Ignore")
             {
-                setSurprisedDuck();
+                ItemActionInterface actions = other.GetComponent<ItemActionInterface>();
+                Rigidbody body = other.attachedRigidbody;
+                if (actions != null && body != null && body.velocity.magnitude > 2)
+                {
+                    if (seesObj)
+                    {
+                        myAgent.isStopped = false;
+                        stopped = false;
+                    }
+                    closeMiss = true;
+                    
+                    setSurprisedDuck();
+                }
             }
         }
     }
