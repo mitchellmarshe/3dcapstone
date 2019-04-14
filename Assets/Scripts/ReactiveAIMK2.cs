@@ -779,12 +779,25 @@ public class ReactiveAIMK2 : MonoBehaviour
                     if (seesObj)
                     {
                         Debug.Log("I saw the obj first");
-                        myAgent.isStopped = false;
-                        stopped = false;
+                        StopAllCoroutines();
+                        stopped = true;
+                        myAgent.isStopped = true;
+                        setAllAnimBoolsToBool(false);
+                        myAnimator.SetBool("surprisedDuck", true);
+                        myAnimator.SetTrigger("fireTransition");
+                        addFear(250);
+                        IEnumerator coro = idling(2);
+                        StartCoroutine(coro);
+                        //saySomethingGeneral(generalQuotes);
+                        mySkinMeshRend.material.mainTexture = human_surprised;
+                        reactionFace = true;
+                    } else
+                    {
+                        setSurprisedDuck();
                     }
                     closeMiss = true;
                     
-                    setSurprisedDuck();
+                    
                 }
             }
         }
