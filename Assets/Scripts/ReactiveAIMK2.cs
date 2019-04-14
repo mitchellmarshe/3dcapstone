@@ -189,7 +189,7 @@ public class ReactiveAIMK2 : MonoBehaviour
                 
             }
             //Debug.Log("my Loc: " + transform.position + " | MyDestination: " + myAgent.destination);
-            Debug.Log(Vector3.Distance(transform.position, myAgent.destination));
+            //Debug.Log(Vector3.Distance(transform.position, myAgent.destination));
             if (myAnimator.GetBool("walk") &&  Vector3.Distance(transform.position, myAgent.destination) <= 3)
             {
                 arrived = true;
