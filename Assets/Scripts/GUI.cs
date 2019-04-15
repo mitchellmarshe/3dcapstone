@@ -23,12 +23,17 @@ public class GUI : MonoBehaviour
     public GameObject lookTutorial;
     public bool lookTutorialOn;
 
+    public GameObject moveTutorial;
+    public bool moveTutorialOn;
+
+
     private float padding;
 
     private void Awake()
     {
         padding = 16.0f;
         lookTutorialOn = false;
+        moveTutorialOn = false;
     }
 
     private void Start()
@@ -56,6 +61,7 @@ public class GUI : MonoBehaviour
 
                 ShowLookTutorial();
                 ShowLookTutorial();
+                ShowMoveTutorial();
             }
             else
             {
@@ -66,6 +72,7 @@ public class GUI : MonoBehaviour
                 SetDecals();
 
                 ShowLookTutorial();
+                ShowMoveTutorial();
             }
         }
         else
@@ -120,6 +127,12 @@ public class GUI : MonoBehaviour
     {
         lookTutorial.SetActive(lookTutorialOn);
         lookTutorialOn = !lookTutorialOn;
+    }
+
+    public void ShowMoveTutorial()
+    {
+        moveTutorial.SetActive(moveTutorialOn);
+        moveTutorialOn = !moveTutorialOn;
     }
 
     public void SetOverlays()

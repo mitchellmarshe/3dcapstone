@@ -5175,6 +5175,11 @@ MonoBehaviour:
   mobileMoveJoystick: {fileID: 6745686858568312692}
   mobileLookJoystick: {fileID: 6745686858303974091}
   lookTutorial: {fileID: 1253853273505021391}
+  lookTutorialOn: 0
+  lookTutorial2: {fileID: 0}
+  lookTutorialOn2: 0
+  moveTutorial: {fileID: 0}
+  moveTutorialOn: 0
 --- !u!1 &6745686858436677295
 GameObject:
   m_ObjectHideFlags: 0

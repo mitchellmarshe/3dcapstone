@@ -24,9 +24,6 @@ public class Controller2 : MonoBehaviour
     public Joystick moveJoystick;
     public Joystick lookJoystick;
 
-    [Header("Overlay")]
-    public Color fade;
-
     private CharacterController characterController;
     private CollisionFlags collisionFlags;
     private Vector3 playerDirection;
@@ -61,7 +58,6 @@ public class Controller2 : MonoBehaviour
     private void Update()
     {
         Move();
-        //CheckMove();
         Look();
 
         actions.Action1(false);
@@ -147,20 +143,6 @@ public class Controller2 : MonoBehaviour
         }
     }
 
-    private void CheckMove()
-    {
-        if (player.transform.position.z < -28.0f || 
-            player.transform.position.z > 28.0f ||
-            player.transform.position.x < -26.0f ||
-            player.transform.position.x > 26.0f)
-        {
-            fade = new Color(0.0f, 0.0f, 0.0f, 1.0f);
-            Debug.Log("Hi!");
-        }
-
-        fade = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-    }
-
     private void Look()
     {
         if (Input.GetMouseButton(1) || global.platform == true)
@@ -175,7 +157,11 @@ public class Controller2 : MonoBehaviour
                 if (gui.lookTutorialOn == false)
                 {
                     gui.ShowLookTutorial();
-                    menu.ShowMenu(true);
+
+                    if (global.currentScene == global.startScene)
+                    {
+                        menu.ShowMenu(true);
+                    }
                 }
             }
             else // Mobile

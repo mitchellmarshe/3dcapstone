@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlayStartAnimation : MonoBehaviour
 {
     public GameObject player;
+    public GUI gui;
     public Menu menu;
     public GameObject decals;
     public GameObject tutorial;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -25,6 +27,7 @@ public class PlayStartAnimation : MonoBehaviour
         player.GetComponentInChildren<Controller2>().enabled = true;
         decals.SetActive(true);
         tutorial.SetActive(true);
+        gui.ShowLookTutorial();
         gameObject.SetActive(false);
     }
 }
