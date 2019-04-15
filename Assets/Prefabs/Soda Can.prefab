@@ -82,7 +82,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   states: 
   myActionNames: []
-  bang: {fileID: 8300000, guid: f28f544b049405443b6cd780dd5933c6, type: 3}
+  canHitSounds:
+  - {fileID: 8300000, guid: 42a1b087865510943be861ab04efdb65, type: 3}
+  - {fileID: 8300000, guid: bab04c3a5436744439fed1e0a9bb6517, type: 3}
+  - {fileID: 8300000, guid: 47c799df32ee9f74e9f47666edb980de, type: 3}
+  pops:
+  - {fileID: 8300000, guid: 0a8c29fcf8dc53649a90d7150509ae77, type: 3}
+  - {fileID: 8300000, guid: a5cb4127d6b286d44b7e57f628a28e9e, type: 3}
+  - {fileID: 8300000, guid: 19ccf1b17fd21c7429b1795a10d008d8, type: 3}
+  - {fileID: 8300000, guid: 622307c9671fdb449b9e39dbdf255da3, type: 3}
+  - {fileID: 8300000, guid: f28f544b049405443b6cd780dd5933c6, type: 3}
+  pop: {fileID: 8300000, guid: f39498de8cdf0304dbd0066cfc916516, type: 3}
 --- !u!135 &1775439992783578724
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -107,7 +117,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f39498de8cdf0304dbd0066cfc916516, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

@@ -14,11 +14,21 @@ public class SodaCanActions : ItemActionInterface
     private bool popped;
     private Global global;
     private bool destroy = false;
+    public List<AudioClip> canHitSounds;
+    public List<AudioClip> pops;
+    public AudioClip pop;
 
-    public AudioClip bang;
+    private void Awake()
+    {
+        if (Time.time > 2)
+        {
+            gameObject.GetComponent<AudioSource>().PlayOneShot(pop);
+        }
+    }
 
     private void Start()
     {
+        
         popped = false;
         shakeStopper = 0;
         myActionNames = new string[] { "Shake", "POP*", "...", "..." };
@@ -79,7 +89,8 @@ public class SodaCanActions : ItemActionInterface
             }
             //myHaunt.unPossess();
             popped = false;
-            gameObject.GetComponent<AudioSource>().PlayOneShot(bang);
+            int p = Random.Range(0, pops.Count - 1);
+            gameObject.GetComponent<AudioSource>().PlayOneShot(pops[p]);
             global.softSelected = null;
             global.hardSelected = null;
             destroy = true;
@@ -150,6 +161,15 @@ public class SodaCanActions : ItemActionInterface
         for (int i = 0; i < 4; i++)
         {
             myActionNames[i] = names[i];
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.impulse.magnitude > 2)
+        {
+            int i = Random.Range(0, canHitSounds.Count);
+            gameObject.GetComponent<AudioSource>().PlayOneShot(canHitSounds[i]);
         }
     }
 }
