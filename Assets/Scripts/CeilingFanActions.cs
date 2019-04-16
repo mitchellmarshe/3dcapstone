@@ -12,7 +12,9 @@ public class CeilingFanActions : ItemActionInterface
     private float counter = 0;
     private AudioSource audio;
     public AudioClip fanSounds;
-
+    private List<GameObject> scaredNPCS = new List<GameObject>();
+    private bool startSound = false;
+    private bool startAnim = false;
 
     private void Start()
     {
@@ -28,12 +30,34 @@ public class CeilingFanActions : ItemActionInterface
     {
         if (thrashing)
         {
+            
             counter += Time.deltaTime;
-            if (counter >= 8)
+            if (counter > .2f && startSound)
+            {
+                startSound = false;
+                audio.PlayOneShot(fanSounds);
+                
+            }
+
+            if(counter >= 1.6f && startAnim)
+            {
+                startAnim = false;
+                for (int i = 0; i < scaredNPCS.Count; i++)
+                {
+                    LayerMask newMask = LayerMask.GetMask("walls");
+                    if (!Physics.Linecast(transform.position, scaredNPCS[i].transform.position, newMask, QueryTriggerInteraction.UseGlobal))
+                    {
+
+                        scaredNPCS[i].GetComponent<ReactiveAIMK2>().setSurprisedDuck();
+                    }
+                }
+            }
+            if (counter >= 2.2f)
             {
                 thrashing = false;
                 counter = 0;
                 myAnim.SetBool("thrashing", false);
+                audio.Stop();
                 
 
 
@@ -47,7 +71,8 @@ public class CeilingFanActions : ItemActionInterface
         {
             thrashing = true;
             myAnim.SetBool("thrashing", true);
-            audio.PlayOneShot(fanSounds);
+            startSound = true;
+            startAnim = true;
             counter = 0;
         }
     }
@@ -71,6 +96,27 @@ public class CeilingFanActions : ItemActionInterface
     public override string[] getActionNames()
     {
         return myActionNames;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "NPC")
+        {
+            if (!scaredNPCS.Contains(other.gameObject))
+            {
+                scaredNPCS.Add(other.gameObject);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "NPC")
+        {
+            if (scaredNPCS.Contains(other.gameObject))
+            {
+                scaredNPCS.Remove(other.gameObject);
+            }
+        }
     }
 
     public override void setActionNames(string[] names)
