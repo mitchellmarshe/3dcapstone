@@ -10,6 +10,7 @@ public class Actions : MonoBehaviour
     [Header("Scripts")]
     public Global global;
     public DynamicButtonUpdater dynamicButtonUpdater;
+    public Guardi guardi;
 
     [Header("Actions")]
     public Button action1Button;
@@ -82,6 +83,12 @@ public class Actions : MonoBehaviour
                 {
                     print("itemInfo null in action button1");
                 }
+
+                // Guardi
+                if (global.currentScene == global.mainScene && global.tutorial == true && guardi.action == false)
+                {
+                    guardi.action = true;
+                }
             }
 
             // Reset button animations.
@@ -117,6 +124,12 @@ public class Actions : MonoBehaviour
                 {
                     global.itemInfo.callAction2();
                 }
+
+                // Guardi
+                if (global.currentScene == global.mainScene && global.tutorial == true && guardi.action == false)
+                {
+                    guardi.action = true;
+                }
             }
 
             if (Input.GetKeyUp(KeyCode.Alpha2))
@@ -149,7 +162,13 @@ public class Actions : MonoBehaviour
                 if (global.itemInfo != null)
                 {
                     global.itemInfo.callAction3();
-                } 
+                }
+
+                // Guardi
+                if (global.currentScene == global.mainScene && global.tutorial == true && guardi.action == false)
+                {
+                    guardi.action = true;
+                }
             }
 
             if (Input.GetKeyUp(KeyCode.Alpha3))
@@ -182,6 +201,12 @@ public class Actions : MonoBehaviour
                 if (global.itemInfo != null)
                 {
                     global.itemInfo.callAction4();
+                }
+
+                // Guardi
+                if (global.currentScene == global.mainScene && global.tutorial == true && guardi.action == false)
+                {
+                    guardi.action = true;
                 }
             }
 

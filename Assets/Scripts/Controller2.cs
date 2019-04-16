@@ -10,6 +10,7 @@ public class Controller2 : MonoBehaviour
     public Actions actions;
     public GUI gui;
     public Menu menu;
+    public Guardi guardi;
 
     [Header("Player")]
     public GameObject player;
@@ -120,6 +121,13 @@ public class Controller2 : MonoBehaviour
             {
                 coordinate = moveJoystick.Coordinate();
             }
+            
+            
+            if (global.currentScene == global.mainScene && global.tutorial == true && guardi.move == false)
+            {
+                //gui.ShowMoveTutorial();
+                return;
+            } 
 
             if (Input.GetKey(KeyCode.W) || coordinate.y > 0)
             {
@@ -154,13 +162,21 @@ public class Controller2 : MonoBehaviour
                 cameraRotation.y += Input.GetAxis("Mouse X") * lookSpeed;
                 cameraRotation.x += Input.GetAxis("Mouse Y") * -lookSpeed;
 
-                if (gui.lookTutorialOn == false)
+  
+                if (global.currentScene == global.startScene)
                 {
-                    gui.ShowLookTutorial();
-
-                    if (global.currentScene == global.startScene)
+                    if (gui.lookTutorialOn == false)
                     {
+                        gui.ShowLookTutorial();
                         menu.ShowMenu(true);
+                    }
+                }
+
+                if (global.currentScene == global.mainScene && global.tutorial == true)
+                {
+                    if (gui.lookTutorialOn == false)
+                    {
+                        gui.ShowLookTutorial();
                     }
                 }
             }

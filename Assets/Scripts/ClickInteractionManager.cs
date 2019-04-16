@@ -24,6 +24,9 @@ public class ClickInteractionManager : MonoBehaviour
     public GameObject GUI;
     private Image[] UISprites;
     public Transform heldObject;
+
+    public Guardi guardi;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -102,6 +105,13 @@ public class ClickInteractionManager : MonoBehaviour
 
                             // dynamicButtonUpdaterScript.setStates(global.itemInfo.states);
                             //dynamicButtonUpdaterScript.enableAllButtons();
+                            
+
+                            // Guardi
+                            if (global.currentScene == global.mainScene && global.tutorial == true && guardi.softSelection == false)
+                            {
+                                guardi.softSelection = true;
+                            }
                         }
                         else if (global.softSelected != other)
                         {
@@ -131,6 +141,12 @@ public class ClickInteractionManager : MonoBehaviour
 
                             global.hardSelected = other;
                             setButtons = false;
+
+                            // Guardi
+                            if (global.currentScene == global.mainScene && global.tutorial == true && guardi.hardSelection == false)
+                            {
+                                guardi.hardSelection = true;
+                            }
                         }
 
                     }
@@ -341,6 +357,12 @@ public class ClickInteractionManager : MonoBehaviour
             body.gameObject.transform.position = heldObject.transform.parent.position;
             heldObject.GetComponentInChildren<HeldItemTranslation>().resetAnim(true);
             body.transform.SetParent(heldObject.transform);
+
+            // Guardi
+            if (global.currentScene == global.mainScene && global.tutorial == true && guardi.pickupObject == false)
+            {
+                guardi.pickupObject = true;
+            }
         }
     }
 
@@ -364,6 +386,12 @@ public class ClickInteractionManager : MonoBehaviour
                 rend.material.shader = normalShader;
             }
             global.hardSelected = null;
+        }
+
+        // Guardi
+        if (global.currentScene == global.mainScene && global.tutorial == true && guardi.throwObject == false)
+        {
+            guardi.throwObject = true;
         }
     }
     /*

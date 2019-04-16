@@ -20,6 +20,8 @@ public class GUI : MonoBehaviour
     public GameObject mobileMoveJoystick;
     public GameObject mobileLookJoystick;
 
+    public GameObject tutorial;
+
     public GameObject lookTutorial;
     public bool lookTutorialOn;
 
@@ -46,6 +48,8 @@ public class GUI : MonoBehaviour
             SetMenu();
             SetKnob();
 
+            ShowDecals(false);
+
             mobileMoveJoystick.SetActive(false);
             mobileLookJoystick.SetActive(false);
 
@@ -56,8 +60,7 @@ public class GUI : MonoBehaviour
 
             if (global.currentScene == global.startScene)
             {
-                actions.SetActive(false);
-                decals.SetActive(false);
+                ShowActions(false);
 
                 ShowLookTutorial();
                 ShowLookTutorial();
@@ -65,11 +68,7 @@ public class GUI : MonoBehaviour
             }
             else
             {
-                actions.SetActive(true);
-                SetActions();
-
-                decals.SetActive(true);
-                SetDecals();
+                ShowActions(true);
 
                 ShowLookTutorial();
                 ShowMoveTutorial();
@@ -123,6 +122,11 @@ public class GUI : MonoBehaviour
         overlays.SetActive(trigger);
     }
 
+    public void ShowTutorial(bool trigger)
+    {
+        tutorial.SetActive(trigger);
+    }
+
     public void ShowLookTutorial()
     {
         lookTutorial.SetActive(lookTutorialOn);
@@ -133,6 +137,26 @@ public class GUI : MonoBehaviour
     {
         moveTutorial.SetActive(moveTutorialOn);
         moveTutorialOn = !moveTutorialOn;
+    }
+
+    public void ShowActions(bool trigger)
+    {
+        actions.SetActive(trigger);
+
+        if (trigger == true)
+        {
+            SetActions();
+        }
+    }
+
+    public void ShowDecals(bool trigger)
+    {
+        decals.SetActive(trigger);
+
+        if (trigger == true)
+        {
+            SetDecals();
+        }
     }
 
     public void SetOverlays()
