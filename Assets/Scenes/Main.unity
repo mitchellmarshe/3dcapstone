@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.75110674, g: 0.754717, b: 0.7226771, a: 1}
+  m_AmbientSkyColor: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -120,11 +120,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1808240609}
     m_Modifications:
-    - target: {fileID: 4672258051067980662, guid: a6c70c86969812a43905246210d854e5,
-        type: 3}
-      propertyPath: m_Name
-      value: Scissors (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 4672258051067754326, guid: a6c70c86969812a43905246210d854e5,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -169,6 +164,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -158.645
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672258051067980662, guid: a6c70c86969812a43905246210d854e5,
+        type: 3}
+      propertyPath: m_Name
+      value: Scissors (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6c70c86969812a43905246210d854e5, type: 3}
@@ -3199,11 +3199,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1808240609}
     m_Modifications:
-    - target: {fileID: 3241383527196017444, guid: 90bd50ec78be9044db573de5f2e1ce9c,
-        type: 3}
-      propertyPath: m_Name
-      value: LargeDentalPick (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 3241383527196253956, guid: 90bd50ec78be9044db573de5f2e1ce9c,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -3248,6 +3243,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -158.645
+      objectReference: {fileID: 0}
+    - target: {fileID: 3241383527196017444, guid: 90bd50ec78be9044db573de5f2e1ce9c,
+        type: 3}
+      propertyPath: m_Name
+      value: LargeDentalPick (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90bd50ec78be9044db573de5f2e1ce9c, type: 3}
