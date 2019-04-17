@@ -16,6 +16,9 @@ public class Guardi : MonoBehaviour
     public GameObject canvas;
     public TextMeshProUGUI text;
 
+    [Header("Objects")]
+    public GameObject[] objects;
+
     [Header("Conditions")]
     public bool look;
     public bool move;
@@ -28,6 +31,8 @@ public class Guardi : MonoBehaviour
 
     private bool canvasOn;
     private int index;
+    private float startTime;
+    private float time;
 
     private void Awake()
     {
@@ -43,24 +48,19 @@ public class Guardi : MonoBehaviour
         throwObject = false;
 
         index = 0;
-        Dialogue();
+        startTime = 14.0f;
     }
 
     void Start()
     {
-        Appear(); // Start based on time?
-
-        if (global.tutorial == true) {
-            Dialogue();
-            Invoke("Dialogue", 10);
-            Invoke("Dialogue", 20);
-            Invoke("Dialogue", 30);
-            Invoke("Dialogue", 40);
-        }
+        time = Time.time + startTime;
+        Invoke("Appear", startTime);
     }
 
     void Update()
     {
+        Dialogue();
+
         if (softSelection == true)
         {
             Debug.Log("soft");
@@ -125,12 +125,20 @@ public class Guardi : MonoBehaviour
     public void Disappear()
     {
         this.gameObject.SetActive(false);
-        gui.ShowActions(true);
         gui.ShowDecals(true);
+        move = true;
         
         if (gui.lookTutorialOn == false)
         {
             gui.ShowLookTutorial();
+        }
+    }
+
+    public void Objects()
+    {
+        for (int i = 0; i < objects.Length; i++)
+        {
+            objects[i].SetActive(true);
         }
     }
 
@@ -142,41 +150,274 @@ public class Guardi : MonoBehaviour
 
     public void Dialogue()
     {
-        if (index == 0)
-        {
-            text.text = "";
-        }
-
-        if (index == 1)
+        // Introduction
+        if (index == 0 && Time.time >= time)
         {
             text.text = "Whoa, you just fell through a wall! I'm pretty sure you hit your head on that toilet.";
+            index++;
+            time += 10.0f;
+
+            softSelection = false;
         }
 
-        if (index == 2)
+        if (index == 1 && Time.time >= time)
         {
             text.text = "You didn't feel that cause you're now a spirit.";
+            index++;
+            time += 10.0f;
+
+            softSelection = false;
         }
 
-        if (index == 3)
+        if (index == 2 && Time.time >= time)
         {
             text.text = "Did they pull the plug on you too?";
+            index++;
+            time += 10.0f;
+
+            softSelection = false;
         }
 
-        if (index == 4)
+        if (index == 3 && Time.time >= time)
         {
             text.text = "Well, let's get revenge by haunting the staff workers of this morgue.";
+            index++;
+            time += 10.0f;
+
+            softSelection = false;
         }
 
-        if (index == 5)
+        if (index == 4 && Time.time >= time)
         {
             text.text = "I'll show you the basics to haunting.";
+            index++;
+            time += 10.0f;
+
+            softSelection = false;
         }
 
-        if (index == 6)
+        // Soft Selection
+        if (index == 5 && Time.time >= time)
         {
-            text.text = "I'll show you the basics to haunting.";
+            text.text = "Here are some soda cans, we can manipulate.";
+            Objects();
+            index++;
+            time += 10.0f;
+
+            softSelection = false;
         }
 
-        index++;
+        if (index == 6 && Time.time >= time)
+        {
+            if (softSelection == false)
+            {
+                text.text = "Hover your hand (mouse pointer) over a can. The can will glow.";
+                time = (Time.time - time);
+            }
+            else
+            {
+                index++;
+                time += 10.0f;
+
+                action = false;
+            }
+        }
+        
+        // Actions
+        if (index == 7 && Time.time >= time)
+        {
+            if (action == false)
+            {
+                text.text = "Now move this can by haunting it (press 1).";
+                time = (Time.time - time);
+            }
+            else
+            {
+                index++;
+                time += 10.0f;
+
+                action = false;
+            }
+        }
+
+        if (index == 8 && Time.time >= time)
+        {
+            if (action == false)
+            {
+                text.text = "Hover over another can, then destroy it (press 2).";
+                time = (Time.time - time);
+            }
+            else
+            {
+                index++;
+                time += 10.0f;
+
+                hardSelection = false;
+            }
+        }
+
+        // Hard Selection
+        if (index == 9 && Time.time >= time)
+        {
+            text.text = "You're getting the hang of this!";
+            index++;
+            time += 10.0f;
+
+            hardSelection = false;
+        }
+
+        if (index == 10 && Time.time >= time)
+        {
+            if (hardSelection == false)
+            {
+                text.text = "Instead of just hovering over a can, concentrate on it (left-mouse click).";
+                time = (Time.time - time);
+            }
+            else
+            {
+                index++;
+                time += 10.0f;
+
+                pickupObject = false;
+            }
+        }
+
+        if (index == 11 && Time.time >= time)
+        {
+            text.text = "When you concentrate on an object, it allows you manipulate it selectively.";
+            index++;
+            time += 10.0f;
+
+            pickupObject = false;
+        }
+
+        // Pickup Object
+        if (index == 12 && Time.time >= time)
+        {
+            text.text = "Also when concentrating on an object, you can do more powerful haunting tactics like picking up the object.";
+            index++;
+            time += 10.0f;
+
+            pickupObject = false;
+        }
+
+        if (index == 13 && Time.time >= time)
+        {
+            if (pickupObject == false)
+            {
+                text.text = "Try picking up a soda can (left-mouse click)!";
+                time = (Time.time - time);
+            }
+            else
+            {
+                index++;
+                time += 10.0f;
+
+                throwObject = false;
+            }
+        }
+
+        // Throwing Object
+        if (index == 14 && Time.time >= time)
+        {
+            if (throwObject == false)
+            {
+                text.text = "Throw the soda can (left-mouse click).";
+                time = (Time.time - time);
+            }
+            else
+            {
+                index++;
+                time += 10.0f;
+
+                decal = false;
+            }
+        }
+
+        if (index == 15 && Time.time >= time)
+        {
+            text.text = "Remember objects can be manipulated in various ways!";
+            index++;
+            time += 10.0f;
+
+            decal = false;
+        }
+
+        // Decals
+        if (index == 16 && Time.time >= time)
+        {
+            text.text = "Here's one final thing you can do as a ghost.";
+            gui.ShowDecals(true);
+            index++;
+            time += 10.0f;
+
+            decal = false;
+        }
+
+        if (index == 17 && Time.time >= time)
+        {
+            text.text = "You can make art on the walls.";
+            index++;
+            time += 10.0f;
+
+            decal = false;
+        }
+
+        if (index == 18 && Time.time >= time)
+        {
+            if (decal == false)
+            {
+                text.text = "Just drag (left-mouse click) a decal onto the wall.";
+                time = (Time.time - time);
+            }
+            else
+            {
+                index++;
+                time += 10.0f;
+            }
+        }
+
+        if (index == 19 && Time.time >= time)
+        {
+            text.text = "These decals really get the attention of people.";
+            index++;
+            time += 10.0f;
+        }
+
+        // Moving
+        if (index == 20 && Time.time >= time)
+        {
+            text.text = "You're free to haunt the morgue staff!";
+            Invoke("Disappear", 10);
+        }
+
+        /*
+        // Waiting
+        if (index == 21)
+        {
+            text.text = "You okay?";
+        }
+
+        if (index == 22)
+        {
+            text.text = "Why aren't you learning?";
+        }
+
+        if (index == 23)
+        {
+            text.text = "Just do it!";
+        }
+
+        if (index == 24)
+        {
+            text.text = "I'm getting bored here.";
+        }
+
+        if (index == 25)
+        {
+            text.text = "You're on your own here.";
+        }
+        */
+        //index++;
     }
 }

@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class decalManager2 : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Global global;
+    public Guardi guardi;
 
     public Image redrumSprite;
     public Image unicornSprite;
@@ -19,6 +20,7 @@ public class decalManager2 : MonoBehaviour
     private float cooldownSkull = 5f;
     private float cooldownLizard = 5f;
     private float cooldownPentagram = 5f;
+
     void Start()
     {
         
@@ -109,6 +111,12 @@ public class decalManager2 : MonoBehaviour
 
     public void placedADecal(Image other)
     {
+        // Guardi
+        if (global.currentScene == global.mainScene && guardi.decal == false)
+        {
+            guardi.decal = true;
+        }
+
         if (other.sprite == redrumSprite.sprite)
         {
             counters[0] = cooldownRedrum;

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3590818298698133596}
   m_Layer: 0
   m_Name: Morgue Sink
-  m_TagString: Untagged
+  m_TagString: Ignore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 6207127082867553380}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Ignore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 6207127082867553382}
   m_Layer: 0
   m_Name: BezierCurve
-  m_TagString: Untagged
+  m_TagString: Ignore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
