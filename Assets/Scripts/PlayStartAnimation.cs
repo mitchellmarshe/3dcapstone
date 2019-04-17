@@ -6,12 +6,14 @@ public class PlayStartAnimation : MonoBehaviour
 {
     public GameObject player;
     public Menu menu;
+    public GameObject Guardi;
 
     // Start is called before the first frame update
     private void Start()
     {
         player.GetComponentInChildren<Camera>().enabled = false;
         player.GetComponentInChildren<Controller2>().enabled = false;
+        Guardi.SetActive(false);
         menu.fade.Play("reverseDeath");
         Invoke("activePlayer", 14);
     }
@@ -20,6 +22,8 @@ public class PlayStartAnimation : MonoBehaviour
     {
         player.GetComponentInChildren<Camera>().enabled = true;
         player.GetComponentInChildren<Controller2>().enabled = true;
+        Guardi.SetActive(true);
         gameObject.SetActive(false);
+        
     }
 }

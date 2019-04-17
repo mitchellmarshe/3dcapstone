@@ -20,7 +20,7 @@ public class SodaCanActions : ItemActionInterface
 
     private void Awake()
     {
-        if (Time.time > 2)
+        if (Time.timeSinceLevelLoad > 2)
         {
             gameObject.GetComponent<AudioSource>().PlayOneShot(pop);
         }
