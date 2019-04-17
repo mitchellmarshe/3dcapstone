@@ -58,6 +58,9 @@ public class ReactiveAIMK2 : MonoBehaviour
     private bool closeMiss = false;
     private float thrownCounter = 2f;
 
+    private List<GameObject> nearbyNPCs = new List<GameObject>();
+    private List<GameObject> deadNPCs = new List<GameObject>();
+
 
     /*Trigger names
      * 
@@ -126,11 +129,13 @@ public class ReactiveAIMK2 : MonoBehaviour
         updateFearSlider();
 
         checkStates();
-        checkCloseDecals();
+        
         //The stopped state is true when the NPC suffers a disabilitating
         // animation such as dead, heart attack, fetal position, ect
         if (!stopped)
         {
+            checkCloseDecals();
+            checkForDeadNPCs();
             if (lastFace != mySkinMeshRend && reactionFace)
             {
                 reactionFace = false;
@@ -143,7 +148,7 @@ public class ReactiveAIMK2 : MonoBehaviour
             //Decided is true when the NPC is either idling or walking somewhere
             if (!decided)
             {
-                Debug.Log("I am going to" + myAgent.destination);
+                //Debug.Log("I am going to" + myAgent.destination);
                 //This code below decides wether to idle or walk to a new target
                 decided = true;
                 arrived = false;
@@ -513,7 +518,8 @@ public class ReactiveAIMK2 : MonoBehaviour
 
     public void endHypnotized()
     {
-
+        if (!myAgent.isStopped)
+        {
             StopAllCoroutines();
             stopped = true;
             myAgent.isStopped = true;
@@ -525,6 +531,7 @@ public class ReactiveAIMK2 : MonoBehaviour
             saySomethingGeneral(generalQuotes);
             mySkinMeshRend.material.mainTexture = human_frowning;
             reactionFace = true;
+        }
         
     }
 
@@ -745,6 +752,10 @@ public class ReactiveAIMK2 : MonoBehaviour
             //Debug.Log("NPC Detected");
             
         }
+        if(other.gameObject.tag == "NPC" && !deadNPCs.Contains(other.gameObject))
+        {
+            nearbyNPCs.Add(other.gameObject);
+        }
         if (!seesObj && !closeMiss && other.isTrigger == false)
         {
             LayerMask newMask = LayerMask.GetMask("walls");
@@ -767,7 +778,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     {
         if (!closeMiss && other.isTrigger == false)
         {
-            Debug.Log("Close Miss!!");
+            //Debug.Log("Close Miss!!");
             LayerMask newMask = LayerMask.GetMask("walls");
             if (other.gameObject.tag == "Ignore" && !Physics.Linecast(transform.position, other.gameObject.transform.position, newMask, QueryTriggerInteraction.UseGlobal))
             {
@@ -778,7 +789,7 @@ public class ReactiveAIMK2 : MonoBehaviour
                 {
                     if (seesObj)
                     {
-                        Debug.Log("I saw the obj first");
+                        //Debug.Log("I saw the obj first");
                         StopAllCoroutines();
                         stopped = true;
                         myAgent.isStopped = true;
@@ -812,6 +823,10 @@ public class ReactiveAIMK2 : MonoBehaviour
             //Debug.Log("NPC Detected");
 
         }
+        if (other.gameObject.tag == "NPC" && nearbyNPCs.Contains(other.gameObject))
+        {
+            nearbyNPCs.Remove(other.gameObject);
+        }
     }
 
     public void checkCloseDecals()
@@ -841,6 +856,29 @@ public class ReactiveAIMK2 : MonoBehaviour
                 closeDecals.RemoveAt(i);
             }
             
+        }
+    }
+
+    public void checkForDeadNPCs()
+    {
+        for(int i = 0; i < nearbyNPCs.Count; i++)
+        {
+            //Debug.Log("Other NPC fear is " + nearbyNPCs[i].GetComponent<ReactiveAIMK2>().myCurrentFear);
+            if (nearbyNPCs[i].GetComponent<ReactiveAIMK2>().myCurrentFear >=2500)
+            {
+                LayerMask newMask = LayerMask.GetMask("walls");
+                if (!Physics.Linecast(transform.position, nearbyNPCs[i].transform.position, newMask, QueryTriggerInteraction.UseGlobal))
+                {
+                    transform.LookAt(nearbyNPCs[i].transform);
+                    setSurprised();
+                    
+                    deadNPCs.Add(nearbyNPCs[i]);
+                    nearbyNPCs.RemoveAt(i);
+                    i = nearbyNPCs.Count;
+
+                }
+                
+            }
         }
     }
 
