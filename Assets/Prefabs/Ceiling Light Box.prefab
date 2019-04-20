@@ -75,7 +75,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1.82
-  m_Range: 20
+  m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -189,14 +189,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2922231461181581426}
     m_Modifications:
-    - target: {fileID: 100000, guid: 1d7b8e1a2bce0434280c6970c0226cc3, type: 3}
-      propertyPath: m_Name
-      value: light
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 1d7b8e1a2bce0434280c6970c0226cc3, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1d7b8e1a2bce0434280c6970c0226cc3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -252,6 +244,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 1d7b8e1a2bce0434280c6970c0226cc3, type: 3}
       propertyPath: m_LocalScale.x
       value: 51.67955
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1d7b8e1a2bce0434280c6970c0226cc3, type: 3}
+      propertyPath: m_Name
+      value: light
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1d7b8e1a2bce0434280c6970c0226cc3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 3300000, guid: 1d7b8e1a2bce0434280c6970c0226cc3, type: 3}
       propertyPath: m_Mesh
