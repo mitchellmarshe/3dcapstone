@@ -10,6 +10,7 @@ public class EndHypnoOnDestroy : MonoBehaviour
     {
         foreach(ReactiveAIMK2 npc in hypnoNPCS)
         {
+            
             npc.endHypnotized();
             Debug.Log("Called End Hypno");
         }

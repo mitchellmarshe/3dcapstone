@@ -129,12 +129,15 @@ public class ReactiveAIMK2 : MonoBehaviour
         updateFearSlider();
 
         checkStates();
-        
+        if (!myAgent.isStopped)
+        {
+            checkCloseDecals();
+        }
         //The stopped state is true when the NPC suffers a disabilitating
         // animation such as dead, heart attack, fetal position, ect
         if (!stopped)
         {
-            checkCloseDecals();
+            
             checkForDeadNPCs();
             if (lastFace != mySkinMeshRend && reactionFace)
             {
@@ -518,8 +521,8 @@ public class ReactiveAIMK2 : MonoBehaviour
 
     public void endHypnotized()
     {
-        if (!myAgent.isStopped)
-        {
+        //if (!myAgent.isStopped)
+        //{
             StopAllCoroutines();
             stopped = true;
             myAgent.isStopped = true;
@@ -531,7 +534,7 @@ public class ReactiveAIMK2 : MonoBehaviour
             saySomethingGeneral(generalQuotes);
             mySkinMeshRend.material.mainTexture = human_frowning;
             reactionFace = true;
-        }
+        //}
         
     }
 
@@ -555,25 +558,35 @@ public class ReactiveAIMK2 : MonoBehaviour
 
     private IEnumerator pentagraming(float times, Transform target)
     {
-        Material npcMat = gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material;
-        Color newColor = new Color(npcMat.color.r + .01f, npcMat.color.g - .01f, npcMat.color.b - .01f, npcMat.color.a-.01f);
-        gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material.color = newColor;
-        //Vector3 newv3 = new Vector3(0.02f, 0.02f, 0.02f);
-       // Vector3 myForward = transform.forward;
-        //myForward.Scale(newv3);
-        //transform.LookAt(target);
-        myAgent.Move(transform.forward * (Vector3.Distance(transform.position, target.position)/100));
-        Debug.Log("In pentagraming");
-        if (times > 0)
+        if (target == null)
         {
-            yield return new WaitForSeconds(.01f);
-            IEnumerator coro = pentagraming(times-1, target);
-            StartCoroutine(coro);
-        } else
-        {
-            Debug.Log("Destroy");
-
             Destroy(gameObject);
+        }
+        else
+        {
+
+
+            Material npcMat = gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material;
+            Color newColor = new Color(npcMat.color.r + .01f, npcMat.color.g - .01f, npcMat.color.b - .01f, npcMat.color.a - .01f);
+            gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material.color = newColor;
+            //Vector3 newv3 = new Vector3(0.02f, 0.02f, 0.02f);
+            // Vector3 myForward = transform.forward;
+            //myForward.Scale(newv3);
+            //transform.LookAt(target);
+            myAgent.Move(transform.forward * (Vector3.Distance(transform.position, target.position) / 100));
+            Debug.Log("In pentagraming");
+            if (times > 0)
+            {
+                yield return new WaitForSeconds(.01f);
+                IEnumerator coro = pentagraming(times - 1, target);
+                StartCoroutine(coro);
+            }
+            else
+            {
+                Debug.Log("Destroy");
+
+                Destroy(gameObject);
+            }
         }
 
 
@@ -864,20 +877,27 @@ public class ReactiveAIMK2 : MonoBehaviour
         for(int i = 0; i < nearbyNPCs.Count; i++)
         {
             //Debug.Log("Other NPC fear is " + nearbyNPCs[i].GetComponent<ReactiveAIMK2>().myCurrentFear);
-            if (nearbyNPCs[i].GetComponent<ReactiveAIMK2>().myCurrentFear >=2500)
+            if (nearbyNPCs[i] != null)
             {
-                LayerMask newMask = LayerMask.GetMask("walls");
-                if (!Physics.Linecast(transform.position, nearbyNPCs[i].transform.position, newMask, QueryTriggerInteraction.UseGlobal))
+                if (nearbyNPCs[i].GetComponent<ReactiveAIMK2>().myCurrentFear >= 2500)
                 {
-                    transform.LookAt(nearbyNPCs[i].transform);
-                    setSurprised();
-                    
-                    deadNPCs.Add(nearbyNPCs[i]);
-                    nearbyNPCs.RemoveAt(i);
-                    i = nearbyNPCs.Count;
+                    LayerMask newMask = LayerMask.GetMask("walls");
+                    if (!Physics.Linecast(transform.position, nearbyNPCs[i].transform.position, newMask, QueryTriggerInteraction.UseGlobal))
+                    {
+                        transform.LookAt(nearbyNPCs[i].transform);
+                        setSurprised();
+
+                        deadNPCs.Add(nearbyNPCs[i]);
+                        nearbyNPCs.RemoveAt(i);
+                        i = nearbyNPCs.Count;
+
+                    }
 
                 }
-                
+            } else
+            {
+                nearbyNPCs.RemoveAt(i);
+                i = nearbyNPCs.Count;
             }
         }
     }
@@ -896,7 +916,7 @@ public class ReactiveAIMK2 : MonoBehaviour
         }
         else if (tmp.name == "skull")
         {
-            setSurprised();
+            setCough();
         }
         else if (tmp.name == "hypnolizard")
         {
