@@ -132,20 +132,90 @@ public class ClickInteractionManager : MonoBehaviour
 
                         if (Input.GetMouseButtonDown(0))
                         {
-                            MeshRenderer[] myRenders3 = other.GetComponentsInChildren<MeshRenderer>();
-                            foreach (MeshRenderer rend in myRenders3)
+                            if (!global.platform)
                             {
-                                rend.material.shader = hardSelectShader;
+                                if (!checkUIClick())
+                                {
+                                    if (other.GetComponent<ItemActionInterface>() != null)
+                                    {
+                                        if (global.hardSelected == null)
+                                        {
+                                            MeshRenderer[] myRenders3 = other.GetComponentsInChildren<MeshRenderer>();
+                                            foreach (MeshRenderer rend in myRenders3)
+                                            {
+                                                rend.material.shader = hardSelectShader;
 
+                                            }
+
+                                            global.hardSelected = other;
+                                            setButtons = false;
+                                        }
+                                        else
+                                        {
+                                            MeshRenderer[] myRenders = global.hardSelected.GetComponentsInChildren<MeshRenderer>();
+                                            foreach (MeshRenderer rend in myRenders)
+                                            {
+                                                rend.material.shader = normalShader;
+                                            }
+
+                                            MeshRenderer[] myRenders2 = other.GetComponentsInChildren<MeshRenderer>();
+                                            foreach (MeshRenderer rend in myRenders2)
+                                            {
+                                                rend.material.shader = hardSelectShader;
+
+                                            }
+                                        }
+
+                                        if (holdingObject)
+                                        {
+                                            dropObject();
+                                        } else
+                                        {
+                                            pickupObject(other.GetComponent<Rigidbody>());
+                                        }
+
+
+                                    }
+                                    else
+                                    {
+                                        if (!holdingObject)
+                                        {
+                                            pickupObject(other.GetComponent<Rigidbody>());
+                                        }
+                                    }
+
+                                    global.hardSelected = other;
+                                    global.itemInfo = other.GetComponent<ItemActionInterface>();
+                                    setButtons = false;
+
+
+
+
+                                }
                             }
 
-                            global.hardSelected = other;
-                            setButtons = false;
 
-                            // Guardi
-                            if (global.currentScene == global.mainScene && global.tutorial == true && guardi.hardSelection == false)
+
+
+                            else
                             {
-                                guardi.hardSelection = true;
+
+
+                                MeshRenderer[] myRenders3 = other.GetComponentsInChildren<MeshRenderer>();
+                                foreach (MeshRenderer rend in myRenders3)
+                                {
+                                    rend.material.shader = hardSelectShader;
+
+                                }
+
+                                global.hardSelected = other;
+                                setButtons = false;
+
+                                // Guardi
+                                if (global.currentScene == global.mainScene && global.tutorial == true && guardi.hardSelection == false)
+                                {
+                                    guardi.hardSelection = true;
+                                }
                             }
                         }
 
