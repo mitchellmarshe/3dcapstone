@@ -1218,7 +1218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b15735847cca6419fe738283867f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myAgent: {fileID: 0}
+  myAgent: {fileID: 6320750279866835216}
   stopped: 0
   myAudioSource: {fileID: 0}
   noFearController: {fileID: 22100000, guid: 58610709520fb704db104af916002f01, type: 2}
@@ -1242,13 +1242,13 @@ MonoBehaviour:
   lightLaugh: {fileID: 8300000, guid: 7e8ab2979c1aa024384c14c695817759, type: 3}
   mySkinMeshRend: {fileID: 1965353197373175706}
   human_crying: {fileID: 2800000, guid: 3eef6a6d01d98a849b1ad1da0035d9a6, type: 3}
-  human_dead: {fileID: 2800000, guid: 3eef6a6d01d98a849b1ad1da0035d9a6, type: 3}
-  human_frowning: {fileID: 2800000, guid: 3eef6a6d01d98a849b1ad1da0035d9a6, type: 3}
-  human_idle: {fileID: 2800000, guid: 3eef6a6d01d98a849b1ad1da0035d9a6, type: 3}
-  human_scared: {fileID: 2800000, guid: 3eef6a6d01d98a849b1ad1da0035d9a6, type: 3}
-  human_smiling: {fileID: 2800000, guid: 3eef6a6d01d98a849b1ad1da0035d9a6, type: 3}
-  human_screaming: {fileID: 2800000, guid: 3eef6a6d01d98a849b1ad1da0035d9a6, type: 3}
-  human_surprised: {fileID: 2800000, guid: 3eef6a6d01d98a849b1ad1da0035d9a6, type: 3}
+  human_dead: {fileID: 2800000, guid: 45677ba67d977544581bcdadda89ed06, type: 3}
+  human_frowning: {fileID: 2800000, guid: 9883402ec0fe8c7469a9dd66bc961209, type: 3}
+  human_idle: {fileID: 2800000, guid: 0861cb024ba25f146bc527852f488999, type: 3}
+  human_scared: {fileID: 2800000, guid: aa09787a44468d2488aa4aced190b8e2, type: 3}
+  human_smiling: {fileID: 2800000, guid: da37f648558fdc5488dbfcd472b4220e, type: 3}
+  human_screaming: {fileID: 2800000, guid: dd18469b4ccf3374b974d85edb994627, type: 3}
+  human_surprised: {fileID: 2800000, guid: d47cdc84189c3b340b8c341516da0275, type: 3}
 --- !u!82 &458147380
 AudioSource:
   m_ObjectHideFlags: 0
