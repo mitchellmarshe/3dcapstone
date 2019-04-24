@@ -17,6 +17,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     private bool arrived;
     private float timer;
 
+
     private Slider fearSlider;
     private Global global;
 
@@ -61,6 +62,8 @@ public class ReactiveAIMK2 : MonoBehaviour
     private List<GameObject> nearbyNPCs = new List<GameObject>();
     private List<GameObject> deadNPCs = new List<GameObject>();
 
+    private List<GameObject> interactionSpots = new List<GameObject>();
+
 
     /*Trigger names
      * 
@@ -94,6 +97,11 @@ public class ReactiveAIMK2 : MonoBehaviour
         myCurrentFear = myOldFear;
         updateFearSlider();
         global = GameObject.Find("Global").GetComponent<Global>();
+
+        foreach(GameObject spot in GameObject.FindGameObjectsWithTag("interactionSpot"))
+        {
+            interactionSpots.Add(spot);
+        }
     }
 
 
@@ -160,10 +168,16 @@ public class ReactiveAIMK2 : MonoBehaviour
                 int rand = Random.Range(1, 3);
                 if (rand == 1)
                 {
-                    rand = Random.Range(1, numZones + 1);
+                    //rand = Random.Range(1, numZones + 1);
+                    rand = Random.Range(0, interactionSpots.Count);
                     //Debug.Log(rand);
-                    string targetname = "idlezone" + rand;
-                    setNewTarget(targetname);
+                    //string targetname = "idlezone" + rand;
+                    while (interactionSpots[rand].GetComponent<InteractionSpot>().isOccupied())
+                    {
+                        rand = Random.Range(0, interactionSpots.Count);
+                    }
+
+                    setNewTarget(interactionSpots[rand].transform);
                     StartWalk(myTarget);
                     //Debug.Log("Walking");
                 }
@@ -182,7 +196,8 @@ public class ReactiveAIMK2 : MonoBehaviour
                 if (arrived)
                 {
                     decided = false;
-
+                    //gameObject.transform.LookAt(myTarget.GetChild(0));
+                    idleForTime(2);
                 }
                 // This code below helps update the NPC walk animation
                 // if there fear level has changed
@@ -210,8 +225,24 @@ public class ReactiveAIMK2 : MonoBehaviour
             //Debug.Log(Vector3.Distance(transform.position, myAgent.destination));
             if (myAnimator.GetBool("walk") &&  Vector3.Distance(transform.position, myAgent.destination) <= 3)
             {
+                //myAgent.Move(Vector3.MoveTowards(transform.position, myAgent.destination, 1));
+                //myAgent.areaMask = NavMesh.AllAreas;
+                //myAgent.ResetPath();
+                //myAgent.destination = myTarget.position;
+
+                //NavMeshPath newPath;
+                //myAgent.CalculatePath(myTarget.position, out newPath);
+                //myAgent.path = NavMeshPath;
+                
                 arrived = true;
+                //myAgent.Warp(myTarget.position);
+                //gameObject.GetComponent<Rigidbody>().MovePosition(myTarget.position);
+                //gameObject.GetComponent<Rigidbody>().MoveRotation(Quaternion.RotateTowards(transform.rotation, myTarget.GetChild(0).transform.rotation, 360f));
+                //gameObject.transform.Translate(myTarget.position - transform.position);
+                //Vector3.MoveTowards(transform.position, myTarget.position, 4f);
+                
             }
+
 
 
         }
