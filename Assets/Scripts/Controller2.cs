@@ -43,11 +43,17 @@ public class Controller2 : MonoBehaviour
         {
             walkSpeed = 10.0f;
             lookSpeed = 5.0f;
+
+            gui.moveSlider.value = walkSpeed;
+            gui.lookSlider.value = lookSpeed;
         }
         else
         {
             walkSpeed = 10.0f;
             lookSpeed = 5.0f;
+
+            gui.moveSlider.value = walkSpeed;
+            gui.lookSlider.value = lookSpeed;
         }
     }
 
@@ -58,6 +64,16 @@ public class Controller2 : MonoBehaviour
 
     private void Update()
     {
+        if (gui.moveSlider.value != walkSpeed)
+        {
+            walkSpeed = gui.moveSlider.value;
+        }
+
+        if (gui.lookSlider.value != lookSpeed)
+        {
+            lookSpeed = gui.lookSlider.value;
+        }
+
         Move();
         Look();
 

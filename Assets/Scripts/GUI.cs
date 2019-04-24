@@ -25,22 +25,38 @@ public class GUI : MonoBehaviour
     public GameObject lookTutorial;
     public bool lookTutorialOn;
 
+    public GameObject clickTutorial;
+    public bool clickTutorialOn;
+
     public GameObject moveTutorial;
     public bool moveTutorialOn;
 
+    public Toggle tutorialToggle;
+    public Slider guiSlider;
+    public Slider lookSlider;
+    public Slider moveSlider;
 
     private float padding;
+    private float guiScale;
 
     private void Awake()
     {
         padding = 16.0f;
+        guiScale = 1.0f;
+        guiSlider.value = guiScale;
         lookTutorialOn = false;
+        clickTutorialOn = false;
         moveTutorialOn = false;
     }
 
     private void Start()
     {
         canvasScalar.referenceResolution = new Vector2(global.width, global.height);
+
+        TutorialToggle();
+        GUISlider();
+
+        SetOverlays();
 
         if (global.platform == false)
         {
@@ -112,7 +128,40 @@ public class GUI : MonoBehaviour
 
     private void Update()
     {
-        
+        canvasScalar.referenceResolution = new Vector2(global.width, global.height);
+
+        TutorialToggle();
+
+        if (guiSlider.value != guiScale)
+        {
+            GUISlider();
+            SetDecals();
+            SetActions();
+            SetKnob();
+
+            if (global.platform == true)
+            {
+                SetMobileMoveJoystick();
+                SetMobileLookJoystick();
+            }
+        }
+    }
+
+    public void TutorialToggle()
+    {
+        if (global.tutorial == false)
+        {
+            tutorialToggle.interactable = false;
+            tutorialToggle.isOn = false;
+            return;
+        }
+
+        global.tutorial = tutorialToggle.isOn;
+    }
+
+    public void GUISlider()
+    {
+        guiScale = guiSlider.value;
     }
 
     public void ShowOverlays(bool trigger)
@@ -131,6 +180,12 @@ public class GUI : MonoBehaviour
     {
         lookTutorial.SetActive(lookTutorialOn);
         lookTutorialOn = !lookTutorialOn;
+    }
+
+    public void ShowClickTutorial()
+    {
+        clickTutorial.SetActive(clickTutorialOn);
+        clickTutorialOn = !clickTutorialOn;
     }
 
     public void ShowMoveTutorial()
@@ -161,18 +216,40 @@ public class GUI : MonoBehaviour
 
     public void SetOverlays()
     {
+        overlays.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0.5f);
+        overlays.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0.5f);
+        overlays.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
+        overlays.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0.0f, 0.0f, 0.0f);
 
+        overlays.transform.GetChild(0).GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0.5f);
+        overlays.transform.GetChild(0).GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0.5f);
+        overlays.transform.GetChild(0).GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
+        overlays.transform.GetChild(0).GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0.0f, 0.0f, 0.0f);
+        overlays.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(global.width, global.height);
+        overlays.transform.GetChild(0).GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+
+        overlays.transform.GetChild(1).GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0.5f);
+        overlays.transform.GetChild(1).GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0.5f);
+        overlays.transform.GetChild(1).GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
+        overlays.transform.GetChild(1).GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0.0f, 0.0f, 0.0f);
+        overlays.transform.GetChild(1).GetComponent<RectTransform>().sizeDelta = new Vector2(1024.0f, 512.0f);
+        overlays.transform.GetChild(1).GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
     }
 
     private void SetMenu()
     {
-
+        menu.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0.5f);
+        menu.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0.5f);
+        menu.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
+        menu.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0.0f, 0.0f, 0.0f);
+        menu.GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
     }
 
     private void SetKnob()
     {
         knob.GetComponent<RectTransform>().anchoredPosition3D = 
             new Vector3((-global.width / 2) + padding, (global.height / 2) - padding, 0.0f);
+        knob.GetComponent<RectTransform>().localScale = new Vector3(guiScale, guiScale, guiScale);
     }
 
     private void SetActions()
@@ -184,7 +261,8 @@ public class GUI : MonoBehaviour
             actions.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.0f);
             float height = decals.GetComponent<RectTransform>().rect.height;
             height = (2 * padding) + height;
-            actions.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0.0f, height, 0.0f);
+            actions.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0.0f, height * guiScale, 0.0f);
+            actions.GetComponent<RectTransform>().localScale = new Vector3(guiScale, guiScale, guiScale);
         }
         else
         {
@@ -193,22 +271,35 @@ public class GUI : MonoBehaviour
             actions.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
             float radius = mobileLookJoystick.GetComponent<RectTransform>().rect.width;
             radius = (2 * padding) + radius;
-            actions.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(-radius, radius, 0.0f);
+            actions.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(-radius * guiScale, radius * guiScale, 0.0f);
+            actions.GetComponent<RectTransform>().localScale = new Vector3(guiScale, guiScale, guiScale);
         }
     }
 
     private void SetDecals()
     {
-
+        decals.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0.0f);
+        decals.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0.0f);
+        decals.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.0f);
+        decals.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0.0f, padding, 0.0f);
+        decals.GetComponent<RectTransform>().localScale = new Vector3(guiScale, guiScale, guiScale);
     }
 
     private void SetMobileMoveJoystick()
     {
-
+        mobileMoveJoystick.GetComponent<RectTransform>().anchorMin = new Vector2(0.0f, 0.0f);
+        mobileMoveJoystick.GetComponent<RectTransform>().anchorMax = new Vector2(0.0f, 0.0f);
+        mobileMoveJoystick.GetComponent<RectTransform>().pivot = new Vector2(0.0f, 0.0f);
+        mobileMoveJoystick.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(padding, padding, 0.0f);
+        mobileMoveJoystick.GetComponent<RectTransform>().localScale = new Vector3(guiScale, guiScale, guiScale);
     }
 
     private void SetMobileLookJoystick()
     {
-
+        mobileLookJoystick.GetComponent<RectTransform>().anchorMin = new Vector2(1.0f, 0.0f);
+        mobileLookJoystick.GetComponent<RectTransform>().anchorMax = new Vector2(1.0f, 0.0f);
+        mobileLookJoystick.GetComponent<RectTransform>().pivot = new Vector2(1.0f, 0.0f);
+        mobileLookJoystick.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(-padding, padding, 0.0f);
+        mobileLookJoystick.GetComponent<RectTransform>().localScale = new Vector3(guiScale, guiScale, guiScale);
     }
 }

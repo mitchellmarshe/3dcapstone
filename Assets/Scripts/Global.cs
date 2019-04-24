@@ -32,7 +32,6 @@ public class Global : MonoBehaviour
 
     public bool tutorial;
 
-    // Start is called before the first frame update.
     void Awake()
     {
         #if UNITY_STANDALONE_WIN
@@ -74,9 +73,9 @@ public class Global : MonoBehaviour
         tutorial = true;
     }
 
-    // Update is called once per frame.
     void Update()
     {
-        
+        height = Screen.height;
+        width = Screen.width;
     }
 }

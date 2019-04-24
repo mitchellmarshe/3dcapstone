@@ -59,6 +59,12 @@ public class Guardi : MonoBehaviour
 
     void Update()
     {
+        if (global.tutorial == false)
+        {
+            Disappear();
+            return;
+        }
+
         Dialogue();
 
         if (softSelection == true)
