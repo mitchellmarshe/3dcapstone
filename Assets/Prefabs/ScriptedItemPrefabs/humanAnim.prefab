@@ -1237,6 +1237,20 @@ MonoBehaviour:
   fetalCrys:
   - {fileID: 8300000, guid: 85ceef811d4b98f4cb8be3e2990bc22b, type: 3}
   - {fileID: 8300000, guid: 6dca682ce746d424f89e519c28523656, type: 3}
+  iSeeDeadPeople:
+  - {fileID: 8300000, guid: 8727dd87a1c4de44dbfd0ff8a2b3f2ef, type: 3}
+  - {fileID: 8300000, guid: 809ba26fa370a5e4a9a27388a280568b, type: 3}
+  - {fileID: 8300000, guid: 9bcb2432243de3547995559ebfc13b0e, type: 3}
+  lowFearThoughts:
+  - {fileID: 8300000, guid: c2dc73b37dd1e3b46a0d51f796a376bc, type: 3}
+  - {fileID: 8300000, guid: 5f64a83ac0bb90c488c9e9e781b64ca8, type: 3}
+  - {fileID: 8300000, guid: 21e0ca335bd88fa49932b1aef788b7d6, type: 3}
+  midFearThoughts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  highFearThoughts: []
+  fearImmuneResponses: []
   cough: {fileID: 8300000, guid: 2886d6404489557438322513d65b982b, type: 3}
   coughingToDeath: {fileID: 8300000, guid: 2e33ac8945025dd48be44a459dee189b, type: 3}
   lightLaugh: {fileID: 8300000, guid: 7e8ab2979c1aa024384c14c695817759, type: 3}
