@@ -369,7 +369,7 @@ public class ReactiveAIMK2 : MonoBehaviour
             myAnimator.SetTrigger("fireTransition");
             saySomethingGeneral(deathCrys);
             myAnimator.fireEvents = false;
-            
+            gameManager.instance.killNPC();
             myAnimator.SetInteger("fearFactor", 2500);
             checkFear();
             updateFearSlider();
@@ -394,6 +394,7 @@ public class ReactiveAIMK2 : MonoBehaviour
             StartCoroutine(coro);
             mySkinMeshRend.material.mainTexture = human_screaming;
             reactionFace = true;
+            gameManager.instance.killNPC();
         }
     }
     public void setFetalPosition()
@@ -410,11 +411,12 @@ public class ReactiveAIMK2 : MonoBehaviour
             saySomethingGeneral(fetalCrys);
             mySkinMeshRend.material.mainTexture = human_crying;
             reactionFace = true;
+            gameManager.instance.killNPC();
             //myAnimator.fireEvents = true;
             //Debug.Log("end of fetal call");
         }
-            
-            //myAnimator.fireEvents = false;
+
+        //myAnimator.fireEvents = false;
     }
     // This plays this surprised animation on the NPC when called
     // You need to create a new method for every new NPC reaction and make sure they can be called at any point and
@@ -512,7 +514,7 @@ public class ReactiveAIMK2 : MonoBehaviour
             myAudioSource.PlayOneShot(coughingToDeath);
             mySkinMeshRend.material.mainTexture = human_screaming;
             reactionFace = true;
-
+            gameManager.instance.killNPC();
         }
     }
 
@@ -615,7 +617,7 @@ public class ReactiveAIMK2 : MonoBehaviour
             else
             {
                 Debug.Log("Destroy");
-
+                gameManager.instance.killNPC();
                 Destroy(gameObject);
             }
         }

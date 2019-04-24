@@ -5,10 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
 {
-    private int npcCount;
+    public int npcCount;
+    public static gameManager instance;
     // Start is called before the first frame update
     void Start()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
         //finds the number of npcs in the scene
         npcCount = GameObject.FindGameObjectsWithTag("NPC").Length;
     }
@@ -26,6 +31,6 @@ public class gameManager : MonoBehaviour
     //what happens when the player kills all npcs
     private void endGame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(2);
     }
 }
