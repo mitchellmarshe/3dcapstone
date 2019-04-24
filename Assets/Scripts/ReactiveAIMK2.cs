@@ -57,6 +57,12 @@ public class ReactiveAIMK2 : MonoBehaviour
     public Texture human_screaming;
     public Texture human_surprised;
 
+    //private Queue<GameObject> recentDecals = new Queue<GameObject>();
+    //private float decalCounter = 0;
+
+    private float soundCounter = 0;
+    private int randomTick = 0;
+
     private Texture lastFace;
     private bool reactionFace = false;
 
@@ -94,6 +100,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        randomTick = Random.Range(4, 11);
         lastFace = human_smiling;
         myAudioSource = gameObject.GetComponent<AudioSource>();
         timer = 0f;
@@ -132,6 +139,19 @@ public class ReactiveAIMK2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        soundCounter += Time.deltaTime;
+        /*
+        decalCounter += Time.deltaTime;
+        if(decalCounter >= 15)
+        {
+            if (recentDecals.Count > 0)
+            {
+                recentDecals.Clear();
+            }
+            decalCounter = 0;
+        } 
+        */
+        
         thrownCounter -= Time.deltaTime;
         if(thrownCounter <= 0)
         {
@@ -195,7 +215,8 @@ public class ReactiveAIMK2 : MonoBehaviour
                     idleForTime(Random.Range(3, 8));
                 }
 
-
+                soundCounter = 0;
+                randomTick = Random.Range(4, 11);
             }
             else
             {
@@ -211,6 +232,25 @@ public class ReactiveAIMK2 : MonoBehaviour
                 // if there fear level has changed
                 else
                 {
+                    if(soundCounter > randomTick)
+                    {
+                        if (myAnimator.runtimeAnimatorController == noFearController || myAnimator.runtimeAnimatorController == lowFearController)
+                        {
+                            saySomethingGeneral(lowFearThoughts);
+                        }
+                        else if (myAnimator.runtimeAnimatorController == medFearController)
+                        {
+                            saySomethingGeneral(midFearThoughts);
+
+                        }
+                        else if (myAnimator.runtimeAnimatorController == highFearController)
+                        {
+                            saySomethingGeneral(highFearThoughts);
+                        }
+
+                        soundCounter = 0;
+                        randomTick = Random.Range(4, 11);
+                    }
                     /*
                     timer += Time.deltaTime;
                     if (timer > 0.1)
@@ -448,6 +488,34 @@ public class ReactiveAIMK2 : MonoBehaviour
             mySkinMeshRend.material.mainTexture = human_surprised;
             reactionFace = true;
         } else
+        {
+            addFear(250);
+        }
+
+    }
+
+    public void setSurprised(AudioClip[] audio)
+    {
+        if (!myAgent.isStopped)
+        {
+            StopAllCoroutines();
+            addFear(250);
+            stopped = true;
+            myAgent.isStopped = true;
+            setAllAnimBoolsToBool(false);
+            myAnimator.SetBool("surprised", true);
+            myAnimator.SetTrigger("fireTransition");
+
+            //myAnimator.fireEvents = false;
+            //IEnumerator coro = surprisedIenum(3.75f);
+            //StopAllCoroutines();
+            IEnumerator coro = idling(3.5f);
+            StartCoroutine(coro);
+            saySomethingGeneral(audio);
+            mySkinMeshRend.material.mainTexture = human_surprised;
+            reactionFace = true;
+        }
+        else
         {
             addFear(250);
         }
@@ -703,6 +771,7 @@ public class ReactiveAIMK2 : MonoBehaviour
         myAnimator.SetBool("walk", true);
         myAnimator.SetTrigger("fireTransition");
         myAgent.speed = 3.5f;
+        
     }
 
     // Keeps the NPC idling for the parameter time in seconds
@@ -724,6 +793,7 @@ public class ReactiveAIMK2 : MonoBehaviour
         yield return new WaitForSeconds(time);
         setAllAnimBoolsToBool(false);
         myAgent.destination = gameObject.transform.position;
+        
         stopped = false;
         decided = false;
         arrived = true;
@@ -886,7 +956,8 @@ public class ReactiveAIMK2 : MonoBehaviour
         int i = 0;
         while (i < closeDecals.Count)
         {
-            if (closeDecals[i] != null)
+
+            if (closeDecals[i] != null )//&& !recentDecals.Contains(closeDecals[i]))
             {
 
                 LayerMask newMask = LayerMask.GetMask("walls");
@@ -899,10 +970,13 @@ public class ReactiveAIMK2 : MonoBehaviour
                     reactToDecal(closeDecals[i]);
                     transform.LookAt(closeDecals[i].transform);
 
-                    
+                    //recentDecals.Enqueue(closeDecals[i]);
                     closeDecals.RemoveAt(i);
                 }
-            }
+            }//else if(closeDecals[i] != null && recentDecals.Contains(closeDecals[i]))
+            //{
+                //saySomethingGeneral(fearImmuneResponses);
+            //}
             else
             {
                 closeDecals.RemoveAt(i);
@@ -924,7 +998,7 @@ public class ReactiveAIMK2 : MonoBehaviour
                     if (!Physics.Linecast(transform.position, nearbyNPCs[i].transform.position, newMask, QueryTriggerInteraction.UseGlobal))
                     {
                         transform.LookAt(nearbyNPCs[i].transform);
-                        setSurprised();
+                        setSurprised(iSeeDeadPeople);
 
                         deadNPCs.Add(nearbyNPCs[i]);
                         nearbyNPCs.RemoveAt(i);

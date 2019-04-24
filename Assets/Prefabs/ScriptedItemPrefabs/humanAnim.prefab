@@ -1246,11 +1246,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5f64a83ac0bb90c488c9e9e781b64ca8, type: 3}
   - {fileID: 8300000, guid: 21e0ca335bd88fa49932b1aef788b7d6, type: 3}
   midFearThoughts:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  highFearThoughts: []
-  fearImmuneResponses: []
+  - {fileID: 8300000, guid: 6cd8f2b6ebbd16d44abbcc675bf451e3, type: 3}
+  - {fileID: 8300000, guid: 4d5008a1bfc3eb7458ef5c19bcd3ef90, type: 3}
+  highFearThoughts:
+  - {fileID: 8300000, guid: 63d6791fb57832041b39ab7981e02651, type: 3}
+  - {fileID: 8300000, guid: bf27106d4d7e7e64896074294a3a1556, type: 3}
+  fearImmuneResponses:
+  - {fileID: 8300000, guid: fd4321e0556101e429d61a4a504df01d, type: 3}
+  - {fileID: 8300000, guid: 7cf428c26ca436a469323b4c45c17722, type: 3}
   cough: {fileID: 8300000, guid: 2886d6404489557438322513d65b982b, type: 3}
   coughingToDeath: {fileID: 8300000, guid: 2e33ac8945025dd48be44a459dee189b, type: 3}
   lightLaugh: {fileID: 8300000, guid: 7e8ab2979c1aa024384c14c695817759, type: 3}
@@ -1284,7 +1287,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 12
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
