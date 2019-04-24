@@ -44,6 +44,8 @@ public class Menu : MonoBehaviour
     public Animator fade;
     public Animator title;
     public Animator getUpCam;
+    public AudioClip heartMonitor;
+    private AudioSource audio;
 
     [Header("Props")]
     public GameObject player;
@@ -79,6 +81,7 @@ public class Menu : MonoBehaviour
 
     private void Start()
     {
+        audio = GetComponent<AudioSource>();
         ShowKnob();
         ShowControls();
         ShowOptions();
@@ -111,6 +114,8 @@ public class Menu : MonoBehaviour
         {
             if (inGame == false)
             {
+                audio.clip = heartMonitor;
+                audio.Play();
                 StartGame();
             }
             else
