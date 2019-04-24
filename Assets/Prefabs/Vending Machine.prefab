@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3820261665630235946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -1.1, z: -1}
+  m_LocalPosition: {x: 0, y: -1.1, z: -0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 688163936364598651}
@@ -472,6 +472,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7446072684999980466}
     m_Modifications:
+    - target: {fileID: 2136580224162487267, guid: 63f71d8064836164386c8433337b3ca0,
+        type: 3}
+      propertyPath: m_Name
+      value: Soda Can
+      objectReference: {fileID: 0}
     - target: {fileID: 4143152887603806826, guid: 63f71d8064836164386c8433337b3ca0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -526,11 +531,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2136580224162487267, guid: 63f71d8064836164386c8433337b3ca0,
-        type: 3}
-      propertyPath: m_Name
-      value: Soda Can
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f71d8064836164386c8433337b3ca0, type: 3}

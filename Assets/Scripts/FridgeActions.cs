@@ -13,6 +13,7 @@ public class FridgeActions : ItemActionInterface
     private AudioSource audio;
     public AudioClip fridgeSounds;
     public Light myLight;
+    private List<GameObject> distortedNPCS = new List<GameObject>();
 
 
     private void Start()
@@ -51,6 +52,10 @@ public class FridgeActions : ItemActionInterface
             myLight.enabled = true;
             audio.PlayOneShot(fridgeSounds);
             counter = 0;
+            for (int i = 0; i < distortedNPCS.Count; i++)
+            {
+                distortedNPCS[i].GetComponent<ReactiveAIMK2>().setSurprised();
+            }
         }
     }
 
@@ -68,6 +73,28 @@ public class FridgeActions : ItemActionInterface
     public override void callAction4()
     {
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "NPC")
+        {
+            if (!distortedNPCS.Contains(other.gameObject))
+            {
+                distortedNPCS.Add(other.gameObject);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "NPC")
+        {
+            if (distortedNPCS.Contains(other.gameObject))
+            {
+                distortedNPCS.Remove(other.gameObject);
+            }
+        }
     }
 
     public override string[] getActionNames()

@@ -12,6 +12,7 @@ public class LockerActions : ItemActionInterface
     private float counter = 0;
     private AudioSource audio;
     public AudioClip lockerSounds;
+    private List<GameObject> distortedNPCS = new List<GameObject>();
 
 
     private void Start()
@@ -47,6 +48,10 @@ public class LockerActions : ItemActionInterface
             myAnim.SetBool("thrashing", true);
             audio.PlayOneShot(lockerSounds);
             counter = 0;
+            for (int i = 0; i < distortedNPCS.Count; i++)
+            {
+                distortedNPCS[i].GetComponent<ReactiveAIMK2>().setSurprised();
+            }
         }
     }
 
@@ -69,6 +74,28 @@ public class LockerActions : ItemActionInterface
     public override string[] getActionNames()
     {
         return myActionNames;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "NPC")
+        {
+            if (!distortedNPCS.Contains(other.gameObject))
+            {
+                distortedNPCS.Add(other.gameObject);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "NPC")
+        {
+            if (distortedNPCS.Contains(other.gameObject))
+            {
+                distortedNPCS.Remove(other.gameObject);
+            }
+        }
     }
 
     public override void setActionNames(string[] names)
