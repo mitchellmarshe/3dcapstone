@@ -65,7 +65,7 @@ public class TrashCanActions : ItemActionInterface
                 if (counter >= .25f)
                 {
                     enabledPapers = true;
-                    ejectPapers();
+                    //ejectPapers();
                 }
                
 
@@ -75,9 +75,9 @@ public class TrashCanActions : ItemActionInterface
 
     private void ejectPapers()
     {
-        Vector3 force1 = new Vector3(2500 * Random.Range(-2, 2), 5000, 0);
-        Vector3 force2 = new Vector3(2500 * Random.Range(-2, 2), 5000, 0);
-        Vector3 force3 = new Vector3(2500 * Random.Range(-2, 2), 5000, 0);
+        Vector3 force1 = new Vector3(2500 * Random.Range(-2, 2), 8000, 0);
+        Vector3 force2 = new Vector3(2500 * Random.Range(-2, 2), 8000, 0);
+        Vector3 force3 = new Vector3(2500 * Random.Range(-2, 2), 8000, 0);
         paper1.SetActive(true);
         paper2.SetActive(true);
         paper3.SetActive(true);
