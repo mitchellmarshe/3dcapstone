@@ -34,6 +34,14 @@ public class ReactiveAIMK2 : MonoBehaviour
 
     public AudioClip[] fetalCrys;
 
+    public AudioClip[] iSeeDeadPeople;
+
+    public AudioClip[] lowFearThoughts;
+    public AudioClip[] midFearThoughts;
+    public AudioClip[] highFearThoughts;
+
+    public AudioClip[] fearImmuneResponses;
+
     public AudioClip cough;
     public AudioClip coughingToDeath;
 
