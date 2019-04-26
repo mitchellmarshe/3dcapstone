@@ -887,7 +887,7 @@ public class ReactiveAIMK2 : MonoBehaviour
 
     public void OnCloseTriggerEnter(Collider other)
     {
-        if (!closeMiss && other.isTrigger == false)
+        if (!closeMiss && other.isTrigger == false && other.gameObject.tag != "Decal")
         {
             //Debug.Log("Close Miss!!");
             LayerMask newMask = LayerMask.GetMask("walls");
@@ -956,8 +956,9 @@ public class ReactiveAIMK2 : MonoBehaviour
                 }
                 else
                 {
+                    //transform.LookAt(closeDecals[i].transform);
                     reactToDecal(closeDecals[i]);
-                    transform.LookAt(closeDecals[i].transform);
+                    
 
                     //recentDecals.Enqueue(closeDecals[i]);
                     closeDecals.RemoveAt(i);
@@ -986,7 +987,7 @@ public class ReactiveAIMK2 : MonoBehaviour
                     LayerMask newMask = LayerMask.GetMask("walls");
                     if (!Physics.Linecast(transform.position, nearbyNPCs[i].transform.position, newMask, QueryTriggerInteraction.UseGlobal))
                     {
-                        transform.LookAt(nearbyNPCs[i].transform);
+                        //transform.LookAt(nearbyNPCs[i].transform);
                         setSurprised(iSeeDeadPeople);
 
                         deadNPCs.Add(nearbyNPCs[i]);
