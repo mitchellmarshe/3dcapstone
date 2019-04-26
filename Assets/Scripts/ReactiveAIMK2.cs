@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ReactiveAIMK2 : MonoBehaviour
 {
     public NavMeshAgent myAgent;
-    private Animator myAnimator;
+    public Animator myAnimator;
     private int myOldFear;
     private int myCurrentFear;
     private bool decided;
@@ -215,8 +215,8 @@ public class ReactiveAIMK2 : MonoBehaviour
                     idleForTime(Random.Range(3, 8));
                 }
 
-                soundCounter = 0;
-                randomTick = Random.Range(4, 11);
+                //soundCounter = 0;
+                //randomTick = Random.Range(4, 11);
             }
             else
             {
@@ -232,25 +232,7 @@ public class ReactiveAIMK2 : MonoBehaviour
                 // if there fear level has changed
                 else
                 {
-                    if(soundCounter > randomTick)
-                    {
-                        if (myAnimator.runtimeAnimatorController == noFearController || myAnimator.runtimeAnimatorController == lowFearController)
-                        {
-                            saySomethingGeneral(lowFearThoughts);
-                        }
-                        else if (myAnimator.runtimeAnimatorController == medFearController)
-                        {
-                            saySomethingGeneral(midFearThoughts);
-
-                        }
-                        else if (myAnimator.runtimeAnimatorController == highFearController)
-                        {
-                            saySomethingGeneral(highFearThoughts);
-                        }
-
-                        soundCounter = 0;
-                        randomTick = Random.Range(4, 11);
-                    }
+                    
                     /*
                     timer += Time.deltaTime;
                     if (timer > 0.1)
@@ -401,8 +383,13 @@ public class ReactiveAIMK2 : MonoBehaviour
 
     public void saySomethingGeneral(AudioClip[] general)
     {
-        int rando = Random.Range(0, general.Length);
-        myAudioSource.PlayOneShot(general[rando]);
+        if (global.canISpeak())
+        {
+            int rando = Random.Range(0, general.Length);
+            myAudioSource.PlayOneShot(general[rando]);
+        }
+        
+
     }
     //Sets the NPC to dead by stopping movement, playing animation, and setting fear to max
     public void setDead()
@@ -459,7 +446,7 @@ public class ReactiveAIMK2 : MonoBehaviour
             saySomethingGeneral(fetalCrys);
             mySkinMeshRend.material.mainTexture = human_crying;
             reactionFace = true;
-            gameManager.instance.killNPC();
+            //gameManager.instance.killNPC();
             //myAnimator.fireEvents = true;
             //Debug.Log("end of fetal call");
         }

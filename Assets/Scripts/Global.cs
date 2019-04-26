@@ -18,6 +18,8 @@ public class Global : MonoBehaviour
     public enum Action {None, One, Two, Three, Four};
     public Action action;
     public GameObject selectedItem;
+    private float npcResponsetimer;
+    private float npcResponseBuffer = 0.4f;
     //public bool inMenus;
 
     public int points;
@@ -77,5 +79,25 @@ public class Global : MonoBehaviour
     {
         height = Screen.height;
         width = Screen.width;
+        if (npcResponsetimer > 0)
+        {
+            npcResponsetimer -= Time.deltaTime;
+        } else
+        {
+            npcResponsetimer = 0;
+        }
+
+
+        
+    }
+
+    public bool canISpeak()
+    {
+        if(npcResponsetimer <= 0)
+        {
+            npcResponsetimer += 0.2f;
+            return true;
+        }
+        return false;
     }
 }
