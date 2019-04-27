@@ -38,6 +38,11 @@ public class Controller2 : MonoBehaviour
         characterController = player.GetComponent<CharacterController>();
         playerDirection = new Vector3(0.0f, 0.0f, 0.0f);
         cameraRotation = camera.transform.eulerAngles;
+    }
+
+    private void Start()
+    {
+        actions.Action0();
 
         if (global.platform == false)
         {
@@ -49,17 +54,12 @@ public class Controller2 : MonoBehaviour
         }
         else
         {
-            walkSpeed = 10.0f;
-            lookSpeed = 5.0f;
+            walkSpeed = 8.0f;
+            lookSpeed = 2.0f;
 
             gui.moveSlider.value = walkSpeed;
             gui.lookSlider.value = lookSpeed;
         }
-    }
-
-    private void Start()
-    {
-        actions.Action0();
     }
 
     private void Update()
@@ -135,7 +135,7 @@ public class Controller2 : MonoBehaviour
             Vector2 coordinate = new Vector2(0.0f, 0.0f);
             if (global.platform == true)
             {
-                coordinate = moveJoystick.Coordinate();
+                coordinate = FixedRadialCoordinates(moveJoystick.Coordinate());
             }
             
             
@@ -198,9 +198,9 @@ public class Controller2 : MonoBehaviour
             }
             else // Mobile
             {
-                Vector2 coordinate = lookJoystick.Coordinate();
-                cameraRotation.y += coordinate.x; // * lookSpeed;
-                cameraRotation.x += -coordinate.y; // * -lookSpeed;
+                Vector2 coordinate = FixedRadialCoordinates(lookJoystick.Coordinate());
+                cameraRotation.y += coordinate.x * lookSpeed;
+                cameraRotation.x += -coordinate.y * lookSpeed;
             }
 
             if (global.currentScene == global.startScene)
@@ -213,9 +213,30 @@ public class Controller2 : MonoBehaviour
                 cameraRotation.x = Mathf.Clamp(cameraRotation.x, -90.0f, 90.0f);
                 camera.transform.eulerAngles = new Vector3(cameraRotation.x, cameraRotation.y, 0.0f);
             }
-        } else
+        }
+        else
         {
             Cursor.visible = true;
         }
+    }
+
+    public Vector2 FixedRadialCoordinates(Vector2 coordinate)
+    {
+        if (coordinate.x != 0.0f)
+        {
+            float radians = Mathf.Atan(coordinate.y / coordinate.x);
+
+            if (radians >= -0.3927f && radians <= 0.3927f)
+            {
+                coordinate.y = 0.0f;
+            }
+            else if (radians >= -1.1781f && radians <= -1.5708f || 
+                radians >= 1.1781f && radians <= 1.5708f)
+            {
+                coordinate.x = 0.0f;
+            }
+        }
+
+        return new Vector2(coordinate.x, coordinate.y);
     }
 }

@@ -287,11 +287,22 @@ public class GUI : MonoBehaviour
 
     private void SetKnob()
     {
-        knob.GetComponent<RectTransform>().anchorMin = new Vector2(0.0f, 1.0f);
-        knob.GetComponent<RectTransform>().anchorMax = new Vector2(0.0f, 1.0f);
-        knob.GetComponent<RectTransform>().pivot = new Vector2(0.0f, 1.0f);
-        knob.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(padding, -padding, 0.0f);
-        knob.GetComponent<RectTransform>().localScale = new Vector3(guiScale, guiScale, guiScale);
+        if (global.platform == false)
+        {
+            knob.GetComponent<RectTransform>().anchorMin = new Vector2(0.0f, 1.0f);
+            knob.GetComponent<RectTransform>().anchorMax = new Vector2(0.0f, 1.0f);
+            knob.GetComponent<RectTransform>().pivot = new Vector2(0.0f, 1.0f);
+            knob.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(padding, -padding, 0.0f);
+            knob.GetComponent<RectTransform>().localScale = new Vector3(guiScale, guiScale, guiScale);
+        }
+        else
+        {
+            knob.GetComponent<RectTransform>().anchorMin = new Vector2(0.0f, 1.0f);
+            knob.GetComponent<RectTransform>().anchorMax = new Vector2(0.0f, 1.0f);
+            knob.GetComponent<RectTransform>().pivot = new Vector2(0.0f, 1.0f);
+            knob.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(padding, -padding, 0.0f);
+            knob.GetComponent<RectTransform>().localScale = new Vector3(guiScale * 1.5f, guiScale * 1.5f, guiScale * 1.5f);
+        }
     }
 
     private void SetActions()
@@ -315,16 +326,16 @@ public class GUI : MonoBehaviour
             actions.GetComponent<RectTransform>().anchorMax = new Vector2(1.0f, 0.0f);
             actions.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
             float radius = mobileLookJoystick.GetComponent<RectTransform>().rect.width;
-            radius = (3 * padding) + radius;
+            radius = (4 * padding) + radius;
             actions.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(-radius * guiScale, radius * guiScale, 0.0f);
             actions.GetComponent<RectTransform>().localScale = new Vector3(guiScale, guiScale, guiScale);
 
             actionsLeft.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0.0f, -((radius / 2) + (padding / 2)), 0.0f);
             actionsLeft.GetComponent<RectTransform>().eulerAngles = new Vector3(0.0f, 0.0f, 90.0f);
-            actionsLeft.transform.GetChild(0).GetComponent<RectTransform>().eulerAngles = new Vector3(0.0f, 0.0f, -90.0f);
-            actionsLeft.transform.GetChild(1).GetComponent<RectTransform>().eulerAngles = new Vector3(0.0f, 0.0f, -90.0f);
+            actionsLeft.GetComponent<RectTransform>().localScale = new Vector3(guiScale * 1.5f, guiScale * 1.5f, guiScale * 1.5f);
 
             actionsRight.GetComponent<RectTransform>().anchoredPosition3D = new Vector3((radius / 2) + (padding / 2), 0.0f, 0.0f);
+            actionsRight.GetComponent<RectTransform>().localScale = new Vector3(guiScale * 1.5f, guiScale * 1.5f, guiScale * 1.5f);
         }
     }
 
