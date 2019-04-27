@@ -18,6 +18,7 @@ public class Guardi : MonoBehaviour
 
     [Header("Objects")]
     public GameObject[] objects;
+    public GameObject portrait;
 
     [Header("Conditions")]
     public bool look;
