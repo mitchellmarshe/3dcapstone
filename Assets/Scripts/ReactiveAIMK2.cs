@@ -22,11 +22,15 @@ public class ReactiveAIMK2 : MonoBehaviour
     private Global global;
 
     public AudioSource myAudioSource;
+    public AudioSource footstepsSource;
 
     public AnimatorOverrideController noFearController;
     public AnimatorOverrideController lowFearController; 
     public AnimatorOverrideController medFearController;
     public AnimatorOverrideController highFearController;
+
+    [Header("Audio Clips")]
+    public AudioClip walkSound;
 
     public AudioClip[] generalQuotes;
 
@@ -396,6 +400,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     {
         if (!myAnimator.GetBool("deadPose"))
         {
+            footstepsSource.Stop();
             StopAllCoroutines();
             stopped = true;
             myAgent.isStopped = true;
@@ -418,6 +423,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     {
         if (!myAnimator.GetBool("heartAttack") && !myAgent.isStopped)
         {
+            footstepsSource.Stop();
             StopAllCoroutines();
             stopped = true;
             myAgent.isStopped = true;
@@ -432,10 +438,12 @@ public class ReactiveAIMK2 : MonoBehaviour
             gameManager.instance.killNPC();
         }
     }
+
     public void setFetalPosition()
     {
         if (!myAgent.isStopped)
         {
+            footstepsSource.Stop();
             StopAllCoroutines();
             stopped = true;
             myAgent.isStopped = true;
@@ -460,6 +468,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     {
         if (!myAgent.isStopped)
         {
+            footstepsSource.Stop();
             StopAllCoroutines();
             addFear(250);
             stopped = true;
@@ -487,6 +496,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     {
         if (!myAgent.isStopped)
         {
+            footstepsSource.Stop();
             StopAllCoroutines();
             addFear(250);
             stopped = true;
@@ -515,6 +525,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     {
         if (!myAgent.isStopped)
         {
+            footstepsSource.Stop();
             StopAllCoroutines();
             stopped = true;
             myAgent.isStopped = true;
@@ -539,6 +550,7 @@ public class ReactiveAIMK2 : MonoBehaviour
         {
             if (coughCount < 4)
             {
+                footstepsSource.Stop();
                 StopAllCoroutines();
                 coughCount++;
                 stopped = true;
@@ -566,6 +578,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     {
         if (!myAnimator.GetBool("coughingDeath") && !myAgent.isStopped)
         {
+            footstepsSource.Stop();
             StopAllCoroutines();
             stopped = true;
             myAgent.isStopped = true;
@@ -585,6 +598,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     {
         if (!myAgent.isStopped)
         {
+            footstepsSource.Stop();
             StopAllCoroutines();
             stopped = true;
             myAgent.isStopped = true;
@@ -603,6 +617,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     {
         if (!myAgent.isStopped)
         {
+            footstepsSource.Stop();
             StopAllCoroutines();
             stopped = true;
             myAgent.isStopped = true;
@@ -638,6 +653,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     {
         if (!myAgent.isStopped)
         {
+            footstepsSource.Stop();
             StopAllCoroutines();
             stopped = true;
             myAgent.isStopped = true;
@@ -753,6 +769,8 @@ public class ReactiveAIMK2 : MonoBehaviour
     // Starts the walk animation and sets destination
     public void StartWalk(Transform loc)
     {
+        footstepsSource.clip = walkSound;
+        footstepsSource.Play();
         myAgent.SetDestination(myTarget.position);
         stopped = false;
         myAgent.isStopped = false;
@@ -766,6 +784,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     // Keeps the NPC idling for the parameter time in seconds
     public void idleForTime(float time)
     {
+        footstepsSource.Stop();
         stopped = true;
         //myAgent.isStopped = true;
         setAllAnimBoolsToBool(false);
