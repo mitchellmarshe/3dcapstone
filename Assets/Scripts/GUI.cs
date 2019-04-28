@@ -107,6 +107,7 @@ public class GUI : MonoBehaviour
                 ShowActions(true);
 
                 ShowLookTutorial();
+                ShowClickTutorial();
                 ShowMoveTutorial();
             }
         }

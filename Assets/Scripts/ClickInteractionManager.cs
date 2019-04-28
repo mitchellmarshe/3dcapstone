@@ -47,6 +47,16 @@ public class ClickInteractionManager : MonoBehaviour
     {
         raySelectCheck();
         actionUpdater();
+
+        if (global.softSelected != null)
+        {
+            guardi.softSelection = true;
+        }
+
+        if (global.hardSelected != null)
+        {
+            guardi.hardSelection = true;
+        }
         
     }
 
@@ -174,6 +184,11 @@ public class ClickInteractionManager : MonoBehaviour
                                             pickupObject(other.GetComponent<Rigidbody>());
                                         }
 
+                                        // Guardi
+                                        if (global.currentScene == global.mainScene && global.tutorial == true && guardi.hardSelection == false)
+                                        {
+                                            guardi.hardSelection = true;
+                                        }
 
                                     }
                                     else
@@ -188,9 +203,11 @@ public class ClickInteractionManager : MonoBehaviour
                                     global.itemInfo = other.GetComponent<ItemActionInterface>();
                                     setButtons = false;
 
-
-
-
+                                    // Guardi
+                                    if (global.currentScene == global.mainScene && global.tutorial == true && guardi.hardSelection == false)
+                                    {
+                                        guardi.hardSelection = true;
+                                    }
                                 }
                             }
 
@@ -299,7 +316,11 @@ public class ClickInteractionManager : MonoBehaviour
                             setButtons = false;
 
 
-
+                            // Guardi
+                            if (global.currentScene == global.mainScene && global.tutorial == true && guardi.hardSelection == false)
+                            {
+                                guardi.hardSelection = true;
+                            }
 
                         }
                         else

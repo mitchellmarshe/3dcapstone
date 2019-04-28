@@ -51,8 +51,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff0a86fdb8220445b91907eb495900a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  global: {fileID: 0}
+  gui: {fileID: 0}
   canvas: {fileID: 8724546670739612756}
   text: {fileID: 7046181417612512791}
+  objects: []
+  portrait: {fileID: 0}
+  look: 0
+  move: 0
+  action: 0
+  decal: 0
+  softSelection: 0
+  hardSelection: 0
+  pickupObject: 0
+  throwObject: 0
 --- !u!1 &1637118623841631157
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,7 +100,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 30, y: 10}
+  m_SizeDelta: {x: 28, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4862840901732458432
 CanvasRenderer:

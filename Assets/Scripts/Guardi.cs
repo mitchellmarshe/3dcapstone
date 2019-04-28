@@ -34,6 +34,9 @@ public class Guardi : MonoBehaviour
     private int index;
     private float startTime;
     private float time;
+    private float waitTime;
+    private bool waited;
+    private bool clicked;
 
     private void Awake()
     {
@@ -50,12 +53,16 @@ public class Guardi : MonoBehaviour
 
         index = 0;
         startTime = 14.0f;
+        waitTime = 0.0f;
+        waited = false;
+        clicked = false;
     }
 
     void Start()
     {
         time = Time.time + startTime;
         Invoke("Appear", startTime);
+        ShowCanvas();
     }
 
     void Update()
@@ -139,6 +146,16 @@ public class Guardi : MonoBehaviour
         {
             gui.ShowLookTutorial();
         }
+
+        if (gui.clickTutorialOn == false)
+        {
+            gui.ShowClickTutorial();
+        }
+
+        if (gui.moveTutorialOn == false)
+        {
+            gui.ShowMoveTutorial();
+        }
     }
 
     public void Objects()
@@ -149,10 +166,15 @@ public class Guardi : MonoBehaviour
         }
     }
 
+    public void Portrait(bool trigger)
+    {
+        portrait.SetActive(trigger);
+    }
+
     public void ShowCanvas()
     {
-        canvasOn = !canvasOn;
         canvas.SetActive(canvasOn);
+        canvasOn = !canvasOn;
     }
 
     public void Dialogue()
@@ -160,6 +182,7 @@ public class Guardi : MonoBehaviour
         // Introduction
         if (index == 0 && Time.time >= time)
         {
+            ShowCanvas();
             text.text = "Whoa, you just fell through a wall! I'm pretty sure you hit your head on that toilet.";
             index++;
             time += 10.0f;
@@ -206,8 +229,8 @@ public class Guardi : MonoBehaviour
         // Soft Selection
         if (index == 5 && Time.time >= time)
         {
-            text.text = "Here are some soda cans, we can manipulate.";
-            Objects();
+            text.text = "Here is a portrait, we can manipulate.";
+            Portrait(true);
             index++;
             time += 10.0f;
 
@@ -218,13 +241,32 @@ public class Guardi : MonoBehaviour
         {
             if (softSelection == false)
             {
-                text.text = "Hover your hand (mouse pointer) over a can. The can will glow.";
-                time = (Time.time - time);
+                if (waitTime >= 15.0f)
+                {
+                    Waiting();
+                }
+                else
+                {
+                    text.text = "Hover your hand (mouse pointer) over the portrait. The portrait will glow.";
+                }
+
+                waitTime = Time.time - time;
             }
             else
             {
                 index++;
-                time += 10.0f;
+
+                if (waitTime <= 10.0f)
+                {
+                    time += 10.0f - waitTime;
+                }
+                else
+                {
+                    time += waitTime;
+                }
+
+                waitTime = 0.0f;
+                waited = false;
 
                 action = false;
             }
@@ -235,36 +277,39 @@ public class Guardi : MonoBehaviour
         {
             if (action == false)
             {
-                text.text = "Now move this can by haunting it (press 1).";
-                time = (Time.time - time);
+                if (waitTime >= 15.0f)
+                {
+                    Waiting();
+                }
+                else
+                {
+                    text.text = "Now haunt the portrait (press 1).";
+                }
+
+                waitTime = Time.time - time;
             }
             else
             {
                 index++;
-                time += 10.0f;
 
-                action = false;
-            }
-        }
+                if (waitTime <= 10.0f)
+                {
+                    time += 10.0f - waitTime;
+                }
+                else
+                {
+                    time += waitTime;
+                }
 
-        if (index == 8 && Time.time >= time)
-        {
-            if (action == false)
-            {
-                text.text = "Hover over another can, then destroy it (press 2).";
-                time = (Time.time - time);
-            }
-            else
-            {
-                index++;
-                time += 10.0f;
+                waitTime = 0.0f;
+                waited = false;
 
                 hardSelection = false;
             }
         }
 
         // Hard Selection
-        if (index == 9 && Time.time >= time)
+        if (index == 8 && Time.time >= time)
         {
             text.text = "You're getting the hang of this!";
             index++;
@@ -273,23 +318,51 @@ public class Guardi : MonoBehaviour
             hardSelection = false;
         }
 
-        if (index == 10 && Time.time >= time)
+        if (index == 9 && Time.time >= time)
         {
             if (hardSelection == false)
             {
-                text.text = "Instead of just hovering over a can, concentrate on it (left-mouse click).";
-                time = (Time.time - time);
+                if (waitTime >= 15.0f)
+                {
+                    Waiting();
+                }
+                else
+                {
+                    text.text = "Instead of just hovering over the portrait, concentrate on it (left-mouse click).";
+
+                    if (clicked == false)
+                    {
+                        gui.ShowClickTutorial();
+                        clicked = true;
+                    }
+                }
+
+                waitTime = Time.time - time;
             }
             else
             {
                 index++;
-                time += 10.0f;
+
+                if (waitTime <= 10.0f)
+                {
+                    time += 10.0f - waitTime;
+                }
+                else
+                {
+                    time += waitTime;
+                }
+
+                waitTime = 0.0f;
+                waited = false;
 
                 pickupObject = false;
+
+                gui.ShowClickTutorial();
+                clicked = false;
             }
         }
 
-        if (index == 11 && Time.time >= time)
+        if (index == 10 && Time.time >= time)
         {
             text.text = "When you concentrate on an object, it allows you manipulate it selectively.";
             index++;
@@ -299,49 +372,106 @@ public class Guardi : MonoBehaviour
         }
 
         // Pickup Object
-        if (index == 12 && Time.time >= time)
+        if (index == 11 && Time.time >= time)
         {
-            text.text = "Also when concentrating on an object, you can do more powerful haunting tactics like picking up the object.";
+            text.text = "Other objects like these soda cans, can be picked up and also manipulated.";
+            Objects();
             index++;
             time += 10.0f;
 
             pickupObject = false;
         }
 
-        if (index == 13 && Time.time >= time)
+        if (index == 12 && Time.time >= time)
         {
             if (pickupObject == false)
             {
-                text.text = "Try picking up a soda can (left-mouse click)!";
-                time = (Time.time - time);
+                if (waitTime >= 15.0f)
+                {
+                    Waiting();
+                }
+                else
+                {
+                    text.text = "Try picking up a soda can (left-mouse click)!";
+
+                    if (clicked == false)
+                    {
+                        gui.ShowClickTutorial();
+                        clicked = true;
+                    }
+                }
+
+                waitTime = Time.time - time;
             }
             else
             {
                 index++;
-                time += 10.0f;
+
+                if (waitTime <= 10.0f)
+                {
+                    time += 10.0f - waitTime;
+                }
+                else
+                {
+                    time += waitTime;
+                }
+
+                waitTime = 0.0f;
+                waited = false;
 
                 throwObject = false;
+
+                gui.ShowClickTutorial();
+                clicked = false;
             }
         }
 
         // Throwing Object
-        if (index == 14 && Time.time >= time)
+        if (index == 13 && Time.time >= time)
         {
             if (throwObject == false)
             {
-                text.text = "Throw the soda can (left-mouse click).";
-                time = (Time.time - time);
+                if (waitTime >= 15.0f)
+                {
+                    Waiting();
+                }
+                else
+                {
+                    text.text = "Throw the soda can (left-mouse click).";
+
+                    if (clicked == false)
+                    {
+                        gui.ShowClickTutorial();
+                        clicked = true;
+                    }
+                }
+
+                waitTime = Time.time - time;
             }
             else
             {
                 index++;
-                time += 10.0f;
+
+                if (waitTime <= 10.0f)
+                {
+                    time += 10.0f - waitTime;
+                }
+                else
+                {
+                    time += waitTime;
+                }
+
+                waitTime = 0.0f;
+                waited = false;
 
                 decal = false;
+
+                gui.ShowClickTutorial();
+                clicked = false;
             }
         }
 
-        if (index == 15 && Time.time >= time)
+        if (index == 14 && Time.time >= time)
         {
             text.text = "Remember objects can be manipulated in various ways!";
             index++;
@@ -351,7 +481,7 @@ public class Guardi : MonoBehaviour
         }
 
         // Decals
-        if (index == 16 && Time.time >= time)
+        if (index == 15 && Time.time >= time)
         {
             text.text = "Here's one final thing you can do as a ghost.";
             gui.ShowDecals(true);
@@ -361,7 +491,7 @@ public class Guardi : MonoBehaviour
             decal = false;
         }
 
-        if (index == 17 && Time.time >= time)
+        if (index == 16 && Time.time >= time)
         {
             text.text = "You can make art on the walls.";
             index++;
@@ -370,21 +500,49 @@ public class Guardi : MonoBehaviour
             decal = false;
         }
 
-        if (index == 18 && Time.time >= time)
+        if (index == 17 && Time.time >= time)
         {
             if (decal == false)
             {
-                text.text = "Just drag (left-mouse click) a decal onto the wall.";
-                time = (Time.time - time);
+                if (waitTime >= 15.0f)
+                {
+                    Waiting();
+                }
+                else
+                {
+                    text.text = "Just drag (left-mouse click) a decal onto the wall.";
+
+                    if (clicked == false)
+                    {
+                        gui.ShowClickTutorial();
+                        clicked = true;
+                    }
+                }
+
+                waitTime = Time.time - time;
             }
             else
             {
                 index++;
-                time += 10.0f;
+
+                if (waitTime <= 10.0f)
+                {
+                    time += 10.0f - waitTime;
+                }
+                else
+                {
+                    time += waitTime;
+                }
+
+                waitTime = 0.0f;
+                waited = false;
+
+                gui.ShowClickTutorial();
+                clicked = false;
             }
         }
 
-        if (index == 19 && Time.time >= time)
+        if (index == 18 && Time.time >= time)
         {
             text.text = "These decals really get the attention of people.";
             index++;
@@ -392,39 +550,55 @@ public class Guardi : MonoBehaviour
         }
 
         // Moving
-        if (index == 20 && Time.time >= time)
+        if (index == 19 && Time.time >= time)
         {
             text.text = "You're free to haunt the morgue staff!";
+
+            if (clicked == false)
+            {
+                gui.ShowMoveTutorial();
+                clicked = true;
+            }
+
             Invoke("Disappear", 10);
         }
+    }
 
-        /*
-        // Waiting
-        if (index == 21)
-        {
-            text.text = "You okay?";
-        }
-
-        if (index == 22)
-        {
-            text.text = "Why aren't you learning?";
-        }
-
-        if (index == 23)
-        {
-            text.text = "Just do it!";
-        }
-
-        if (index == 24)
-        {
-            text.text = "I'm getting bored here.";
-        }
-
-        if (index == 25)
+    public void Waiting()
+    {
+        if (waitTime >= 25.0f)
         {
             text.text = "You're on your own here.";
+            Invoke("Disappear", 10);
+            return;
         }
-        */
-        //index++;
+
+        if (waitTime >= 20.0f)
+        {
+            text.text = "I'm getting bored here.";
+            return;
+        }
+
+        if (waited == false)
+        {
+            float number = Random.Range(0.0f, 3.0f);
+
+            if (number >= 0.0f && number < 1.0f)
+            {
+                text.text = "Just do it!";
+            }
+            else if (number >= 1.0f && number < 2.0f)
+            {
+                text.text = "Why aren't you learning?";
+            }
+            else
+            {
+                text.text = "You okay?";
+            }
+
+            waited = true;
+        }
+
+        return;
     }
 }
