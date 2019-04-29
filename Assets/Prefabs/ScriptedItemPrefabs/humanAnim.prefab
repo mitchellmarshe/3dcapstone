@@ -1357,6 +1357,7 @@ MonoBehaviour:
   medFearController: {fileID: 22100000, guid: 2cea8448113928649b0b0c12f6e38eb2, type: 2}
   highFearController: {fileID: 22100000, guid: f2b327606dd6e0b439e38cf69bc0547e, type: 2}
   walkSound: {fileID: 8300000, guid: 1d0683ab4b337ab44ac33b0b1d8286bd, type: 3}
+  runSound: {fileID: 8300000, guid: c3ee68d542d1f3445a2dc24513d21ec7, type: 3}
   generalQuotes:
   - {fileID: 8300000, guid: b25c04ef468b9d24888b96b83e9dacbe, type: 3}
   - {fileID: 8300000, guid: 116022b46a5cf914986b60b2e738996f, type: 3}
@@ -1522,7 +1523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6320750280215612109
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1558,7 +1559,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6320750280846414188
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1670,7 +1671,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6320750281126231090
 RectTransform:
   m_ObjectHideFlags: 0

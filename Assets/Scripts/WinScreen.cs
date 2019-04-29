@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class WinScreen : MonoBehaviour
 {
+    public void Start()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
     public void exitGame()
     {
         Application.Quit();

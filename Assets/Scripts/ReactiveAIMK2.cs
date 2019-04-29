@@ -32,6 +32,8 @@ public class ReactiveAIMK2 : MonoBehaviour
     [Header("Audio Clips")]
     public AudioClip walkSound;
 
+    public AudioClip runSound;
+
     public AudioClip[] generalQuotes;
 
     public AudioClip[] deathCrys;
@@ -81,7 +83,6 @@ public class ReactiveAIMK2 : MonoBehaviour
     private List<GameObject> deadNPCs = new List<GameObject>();
 
     private List<GameObject> interactionSpots = new List<GameObject>();
-
 
     /*Trigger names
      * 
@@ -617,7 +618,7 @@ public class ReactiveAIMK2 : MonoBehaviour
     {
         if (!myAgent.isStopped)
         {
-            footstepsSource.Stop();
+
             StopAllCoroutines();
             stopped = true;
             myAgent.isStopped = true;
@@ -769,7 +770,13 @@ public class ReactiveAIMK2 : MonoBehaviour
     // Starts the walk animation and sets destination
     public void StartWalk(Transform loc)
     {
-        footstepsSource.clip = walkSound;
+        if (myCurrentFear >= 1250) //running
+        {
+            footstepsSource.clip = runSound;
+        }else //walking
+        {
+            footstepsSource.clip = walkSound;
+        }
         footstepsSource.Play();
         myAgent.SetDestination(myTarget.position);
         stopped = false;
