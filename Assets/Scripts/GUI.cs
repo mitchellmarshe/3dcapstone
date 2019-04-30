@@ -113,6 +113,8 @@ public class GUI : MonoBehaviour
         }
         else // Mobile
         {
+            ShowDecals(false);
+
             mobileLookJoystick.SetActive(true);
             SetMobileLookJoystick();
 
@@ -121,21 +123,23 @@ public class GUI : MonoBehaviour
             hotkey3.SetActive(false);
             hotkey4.SetActive(false);
 
-            ShowLookTutorial();
-
             if (global.currentScene == global.startScene)
             {
-                actions.SetActive(false);
-                decals.SetActive(false);
+                ShowActions(false);
+
+                ShowLookTutorial();
+                ShowLookTutorial();
+                ShowMoveTutorial();
+
                 mobileMoveJoystick.SetActive(false);
             }
             else
             {
-                actions.SetActive(true);
-                SetActions();
+                ShowActions(true);
 
-                decals.SetActive(true);
-                SetDecals();
+                ShowLookTutorial();
+                ShowClickTutorial();
+                ShowMoveTutorial();
 
                 mobileMoveJoystick.SetActive(true);
                 SetMobileMoveJoystick();

@@ -137,11 +137,9 @@ public class Controller2 : MonoBehaviour
             {
                 coordinate = FixedRadialCoordinates(moveJoystick.Coordinate());
             }
-            
-            
+                    
             if (global.currentScene == global.mainScene && global.tutorial == true && guardi.move == false)
             {
-                //gui.ShowMoveTutorial();
                 return;
             } 
 
@@ -169,50 +167,66 @@ public class Controller2 : MonoBehaviour
 
     private void Look()
     {
+        bool looking = false;
+
         if (Input.GetMouseButton(1) || global.platform == true)
         {
-            
             Cursor.visible = false;
+
             if (global.platform == false) // PC
             {
-                cameraRotation.y += Input.GetAxis("Mouse X") * lookSpeed;
-                cameraRotation.x += Input.GetAxis("Mouse Y") * -lookSpeed;
+                float x = Input.GetAxis("Mouse X");
+                float y = Input.GetAxis("Mouse Y");
 
-  
-                if (global.currentScene == global.startScene)
+                cameraRotation.y += x * lookSpeed;
+                cameraRotation.x += y * -lookSpeed;
+
+                if (x != 0.0f || y != 0.0f)
                 {
-                    if (gui.lookTutorialOn == false)
-                    {
-                        gui.ShowLookTutorial();
-                        menu.ShowMenu(true);
-                    }
+                    looking = true;
                 }
-
-                if (global.currentScene == global.mainScene && global.tutorial == true)
+                else
                 {
-                    if (gui.lookTutorialOn == false)
-                    {
-                        gui.ShowLookTutorial();
-                    }
+                    looking = false;
                 }
             }
             else // Mobile
             {
                 Vector2 coordinate = FixedRadialCoordinates(lookJoystick.Coordinate());
                 cameraRotation.y += coordinate.x * lookSpeed;
-                cameraRotation.x += -coordinate.y * lookSpeed;
+                cameraRotation.x += coordinate.y * -lookSpeed;
+
+                if (coordinate.x != 0.0f || coordinate.y != 0.0f)
+                {
+                    looking = true;
+                }
+                else
+                {
+                    looking = false;
+                }
             }
 
             if (global.currentScene == global.startScene)
             {
                 cameraRotation.y = Mathf.Clamp(cameraRotation.y, -180.0f, 0.0f);
                 camera.transform.eulerAngles = new Vector3(cameraRotation.y, 270.0f, -90.0f);
+
+                if (gui.lookTutorialOn == false && looking == true)
+                {
+                    gui.ShowLookTutorial();
+                    menu.ShowMenu(true);
+                }
             }
             else
             {
                 cameraRotation.x = Mathf.Clamp(cameraRotation.x, -90.0f, 90.0f);
                 camera.transform.eulerAngles = new Vector3(cameraRotation.x, cameraRotation.y, 0.0f);
-            }
+
+                if (global.tutorial == true && gui.lookTutorialOn == false && looking == true)
+                {
+                    gui.ShowLookTutorial();
+                }
+            }      
         }
         else
         {
