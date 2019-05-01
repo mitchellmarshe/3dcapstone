@@ -247,7 +247,14 @@ public class Guardi : MonoBehaviour
                 }
                 else
                 {
-                    text.text = "Hover your hand (mouse pointer) over the portrait. The portrait will glow.";
+                    if (global.platform == false)
+                    {
+                        text.text = "Hover your hand (mouse pointer) over the portrait. The portrait will glow.";
+                    }
+                    else
+                    {
+                        text.text = "Hover your hand (finger select) over the portrait. The portrait will glow.";
+                    }
                 }
 
                 waitTime = Time.time - time;
@@ -283,7 +290,14 @@ public class Guardi : MonoBehaviour
                 }
                 else
                 {
-                    text.text = "Now haunt the portrait (press 1).";
+                    if (global.platform == false)
+                    {
+                        text.text = "Now haunt the portrait (press 1).";
+                    }
+                    else
+                    {
+                        text.text = "Now haunt the portrait (press ghost icon).";
+                    }
                 }
 
                 waitTime = Time.time - time;
@@ -318,57 +332,69 @@ public class Guardi : MonoBehaviour
             hardSelection = false;
         }
 
-        if (index == 9 && Time.time >= time)
+        if (global.platform == false)
         {
-            if (hardSelection == false)
-            {
-                if (waitTime >= 15.0f)
-                {
-                    Waiting();
-                }
-                else
-                {
-                    text.text = "Instead of just hovering over the portrait, concentrate on it (left-mouse click).";
 
-                    if (clicked == false)
+            if (index == 9 && Time.time >= time)
+            {
+                if (hardSelection == false)
+                {
+                    if (waitTime >= 15.0f)
                     {
-                        gui.ShowClickTutorial();
-                        clicked = true;
+                        Waiting();
                     }
-                }
+                    else
+                    {
+                        text.text = "Instead of just hovering over the portrait, concentrate on it (left-mouse click).";
 
-                waitTime = Time.time - time;
-            }
-            else
-            {
-                index++;
+                        if (clicked == false)
+                        {
+                            gui.ShowClickTutorial();
+                            clicked = true;
+                        }
+                    }
 
-                if (waitTime <= 10.0f)
-                {
-                    time += 10.0f - waitTime;
+                    waitTime = Time.time - time;
                 }
                 else
                 {
-                    time += waitTime;
-                }
+                    index++;
 
-                waitTime = 0.0f;
-                waited = false;
+                    if (waitTime <= 10.0f)
+                    {
+                        time += 10.0f - waitTime;
+                    }
+                    else
+                    {
+                        time += waitTime;
+                    }
+
+                    waitTime = 0.0f;
+                    waited = false;
+
+                    pickupObject = false;
+
+                    gui.ShowClickTutorial();
+                    clicked = false;
+                }
+            }
+
+            if (index == 10 && Time.time >= time)
+            {
+                text.text = "When you concentrate on an object, it allows you manipulate it selectively.";
+                index++;
+                time += 10.0f;
 
                 pickupObject = false;
-
-                gui.ShowClickTutorial();
-                clicked = false;
             }
+
         }
-
-        if (index == 10 && Time.time >= time)
+        else
         {
-            text.text = "When you concentrate on an object, it allows you manipulate it selectively.";
-            index++;
-            time += 10.0f;
-
-            pickupObject = false;
+            if (index == 9)
+            {
+                index = 11;
+            }
         }
 
         // Pickup Object
@@ -392,7 +418,14 @@ public class Guardi : MonoBehaviour
                 }
                 else
                 {
-                    text.text = "Try picking up a soda can (left-mouse click)!";
+                    if (global.platform == false)
+                    {
+                        text.text = "Try picking up a soda can (left-mouse click)!";
+                    }
+                    else
+                    {
+                        text.text = "Try picking up a soda can (finger select)!";
+                    }
 
                     if (clicked == false)
                     {
@@ -437,7 +470,14 @@ public class Guardi : MonoBehaviour
                 }
                 else
                 {
-                    text.text = "Throw the soda can (left-mouse click).";
+                    if (global.platform == false)
+                    {
+                        text.text = "Throw the soda can (left-mouse click).";
+                    }
+                    else
+                    {
+                        text.text = "Throw the soda can (tap finger elsewhere).";
+                    }
 
                     if (clicked == false)
                     {
@@ -510,7 +550,14 @@ public class Guardi : MonoBehaviour
                 }
                 else
                 {
-                    text.text = "Just drag (left-mouse click) a decal onto the wall.";
+                    if (global.platform == false)
+                    {
+                        text.text = "Just drag (left-mouse click) a decal onto the wall.";
+                    }
+                    else
+                    {
+                        text.text = "Just drag (finger select + drag) a decal onto the wall.";
+                    }
 
                     if (clicked == false)
                     {

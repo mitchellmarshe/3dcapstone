@@ -113,6 +113,8 @@ public class GUI : MonoBehaviour
         }
         else // Mobile
         {
+            ShowDecals(false);
+
             mobileLookJoystick.SetActive(true);
             SetMobileLookJoystick();
 
@@ -121,21 +123,23 @@ public class GUI : MonoBehaviour
             hotkey3.SetActive(false);
             hotkey4.SetActive(false);
 
-            ShowLookTutorial();
-
             if (global.currentScene == global.startScene)
             {
-                actions.SetActive(false);
-                decals.SetActive(false);
+                ShowActions(false);
+
+                ShowLookTutorial();
+                ShowLookTutorial();
+                ShowMoveTutorial();
+
                 mobileMoveJoystick.SetActive(false);
             }
             else
             {
-                actions.SetActive(true);
-                SetActions();
+                ShowActions(true);
 
-                decals.SetActive(true);
-                SetDecals();
+                ShowLookTutorial();
+                ShowClickTutorial();
+                ShowMoveTutorial();
 
                 mobileMoveJoystick.SetActive(true);
                 SetMobileMoveJoystick();
@@ -338,8 +342,8 @@ public class GUI : MonoBehaviour
             actionsLeft.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0.0f, -((radius / 2) + (padding / 2)), 0.0f);
             actionsLeft.GetComponent<RectTransform>().eulerAngles = new Vector3(0.0f, 0.0f, 90.0f);
             actionsLeft.GetComponent<RectTransform>().localScale = new Vector3(guiScale * 1.5f, guiScale * 1.5f, guiScale * 1.5f);
-            actionsLeft.transform.GetChild(0).GetComponent<RectTransform>().eulerAngles = new Vector3(0.0f, 0.0f, -90.0f);
-            actionsLeft.transform.GetChild(1).GetComponent<RectTransform>().eulerAngles = new Vector3(0.0f, 0.0f, -90.0f);
+            actionsLeft.transform.GetChild(0).GetComponent<RectTransform>().eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+            actionsLeft.transform.GetChild(1).GetComponent<RectTransform>().eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
 
             actionsRight.GetComponent<RectTransform>().anchoredPosition3D = new Vector3((radius / 2) + (padding / 2), 0.0f, 0.0f);
             actionsRight.GetComponent<RectTransform>().localScale = new Vector3(guiScale * 1.5f, guiScale * 1.5f, guiScale * 1.5f);
