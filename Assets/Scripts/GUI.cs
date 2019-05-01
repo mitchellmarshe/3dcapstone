@@ -30,12 +30,15 @@ public class GUI : MonoBehaviour
     public GameObject tutorial;
 
     public GameObject lookTutorial;
+    public GameObject lookTutorial2;
     public bool lookTutorialOn;
 
     public GameObject clickTutorial;
+    public GameObject clickTutorial2;
     public bool clickTutorialOn;
 
     public GameObject moveTutorial;
+    public GameObject moveTutorial2;
     public bool moveTutorialOn;
 
     [Header("Options")]
@@ -170,7 +173,11 @@ public class GUI : MonoBehaviour
         if (width != global.width || height != global.height)
         {
             Resolution();
+            SetOverlays();
             SetMenu();
+            SetLookTutorial();
+            SetClickTutorial();
+            SetMoveTutorial();
 
             width = global.width;
             height = global.height;
@@ -223,19 +230,41 @@ public class GUI : MonoBehaviour
 
     public void ShowLookTutorial()
     {
-        lookTutorial.SetActive(lookTutorialOn);
+        if (global.platform == false)
+        {
+            lookTutorial.SetActive(lookTutorialOn);
+        }
+        else
+        {
+            lookTutorial2.SetActive(lookTutorialOn);
+        }
         lookTutorialOn = !lookTutorialOn;
     }
 
     public void ShowClickTutorial()
     {
-        clickTutorial.SetActive(clickTutorialOn);
+        if (global.platform == false)
+        {
+            clickTutorial.SetActive(clickTutorialOn);
+        }
+        else
+        {
+            clickTutorial2.SetActive(clickTutorialOn);
+        }
         clickTutorialOn = !clickTutorialOn;
     }
 
     public void ShowMoveTutorial()
     {
-        moveTutorial.SetActive(moveTutorialOn);
+        if (global.platform == false)
+        {
+            moveTutorial.SetActive(moveTutorialOn);
+        }
+        else
+        {
+            moveTutorial2.SetActive(moveTutorialOn);
+
+        }
         moveTutorialOn = !moveTutorialOn;
     }
 
@@ -388,28 +417,61 @@ public class GUI : MonoBehaviour
 
     private void SetLookTutorial()
     {
-        lookTutorial.GetComponent<RectTransform>().anchorMin = new Vector2(1.0f, 0.0f);
-        lookTutorial.GetComponent<RectTransform>().anchorMax = new Vector2(1.0f, 0.0f);
-        lookTutorial.GetComponent<RectTransform>().pivot = new Vector2(1.0f, 0.0f);
-        lookTutorial.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(-padding, padding, 0.0f);
-        lookTutorial.GetComponent<RectTransform>().localScale = new Vector3(guiScale2, guiScale2, guiScale2);
+        if (global.platform == false)
+        {
+            lookTutorial.GetComponent<RectTransform>().anchorMin = new Vector2(1.0f, 0.0f);
+            lookTutorial.GetComponent<RectTransform>().anchorMax = new Vector2(1.0f, 0.0f);
+            lookTutorial.GetComponent<RectTransform>().pivot = new Vector2(1.0f, 0.0f);
+            lookTutorial.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(-padding, padding, 0.0f);
+            lookTutorial.GetComponent<RectTransform>().localScale = new Vector3(guiScale2, guiScale2, guiScale2);
+        }
+        else
+        {
+            lookTutorial2.GetComponent<RectTransform>().anchorMin = new Vector2(1.0f, 0.0f);
+            lookTutorial2.GetComponent<RectTransform>().anchorMax = new Vector2(1.0f, 0.0f);
+            lookTutorial2.GetComponent<RectTransform>().pivot = new Vector2(1.0f, 0.0f);
+            lookTutorial2.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(-padding + 64.0f, padding + 64.0f, 0.0f);
+            lookTutorial2.GetComponent<RectTransform>().localScale = new Vector3(guiScale2, guiScale2, guiScale2);
+        }
     }
 
     private void SetClickTutorial()
     {
-        clickTutorial.GetComponent<RectTransform>().anchorMin = new Vector2(1.0f, 0.0f);
-        clickTutorial.GetComponent<RectTransform>().anchorMax = new Vector2(1.0f, 0.0f);
-        clickTutorial.GetComponent<RectTransform>().pivot = new Vector2(1.0f, 0.0f);
-        clickTutorial.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(-padding, padding, 0.0f);
-        clickTutorial.GetComponent<RectTransform>().localScale = new Vector3(guiScale2, guiScale2, guiScale2);
+        if (global.platform == false)
+        {
+            clickTutorial.GetComponent<RectTransform>().anchorMin = new Vector2(1.0f, 0.0f);
+            clickTutorial.GetComponent<RectTransform>().anchorMax = new Vector2(1.0f, 0.0f);
+            clickTutorial.GetComponent<RectTransform>().pivot = new Vector2(1.0f, 0.0f);
+            clickTutorial.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(-padding, padding, 0.0f);
+            clickTutorial.GetComponent<RectTransform>().localScale = new Vector3(guiScale2, guiScale2, guiScale2);
+        }
+        else
+        {
+            clickTutorial2.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0.5f);
+            clickTutorial2.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0.5f);
+            clickTutorial2.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
+            clickTutorial2.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0.0f, 0.0f, 0.0f);
+            clickTutorial2.GetComponent<RectTransform>().localScale = new Vector3(guiScale2, guiScale2, guiScale2);
+        }
     }
 
     private void SetMoveTutorial()
     {
-        moveTutorial.GetComponent<RectTransform>().anchorMin = new Vector2(0.0f, 0.0f);
-        moveTutorial.GetComponent<RectTransform>().anchorMax = new Vector2(0.0f, 0.0f);
-        moveTutorial.GetComponent<RectTransform>().pivot = new Vector2(0.0f, 0.0f);
-        moveTutorial.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(padding, padding, 0.0f);
-        moveTutorial.GetComponent<RectTransform>().localScale = new Vector3(guiScale2, guiScale2, guiScale2);
+        if (global.platform == false)
+        {
+            moveTutorial.GetComponent<RectTransform>().anchorMin = new Vector2(0.0f, 0.0f);
+            moveTutorial.GetComponent<RectTransform>().anchorMax = new Vector2(0.0f, 0.0f);
+            moveTutorial.GetComponent<RectTransform>().pivot = new Vector2(0.0f, 0.0f);
+            moveTutorial.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(padding, padding, 0.0f);
+            moveTutorial.GetComponent<RectTransform>().localScale = new Vector3(guiScale2, guiScale2, guiScale2);
+        }
+        else
+        {
+            moveTutorial2.GetComponent<RectTransform>().anchorMin = new Vector2(0.0f, 0.0f);
+            moveTutorial2.GetComponent<RectTransform>().anchorMax = new Vector2(0.0f, 0.0f);
+            moveTutorial2.GetComponent<RectTransform>().pivot = new Vector2(0.0f, 0.0f);
+            moveTutorial2.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(padding + 64.0f, padding + 64.0f, 0.0f);
+            moveTutorial2.GetComponent<RectTransform>().localScale = new Vector3(guiScale2, guiScale2, guiScale2);
+        }
     }
 }
