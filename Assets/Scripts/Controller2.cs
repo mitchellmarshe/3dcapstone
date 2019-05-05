@@ -110,18 +110,21 @@ public class Controller2 : MonoBehaviour
         if (hit.collider.tag == "Ignore")
         {
             Physics.IgnoreCollision(player.GetComponent<Collider>(), hit.collider);
+        } else
+        {
+            // Don't move the rigidbody if the character is on top of it.
+            if (collisionFlags == CollisionFlags.Below)
+            {
+                return;
+            }
+
+            if (body == null || body.isKinematic)
+            {
+                return;
+            }
         }
 
-        // Don't move the rigidbody if the character is on top of it.
-        if (collisionFlags == CollisionFlags.Below)
-        {
-            return;
-        }
-
-        if (body == null || body.isKinematic)
-        {
-            return;
-        }
+        
 
         body.AddForceAtPosition(characterController.velocity * 0.1f, hit.point, ForceMode.Impulse);
     }

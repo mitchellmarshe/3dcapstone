@@ -20,6 +20,10 @@ public class Guardi : MonoBehaviour
     public GameObject[] objects;
     public GameObject portrait;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip[] audioClips;
+
     [Header("Conditions")]
     public bool look;
     public bool move;
@@ -37,6 +41,7 @@ public class Guardi : MonoBehaviour
     private float waitTime;
     private bool waited;
     private bool clicked;
+    private bool sound;
 
     private void Awake()
     {
@@ -56,6 +61,7 @@ public class Guardi : MonoBehaviour
         waitTime = 0.0f;
         waited = false;
         clicked = false;
+        sound = false;
     }
 
     void Start()
@@ -184,45 +190,50 @@ public class Guardi : MonoBehaviour
         {
             ShowCanvas();
             text.text = "Whoa, you just fell through a wall! I'm pretty sure you hit your head on that toilet.";
+            audioSource.clip = audioClips[index];
+            audioSource.Play();
             index++;
-            time += 10.0f;
-
+            time += audioClips[index].length + 1.0f;
             softSelection = false;
         }
 
         if (index == 1 && Time.time >= time)
         {
             text.text = "You didn't feel that cause you're now a spirit.";
+            audioSource.clip = audioClips[index];
+            audioSource.Play();
             index++;
-            time += 10.0f;
-
+            time += audioClips[index].length + 1.0f;
             softSelection = false;
         }
 
         if (index == 2 && Time.time >= time)
         {
             text.text = "Did they pull the plug on you too?";
+            audioSource.clip = audioClips[index];
+            audioSource.Play();
             index++;
-            time += 10.0f;
-
+            time += audioClips[index].length + 1.0f;
             softSelection = false;
         }
 
         if (index == 3 && Time.time >= time)
         {
             text.text = "Well, let's get revenge by haunting the staff workers of this morgue.";
+            audioSource.clip = audioClips[index];
+            audioSource.Play();
             index++;
-            time += 10.0f;
-
+            time += audioClips[index].length + 1.0f;
             softSelection = false;
         }
 
         if (index == 4 && Time.time >= time)
         {
             text.text = "I'll show you the basics to haunting.";
+            audioSource.clip = audioClips[index];
+            audioSource.Play();
             index++;
-            time += 10.0f;
-
+            time += audioClips[index].length + 1.0f;
             softSelection = false;
         }
 
@@ -230,15 +241,18 @@ public class Guardi : MonoBehaviour
         if (index == 5 && Time.time >= time)
         {
             text.text = "Here is a portrait, we can manipulate.";
+            audioSource.clip = audioClips[index];
+            audioSource.Play();
             Portrait(true);
             index++;
-            time += 10.0f;
-
+            time += audioClips[index].length + 1.0f;
             softSelection = false;
         }
 
         if (index == 6 && Time.time >= time)
         {
+            float length = 0.0f;
+
             if (softSelection == false)
             {
                 if (waitTime >= 15.0f)
@@ -255,6 +269,15 @@ public class Guardi : MonoBehaviour
                     {
                         text.text = "Hover your hand (finger select) over the portrait. The portrait will glow.";
                     }
+
+                    if (sound == false)
+                    {
+                        audioSource.clip = audioClips[index];
+                        length = audioClips[index].length + 1.0f;
+                        audioSource.Play();
+                        sound = true;
+                    }
+                    
                 }
 
                 waitTime = Time.time - time;
@@ -263,9 +286,9 @@ public class Guardi : MonoBehaviour
             {
                 index++;
 
-                if (waitTime <= 10.0f)
+                if (waitTime <= length)
                 {
-                    time += 10.0f - waitTime;
+                    time += length - waitTime;
                 }
                 else
                 {
@@ -274,14 +297,16 @@ public class Guardi : MonoBehaviour
 
                 waitTime = 0.0f;
                 waited = false;
-
                 action = false;
+                sound = false;
             }
         }
         
         // Actions
         if (index == 7 && Time.time >= time)
         {
+            float length = 0.0f;
+
             if (action == false)
             {
                 if (waitTime >= 15.0f)
@@ -298,6 +323,14 @@ public class Guardi : MonoBehaviour
                     {
                         text.text = "Now haunt the portrait (press ghost icon).";
                     }
+
+                    if (sound == false)
+                    {
+                        audioSource.clip = audioClips[index];
+                        length = audioClips[index].length + 1.0f;
+                        audioSource.Play();
+                        sound = true;
+                    }
                 }
 
                 waitTime = Time.time - time;
@@ -306,9 +339,9 @@ public class Guardi : MonoBehaviour
             {
                 index++;
 
-                if (waitTime <= 10.0f)
+                if (waitTime <= length)
                 {
-                    time += 10.0f - waitTime;
+                    time += length - waitTime;
                 }
                 else
                 {
@@ -317,8 +350,8 @@ public class Guardi : MonoBehaviour
 
                 waitTime = 0.0f;
                 waited = false;
-
                 hardSelection = false;
+                sound = false;
             }
         }
 
@@ -326,17 +359,19 @@ public class Guardi : MonoBehaviour
         if (index == 8 && Time.time >= time)
         {
             text.text = "You're getting the hang of this!";
+            audioSource.clip = audioClips[index];
+            audioSource.Play();
             index++;
-            time += 10.0f;
-
+            time += audioClips[index].length + 1.0f;
             hardSelection = false;
         }
 
         if (global.platform == false)
         {
-
             if (index == 9 && Time.time >= time)
             {
+                float length = 0.0f;
+
                 if (hardSelection == false)
                 {
                     if (waitTime >= 15.0f)
@@ -346,6 +381,14 @@ public class Guardi : MonoBehaviour
                     else
                     {
                         text.text = "Instead of just hovering over the portrait, concentrate on it (left-mouse click).";
+
+                        if (sound == false)
+                        {
+                            audioSource.clip = audioClips[index];
+                            length = audioClips[index].length + 1.0f;
+                            audioSource.Play();
+                            sound = true;
+                        }
 
                         if (clicked == false)
                         {
@@ -360,9 +403,9 @@ public class Guardi : MonoBehaviour
                 {
                     index++;
 
-                    if (waitTime <= 10.0f)
+                    if (waitTime <= length)
                     {
-                        time += 10.0f - waitTime;
+                        time += length - waitTime;
                     }
                     else
                     {
@@ -371,23 +414,22 @@ public class Guardi : MonoBehaviour
 
                     waitTime = 0.0f;
                     waited = false;
-
                     pickupObject = false;
-
                     gui.ShowClickTutorial();
                     clicked = false;
+                    sound = false;
                 }
             }
 
             if (index == 10 && Time.time >= time)
             {
-                text.text = "When you concentrate on an object, it allows you manipulate it selectively.";
+                text.text = "When you concentrate on an object, it allows you to manipulate it selectively.";
+                audioSource.clip = audioClips[index];
+                audioSource.Play();
                 index++;
-                time += 10.0f;
-
+                time += audioClips[index].length + 1.0f;
                 pickupObject = false;
             }
-
         }
         else
         {
@@ -402,14 +444,17 @@ public class Guardi : MonoBehaviour
         {
             text.text = "Other objects like these soda cans, can be picked up and also manipulated.";
             Objects();
+            audioSource.clip = audioClips[index];
+            audioSource.Play();
             index++;
-            time += 10.0f;
-
+            time += audioClips[index].length + 1.0f;
             pickupObject = false;
         }
 
         if (index == 12 && Time.time >= time)
         {
+            float length = 0.0f;
+
             if (pickupObject == false)
             {
                 if (waitTime >= 15.0f)
@@ -427,6 +472,14 @@ public class Guardi : MonoBehaviour
                         text.text = "Try picking up a soda can (finger select)!";
                     }
 
+                    if (sound == false)
+                    {
+                        audioSource.clip = audioClips[index];
+                        length = audioClips[index].length + 1.0f;
+                        audioSource.Play();
+                        sound = true;
+                    }
+
                     if (clicked == false)
                     {
                         gui.ShowClickTutorial();
@@ -440,9 +493,9 @@ public class Guardi : MonoBehaviour
             {
                 index++;
 
-                if (waitTime <= 10.0f)
+                if (waitTime <= length)
                 {
-                    time += 10.0f - waitTime;
+                    time += length - waitTime;
                 }
                 else
                 {
@@ -451,17 +504,18 @@ public class Guardi : MonoBehaviour
 
                 waitTime = 0.0f;
                 waited = false;
-
                 throwObject = false;
-
                 gui.ShowClickTutorial();
                 clicked = false;
+                sound = false;
             }
         }
 
         // Throwing Object
         if (index == 13 && Time.time >= time)
         {
+            float length = 0.0f;
+
             if (throwObject == false)
             {
                 if (waitTime >= 15.0f)
@@ -479,6 +533,14 @@ public class Guardi : MonoBehaviour
                         text.text = "Throw the soda can (tap finger elsewhere).";
                     }
 
+                    if (sound == false)
+                    {
+                        audioSource.clip = audioClips[index];
+                        length = audioClips[index].length + 1.0f;
+                        audioSource.Play();
+                        sound = true;
+                    }
+
                     if (clicked == false)
                     {
                         gui.ShowClickTutorial();
@@ -492,9 +554,9 @@ public class Guardi : MonoBehaviour
             {
                 index++;
 
-                if (waitTime <= 10.0f)
+                if (waitTime <= length)
                 {
-                    time += 10.0f - waitTime;
+                    time += length - waitTime;
                 }
                 else
                 {
@@ -503,20 +565,20 @@ public class Guardi : MonoBehaviour
 
                 waitTime = 0.0f;
                 waited = false;
-
                 decal = false;
-
                 gui.ShowClickTutorial();
                 clicked = false;
+                sound = false;
             }
         }
 
         if (index == 14 && Time.time >= time)
         {
             text.text = "Remember objects can be manipulated in various ways!";
+            audioSource.clip = audioClips[index];
+            audioSource.Play();
             index++;
-            time += 10.0f;
-
+            time += audioClips[index].length + 1.0f;
             decal = false;
         }
 
@@ -524,24 +586,28 @@ public class Guardi : MonoBehaviour
         if (index == 15 && Time.time >= time)
         {
             text.text = "Here's one final thing you can do as a ghost.";
+            audioSource.clip = audioClips[index];
+            audioSource.Play();
             gui.ShowDecals(true);
             index++;
-            time += 10.0f;
-
+            time += audioClips[index].length + 1.0f;
             decal = false;
         }
 
         if (index == 16 && Time.time >= time)
         {
             text.text = "You can make art on the walls.";
+            audioSource.clip = audioClips[index];
+            audioSource.Play();
             index++;
-            time += 10.0f;
-
+            time += audioClips[index].length + 1.0f;
             decal = false;
         }
 
         if (index == 17 && Time.time >= time)
         {
+            float length = 0.0f;
+
             if (decal == false)
             {
                 if (waitTime >= 15.0f)
@@ -559,6 +625,14 @@ public class Guardi : MonoBehaviour
                         text.text = "Just drag (finger select + drag) a decal onto the wall.";
                     }
 
+                    if (sound == false)
+                    {
+                        audioSource.clip = audioClips[index];
+                        length = audioClips[index].length + 1.0f;
+                        audioSource.Play();
+                        sound = true;
+                    }
+
                     if (clicked == false)
                     {
                         gui.ShowClickTutorial();
@@ -572,9 +646,9 @@ public class Guardi : MonoBehaviour
             {
                 index++;
 
-                if (waitTime <= 10.0f)
+                if (waitTime <= length)
                 {
-                    time += 10.0f - waitTime;
+                    time += length - waitTime;
                 }
                 else
                 {
@@ -583,17 +657,19 @@ public class Guardi : MonoBehaviour
 
                 waitTime = 0.0f;
                 waited = false;
-
                 gui.ShowClickTutorial();
                 clicked = false;
+                sound = false;
             }
         }
 
         if (index == 18 && Time.time >= time)
         {
             text.text = "These decals really get the attention of people.";
+            audioSource.clip = audioClips[index];
+            audioSource.Play();
             index++;
-            time += 10.0f;
+            time += audioClips[index].length + 1.0f;
         }
 
         // Moving
@@ -601,13 +677,16 @@ public class Guardi : MonoBehaviour
         {
             text.text = "You're free to haunt the morgue staff!";
 
+            audioSource.clip = audioClips[index];
+            audioSource.Play();
+
             if (clicked == false)
             {
                 gui.ShowMoveTutorial();
                 clicked = true;
             }
 
-            Invoke("Disappear", 10);
+            Invoke("Disappear", audioClips[index].length + 1.0f);
         }
     }
 
@@ -616,13 +695,17 @@ public class Guardi : MonoBehaviour
         if (waitTime >= 25.0f)
         {
             text.text = "You're on your own here.";
-            Invoke("Disappear", 10);
+            audioSource.clip = audioClips[20];
+            audioSource.Play();
+            Invoke("Disappear", audioClips[20].length + 1.0f);
             return;
         }
 
         if (waitTime >= 20.0f)
         {
             text.text = "I'm getting bored here.";
+            audioSource.clip = audioClips[21];
+            audioSource.Play();
             return;
         }
 
@@ -633,14 +716,20 @@ public class Guardi : MonoBehaviour
             if (number >= 0.0f && number < 1.0f)
             {
                 text.text = "Just do it!";
+                audioSource.clip = audioClips[22];
+                audioSource.Play();
             }
             else if (number >= 1.0f && number < 2.0f)
             {
                 text.text = "Why aren't you learning?";
+                audioSource.clip = audioClips[23];
+                audioSource.Play();
             }
             else
             {
                 text.text = "You okay?";
+                audioSource.clip = audioClips[24];
+                audioSource.Play();
             }
 
             waited = true;
