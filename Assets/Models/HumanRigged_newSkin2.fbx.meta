@@ -1,0 +1,172 @@
+fileFormatVersion: 2
+guid: 71d8892a24937a14d8e8f1a284edc1f9
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Chest
+    100002: Head
+    100004: //RootNode
+    100006: ikHandle1
+    100008: ikHandle2
+    100010: L_Ankle
+    100012: L_Elbow
+    100014: L_Foot
+    100016: L_Hand
+    100018: L_Hip
+    100020: L_Knee
+    100022: L_Shldr
+    100024: L_Toes
+    100026: Model
+    100028: Neck
+    100030: pCube5
+    100032: pCube6
+    100034: pCube8
+    100036: polySurface1
+    100038: polySurface1 1
+    100040: polySurface2
+    100042: polySurface2 1
+    100044: R_Ankle
+    100046: R_Elbow
+    100048: R_Foot
+    100050: R_Hand
+    100052: R_Hip
+    100054: R_Knee
+    100056: R_Shldr
+    100058: R_Toes
+    100060: RootJNT
+    100062: Stomach
+    100064: top1
+    100066: transform4
+    100068: transform4 1
+    100070: transform6
+    100072: transform6 1
+    100074: transform9
+    400000: Chest
+    400002: Head
+    400004: //RootNode
+    400006: ikHandle1
+    400008: ikHandle2
+    400010: L_Ankle
+    400012: L_Elbow
+    400014: L_Foot
+    400016: L_Hand
+    400018: L_Hip
+    400020: L_Knee
+    400022: L_Shldr
+    400024: L_Toes
+    400026: Model
+    400028: Neck
+    400030: pCube5
+    400032: pCube6
+    400034: pCube8
+    400036: polySurface1
+    400038: polySurface1 1
+    400040: polySurface2
+    400042: polySurface2 1
+    400044: R_Ankle
+    400046: R_Elbow
+    400048: R_Foot
+    400050: R_Hand
+    400052: R_Hip
+    400054: R_Knee
+    400056: R_Shldr
+    400058: R_Toes
+    400060: RootJNT
+    400062: Stomach
+    400064: top1
+    400066: transform4
+    400068: transform4 1
+    400070: transform6
+    400072: transform6 1
+    400074: transform9
+    2000000: top1
+    2100000: lambert2
+    4300000: Model
+    9500000: //RootNode
+    13700000: Model
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
