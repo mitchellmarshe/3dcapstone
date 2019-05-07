@@ -81,12 +81,14 @@ public class DynamicButtonUpdater : MonoBehaviour
             action1Image.sprite = icons1[3];
         }
         else if (names[0] == "Burst" 
-            || names[0] == "POP*")
+            || names[0] == "POP*"
+            || names[0] == "Explode")
         {
             action1Image.sprite = icons1[4];
         }
         else if (names[0] == "Power" 
-            || names[0] == "On/Off")
+            || names[0] == "On/Off"
+            || names[0] == "Jazz")
         {
             action1Image.sprite = icons1[5];
         }
@@ -128,6 +130,12 @@ public class DynamicButtonUpdater : MonoBehaviour
         {
             action2Image.sprite = icons2[2];
         }
+        else if (names[0] == "Power"
+            || names[0] == "On/Off"
+            || names[0] == "Jazz")
+        {
+            action2Image.sprite = icons1[5];
+        }
         else if (names[1] == "Overload*" 
             || names[1] == "POP*")
         {
@@ -139,6 +147,9 @@ public class DynamicButtonUpdater : MonoBehaviour
         if (names[2] == "Back...")
         {
             action3Image.sprite = icons3[0];
+        } else if(names[2] == "Explode")
+        {
+            action3Image.sprite = icons2[3];
         }
 
         action4Text.text = names[3];
