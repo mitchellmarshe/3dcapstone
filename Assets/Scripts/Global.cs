@@ -69,8 +69,8 @@ public class Global : MonoBehaviour
         points = 0;
 
         currentScene = SceneManager.GetActiveScene().buildIndex;
-        startScene = 0;
-        mainScene = 1;
+        startScene = 1;
+        mainScene = 2;
 
         tutorial = true;
     }
