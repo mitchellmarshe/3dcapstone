@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Splash : MonoBehaviour
+public class SplashScreen : MonoBehaviour
 {
     public GameObject gddp;
     public GameObject logo;
