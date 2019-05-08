@@ -20,6 +20,7 @@ public class Global : MonoBehaviour
     public GameObject selectedItem;
     private float npcResponsetimer;
     private float npcResponseBuffer = 0.4f;
+    public MissionHandler missionHandler;
     //public bool inMenus;
 
     public int points;
@@ -86,7 +87,7 @@ public class Global : MonoBehaviour
         {
             npcResponsetimer = 0;
         }
-
+        checkInteractTasks();
 
         
     }
@@ -99,5 +100,31 @@ public class Global : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void checkInteractTasks()
+    {
+        
+        if (missionHandler.task1Type == 2)
+        {
+            if (itemInfo != null && itemInfo.GetType().ToString() == missionHandler.task1Name)
+            {
+                missionHandler.completeTask(1);
+            }
+        }
+        if (missionHandler.task2Type == 2)
+        {
+            if (itemInfo != null && itemInfo.GetType().ToString() == missionHandler.task2Name)
+            {
+                missionHandler.completeTask(2);
+            }
+        }
+        if (missionHandler.task3Type == 2)
+        {
+            if (itemInfo != null && itemInfo.GetType().ToString() == missionHandler.task3Name)
+            {
+                missionHandler.completeTask(3);
+            }
+        }
     }
 }

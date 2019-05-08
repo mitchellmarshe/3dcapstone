@@ -137,10 +137,10 @@ public class decalManager2 : MonoBehaviour
             guardi.decal = true;
         }
 
+
         if (other.sprite == redrumSprite.sprite)
         {
             counters[0] = cooldownRedrum;
-
         }
         else if (other.sprite == unicornSprite.sprite)
         {
@@ -162,6 +162,8 @@ public class decalManager2 : MonoBehaviour
         {
             Debug.Log("Image 'other' in isDecalReady does not have a decal sprite!!!");
         }
+
+        
     }
 
 }

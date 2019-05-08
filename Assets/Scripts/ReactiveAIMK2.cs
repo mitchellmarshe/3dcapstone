@@ -1037,6 +1037,19 @@ public class ReactiveAIMK2 : MonoBehaviour
         //Debug.Log("NPC Detected");
         if (tmp.name == "redrum")
         {
+            if (myAnimator.GetInteger("fearFactor") >= 2250)
+            {
+                if(global.missionHandler.task1Type == 1 && global.missionHandler.task1Name == tmp.name)
+                {
+                    global.missionHandler.killed4Task(1);
+                } if (global.missionHandler.task2Type == 1 && global.missionHandler.task2Name == tmp.name)
+                {
+                    global.missionHandler.killed4Task(2);
+                } if(global.missionHandler.task3Type == 1 && global.missionHandler.task3Name == tmp.name)
+                {
+                    global.missionHandler.killed4Task(3);
+                }
+            }
             setSurprised();
         }
         else if (tmp.name == "unicorn")
@@ -1045,6 +1058,21 @@ public class ReactiveAIMK2 : MonoBehaviour
         }
         else if (tmp.name == "skull")
         {
+            if (coughCount >= 4)
+            {
+                if (global.missionHandler.task1Type == 1 && global.missionHandler.task1Name == tmp.name)
+                {
+                    global.missionHandler.killed4Task(1);
+                }
+                else if (global.missionHandler.task2Type == 1 && global.missionHandler.task2Name == tmp.name)
+                {
+                    global.missionHandler.killed4Task(2);
+                }
+                else if (global.missionHandler.task3Type == 1 && global.missionHandler.task3Name == tmp.name)
+                {
+                    global.missionHandler.killed4Task(3);
+                }
+            }
             setCough();
         }
         else if (tmp.name == "hypnolizard")
@@ -1055,6 +1083,20 @@ public class ReactiveAIMK2 : MonoBehaviour
         }
         else if (tmp.name == "pentagram")
         {
+
+            if (global.missionHandler.task1Type == 1 && global.missionHandler.task1Name == tmp.name)
+            {
+                global.missionHandler.killed4Task(1);
+            }
+            else if (global.missionHandler.task2Type == 1 && global.missionHandler.task2Name == tmp.name)
+            {
+                global.missionHandler.killed4Task(2);
+            }
+            else if (global.missionHandler.task3Type == 1 && global.missionHandler.task3Name == tmp.name)
+            {
+                global.missionHandler.killed4Task(3);
+            }
+            
             setPentagram(obj.transform);
         }
         else

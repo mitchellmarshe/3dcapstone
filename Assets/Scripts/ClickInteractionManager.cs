@@ -461,6 +461,27 @@ public class ClickInteractionManager : MonoBehaviour
     {
         holdingObject = false;
         Rigidbody tmp = global.hardSelected.GetComponent<Rigidbody>();
+        if (global.missionHandler.task1Type == 3)
+        {
+            if (global.hardSelected.name.ToLower().Contains(global.missionHandler.task1Name))
+            {
+                global.missionHandler.killed4Task(1);
+            }
+        }
+        if (global.missionHandler.task2Type == 3)
+        {
+            if (global.hardSelected.name.ToLower().Contains(global.missionHandler.task2Name))
+            {
+                global.missionHandler.killed4Task(2);
+            }
+        }
+        if (global.missionHandler.task3Type == 3)
+        {
+            if (global.hardSelected.name.ToLower().Contains(global.missionHandler.task3Name))
+            {
+                global.missionHandler.killed4Task(3);
+            }
+        }
         tmp.useGravity = true;
         tmp.detectCollisions = true;
         heldObject.DetachChildren();
