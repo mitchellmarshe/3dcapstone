@@ -1,3 +1,7 @@
+Downloading the Game
+https://thegroovybuffalos.itch.io/extrication
+
+
 Getting Git/GitHub
 
 a. Create a GitHub account preferably with your UT email.
