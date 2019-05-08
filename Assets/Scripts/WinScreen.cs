@@ -17,11 +17,11 @@ public class WinScreen : MonoBehaviour
 
     public void mainMenu ()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Start");
     }
 
     public void restart()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Main");
     }
 }

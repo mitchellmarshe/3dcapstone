@@ -31,6 +31,6 @@ public class gameManager : MonoBehaviour
     //what happens when the player kills all npcs
     private void endGame()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("WinScreen");
     }
 }
